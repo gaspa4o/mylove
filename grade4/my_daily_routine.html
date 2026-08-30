@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Daily Routine — Английский, 4 класс</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #FFF8F0;
+    --fg: #2D2A26;
+    --muted: #8A8279;
+    --accent: #E8652B;
+    --accent-light: #FF8C55;
+    --green: #3DAA6D;
+    --green-light: #E6F5EC;
+    --yellow: #F5B731;
+    --yellow-light: #FFF7E0;
+    --blue: #3A8FBF;
+    --blue-light: #E3F2FB;
+    --card: #FFFFFF;
+    --border: #E8E0D6;
+    --shadow: 0 2px 12px rgba(45,42,38,0.08);
+    --shadow-lg: 0 8px 32px rgba(45,42,38,0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -120px;
+    right: -120px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(232,101,43,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -100px;
+    left: -100px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(61,170,109,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+    position: relative;
+    z-index: 1;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 28px;
+    padding: 32px 20px 24px;
+    background: linear-gradient(135deg, #E8652B 0%, #F5B731 100%);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -10%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .header h1 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .header p {
+    font-size: 1.05rem;
+    margin-top: 6px;
+    opacity: 0.92;
+    position: relative;
+    z-index: 1;
+  }
+  .header .grade-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .tabs-nav {
+    display: flex;
+    gap: 4px;
+    background: var(--card);
+    padding: 6px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs-nav::-webkit-scrollbar { height: 0; }
+  .tab-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 8px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .tab-btn i { font-size: 0.95rem; }
+  .tab-btn:hover { background: var(--yellow-light); color: var(--fg); }
+  .tab-btn.active {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 3px 12px rgba(232,101,43,0.3);
+  }
+  .tab-content {
+    display: none;
+    animation: fadeSlide 0.4s ease;
+  }
+  .tab-content.active { display: block; }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+  }
+  .card-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-title .icon-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .time-of-day-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .tod-card {
+    border-radius: var(--radius-sm);
+    padding: 20px 14px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+  .tod-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .tod-card.morning { background: linear-gradient(135deg, #FFF7E0, #FFE8B8); border-color: #F5B731; }
+  .tod-card.afternoon { background: linear-gradient(135deg, #E3F2FB, #B8E0F7); border-color: #3A8FBF; }
+  .tod-card.evening { background: linear-gradient(135deg, #F0E6F6, #D4BEE8); border-color: #8B5FC7; }
+  .tod-card .tod-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .tod-card .tod-en { font-weight: 800; font-size: 1.1rem; color: var(--fg); }
+  .tod-card .tod-ru { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+  .tod-card .tod-time { font-size: 0.78rem; color: var(--muted); margin-top: 6px; opacity: 0.8; }
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .vocab-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  .vocab-item:hover { border-color: var(--accent); background: #FFF3EC; }
+  .vocab-item .v-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .vocab-item .v-en { font-weight: 700; font-size: 0.95rem; }
+  .vocab-item .v-ru { font-size: 0.78rem; color: var(--muted); }
+  .vocab-item.flipped .v-en { display: none; }
+  .vocab-item.flipped .v-ru { display: none; }
+  .vocab-item .v-hidden { display: none; font-weight: 700; font-size: 0.95rem; color: var(--accent); }
+  .vocab-item.flipped .v-hidden { display: block; }
+  .vocab-item .flip-hint {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--muted);
+    opacity: 0.5;
+  }
+  .clock-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .clock-canvas-wrap { position: relative; }
+  #clockCanvas {
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 24px rgba(45,42,38,0.1);
+  }
+  .clock-info { text-align: center; min-width: 200px; }
+  .clock-time-display {
+    font-family: 'Comfortaa', cursive;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .clock-time-text {
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin-bottom: 16px;
+    min-height: 28px;
+  }
+  .clock-activity {
+    background: var(--green-light);
+    border: 1px solid var(--green);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-weight: 700;
+    color: var(--green);
+    font-size: 1rem;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .clock-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .clock-btn {
+    padding: 8px 16px;
+    border: 2px solid var(--border);
+    background: var(--card);
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--fg);
+  }
+  .clock-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .meals-timeline {
+    position: relative;
+    padding-left: 32px;
+    margin-top: 16px;
+  }
+  .meals-timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--yellow), var(--accent), var(--blue));
+    border-radius: 2px;
+  }
+  .meal-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 16px 18px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    transition: all 0.25s;
+  }
+  .meal-item:hover { border-color: var(--accent); }
+  .meal-item::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 20px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 3px solid var(--card);
+  }
+  .meal-item:nth-child(1)::before { background: var(--yellow); box-shadow: 0 0 0 2px var(--yellow); }
+  .meal-item:nth-child(2)::before { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+  .meal-item:nth-child(3)::before { background: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+  .meal-item:nth-child(4)::before { background: var(--blue); box-shadow: 0 0 0 2px var(--blue); }
+  .meal-name {
+    font-weight: 800;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .meal-time { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+  .meal-foods { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .food-tag {
+    padding: 4px 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .sort-zone {
+    min-height: 60px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 16px;
+    transition: all 0.3s;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-content: flex-start;
+    cursor: pointer;
+  }
+  .sort-zone:hover { border-color: var(--accent); background: #FFF8F2; }
+  .sort-zone-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+  }
+  .sort-item {
+    padding: 8px 14px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .sort-item:hover { border-color: var(--accent); transform: scale(1.03); }
+  .sort-item.selected-sort { border-color: var(--blue); background: var(--blue-light); color: var(--blue); transform: scale(1.05); }
+  .sort-item.correct { border-color: var(--green); background: var(--green-light); color: var(--green); }
+  .sort-item.wrong { border-color: #E84040; background: #FEECEC; color: #E84040; }
+  .pool-zone { min-height: 80px; }
+  .task-block {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .task-block:last-child { border-bottom: none; }
+  .task-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.82rem;
+    font-weight: 800;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .task-question {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .option-btn {
+    padding: 12px 14px;
+    border: 2px solid var(--border);
+    background: var(--card);
+    border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: left;
+    color: var(--fg);
+  }
+  .option-btn:hover { border-color: var(--accent); background: #FFF3EC; }
+  .option-btn.selected { border-color: var(--blue); background: var(--blue-light); }
+  .option-btn.correct-answer { border-color: var(--green); background: var(--green-light); color: var(--green); }
+  .option-btn.wrong-answer { border-color: #E84040; background: #FEECEC; color: #E84040; }
+  .option-btn:disabled { cursor: default; }
+  .fill-sentence {
+    font-size: 1rem;
+    line-height: 2.2;
+    margin-bottom: 12px;
+  }
+  .fill-input {
+    border: none;
+    border-bottom: 2px solid var(--border);
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+    width: 150px;
+    text-align: center;
+    padding: 2px 4px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .fill-input:focus { border-color: var(--accent); }
+  .fill-input.correct { border-color: var(--green); color: var(--green); }
+  .fill-input.wrong { border-color: #E84040; color: #E84040; }
+  .btn-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .check-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 3px 12px rgba(232,101,43,0.3);
+  }
+  .check-btn:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,101,43,0.35); }
+  .check-btn:active { transform: translateY(0); }
+  .check-btn.green { background: var(--green); box-shadow: 0 3px 12px rgba(61,170,109,0.3); }
+  .check-btn.green:hover { background: #4BBF7C; box-shadow: 0 6px 20px rgba(61,170,109,0.35); }
+  .reset-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: transparent;
+    color: var(--muted);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .reset-btn:hover { border-color: #E84040; color: #E84040; background: #FFF5F5; }
+  .reset-btn:active { transform: scale(0.97); }
+  .reset-btn i { font-size: 0.9rem; }
+  .result-banner {
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 1rem;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    animation: fadeSlide 0.3s ease;
+  }
+  .result-banner.show { display: flex; }
+  .result-banner.success { background: var(--green-light); color: var(--green); border: 1px solid var(--green); }
+  .result-banner.partial { background: var(--yellow-light); color: #B8860B; border: 1px solid var(--yellow); }
+  .result-banner.fail { background: #FEECEC; color: #E84040; border: 1px solid #E84040; }
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    padding: 14px 24px;
+    background: var(--fg);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    transition: transform 0.4s ease;
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .progress-bar-wrap {
+    background: var(--border);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--yellow));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-text {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 6px;
+    text-align: right;
+    font-weight: 600;
+  }
+  .tip-box {
+    background: var(--yellow-light);
+    border-left: 4px solid var(--yellow);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #7A6210;
+  }
+  .tip-box strong { color: #5A4A0A; }
+  .grammar-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
+  .grammar-table th {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+  }
+  .grammar-table th:first-child { border-radius: 8px 0 0 0; }
+  .grammar-table th:last-child { border-radius: 0 8px 0 0; }
+  .grammar-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .grammar-table tr:nth-child(even) td { background: var(--bg); }
+  .grammar-table .highlight { font-weight: 800; color: var(--accent); }
+  .match-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .match-item {
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    user-select: none;
+  }
+  .match-item:hover { border-color: var(--accent); }
+  .match-item.selected-match { border-color: var(--blue); background: var(--blue-light); }
+  .match-item.correct-match { border-color: var(--green); background: var(--green-light); color: var(--green); }
+  .match-item.wrong-match { border-color: #E84040; background: #FEECEC; color: #E84040; }
+  .match-item:disabled { cursor: default; }
+  .sentence-order {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+    min-height: 50px;
+    padding: 12px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--border);
+  }
+  .word-chip {
+    padding: 6px 14px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .word-chip:hover { border-color: var(--accent); }
+  .word-chip.selected-sort { border-color: var(--blue); background: var(--blue-light); color: var(--blue); transform: scale(1.05); }
+  .word-chip.correct-chip { border-color: var(--green); background: var(--green-light); color: var(--green); }
+  .word-chip.wrong-chip { border-color: #E84040; background: #FEECEC; color: #E84040; }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+  }
+  .shake { animation: shake 0.4s ease; }
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+  .pop { animation: pop 0.3s ease; }
+  @keyframes spinReset {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .spin-icon { display: inline-block; }
+  .spin-icon.spinning { animation: spinReset 0.5s ease; }
+  @media (max-width: 640px) {
+    .header h1 { font-size: 1.5rem; }
+    .time-of-day-grid { grid-template-columns: 1fr; }
+    .vocab-grid { grid-template-columns: 1fr; }
+    .options-grid { grid-template-columns: 1fr; }
+    .clock-section { flex-direction: column; gap: 20px; }
+    .tab-btn { padding: 10px 6px; font-size: 0.78rem; }
+    .tab-btn i { display: none; }
+    .btn-group { flex-direction: column; }
+    .check-btn, .reset-btn { justify-content: center; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header class="header">
+    <h1>My Daily Routine</h1>
+    <p>Мой распорядок дня</p>
+    <span class="grade-badge"><i class="fa-solid fa-graduation-cap"></i> 4 класс</span>
+  </header>
+
+  <nav class="tabs-nav" role="tablist">
+    <button class="tab-btn active" data-tab="theory" role="tab" aria-selected="true">
+      <i class="fa-solid fa-book-open"></i> Теория
+    </button>
+    <button class="tab-btn" data-tab="time" role="tab" aria-selected="false">
+      <i class="fa-solid fa-clock"></i> Время
+    </button>
+    <button class="tab-btn" data-tab="meals" role="tab" aria-selected="false">
+      <i class="fa-solid fa-utensils"></i> Еда
+    </button>
+    <button class="tab-btn" data-tab="routine" role="tab" aria-selected="false">
+      <i class="fa-solid fa-list-check"></i> Распорядок
+    </button>
+    <button class="tab-btn" data-tab="tasks" role="tab" aria-selected="false">
+      <i class="fa-solid fa-pen"></i> Задания
+    </button>
+  </nav>
+
+  <!-- ========== ТЕОРИЯ ========== -->
+  <section class="tab-content active" id="tab-theory" role="tabpanel">
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--yellow)"><i class="fa-solid fa-sun"></i></span>
+        Время суток — Time of Day
+      </div>
+      <div class="time-of-day-grid">
+        <div class="tod-card morning">
+          <div class="tod-icon">&#9728;&#65039;</div>
+          <div class="tod-en">Morning</div>
+          <div class="tod-ru">Утро</div>
+          <div class="tod-time">6:00 — 12:00</div>
+        </div>
+        <div class="tod-card afternoon">
+          <div class="tod-icon">&#9925;</div>
+          <div class="tod-en">Afternoon</div>
+          <div class="tod-ru">День</div>
+          <div class="tod-time">12:00 — 18:00</div>
+        </div>
+        <div class="tod-card evening">
+          <div class="tod-icon">&#127769;</div>
+          <div class="tod-en">Evening</div>
+          <div class="tod-ru">Вечер</div>
+          <div class="tod-time">18:00 — 22:00</div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <strong>Запомни:</strong> Ночь по-английски — <strong>Night</strong> (22:00 — 6:00). Когда мы говорим о всём дне целиком, используем слово <strong>Day</strong>.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--green)"><i class="fa-solid fa-spell-check"></i></span>
+        Грамматика — Present Simple
+      </div>
+      <p style="font-size:0.92rem; margin-bottom:12px;">Для описания распорядка дня используем настоящее простое время (<strong>Present Simple</strong>).</p>
+      <table class="grammar-table">
+        <thead><tr><th>Местоимение</th><th>Утверждение (+)</th><th>Отрицание (-)</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td class="highlight">wake up</td><td>don't wake up</td></tr>
+          <tr><td>You / We / They</td><td class="highlight">wake up</td><td>don't wake up</td></tr>
+          <tr><td>He / She / It</td><td class="highlight">wakes up</td><td>doesn't wake up</td></tr>
+        </tbody>
+      </table>
+      <div class="tip-box" style="margin-top:14px;">
+        <strong>Важно:</strong> Для he/she/it добавляется <strong>-s / -es</strong>: go &rarr; go<strong>es</strong>, watch &rarr; watch<strong>es</strong>, wash &rarr; wash<strong>es</strong>.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--accent)"><i class="fa-solid fa-language"></i></span>
+        Слова и фразы — Vocabulary
+      </div>
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:8px;">Нажми на карточку, чтобы проверить себя</p>
+      <div class="vocab-grid" id="vocabGrid"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--blue)"><i class="fa-solid fa-percent"></i></span>
+        Наречия частотности — Adverbs of Frequency
+      </div>
+      <table class="grammar-table">
+        <thead><tr><th>Английский</th><th>Русский</th><th>Как часто?</th></tr></thead>
+        <tbody>
+          <tr><td class="highlight">always</td><td>всегда</td><td>100%</td></tr>
+          <tr><td class="highlight">usually</td><td>обычно</td><td>80%</td></tr>
+          <tr><td class="highlight">often</td><td>часто</td><td>60%</td></tr>
+          <tr><td class="highlight">sometimes</td><td>иногда</td><td>40%</td></tr>
+          <tr><td class="highlight">rarely</td><td>редко</td><td>15%</td></tr>
+          <tr><td class="highlight">never</td><td>никогда</td><td>0%</td></tr>
+        </tbody>
+      </table>
+      <div class="tip-box">
+        <strong>Правило:</strong> Наречия частотности стоят <strong>перед обычным глаголом</strong> (I <em>always</em> wake up), но <strong>после глагола to be</strong> (I am <em>always</em> happy).
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ВРЕМЯ ========== -->
+  <section class="tab-content" id="tab-time" role="tabpanel">
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--accent)"><i class="fa-solid fa-clock"></i></span>
+        Который час? — What time is it?
+      </div>
+      <div class="clock-section">
+        <div class="clock-canvas-wrap">
+          <canvas id="clockCanvas" width="220" height="220"></canvas>
+        </div>
+        <div class="clock-info">
+          <div class="clock-time-display" id="clockDigital">7:00</div>
+          <div class="clock-time-text" id="clockText">seven o'clock</div>
+          <div class="clock-activity" id="clockActivity"><i class="fa-solid fa-bell"></i> I wake up</div>
+          <div class="clock-controls">
+            <button class="clock-btn" onclick="changeClock(-1)"><i class="fa-solid fa-minus"></i> 1 ч</button>
+            <button class="clock-btn" onclick="changeClock(1)">+ 1 ч <i class="fa-solid fa-plus"></i></button>
+            <button class="clock-btn" onclick="changeClock(0,-1)"><i class="fa-solid fa-minus"></i> 30 м</button>
+            <button class="clock-btn" onclick="changeClock(0,1)">+ 30 м <i class="fa-solid fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <strong>Как сказать время:</strong><br>
+        &bull; 7:00 — <em>seven o'clock</em> &bull; 7:15 — <em>a quarter past seven</em><br>
+        &bull; 7:30 — <em>half past seven</em> &bull; 7:45 — <em>a quarter to eight</em><br>
+        &bull; <em>a.m.</em> — утро, <em>p.m.</em> — день / вечер
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--green)"><i class="fa-solid fa-link"></i></span>
+        Соедини время и фразу
+      </div>
+      <p style="font-size:0.88rem; color:var(--muted); margin-bottom:8px;">Нажми на время слева, затем на правильную фразу справа</p>
+      <div class="match-container" id="timeMatchContainer"></div>
+      <div class="btn-group">
+        <button class="check-btn" onclick="checkTimeMatch()"><i class="fa-solid fa-check"></i> Проверить</button>
+        <button class="reset-btn" onclick="resetTimeMatch()"><i class="fa-solid fa-rotate-right spin-icon"></i> Сбросить</button>
+      </div>
+      <div class="result-banner" id="timeMatchResult"></div>
+    </div>
+  </section>
+
+  <!-- ========== ЕДА ========== -->
+  <section class="tab-content" id="tab-meals" role="tabpanel">
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--yellow)"><i class="fa-solid fa-utensils"></i></span>
+        Приёмы пищи — Meals
+      </div>
+      <div class="meals-timeline">
+        <div class="meal-item">
+          <div class="meal-name"><i class="fa-solid fa-mug-hot" style="color:var(--yellow)"></i> Breakfast — Завтрак</div>
+          <div class="meal-time">7:30 a.m. — morning</div>
+          <div class="meal-foods">
+            <span class="food-tag">porridge — каша</span>
+            <span class="food-tag">toast — тост</span>
+            <span class="food-tag">eggs — яйца</span>
+            <span class="food-tag">milk — молоко</span>
+            <span class="food-tag">tea — чай</span>
+          </div>
+        </div>
+        <div class="meal-item">
+          <div class="meal-name"><i class="fa-solid fa-bowl-food" style="color:var(--green)"></i> Lunch — Обед</div>
+          <div class="meal-time">1:00 p.m. — afternoon</div>
+          <div class="meal-foods">
+            <span class="food-tag">soup — суп</span>
+            <span class="food-tag">sandwich — сэндвич</span>
+            <span class="food-tag">salad — салат</span>
+            <span class="food-tag">juice — сок</span>
+          </div>
+        </div>
+        <div class="meal-item">
+          <div class="meal-name"><i class="fa-solid fa-drumstick-bite" style="color:var(--accent)"></i> Dinner — Ужин</div>
+          <div class="meal-time">6:30 p.m. — evening</div>
+          <div class="meal-foods">
+            <span class="food-tag">chicken — курица</span>
+            <span class="food-tag">rice — рис</span>
+            <span class="food-tag">potatoes — картофель</span>
+            <span class="food-tag">vegetables — овощи</span>
+          </div>
+        </div>
+        <div class="meal-item">
+          <div class="meal-name"><i class="fa-solid fa-cookie-bite" style="color:var(--blue)"></i> Supper / Snack — Перекус</div>
+          <div class="meal-time">8:00 p.m. — evening</div>
+          <div class="meal-foods">
+            <span class="food-tag">fruit — фрукты</span>
+            <span class="food-tag">yogurt — йогурт</span>
+            <span class="food-tag">cookies — печенье</span>
+            <span class="food-tag">cocoa — какао</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--accent)"><i class="fa-solid fa-question"></i></span>
+        Что едят на...? — What do you eat for...?
+      </div>
+      <div class="task-block" id="mealQ1">
+        <div class="task-question"><span class="task-number">1</span> I eat _________ for breakfast.</div>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectMealOpt(this,1,false)" data-q="1">soup</button>
+          <button class="option-btn" onclick="selectMealOpt(this,1,true)" data-q="1">porridge</button>
+          <button class="option-btn" onclick="selectMealOpt(this,1,false)" data-q="1">chicken</button>
+          <button class="option-btn" onclick="selectMealOpt(this,1,false)" data-q="1">rice</button>
+        </div>
+      </div>
+      <div class="task-block" id="mealQ2">
+        <div class="task-question"><span class="task-number">2</span> I eat _________ for lunch.</div>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectMealOpt(this,2,false)" data-q="2">eggs</button>
+          <button class="option-btn" onclick="selectMealOpt(this,2,false)" data-q="2">toast</button>
+          <button class="option-btn" onclick="selectMealOpt(this,2,true)" data-q="2">soup</button>
+          <button class="option-btn" onclick="selectMealOpt(this,2,false)" data-q="2">cookies</button>
+        </div>
+      </div>
+      <div class="task-block" id="mealQ3">
+        <div class="task-question"><span class="task-number">3</span> I eat _________ for dinner.</div>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectMealOpt(this,3,false)" data-q="3">milk</button>
+          <button class="option-btn" onclick="selectMealOpt(this,3,true)" data-q="3">chicken</button>
+          <button class="option-btn" onclick="selectMealOpt(this,3,false)" data-q="3">sandwich</button>
+          <button class="option-btn" onclick="selectMealOpt(this,3,false)" data-q="3">tea</button>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="check-btn" onclick="checkMeals()"><i class="fa-solid fa-check"></i> Проверить</button>
+        <button class="reset-btn" onclick="resetMeals()"><i class="fa-solid fa-rotate-right spin-icon"></i> Сбросить</button>
+      </div>
+      <div class="result-banner" id="mealsResult"></div>
+    </div>
+  </section>
+
+  <!-- ========== РАСПОРЯДОК ========== -->
+  <section class="tab-content" id="tab-routine" role="tabpanel">
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--green)"><i class="fa-solid fa-arrows-up-down"></i></span>
+        Расставь по порядку — Put in order
+      </div>
+      <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px;">Нажми на действие, затем на зону, куда его нужно отправить</p>
+      <div class="sort-zone" id="zone-morning" data-zone="morning" onclick="handleZoneClick('morning')">
+        <div class="sort-zone-title"><i class="fa-solid fa-sun" style="color:var(--yellow)"></i> Morning (утро)</div>
+      </div>
+      <div class="sort-zone" id="zone-afternoon" data-zone="afternoon" onclick="handleZoneClick('afternoon')">
+        <div class="sort-zone-title"><i class="fa-solid fa-cloud-sun" style="color:var(--blue)"></i> Afternoon (день)</div>
+      </div>
+      <div class="sort-zone" id="zone-evening" data-zone="evening" onclick="handleZoneClick('evening')">
+        <div class="sort-zone-title"><i class="fa-solid fa-moon" style="color:#8B5FC7"></i> Evening (вечер)</div>
+      </div>
+      <div class="sort-zone pool-zone" id="zone-pool" data-zone="pool" onclick="handleZoneClick('pool')">
+        <div class="sort-zone-title"><i class="fa-solid fa-hand-pointer"></i> Нажми на слово, затем сюда</div>
+      </div>
+      <div class="btn-group">
+        <button class="check-btn green" onclick="checkSort()"><i class="fa-solid fa-check"></i> Проверить</button>
+        <button class="reset-btn" onclick="resetSort()"><i class="fa-solid fa-rotate-right spin-icon"></i> Сбросить</button>
+      </div>
+      <div class="result-banner" id="sortResult"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--accent)"><i class="fa-solid fa-puzzle-piece"></i></span>
+        Собери предложение — Make a sentence
+      </div>
+      <p style="font-size:0.88rem; color:var(--muted); margin-bottom:4px;">Нажми на слово, затем на другое слово, чтобы поменять их местами:</p>
+      <div class="task-block" id="sentenceTask1">
+        <div class="task-question" style="font-size:0.85rem; color:var(--muted);">Предложение 1:</div>
+        <div class="sentence-order" id="sentence1"></div>
+      </div>
+      <div class="task-block" id="sentenceTask2">
+        <div class="task-question" style="font-size:0.85rem; color:var(--muted);">Предложение 2:</div>
+        <div class="sentence-order" id="sentence2"></div>
+      </div>
+      <div class="btn-group">
+        <button class="check-btn" onclick="checkSentences()"><i class="fa-solid fa-check"></i> Проверить</button>
+        <button class="reset-btn" onclick="resetSentences()"><i class="fa-solid fa-rotate-right spin-icon"></i> Сбросить</button>
+      </div>
+      <div class="result-banner" id="sentencesResult"></div>
+    </div>
+  </section>
+
+  <!-- ========== ЗАДАНИЯ ========== -->
+  <section class="tab-content" id="tab-tasks" role="tabpanel">
+    <div class="card" style="padding:16px 24px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:700; font-size:0.95rem;"><i class="fa-solid fa-trophy" style="color:var(--yellow);"></i> Прогресс</span>
+        <span class="progress-text" id="progressText">0 из 7</span>
+      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+    </div>
+
+    <div class="card" id="mcCard">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--accent)"><i class="fa-solid fa-circle-question"></i></span>
+        Выбери правильный ответ
+      </div>
+      <div class="task-block" id="mcTask1">
+        <div class="task-question"><span class="task-number">1</span> I _______ up at 7 o'clock every morning.</div>
+        <div class="options-grid" id="mc1Opts">
+          <button class="option-btn" data-q="mc1" data-correct="true">wake</button>
+          <button class="option-btn" data-q="mc1" data-correct="false">wakes</button>
+          <button class="option-btn" data-q="mc1" data-correct="false">waking</button>
+          <button class="option-btn" data-q="mc1" data-correct="false">waked</button>
+        </div>
+      </div>
+      <div class="task-block" id="mcTask2">
+        <div class="task-question"><span class="task-number">2</span> She _______ breakfast at 8 a.m.</div>
+        <div class="options-grid" id="mc2Opts">
+          <button class="option-btn" data-q="mc2" data-correct="false">have</button>
+          <button class="option-btn" data-q="mc2" data-correct="true">has</button>
+          <button class="option-btn" data-q="mc2" data-correct="false">having</button>
+          <button class="option-btn" data-q="mc2" data-correct="false">haves</button>
+        </div>
+      </div>
+      <div class="task-block" id="mcTask3">
+        <div class="task-question"><span class="task-number">3</span> What time is it? — It's <strong>half past nine</strong>.</div>
+        <div class="options-grid" id="mc3Opts">
+          <button class="option-btn" data-q="mc3" data-correct="false">9:15</button>
+          <button class="option-btn" data-q="mc3" data-correct="true">9:30</button>
+          <button class="option-btn" data-q="mc3" data-correct="false">9:45</button>
+          <button class="option-btn" data-q="mc3" data-correct="false">9:00</button>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="check-btn" onclick="checkMC()"><i class="fa-solid fa-check"></i> Проверить</button>
+        <button class="reset-btn" onclick="resetMC()"><i class="fa-solid fa-rotate-right spin-icon"></i> Сбросить</button>
+      </div>
+      <div class="result-banner" id="mcResult"></div>
+    </div>
+
+    <div class="card" id="fillCard">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--green)"><i class="fa-solid fa-keyboard"></i></span>
+        Вставь пропущенное слово
+      </div>
+      <div class="task-block">
+        <div class="fill-sentence">4. I <strong>always</strong> _______ my teeth in the morning.<input class="fill-input" id="fill1" type="text" autocomplete="off" placeholder="..."></div>
+        <div class="fill-sentence">5. We _______ to school at 8 o'clock.<input class="fill-input" id="fill2" type="text" autocomplete="off" placeholder="..."></div>
+        <div class="fill-sentence">6. He _______ TV in the evening.<input class="fill-input" id="fill3" type="text" autocomplete="off" placeholder="..."></div>
+        <div class="fill-sentence">7. I _______ dinner at 6:30 p.m.<input class="fill-input" id="fill4" type="text" autocomplete="off" placeholder="..."></div>
+      </div>
+      <div class="btn-group">
+        <button class="check-btn green" onclick="checkFill()"><i class="fa-solid fa-check"></i> Проверить</button>
+        <button class="reset-btn" onclick="resetFill()"><i class="fa-solid fa-rotate-right spin-icon"></i> Сбросить</button>
+      </div>
+      <div class="result-banner" id="fillResult"></div>
+    </div>
+
+    <div class="card" id="transCard">
+      <div class="card-title">
+        <span class="icon-circle" style="background:var(--blue)"><i class="fa-solid fa-arrows-left-right"></i></span>
+        Переведи на английский
+      </div>
+      <div class="task-block">
+        <div class="fill-sentence">8. Я просыпаюсь в 7 утра.<input class="fill-input" id="trans1" type="text" autocomplete="off" placeholder="..." style="width:260px;"></div>
+        <div class="fill-sentence">9. Она обычно ходит в школу пешком.<input class="fill-input" id="trans2" type="text" autocomplete="off" placeholder="..." style="width:300px;"></div>
+        <div class="fill-sentence">10. Мы делаем уроки вечером.<input class="fill-input" id="trans3" type="text" autocomplete="off" placeholder="..." style="width:280px;"></div>
+      </div>
+      <div class="btn-group">
+        <button class="check-btn" onclick="checkTranslation()"><i class="fa-solid fa-check"></i> Проверить</button>
+        <button class="reset-btn" onclick="resetTranslation()"><i class="fa-solid fa-rotate-right spin-icon"></i> Сбросить</button>
+      </div>
+      <div class="result-banner" id="transResult"></div>
+    </div>
+
+    <!-- Общий сброс всего раздела Задания -->
+    <div class="card" style="text-align:center; padding:16px 24px;">
+      <button class="reset-btn" onclick="resetAllTasks()" style="width:100%; justify-content:center; border-color:var(--accent); color:var(--accent);">
+        <i class="fa-solid fa-arrows-rotate spin-icon"></i> Сбросить все задания и начать заново
+      </button>
+    </div>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ==================== ДАННЫЕ ====================
+const vocabData = [
+  { en:'wake up', ru:'просыпаться', icon:'fa-solid fa-bed', color:'#E8652B' },
+  { en:'get up', ru:'вставать', icon:'fa-solid fa-person-walking', color:'#3DAA6D' },
+  { en:'have breakfast', ru:'завтракать', icon:'fa-solid fa-mug-hot', color:'#F5B731' },
+  { en:'go to school', ru:'идти в школу', icon:'fa-solid fa-school', color:'#3A8FBF' },
+  { en:'have lunch', ru:'обедать', icon:'fa-solid fa-bowl-food', color:'#8B5FC7' },
+  { en:'do homework', ru:'делать уроки', icon:'fa-solid fa-pencil', color:'#E8652B' },
+  { en:'watch TV', ru:'смотреть телевизор', icon:'fa-solid fa-tv', color:'#3A8FBF' },
+  { en:'go to bed', ru:'ложиться спать', icon:'fa-solid fa-moon', color:'#5C6BC0' },
+  { en:'take a shower', ru:'принимать душ', icon:'fa-solid fa-shower', color:'#0097A7' },
+  { en:'get dressed', ru:'одеваться', icon:'fa-solid fa-shirt', color:'#7B1FA2' },
+];
+
+const clockActivities = [
+  { hour:6, min:0, text:"six o'clock", activity:'sleeping', icon:'fa-solid fa-bed' },
+  { hour:7, min:0, text:"seven o'clock", activity:'I wake up', icon:'fa-solid fa-bell' },
+  { hour:7, min:30, text:'half past seven', activity:'I have breakfast', icon:'fa-solid fa-mug-hot' },
+  { hour:8, min:0, text:"eight o'clock", activity:'I go to school', icon:'fa-solid fa-school' },
+  { hour:12, min:0, text:"twelve o'clock", activity:'I have lunch', icon:'fa-solid fa-bowl-food' },
+  { hour:13, min:0, text:"one o'clock", activity:'I have lessons', icon:'fa-solid fa-book' },
+  { hour:15, min:0, text:"three o'clock", activity:'I come home', icon:'fa-solid fa-house' },
+  { hour:16, min:0, text:"four o'clock", activity:'I do homework', icon:'fa-solid fa-pencil' },
+  { hour:18, min:30, text:'half past six', activity:'I have dinner', icon:'fa-solid fa-utensils' },
+  { hour:19, min:0, text:"seven o'clock", activity:'I watch TV', icon:'fa-solid fa-tv' },
+  { hour:21, min:0, text:"nine o'clock", activity:'I go to bed', icon:'fa-solid fa-moon' },
+];
+
+const timeMatchData = [
+  { time:'7:00', phrase:"seven o'clock", pair:0 },
+  { time:'8:15', phrase:'a quarter past eight', pair:1 },
+  { time:'12:30', phrase:'half past twelve', pair:2 },
+  { time:'9:45', phrase:'a quarter to ten', pair:3 },
+];
+
+const sortData = [
+  { text:'wake up', zone:'morning' },
+  { text:'have breakfast', zone:'morning' },
+  { text:'go to school', zone:'morning' },
+  { text:'have lunch', zone:'afternoon' },
+  { text:'do homework', zone:'afternoon' },
+  { text:'have dinner', zone:'evening' },
+  { text:'watch TV', zone:'evening' },
+  { text:'go to bed', zone:'evening' },
+  { text:'get dressed', zone:'morning' },
+];
+
+const sentenceData = [
+  { words:['I','always','wake','up','at','7',"o'clock"], answer:"I always wake up at 7 o'clock" },
+  { words:['She','usually','has','breakfast','at','8','a.m.'], answer:"She usually has breakfast at 8 a.m." },
+];
+
+const fillAnswers = {
+  fill1:['brush','clean','wash'],
+  fill2:['go'],
+  fill3:['watches'],
+  fill4:['have','eat'],
+};
+
+const transAnswers = {
+  trans1:['i wake up at 7 am','i wake up at 7 a.m.','i wake up at 7 in the morning'],
+  trans2:['she usually walks to school','she usually goes to school on foot'],
+  trans3:['we do homework in the evening','we do our homework in the evening'],
+};
+
+// ==================== ВКЛАДКИ ====================
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ==================== ЛЕКСИКА ====================
+function buildVocab() {
+  const grid = document.getElementById('vocabGrid');
+  grid.innerHTML = '';
+  const shuffled = [...vocabData].sort(() => Math.random() - 0.5);
+  shuffled.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'vocab-item';
+    div.innerHTML = `
+      <div class="v-icon" style="background:${item.color}15; color:${item.color}"><i class="${item.icon}"></i></div>
+      <div><div class="v-en">${item.en}</div><div class="v-ru">${item.ru}</div><div class="v-hidden">${item.ru}</div></div>
+      <span class="flip-hint"><i class="fa-solid fa-rotate"></i></span>`;
+    div.addEventListener('click', () => div.classList.toggle('flipped'));
+    grid.appendChild(div);
+  });
+}
+buildVocab();
+
+// ==================== ЧАСЫ ====================
+let clockHour = 7, clockMin = 0;
+
+function drawClock() {
+  const canvas = document.getElementById('clockCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height, cx = W/2, cy = H/2;
+  const R = Math.max(1, Math.min(cx, cy) - 10);
+  ctx.clearRect(0, 0, W, H);
+  const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, R);
+  grad.addColorStop(0, '#FFFFFF');
+  grad.addColorStop(1, '#F5F0EA');
+  ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2);
+  ctx.fillStyle = grad; ctx.fill();
+  ctx.strokeStyle = '#E8E0D6'; ctx.lineWidth = 3; ctx.stroke();
+  for (let i = 0; i < 60; i++) {
+    const a = (i*6-90)*Math.PI/180;
+    const isH = i%5===0;
+    const oR = R-6, iR = isH ? R-20 : R-12;
+    ctx.beginPath();
+    ctx.moveTo(cx+Math.cos(a)*iR, cy+Math.sin(a)*iR);
+    ctx.lineTo(cx+Math.cos(a)*oR, cy+Math.sin(a)*oR);
+    ctx.strokeStyle = isH ? '#2D2A26' : '#CCC5BB';
+    ctx.lineWidth = isH ? 2.5 : 1; ctx.stroke();
+  }
+  ctx.font = '700 15px Nunito'; ctx.fillStyle = '#2D2A26';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  for (let i = 1; i <= 12; i++) {
+    const a = (i*30-90)*Math.PI/180, nR = R-34;
+    ctx.fillText(i, cx+Math.cos(a)*nR, cy+Math.sin(a)*nR);
+  }
+  const hA = ((clockHour%12)*30+clockMin*0.5-90)*Math.PI/180;
+  ctx.beginPath(); ctx.moveTo(cx,cy);
+  ctx.lineTo(cx+Math.cos(hA)*(R*0.5), cy+Math.sin(hA)*(R*0.5));
+  ctx.strokeStyle = '#2D2A26'; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.stroke();
+  const mA = (clockMin*6-90)*Math.PI/180;
+  ctx.beginPath(); ctx.moveTo(cx,cy);
+  ctx.lineTo(cx+Math.cos(mA)*(R*0.7), cy+Math.sin(mA)*(R*0.7));
+  ctx.strokeStyle = '#E8652B'; ctx.lineWidth = 2.5; ctx.lineCap = 'round'; ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx,cy,5,0,Math.PI*2);
+  ctx.fillStyle = '#E8652B'; ctx.fill();
+}
+
+function updateClockInfo() {
+  document.getElementById('clockDigital').textContent = `${clockHour}:${clockMin.toString().padStart(2,'0')}`;
+  let current = clockActivities[clockActivities.length-1];
+  for (let i = clockActivities.length-1; i >= 0; i--) {
+    const a = clockActivities[i];
+    if (clockHour > a.hour || (clockHour === a.hour && clockMin >= a.min)) { current = a; break; }
+  }
+  document.getElementById('clockText').textContent = current.text;
+  document.getElementById('clockActivity').innerHTML = `<i class="${current.icon}"></i> ${current.activity}`;
+  drawClock();
+}
+
+function changeClock(dh, dm) {
+  clockMin += (dm||0)*30;
+  clockHour += (dh||0) + Math.floor(clockMin/60);
+  clockMin = ((clockMin%60)+60)%60;
+  clockHour = ((clockHour%24)+24)%24;
+  updateClockInfo();
+}
+updateClockInfo();
+
+// ==================== СОПОСТАВЛЕНИЕ ВРЕМЕНИ ====================
+let timeMatchSelected = null;
+let timeMatchPairs = {};
+
+function buildTimeMatch() {
+  const c = document.getElementById('timeMatchContainer');
+  c.innerHTML = '';
+  timeMatchSelected = null;
+  timeMatchPairs = {};
+  const left = [...timeMatchData].sort(() => Math.random()-0.5);
+  const right = [...timeMatchData].sort(() => Math.random()-0.5);
+  left.forEach(item => {
+    const d = document.createElement('div');
+    d.className = 'match-item'; d.textContent = item.time;
+    d.dataset.side = 'left'; d.dataset.pair = item.pair;
+    d.addEventListener('click', () => handleMatchClick(d,'left',item.pair));
+    c.appendChild(d);
+  });
+  right.forEach(item => {
+    const d = document.createElement('div');
+    d.className = 'match-item'; d.textContent = item.phrase;
+    d.dataset.side = 'right'; d.dataset.pair = item.pair;
+    d.addEventListener('click', () => handleMatchClick(d,'right',item.pair));
+    c.appendChild(d);
+  });
+}
+
+function handleMatchClick(el, side, pair) {
+  if (el.classList.contains('correct-match') || el.classList.contains('wrong-match')) return;
+  if (!timeMatchSelected) {
+    document.querySelectorAll('#timeMatchContainer .match-item').forEach(m => m.classList.remove('selected-match'));
+    el.classList.add('selected-match');
+    timeMatchSelected = { el, side, pair };
+  } else {
+    if (timeMatchSelected.side === side) {
+      timeMatchSelected.el.classList.remove('selected-match');
+      el.classList.add('selected-match');
+      timeMatchSelected = { el, side, pair };
+    } else {
+      const leftEl = side === 'left' ? el : timeMatchSelected.el;
+      const rightEl = side === 'right' ? el : timeMatchSelected.el;
+      const leftPair = side === 'left' ? pair : timeMatchSelected.pair;
+      const rightPair = side === 'right' ? pair : timeMatchSelected.pair;
+
+      if (leftPair === rightPair) {
+        leftEl.classList.add('correct-match');
+        rightEl.classList.add('correct-match');
+      } else {
+        leftEl.classList.add('wrong-match');
+        rightEl.classList.add('wrong-match');
+        setTimeout(() => {
+          leftEl.classList.remove('wrong-match');
+          rightEl.classList.remove('wrong-match');
+        }, 800);
+      }
+      timeMatchSelected.el.classList.remove('selected-match');
+      timeMatchSelected = null;
+    }
+  }
+}
+
+function checkTimeMatch() {
+  const totalPairs = timeMatchData.length;
+  const correctPairs = document.querySelectorAll('#timeMatchContainer .correct-match').length / 2;
+  const resultEl = document.getElementById('timeMatchResult');
+  if (correctPairs === totalPairs) {
+    resultEl.className = 'result-banner show success';
+    resultEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> Отлично! Все пары соединены верно!';
+  } else {
+    resultEl.className = 'result-banner show partial';
+    resultEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Соединено верно ${correctPairs} из ${totalPairs}. Попробуй ещё!`;
+  }
+  updateProgress();
+}
+
+function resetTimeMatch() {
+  buildTimeMatch();
+  document.getElementById('timeMatchResult').className = 'result-banner';
+  updateProgress();
+}
+
+// ==================== ЕДА ====================
+let mealSelections = {};
+function selectMealOpt(btn, q, isCorrect) {
+  const parent = btn.closest('.task-block');
+  parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  mealSelections[q] = isCorrect;
+}
+
+function checkMeals() {
+  let correct = 0;
+  const total = 3;
+  for (let i = 1; i <= total; i++) {
+    const block = document.getElementById('mealQ' + i);
+    const btns = block.querySelectorAll('.option-btn');
+    btns.forEach(b => {
+      b.disabled = true;
+      if (b.classList.contains('selected')) {
+        if (mealSelections[i]) {
+          b.classList.add('correct-answer');
+          correct++;
+        } else {
+          b.classList.add('wrong-answer');
+        }
+      }
+    });
+  }
+  const resultEl = document.getElementById('mealsResult');
+  if (correct === total) {
+    resultEl.className = 'result-banner show success';
+    resultEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> Отлично! Всё верно!';
+  } else {
+    resultEl.className = 'result-banner show partial';
+    resultEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Верно ${correct} из ${total}. Попробуй ещё!`;
+  }
+  updateProgress();
+}
+
+function resetMeals() {
+  mealSelections = {};
+  for (let i = 1; i <= 3; i++) {
+    const block = document.getElementById('mealQ' + i);
+    block.querySelectorAll('.option-btn').forEach(b => {
+      b.disabled = false;
+      b.classList.remove('selected', 'correct-answer', 'wrong-answer');
+    });
+  }
+  document.getElementById('mealsResult').className = 'result-banner';
+  updateProgress();
+}
+
+// ==================== РАСПОРЯДОК (КЛИКИ) ====================
+let selectedSortItem = null;
+
+function handleSortItemClick(el) {
+  if (el.classList.contains('correct') || el.classList.contains('wrong')) return;
+  if (selectedSortItem === el) {
+    el.classList.remove('selected-sort');
+    selectedSortItem = null;
+  } else {
+    if (selectedSortItem) selectedSortItem.classList.remove('selected-sort');
+    el.classList.add('selected-sort');
+    selectedSortItem = el;
+  }
+}
+
+function handleZoneClick(zoneId) {
+  if (!selectedSortItem) return;
+  const zone = document.getElementById('zone-' + zoneId);
+  if (zone) {
+    zone.appendChild(selectedSortItem);
+    selectedSortItem.classList.remove('selected-sort');
+    selectedSortItem = null;
+  }
+}
+
+function initSort() {
+  const pool = document.getElementById('zone-pool');
+  const shuffled = [...sortData].sort(() => Math.random() - 0.5);
+  shuffled.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'sort-item';
+    el.textContent = item.text;
+    el.dataset.zone = item.zone;
+    el.setAttribute('onclick', 'handleSortItemClick(this)');
+    pool.appendChild(el);
+  });
+}
+
+function checkSort() {
+  if (selectedSortItem) {
+    selectedSortItem.classList.remove('selected-sort');
+    selectedSortItem = null;
+  }
+  let correct = 0;
+  const total = sortData.length;
+  
+  document.querySelectorAll('.sort-item').forEach(item => {
+    const currentZone = item.parentElement.dataset.zone;
+    if (currentZone === item.dataset.zone) {
+      item.classList.add('correct');
+      item.classList.remove('wrong');
+      correct++;
+    } else {
+      item.classList.add('wrong');
+      item.classList.remove('correct');
+    }
+  });
+
+  const resultEl = document.getElementById('sortResult');
+  if (correct === total) {
+    resultEl.className = 'result-banner show success';
+    resultEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> Отлично! Все действия распределены верно!';
+  } else {
+    resultEl.className = 'result-banner show partial';
+    resultEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Верно ${correct} из ${total}. Попробуй ещё!`;
+  }
+  updateProgress();
+}
+
+function resetSort() {
+  const pool = document.getElementById('zone-pool');
+  document.querySelectorAll('.sort-item').forEach(item => {
+    item.classList.remove('correct', 'wrong', 'selected-sort');
+    pool.appendChild(item);
+  });
+  selectedSortItem = null;
+  document.getElementById('sortResult').className = 'result-banner';
+  const items = Array.from(pool.querySelectorAll('.sort-item'));
+  items.sort(() => Math.random() - 0.5).forEach(item => pool.appendChild(item));
+  updateProgress();
+}
+
+// ==================== ПРЕДЛОЖЕНИЯ (КЛИКИ) ====================
+let selectedSentenceWord = null;
+
+function handleSentenceWordClick(el) {
+  if (el.classList.contains('correct-chip') || el.classList.contains('wrong-chip')) return;
+  
+  if (!selectedSentenceWord) {
+    el.classList.add('selected-sort');
+    selectedSentenceWord = el;
+  } else {
+    if (selectedSentenceWord === el) {
+      el.classList.remove('selected-sort');
+      selectedSentenceWord = null;
+      return;
+    }
+    // Меняем элементы местами
+    const parent = el.parentNode;
+    const node1 = selectedSentenceWord;
+    const node2 = el;
+    const temp = document.createComment('');
+    parent.insertBefore(temp, node1);
+    parent.insertBefore(node1, node2);
+    parent.insertBefore(node2, temp);
+    parent.removeChild(temp);
+
+    selectedSentenceWord.classList.remove('selected-sort');
+    selectedSentenceWord = null;
+  }
+}
+
+function initSentences() {
+  sentenceData.forEach((s, idx) => {
+    const container = document.getElementById('sentence' + (idx + 1));
+    const shuffled = [...s.words].sort(() => Math.random() - 0.5);
+    shuffled.forEach(word => {
+      const el = document.createElement('div');
+      el.className = 'word-chip';
+      el.textContent = word;
+      el.setAttribute('onclick', 'handleSentenceWordClick(this)');
+      container.appendChild(el);
+    });
+  });
+}
+
+function checkSentences() {
+  if (selectedSentenceWord) {
+    selectedSentenceWord.classList.remove('selected-sort');
+    selectedSentenceWord = null;
+  }
+  let correct = 0;
+  const total = sentenceData.length;
+  
+  sentenceData.forEach((s, idx) => {
+    const container = document.getElementById('sentence' + (idx + 1));
+    const chips = Array.from(container.querySelectorAll('.word-chip'));
+    const currentSentence = chips.map(c => c.textContent).join(' ');
+    
+    if (currentSentence === s.answer) {
+      correct++;
+      chips.forEach(c => c.classList.add('correct-chip'));
+    } else {
+      chips.forEach(c => {
+        c.classList.add('wrong-chip');
+        setTimeout(() => c.classList.remove('wrong-chip'), 800);
+      });
+    }
+  });
+
+  const resultEl = document.getElementById('sentencesResult');
+  if (correct === total) {
+    resultEl.className = 'result-banner show success';
+    resultEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> Отлично! Предложения составлены верно!';
+  } else {
+    resultEl.className = 'result-banner show partial';
+    resultEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Верно ${correct} из ${total}. Попробуй ещё!`;
+  }
+  updateProgress();
+}
+
+function resetSentences() {
+  sentenceData.forEach((s, idx) => {
+    const container = document.getElementById('sentence' + (idx + 1));
+    const chips = Array.from(container.querySelectorAll('.word-chip'));
+    chips.forEach(c => c.classList.remove('correct-chip', 'wrong-chip', 'selected-sort'));
+    const shuffled = chips.sort(() => Math.random() - 0.5);
+    shuffled.forEach(c => container.appendChild(c));
+  });
+  selectedSentenceWord = null;
+  document.getElementById('sentencesResult').className = 'result-banner';
+  updateProgress();
+}
+
+// ==================== ТЕСТЫ ====================
+let mcSelections = {};
+document.querySelectorAll('#mcCard .option-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const q = btn.dataset.q;
+    const parent = btn.closest('.options-grid');
+    parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    mcSelections[q] = btn.dataset.correct === 'true';
+  });
+});
+
+function checkMC() {
+  let correct = 0;
+  const total = 3;
+  ['mc1', 'mc2', 'mc3'].forEach(q => {
+    const grid = document.querySelector(`[data-q="${q}"]`).closest('.options-grid');
+    grid.querySelectorAll('.option-btn').forEach(b => {
+      b.disabled = true;
+      if (b.classList.contains('selected')) {
+        if (mcSelections[q]) {
+          b.classList.add('correct-answer');
+          correct++;
+        } else {
+          b.classList.add('wrong-answer');
+        }
+      }
+    });
+  });
+  
+  const resultEl = document.getElementById('mcResult');
+  if (correct === total) {
+    resultEl.className = 'result-banner show success';
+    resultEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> Отлично! Всё верно!';
+  } else {
+    resultEl.className = 'result-banner show partial';
+    resultEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Верно ${correct} из ${total}. Попробуй ещё!`;
+  }
+  updateProgress();
+}
+
+function resetMC() {
+  mcSelections = {};
+  document.querySelectorAll('#mcCard .option-btn').forEach(b => {
+    b.disabled = false;
+    b.classList.remove('selected', 'correct-answer', 'wrong-answer');
+  });
+  document.getElementById('mcResult').className = 'result-banner';
+  updateProgress();
+}
+
+// ==================== ВВОД СЛОВ ====================
+function checkFill() {
+  let correct = 0;
+  const total = Object.keys(fillAnswers).length;
+  for (const [id, answers] of Object.entries(fillAnswers)) {
+    const input = document.getElementById(id);
+    const val = input.value.trim().toLowerCase();
+    if (answers.includes(val)) {
+      input.classList.add('correct');
+      input.classList.remove('wrong');
+      correct++;
+    } else {
+      input.classList.add('wrong');
+      input.classList.remove('correct');
+    }
+  }
+  const resultEl = document.getElementById('fillResult');
+  if (correct === total) {
+    resultEl.className = 'result-banner show success';
+    resultEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> Отлично! Все слова вставлены верно!';
+  } else {
+    resultEl.className = 'result-banner show partial';
+    resultEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Верно ${correct} из ${total}. Попробуй ещё!`;
+  }
+  updateProgress();
+}
+
+function resetFill() {
+  for (const id of Object.keys(fillAnswers)) {
+    const input = document.getElementById(id);
+    input.value = '';
+    input.classList.remove('correct', 'wrong');
+  }
+  document.getElementById('fillResult').className = 'result-banner';
+  updateProgress();
+}
+
+// ==================== ПЕРЕВОД ====================
+function checkTranslation() {
+  let correct = 0;
+  const total = Object.keys(transAnswers).length;
+  for (const [id, answers] of Object.entries(transAnswers)) {
+    const input = document.getElementById(id);
+    const val = input.value.trim().toLowerCase().replace(/[^a-z0-9\s\.]/g, '');
+    if (answers.some(a => val === a)) {
+      input.classList.add('correct');
+      input.classList.remove('wrong');
+      correct++;
+    } else {
+      input.classList.add('wrong');
+      input.classList.remove('correct');
+    }
+  }
+  const resultEl = document.getElementById('transResult');
+  if (correct === total) {
+    resultEl.className = 'result-banner show success';
+    resultEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> Отлично! Все переводы верны!';
+  } else {
+    resultEl.className = 'result-banner show partial';
+    resultEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Верно ${correct} из ${total}. Попробуй ещё!`;
+  }
+  updateProgress();
+}
+
+function resetTranslation() {
+  for (const id of Object.keys(transAnswers)) {
+    const input = document.getElementById(id);
+    input.value = '';
+    input.classList.remove('correct', 'wrong');
+  }
+  document.getElementById('transResult').className = 'result-banner';
+  updateProgress();
+}
+
+// ==================== ПРОГРЕСС ====================
+function updateProgress() {
+  let score = 0;
+  const total = 7;
+  if (document.querySelectorAll('#timeMatchContainer .correct-match').length === timeMatchData.length * 2) score++;
+  if (document.getElementById('mealsResult').classList.contains('success')) score++;
+  if (document.getElementById('mcResult').classList.contains('success')) score++;
+  if (document.getElementById('sortResult').classList.contains('success')) score++;
+  if (document.getElementById('sentencesResult').classList.contains('success')) score++;
+  if (document.getElementById('fillResult').classList.contains('success')) score++;
+  if (document.getElementById('transResult').classList.contains('success')) score++;
+  
+  const percent = Math.round((score / total) * 100);
+  document.getElementById('progressBar').style.width = percent + '%';
+  document.getElementById('progressText').textContent = `${score} из ${total}`;
+}
+
+function resetAllTasks() {
+  resetTimeMatch();
+  resetMeals();
+  resetMC();
+  resetSort();
+  resetSentences();
+  resetFill();
+  resetTranslation();
+  showToast('Все задания сброшены!');
+}
+
+// ==================== ТОСТ ====================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ==================== ИНИЦИАЛИЗАЦИЯ ====================
+buildTimeMatch();
+initSort();
+initSentences();
+</script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>School Subjects — Interactive Worksheet</title>
+<style>
+*{box-sizing:border-box}
+:root{--navy:#101936;--blue:#5968c9;--light:#f5f7ff;--yellow:#ffd447;--green:#39c777;--red:#ef5350;--text:#20284a}
+body{margin:0;background:linear-gradient(135deg,#dfe7ff,#f8f5ff);font-family:"Segoe UI",Arial,sans-serif;color:var(--text);padding:20px}
+.worksheet{max-width:900px;margin:auto;background:#fff;border-radius:30px;padding:28px;box-shadow:0 18px 55px #26305a25}
+h1{text-align:center;margin:0;color:var(--navy);font-size:clamp(28px,6vw,44px)}
+.subtitle{text-align:center;color:#68739b;margin:8px 0 20px;font-size:17px}
+.progress{background:#edf0fa;border-radius:20px;padding:12px;margin-bottom:24px;position:sticky;top:8px;z-index:10}
+.progressline{display:flex;justify-content:space-between;font-weight:700;margin-bottom:7px}
+.track{height:10px;background:#d8dded;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#6575d7,#39c777);transition:.3s}
+.card{background:#fafbff;border:1px solid #e1e5f2;border-radius:24px;padding:22px;margin:22px 0}
+.title{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:12px}
+.badge{display:inline-flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;background:var(--yellow);margin-right:8px}
+.info{background:#eef1ff;border-left:4px solid var(--blue);padding:11px 14px;border-radius:12px;margin-bottom:16px;line-height:1.45}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.worksheet{padding:16px}}
+.zone{background:#fff;border:3px dashed #cbd2eb;border-radius:20px;padding:15px;min-height:270px;transition:.2s}
+.zone.take{border-color:#75d5a5}.zone.dont{border-color:#f2a2a0}
+.zone.dragover{background:#eef8f2;transform:scale(1.01)}
+.zone h3{text-align:center;margin:0 0 12px}
+.items{display:flex;flex-wrap:wrap;gap:9px}
+.item{padding:10px 14px;touch-action:none;background:#edf0f8;border-radius:14px;border:2px solid transparent;cursor:grab;user-select:none;touch-action:none;font-weight:600}
+.item.selected{border-color:#6575d7;background:#e8ebff}.item.correct{background:#dff8ea;border-color:var(--green)}.item.incorrect{background:#ffe3e2;border-color:var(--red)}
+#wordBank{min-height:65px;background:#f2f4fb;border-radius:18px;padding:12px;margin-bottom:15px}
+input,textarea{width:100%;padding:11px 13px;border:2px solid #d5daea;border-radius:13px;background:white;font:inherit;outline:none}
+input:focus,textarea:focus{border-color:#6575d7}
+.correctInput{border-color:var(--green)!important;background:#edfff5}.wrongInput{border-color:var(--red)!important;background:#fff0ef}
+table{width:100%;border-collapse:collapse;background:white;border-radius:15px;overflow:hidden}
+th,td{border:1px solid #dce1ef;padding:9px;text-align:center}th{background:#26335f;color:white}
+.question{margin-top:12px}
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:650px){.match-wrap{grid-template-columns:1fr}}
+.match-col{background:#fff;border-radius:18px;padding:14px;border:1px solid #dfe3ef}
+.match-col h3{text-align:center;color:var(--navy)}
+.match-btn{display:block;width:100%;margin:8px 0;padding:12px;border:2px solid #dfe3ef;border-radius:13px;background:#f8f9fd;cursor:pointer;font:inherit;text-align:left;transition:.2s}
+.match-btn:hover{border-color:#7a87dc}.warm{width:auto;display:inline-block;text-align:center}.warm.matched{border-color:var(--green);background:#dff8ea}.match-btn.selected{border-color:#6575d7;background:#e8ebff}.match-btn.matched{border-color:var(--green);background:#dff8ea}.match-btn.bad{border-color:var(--red);background:#ffe3e2}
+.message{text-align:center;min-height:24px;font-weight:700;margin-top:12px}
+.actions{text-align:center;margin:28px 0}
+button.main{background:var(--navy);color:white;border:0;border-radius:25px;padding:13px 25px;font-size:17px;font-weight:800;cursor:pointer}
+button.secondary{background:#e8ebf3;color:var(--navy);border:0;border-radius:25px;padding:13px 25px;font-size:17px;font-weight:700;cursor:pointer;margin-left:8px}
+.result{display:none;text-align:center;background:#f5f7ff;border:2px solid #6575d7;border-radius:22px;padding:20px}
+.score{font-size:38px;font-weight:900;color:var(--navy)}
+.footer{text-align:center;color:#68739b;border-top:1px solid #e0e4ef;padding-top:20px;margin-top:25px}
+
+.item.being-dragged{opacity:.35;transform:scale(1.06)}
+.touch-ghost{position:fixed!important;z-index:99999!important;pointer-events:none!important;opacity:.9!important;box-shadow:0 12px 25px #0004;transform:rotate(2deg) scale(1.05)}
+.item.returning{animation:returnBack .35s ease}
+@keyframes returnBack{0%{transform:translateY(-12px) scale(1.08);opacity:.5}100%{transform:translateY(0) scale(1);opacity:1}}
+
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.vocab-grid div{background:#0f1535;border:1px solid #334155;border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.vocab-grid b{color:#fde047;font-size:17px}.vocab-grid span{color:#c7d2fe;font-size:14px}
+.translation-list{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+.translation-list>div{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center}
+.example-en{color:#20284a;font-size:17px;line-height:1.5;font-weight:600;background:#fff;padding:10px 12px;border-radius:12px}
+.interview-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.interview-grid>div{display:flex;flex-direction:column;gap:7px}
+.q{color:#c7d2fe;font-size:16px}
+@media(max-width:650px){.translation-list>div,.interview-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="worksheet">
+<h1>📚 School Subjects</h1>
+<div class="subtitle">Interactive English Worksheet · Grade 4</div>
+
+<div class="progress">
+<div class="progressline"><span>Progress</span><span id="progressText">0%</span></div>
+<div class="track"><div class="fill" id="progressFill"></div></div>
+</div>
+
+<!-- WARM UP -->
+<section class="card">
+<div class="title">🌟 Warm-up: School Words</div>
+<div class="info">Click the words you know. Which words are <b>school subjects</b> and which are <b>school things</b>?</div>
+<div class="grid">
+<div class="box"><h3>📚 School Subjects</h3><div class="items">
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">Maths</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">Reading</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">Art</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">Music</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">Science</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">PE</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">Russian</button>
+</div></div>
+<div class="box"><h3>🎒 School Things</h3><div class="items">
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">pen</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">pencil</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">book</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">ruler</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">rubber</button>
+<button class="match-btn warm" onclick="this.classList.toggle('matched')">school bag</button>
+</div></div>
+</div></section>
+
+<!-- 1 -->
+<section class="card">
+<div class="title"><span class="badge">1</span>🎒 Pack Your School Bag</div>
+<div class="info">Drag each item into the correct folder: <b>TAKE TO SCHOOL</b> or <b>DON'T TAKE</b>. Press and hold a word, drag it to a folder, and release.</div>
+<div id="wordBank" class="items"></div>
+<div class="grid">
+<div class="zone take" data-zone="take"><h3>🟢 TAKE TO SCHOOL</h3><div class="items"></div></div>
+<div class="zone dont" data-zone="dont"><h3>🔴 DON'T TAKE</h3><div class="items"></div></div>
+</div>
+<div id="dragMessage" class="message"></div>
+</section>
+
+<!-- 2 -->
+<section class="card">
+<div class="title"><span class="badge">2</span>🔤 Unscramble the Subjects</div>
+<div class="info">Put the letters in the correct order. Then write the Russian translation.</div>
+<table>
+<tr><th>Mixed letters</th><th>Correct word</th><th>Translation</th></tr>
+<tr><td>A T H M S</td><td><input data-answer="MATHS"></td><td><input data-answer="математика"></td></tr>
+<tr><td>G N I S H L E</td><td><input data-answer="ENGLISH"></td><td><input data-answer="английский"></td></tr>
+<tr><td>R A T</td><td><input data-answer="ART"></td><td><input data-answer="рисование"></td></tr>
+<tr><td>U S C M I</td><td><input data-answer="MUSIC"></td><td><input data-answer="музыка"></td></tr>
+<tr><td>P E</td><td><input data-answer="PE"></td><td><input data-answer="физкультура"></td></tr>
+<tr><td>E N I C S C E</td><td><input data-answer="SCIENCE"></td><td><input data-answer="естествознание"></td></tr>
+</table>
+</section>
+
+<!-- 3 -->
+<section class="card">
+<div class="title"><span class="badge">3</span>🔗 Match the Subject</div>
+<div class="info">Click one subject and one action. If they match, both turn green. If they don't, they turn red and you can try again.</div>
+<div class="match-wrap">
+<div class="match-col"><h3>📚 Subjects</h3>
+<button class="match-btn subject" data-id="maths">Maths</button>
+<button class="match-btn subject" data-id="reading">Reading</button>
+<button class="match-btn subject" data-id="art">Art</button>
+<button class="match-btn subject" data-id="music">Music</button>
+<button class="match-btn subject" data-id="science">Science</button>
+<button class="match-btn subject" data-id="pe">PE</button>
+<button class="match-btn subject" data-id="russian">Russian</button>
+</div>
+<div class="match-col"><h3>✏️ Actions</h3>
+<button class="match-btn action" data-id="sing">sing songs</button>
+<button class="match-btn action" data-id="count">count</button>
+<button class="match-btn action" data-id="run">run and jump</button>
+<button class="match-btn action" data-id="draw">draw pictures</button>
+<button class="match-btn action" data-id="dictation">write dictations</button>
+<button class="match-btn action" data-id="experiment">do experiments</button>
+<button class="match-btn action" data-id="read">read stories</button>
+</div>
+</div>
+<div id="matchMessage" class="message"></div>
+</section>
+
+<!-- 4 -->
+<section class="card">
+<div class="title"><span class="badge">4</span>📅 Read the Timetable</div>
+<div class="info">Look at the timetable and answer the questions.</div>
+<table>
+<tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th></tr>
+<tr><td>9:00–9:45</td><td>Maths</td><td>Reading</td><td>Maths</td></tr>
+<tr><td>9:45–10:30</td><td>Russian</td><td>Maths</td><td>Russian</td></tr>
+<tr><td>10:30–10:50</td><td>Break</td><td>Break</td><td>Break</td></tr>
+<tr><td>10:50–11:35</td><td>Reading</td><td>Art</td><td>Music</td></tr>
+<tr><td>11:35–12:20</td><td>PE</td><td>Science</td><td>PE</td></tr>
+</table>
+<div class="question">1. What do you have on Monday at 9:00?<input data-answer="Maths"></div>
+<div class="question">2. What do you have on Tuesday at 10:50?<input data-answer="Art"></div>
+<div class="question">3. What do you have on Wednesday at 11:35?<input data-answer="PE"></div>
+<div class="question">4. How many Maths lessons are there?<input data-answer="3"></div>
+<div class="question">5. What is your favourite subject?<input></div>
+</section>
+
+<!-- 5 -->
+<section class="card">
+<div class="title"><span class="badge">5</span>🎤 Interview: My School Subjects</div>
+
+<div class="info">📌 First, use the words for help. Read the examples, translate them into Russian, and then answer the interview questions about yourself.</div>
+
+<div class="box">
+<h3>📖 Words for help</h3>
+<div class="vocab-grid">
+  <div><b>interesting</b><span>интересный</span></div>
+  <div><b>boring</b><span>скучный</span></div>
+  <div><b>fun</b><span>весёлый / интересный</span></div>
+  <div><b>active</b><span>активный</span></div>
+  <div><b>easy</b><span>лёгкий</span></div>
+  <div><b>difficult</b><span>сложный</span></div>
+  <div><b>useful</b><span>полезный</span></div>
+  <div><b>creative</b><span>творческий</span></div>
+  <div><b>exciting</b><span>увлекательный</span></div>
+  <div><b>favourite</b><span>любимый</span></div>
+</div>
+</div>
+
+<div class="box">
+<h3>🔤 Translate the sentences</h3>
+<div class="translation-list">
+  <div><span class="example-en">1. I like Maths because it is interesting.</span><input type="text" placeholder="Перевод..."></div>
+  <div><span class="example-en">2. I don't like Literature because it is boring.</span><input type="text" placeholder="Перевод..."></div>
+  <div><span class="example-en">3. I like PE because it is fun and active.</span><input type="text" placeholder="Перевод..."></div>
+  <div><span class="example-en">4. Science is difficult, but it is exciting.</span><input type="text" placeholder="Перевод..."></div>
+  <div><span class="example-en">5. Art is creative and fun.</span><input type="text" placeholder="Перевод..."></div>
+</div>
+</div>
+
+<div class="box">
+<h3>🎤 Now it's your turn!</h3>
+<div class="interview-grid">
+  <div><span class="q">What is your favourite subject?</span><input type="text" placeholder="My favourite subject is ..."></div>
+  <div><span class="q">Why do you like it?</span><input type="text" placeholder="Because it is ..."></div>
+  <div><span class="q">What subject don't you like?</span><input type="text" placeholder="I don't like ..."></div>
+  <div><span class="q">Why don't you like it?</span><input type="text" placeholder="Because it is ..."></div>
+</div>
+</div>
+</section>
+
+<!-- 6 -->
+<section class="card">
+<div class="title"><span class="badge">6</span>🎯 Guess the Subject</div>
+<div class="info">Read the clue and type the school subject.</div>
+<div class="question">1. You solve problems and work with numbers. <input data-answer="Maths"></div>
+<div class="question">2. You read stories and books. <input data-answer="Reading"></div>
+<div class="question">3. You draw and make pictures. <input data-answer="Art"></div>
+<div class="question">4. You sing songs. <input data-answer="Music"></div>
+<div class="question">5. You do experiments. <input data-answer="Science"></div>
+<div class="question">6. You run and jump. <input data-answer="PE"></div>
+<div class="question">7. You write dictations. <input data-answer="Russian"></div>
+</section>
+
+<div class="actions">
+<button class="main" onclick="checkAnswers()">✅ Check my answers</button>
+<button class="secondary" onclick="resetWorksheet()">↻ Try again</button>
+</div>
+
+<div class="result" id="result">
+<div class="score" id="score"></div>
+<div id="feedback"></div>
+</div>
+
+<div class="footer">🌟 Well done! Keep learning English!</div>
+</div>
+
+<script>
+const items=[
+["pen","take"],["cat","dont"],["pencil","take"],["book","take"],["ruler","take"],
+["apple","dont"],["rubber","take"],["dog","dont"],["school bag","take"],["car","dont"],
+["doll","dont"],["elephant","dont"],["cake","dont"],["banana","dont"],
+["egg","dont"],["bed","dont"],["spoon","dont"]
+];
+
+const bank=document.getElementById("wordBank");
+let draggedItem=null, pointerDragging=false, ghost=null, dragOrigin=null;
+
+items.forEach(([name,zone],i)=>{
+  const el=document.createElement("div");
+  el.className="item";
+  el.textContent=name;
+  el.draggable=true;
+  el.dataset.correct=zone;
+  el.id="drag"+i;
+  el.setAttribute("role","button");
+  bank.appendChild(el);
+
+  // Desktop: real HTML5 drag.
+  el.addEventListener("dragstart",e=>{
+    draggedItem=el;
+    dragOrigin=el.parentElement;
+    e.dataTransfer.effectAllowed="move";
+    e.dataTransfer.setData("text/plain",el.id);
+    setTimeout(()=>el.classList.add("being-dragged"),0);
+  });
+  el.addEventListener("dragend",()=>{
+    el.classList.remove("being-dragged");
+    draggedItem=null;
+    document.querySelectorAll(".zone").forEach(z=>z.classList.remove("dragover"));
+  });
+
+  // Touch / tablet: true press-and-drag behaviour.
+  el.addEventListener("pointerdown",e=>{
+    if(e.pointerType==="mouse") return;
+    e.preventDefault();
+    pointerDragging=true;
+    draggedItem=el;
+    dragOrigin=el.parentElement;
+    el.setPointerCapture?.(e.pointerId);
+    ghost=el.cloneNode(true);
+    ghost.className="item touch-ghost";
+    ghost.style.width=el.getBoundingClientRect().width+"px";
+    document.body.appendChild(ghost);
+    moveGhost(e);
+  });
+  el.addEventListener("pointermove",e=>{
+    if(!pointerDragging || draggedItem!==el)return;
+    e.preventDefault();
+    moveGhost(e);
+    const z=getZoneAt(e.clientX,e.clientY);
+    document.querySelectorAll(".zone").forEach(x=>x.classList.remove("dragover"));
+    if(z)z.classList.add("dragover");
+  });
+  el.addEventListener("pointerup",e=>{
+    if(!pointerDragging || draggedItem!==el)return;
+    e.preventDefault();
+    finishPointerDrop(e);
+  });
+  el.addEventListener("pointercancel",()=>{
+    if(pointerDragging && draggedItem===el) cancelPointerDrag();
+  });
+});
+
+function moveGhost(e){
+  if(ghost){
+    ghost.style.left=(e.clientX+12)+"px";
+    ghost.style.top=(e.clientY+12)+"px";
+  }
+}
+function getZoneAt(x,y){
+  return [...document.querySelectorAll(".zone")].find(z=>{
+    const r=z.getBoundingClientRect();
+    return x>=r.left && x<=r.right && y>=r.top && y<=r.bottom;
+  });
+}
+function finishPointerDrop(e){
+  const el=draggedItem, z=getZoneAt(e.clientX,e.clientY);
+  document.querySelectorAll(".zone").forEach(x=>x.classList.remove("dragover"));
+  if(z) dropItem(el,z); else cancelPointerDrag();
+}
+function cancelPointerDrag(){
+  if(ghost){ghost.remove();ghost=null}
+  if(draggedItem)draggedItem.classList.remove("being-dragged");
+  pointerDragging=false;draggedItem=null;
+}
+function dropItem(el,zone){
+  const correct=zone.dataset.zone===el.dataset.correct;
+  if(correct){
+    zone.querySelector(".items").appendChild(el);
+    el.classList.remove("incorrect","being-dragged");
+    el.classList.add("correct");
+    document.getElementById("dragMessage").textContent="✓ Correct! It stays in the folder.";
+  }else{
+    // Wrong folder: it flies back to the word bank.
+    bank.appendChild(el);
+    el.classList.remove("correct","being-dragged","incorrect");
+    el.classList.add("returning");
+    document.getElementById("dragMessage").textContent="✗ Not this folder — try again!";
+    setTimeout(()=>el.classList.remove("returning"),350);
+  }
+  if(ghost){ghost.remove();ghost=null}
+  pointerDragging=false;draggedItem=null;
+  updateProgress();
+}
+
+document.querySelectorAll(".zone").forEach(zone=>{
+  zone.addEventListener("dragover",e=>{
+    e.preventDefault();
+    zone.classList.add("dragover");
+    if(e.dataTransfer)e.dataTransfer.dropEffect="move";
+  });
+  zone.addEventListener("dragleave",()=>zone.classList.remove("dragover"));
+  zone.addEventListener("drop",e=>{
+    e.preventDefault();
+    zone.classList.remove("dragover");
+    const id=e.dataTransfer.getData("text/plain");
+    const el=document.getElementById(id)||draggedItem;
+    if(el)dropItem(el,zone);
+  });
+});
+
+let selectedSubject=null, selectedAction=null, matched=0;
+const pairs={maths:"count",reading:"read",art:"draw",music:"sing",science:"experiment",pe:"run",russian:"dictation"};
+document.querySelectorAll(".subject").forEach(b=>b.onclick=()=>selectMatch(b,"subject"));
+document.querySelectorAll(".action").forEach(b=>b.onclick=()=>selectMatch(b,"action"));
+function selectMatch(b,type){
+ if(b.classList.contains("matched"))return;
+ document.querySelectorAll("."+type).forEach(x=>x.classList.remove("selected","bad"));
+ b.classList.add("selected");
+ if(type==="subject")selectedSubject=b;else selectedAction=b;
+ if(selectedSubject&&selectedAction){
+  if(pairs[selectedSubject.dataset.id]===selectedAction.dataset.id){
+   selectedSubject.classList.remove("selected");selectedAction.classList.remove("selected");
+   selectedSubject.classList.add("matched");selectedAction.classList.add("matched");matched++;
+   document.getElementById("matchMessage").textContent="✓ Great match!";
+  }else{
+   selectedSubject.classList.add("bad");selectedAction.classList.add("bad");
+   document.getElementById("matchMessage").textContent="✗ These don't match. Try again!";
+   setTimeout(()=>{selectedSubject?.classList.remove("bad","selected");selectedAction?.classList.remove("bad","selected");selectedSubject=null;selectedAction=null},650);
+   return;
+  }
+  selectedSubject=null;selectedAction=null;updateProgress();
+ }
+}
+
+const inputs=[...document.querySelectorAll("input")];
+inputs.forEach(x=>x.addEventListener("input",updateProgress));
+function norm(x){return x.trim().toLowerCase().replace(/[.!?]/g,"").replace(/\s+/g," ")}
+function checkAnswers(){
+ let total=0,correct=0;
+ document.querySelectorAll("[data-answer]").forEach(x=>{
+  total++;let ok=norm(x.value)===norm(x.dataset.answer);
+  x.classList.toggle("correctInput",ok);x.classList.toggle("wrongInput",!ok);if(ok)correct++;
+ });
+ items.forEach(([_,zone],i)=>{let el=document.getElementById("drag"+i);if(el.parentElement?.parentElement?.dataset?.zone===zone)correct++;total++});
+ const matchTotal=Object.keys(pairs).length;correct+=matched;total+=matchTotal;
+ const percent=total?Math.round(correct/total*100):0;
+ document.getElementById("result").style.display="block";
+ document.getElementById("score").textContent=`${correct} / ${total} · ${percent}%`;
+ document.getElementById("feedback").textContent=percent===100?"🏆 Perfect! Excellent work!":percent>=80?"🌟 Great job!":"💪 Good try! Check the red answers and try again.";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+function updateProgress(){
+ const all=[...document.querySelectorAll("[data-answer]"),...document.querySelectorAll("input:not([data-answer])")];
+ const filled=all.filter(x=>x.value.trim()).length;
+ const dragDone=items.filter(([_,zone],i)=>document.getElementById("drag"+i).parentElement?.parentElement?.dataset?.zone===zone).length;
+ const p=Math.min(100,Math.round(((filled+dragDone+matched)/(all.length+items.length+Object.keys(pairs).length))*100));
+ document.getElementById("progressFill").style.width=p+"%";document.getElementById("progressText").textContent=p+"%";
+}
+function resetWorksheet(){
+ inputs.forEach(x=>{x.value="";x.classList.remove("correctInput","wrongInput")});
+ items.forEach(([_,zone],i)=>{const el=document.getElementById("drag"+i);el.classList.remove("correct","incorrect");bank.appendChild(el)});
+ document.querySelectorAll(".match-btn").forEach(x=>x.classList.remove("selected","matched","bad"));
+ selectedSubject=null;selectedAction=null;matched=0;
+ document.getElementById("result").style.display="none";document.getElementById("dragMessage").textContent="";document.getElementById("matchMessage").textContent="";updateProgress();
+}
+updateProgress();
+</script>
+</body>
+</html>
