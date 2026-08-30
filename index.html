@@ -103,15 +103,6 @@
             gap: 6px;
         }
 
-        .header-stats .loading {
-            animation: pulse 1s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
         /* ===== ПОИСК ===== */
         .search-bar {
             padding: 18px 30px;
@@ -598,7 +589,7 @@
 
     <script>
         // ================================================================
-        //  🔍 ЗАГРУЗКА ДАННЫХ ИЗ JSON
+        //  🔍 ЗАГРУЗКА ДАННЫХ ИЗ JSON (БЕЗ СКАНИРОВАНИЯ ПАПОК!)
         // ================================================================
 
         // Глобальные переменные
@@ -715,13 +706,12 @@
 
             try {
                 statusEl.textContent = '🔄 Загрузка...';
-                statusEl.classList.add('loading');
 
                 // Загружаем JSON файл
                 const response = await fetch('lessons.json');
                 
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`Файл lessons.json не найден! Статус: ${response.status}`);
                 }
 
                 const jsonData = await response.json();
@@ -737,7 +727,11 @@
                 for (const [className, lessons] of Object.entries(jsonData)) {
                     lessonsData[className] = [];
                     
-                    // Если в JSON есть name, используем его, иначе форматируем из file
+                    // Если массив пустой, просто пропускаем
+                    if (!Array.isArray(lessons) || lessons.length === 0) {
+                        continue;
+                    }
+                    
                     lessons.forEach(lesson => {
                         let displayName = lesson.name;
                         
@@ -765,21 +759,19 @@
                 document.getElementById('totalLessons').textContent = totalLessons;
                 document.getElementById('totalClasses').textContent = totalClasses;
 
-                if (totalClasses > 0) {
-                    statusEl.textContent = `✅ Загружено ${totalClasses} классов, ${totalLessons} уроков`;
-                    statusEl.classList.remove('loading');
+                if (totalLessons > 0) {
+                    statusEl.textContent = `✅ Загружено ${totalLessons} уроков в ${totalClasses} классах`;
                     
                     // Отображаем данные
                     renderAll();
                 } else {
-                    statusEl.textContent = '⚠️ В JSON нет данных';
-                    statusEl.classList.remove('loading');
+                    statusEl.textContent = '⚠️ В JSON нет уроков';
                     
                     contentArea.innerHTML = `
                         <div class="empty-state">
                             <span class="icon">📭</span>
-                            <h3>Нет данных</h3>
-                            <p>В файле lessons.json нет уроков</p>
+                            <h3>Нет уроков</h3>
+                            <p>В файле lessons.json нет добавленных уроков</p>
                             <p class="hint">Добавьте уроки в JSON файл</p>
                         </div>
                     `;
@@ -788,7 +780,6 @@
             } catch (e) {
                 console.error('Ошибка загрузки JSON:', e);
                 statusEl.textContent = '❌ Ошибка загрузки';
-                statusEl.classList.remove('loading');
 
                 // Показываем подробную ошибку
                 contentArea.innerHTML = `
@@ -804,7 +795,7 @@
                         </p>
                         <p class="hint">
                             📝 Пример содержимого JSON:<br>
-                            <code style="background: #f8f9fa; padding: 10px; display: inline-block; border-radius: 8px; margin-top: 10px; text-align: left;">
+                            <code style="background: #f8f9fa; padding: 10px; display: inline-block; border-radius: 8px; margin-top: 10px; text-align: left; font-size: 0.85em;">
                                 {<br>
                                 &nbsp;&nbsp;"4 класс": [<br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;{<br>
@@ -827,21 +818,22 @@
             renderClasses();
             updateStats();
 
-            // Если есть активный класс, показываем его
-            if (activeClass && lessonsData[activeClass]) {
-                renderLessons(activeClass);
-            } else {
-                // Иначе показываем первый класс с уроками
-                const classNames = Object.keys(lessonsData);
-                for (const className of classNames) {
-                    if (lessonsData[className].length > 0) {
-                        activeClass = className;
-                        renderLessons(className);
-                        renderClasses();
-                        return;
-                    }
+            // Находим первый класс с уроками
+            const classNames = Object.keys(lessonsData);
+            let firstClassWithLessons = null;
+            
+            for (const className of classNames) {
+                if (lessonsData[className].length > 0) {
+                    firstClassWithLessons = className;
+                    break;
                 }
-                
+            }
+            
+            if (firstClassWithLessons) {
+                activeClass = firstClassWithLessons;
+                renderLessons(activeClass);
+                renderClasses();
+            } else {
                 // Если нет уроков ни в одном классе
                 document.getElementById('contentArea').innerHTML = `
                     <div class="empty-state">
@@ -1015,16 +1007,16 @@
         });
 
         // ================================================================
-        //  🚀 ЗАПУСК
+        //  🚀 ЗАПУСК (ТОЛЬКО JSON, БЕЗ СКАНИРОВАНИЯ!)
         // ================================================================
 
         // Загружаем данные из JSON
         loadLessonsFromJSON();
 
-        console.log('%c🇬🇧 ENGLISH LESSONS - JSON VERSION', 'font-size: 20px; font-weight: bold; color: #c0392b;');
+        console.log('%c🇬🇧 ENGLISH LESSONS - JSON VERSION (БЕЗ СКАНИРОВАНИЯ)', 'font-size: 20px; font-weight: bold; color: #c0392b;');
         console.log('%c📁 СТРУКТУРА:', 'font-size: 14px; font-weight: bold;');
         console.log('  📄 index.html');
-        console.log('  📄 lessons.json  ← сюда добавляйте уроки');
+        console.log('  📄 lessons.json  ← СЮДА ДОБАВЛЯЙТЕ УРОКИ');
         console.log('  📁 grade4/');
         console.log('     📄 food_junk_or_healthy.html');
         console.log('');
@@ -1038,7 +1030,7 @@
         console.log('3. Создайте файл new_lesson.html в папке grade4');
         console.log('4. Обновите страницу');
         console.log('');
-        console.log('💡 Название урока автоматически форматируется из имени файла:');
+        console.log('💡 Название урока АВТОМАТИЧЕСКИ форматируется из имени файла:');
         console.log('   food_junk_or_healthy.html → Food Junk Or Healthy');
     </script>
 
