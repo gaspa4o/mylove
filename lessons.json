@@ -1,11 +1,35 @@
 {
   "1 класс": [],
   "2 класс": [],
-  "3 класс": [],
+  "3 класс": [
+    {
+      "file": "grade3/clothes_detective.html"
+    },
+    {
+      "file": "grade3/games_and_hobbies.html"
+    },
+    {
+      "file": "grade3/my_house.html"
+    },
+    {
+      "file": "grade3/school_supplies.html"
+    }
+  ],
   "4 класс": [
     {
-      "name": "Food Junk Or Healthy",
       "file": "grade4/food_junk_or_healthy.html"
+    },
+    {
+      "file": "grade4/animals_world.html"
+    },
+    {
+      "file": "grade4/my_daily_routine.html"
+    },
+    {
+      "file": "grade4/school_subjects.html"
+    },
+    {
+      "file": "grade4/space_time.html"
     }
   ],
   "5 класс": [],
