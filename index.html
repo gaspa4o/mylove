@@ -420,6 +420,12 @@
             margin-bottom: 8px;
         }
 
+        .empty-state .hint {
+            font-size: 0.85em;
+            color: #ccc;
+            margin-top: 10px;
+        }
+
         /* ===== АДАПТИВНОСТЬ ===== */
         @media (max-width: 900px) {
             .main-content {
@@ -550,12 +556,12 @@
         <header>
             <h1>
                 <span class="flag">🇬🇧</span> English Lessons
-                <small>Автоматическое сканирование</small>
+                <small>1-6 классы</small>
             </h1>
             <div class="header-stats">
                 <span>📖 <span id="totalLessons">0</span> уроков</span>
                 <span>📂 <span id="totalClasses">0</span> классов</span>
-                <span id="scanStatus" style="opacity:0.7;">🔄 Сканирование...</span>
+                <span id="loadStatus" style="opacity:0.7;">🔄 Загрузка...</span>
             </div>
         </header>
 
@@ -583,8 +589,8 @@
             <div class="content" id="contentArea">
                 <div class="loading-state">
                     <span class="spinner">🔄</span>
-                    <h3>Сканирование папок...</h3>
-                    <p>Поиск папок grade1 - grade6 и HTML-файлов в них</p>
+                    <h3>Загрузка уроков...</h3>
+                    <p>Читаем файл lessons.json</p>
                 </div>
             </div>
         </div>
@@ -592,7 +598,7 @@
 
     <script>
         // ================================================================
-        //  🔍 АВТОМАТИЧЕСКОЕ СКАНИРОВАНИЕ ПАПОК
+        //  🔍 ЗАГРУЗКА ДАННЫХ ИЗ JSON
         // ================================================================
 
         // Глобальные переменные
@@ -602,20 +608,15 @@
 
         // Иконки для классов
         const classEmojis = {
-            'Grade 1': '⭐',
-            'Grade 2': '🌟',
-            'Grade 3': '✨',
-            'Grade 4': '💫',
-            'Grade 5': '⭐',
-            'Grade 6': '🌟',
+            '1 класс': '⭐',
+            '2 класс': '🌟',
+            '3 класс': '✨',
+            '4 класс': '💫',
+            '5 класс': '⭐',
+            '6 класс': '🌟',
         };
 
-        // Иконки для уроков (по умолчанию)
-        const defaultIcons = ['📘', '📗', '📙', '📕', '📒', '📓', '📔', '📚', '📖', '🔤', '🎨', '🧮', '✏️', '📐', '📊', '📈', '📉',
-            '🎯', '💡', '📝'
-        ];
-
-        // Набор эмодзи для разных типов уроков
+        // Набор эмодзи для разных тем
         const topicEmojis = {
             'alphabet': '🔤',
             'abc': '🔤',
@@ -624,6 +625,8 @@
             'family': '👨‍👩‍👧',
             'animals': '🐱',
             'food': '🍎',
+            'junk': '🍔',
+            'healthy': '🥗',
             'numbers': '🔢',
             'body': '🧍',
             'clothes': '👕',
@@ -660,7 +663,7 @@
         };
 
         // ================================================================
-        //  🎯 ФУНКЦИЯ ПРЕОБРАЗОВАНИЯ ИМЕНИ ФАЙЛА В НАЗВАНИЕ
+        //  🎯 ФУНКЦИЯ ФОРМАТИРОВАНИЯ ИМЕНИ ФАЙЛА
         // ================================================================
 
         function formatLessonName(filename) {
@@ -688,7 +691,7 @@
         //  🎨 ФУНКЦИЯ ВЫБОРА ИКОНКИ ДЛЯ УРОКА
         // ================================================================
 
-        function getIconForLesson(filename, index) {
+        function getIconForLesson(filename) {
             const name = filename.toLowerCase();
 
             // Ищем ключевые слова в названии
@@ -698,147 +701,64 @@
                 }
             }
 
-            // Если ничего не подошло, берём по индексу
-            return defaultIcons[index % defaultIcons.length];
+            // Если ничего не подошло, возвращаем стандартную иконку
+            return '📄';
         }
 
         // ================================================================
-        //  📂 ФУНКЦИЯ СКАНИРОВАНИЯ ПАПОК
+        //  📂 ЗАГРУЗКА ДАННЫХ ИЗ JSON
         // ================================================================
 
-        async function scanFolders() {
-            const statusEl = document.getElementById('scanStatus');
+        async function loadLessonsFromJSON() {
+            const statusEl = document.getElementById('loadStatus');
             const contentArea = document.getElementById('contentArea');
 
             try {
-                statusEl.textContent = '🔄 Сканирование...';
+                statusEl.textContent = '🔄 Загрузка...';
                 statusEl.classList.add('loading');
 
-                // Папки которые ищем
-                const gradeFolders = [];
-                for (let i = 1; i <= 6; i++) {
-                    gradeFolders.push(`grade${i}`);
+                // Загружаем JSON файл
+                const response = await fetch('lessons.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
-                const foundData = {};
+                const jsonData = await response.json();
+                
+                // Проверяем, что данные загружены
+                if (!jsonData || typeof jsonData !== 'object') {
+                    throw new Error('Неверный формат JSON');
+                }
 
-                // Для каждой папки пытаемся получить список файлов
-                for (const folder of gradeFolders) {
-                    try {
-                        // Пытаемся получить список файлов в папке через index
-                        const response = await fetch(`${folder}/`);
-                        if (!response.ok) {
-                            // Если папки нет, пропускаем
-                            continue;
+                // Преобразуем данные из JSON в нужный формат
+                lessonsData = {};
+                
+                for (const [className, lessons] of Object.entries(jsonData)) {
+                    lessonsData[className] = [];
+                    
+                    // Если в JSON есть name, используем его, иначе форматируем из file
+                    lessons.forEach(lesson => {
+                        let displayName = lesson.name;
+                        
+                        // Если name не указан, форматируем из имени файла
+                        if (!displayName || displayName.trim() === '') {
+                            displayName = formatLessonName(lesson.file.split('/').pop());
                         }
-
-                        const html = await response.text();
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, 'text/html');
-
-                        // Ищем все ссылки на HTML файлы
-                        const links = doc.querySelectorAll('a');
-                        const htmlFiles = [];
-
-                        links.forEach(link => {
-                            const href = link.getAttribute('href');
-                            if (href && href.endsWith('.html') && !href.startsWith('/') && !href.startsWith('http')) {
-                                // Проверяем, что это файл, а не папка
-                                const isFile = !href.endsWith('/');
-                                if (isFile) {
-                                    // Убираем возможные параметры
-                                    const cleanHref = href.split('?')[0].split('#')[0];
-                                    if (!htmlFiles.includes(cleanHref)) {
-                                        htmlFiles.push(cleanHref);
-                                    }
-                                }
-                            }
+                        
+                        // Выбираем иконку
+                        const icon = getIconForLesson(lesson.file);
+                        
+                        lessonsData[className].push({
+                            name: displayName,
+                            file: lesson.file,
+                            icon: icon,
+                            originalFile: lesson.file
                         });
-
-                        // Если файлы найдены, добавляем класс
-                        if (htmlFiles.length > 0) {
-                            // Сортируем файлы по алфавиту
-                            htmlFiles.sort();
-
-                            const className = `Grade ${folder.replace('grade', '')}`;
-                            foundData[className] = [];
-
-                            htmlFiles.forEach((file, index) => {
-                                const displayName = formatLessonName(file);
-                                const icon = getIconForLesson(file, index);
-
-                                foundData[className].push({
-                                    name: displayName,
-                                    file: `${folder}/${file}`,
-                                    icon: icon,
-                                    originalFile: file
-                                });
-                            });
-                        }
-
-                    } catch (e) {
-                        // Папка не существует или нет доступа
-                        console.log(`Папка ${folder} не найдена или пуста`);
-                        continue;
-                    }
+                    });
                 }
 
-                // Если ничего не найдено, проверяем альтернативный способ
-                if (Object.keys(foundData).length === 0) {
-                    // Пробуем через прямой запрос к каждой папке
-                    for (const folder of gradeFolders) {
-                        try {
-                            // Пытаемся получить список через альтернативный метод
-                            const testResponse = await fetch(`${folder}/index.html`);
-                            if (testResponse.ok) {
-                                // Если есть index.html, значит папка существует
-                                // Но нам нужны все файлы, пробуем получить список
-                                const dirResponse = await fetch(`${folder}/`);
-                                if (dirResponse.ok) {
-                                    const html = await dirResponse.text();
-                                    const parser = new DOMParser();
-                                    const doc = parser.parseFromString(html, 'text/html');
-                                    const links = doc.querySelectorAll('a[href$=".html"]');
-
-                                    const htmlFiles = [];
-                                    links.forEach(link => {
-                                        const href = link.getAttribute('href');
-                                        if (href && href.endsWith('.html') && !href.startsWith('/')) {
-                                            const cleanHref = href.split('?')[0].split('#')[0];
-                                            if (!htmlFiles.includes(cleanHref) && cleanHref !== 'index.html') {
-                                                htmlFiles.push(cleanHref);
-                                            }
-                                        }
-                                    });
-
-                                    if (htmlFiles.length > 0) {
-                                        const className = `Grade ${folder.replace('grade', '')}`;
-                                        foundData[className] = [];
-                                        htmlFiles.sort();
-
-                                        htmlFiles.forEach((file, index) => {
-                                            const displayName = formatLessonName(file);
-                                            const icon = getIconForLesson(file, index);
-                                            foundData[className].push({
-                                                name: displayName,
-                                                file: `${folder}/${file}`,
-                                                icon: icon,
-                                                originalFile: file
-                                            });
-                                        });
-                                    }
-                                }
-                            }
-                        } catch (e) {
-                            continue;
-                        }
-                    }
-                }
-
-                // Сохраняем данные
-                lessonsData = foundData;
-
-                // Обновляем статус
+                // Обновляем статистику
                 const totalLessons = Object.values(lessonsData).reduce((sum, arr) => sum + arr.length, 0);
                 const totalClasses = Object.keys(lessonsData).length;
 
@@ -846,49 +766,53 @@
                 document.getElementById('totalClasses').textContent = totalClasses;
 
                 if (totalClasses > 0) {
-                    statusEl.textContent = `✅ Найдено ${totalClasses} классов, ${totalLessons} уроков`;
+                    statusEl.textContent = `✅ Загружено ${totalClasses} классов, ${totalLessons} уроков`;
                     statusEl.classList.remove('loading');
+                    
+                    // Отображаем данные
+                    renderAll();
                 } else {
-                    statusEl.textContent = '⚠️ Папки grade1-grade6 не найдены';
+                    statusEl.textContent = '⚠️ В JSON нет данных';
                     statusEl.classList.remove('loading');
-
-                    // Показываем инструкцию
+                    
                     contentArea.innerHTML = `
                         <div class="empty-state">
-                            <span class="icon">📂</span>
-                            <h3>Папки не найдены</h3>
-                            <p>Создайте папки <strong>grade1</strong> - <strong>grade6</strong> в одной директории с этим файлом</p>
-                            <p style="font-size:0.9em; margin-top:10px; color:#999;">
-                                📁 grade1/<br>
-                                📁 grade2/<br>
-                                📁 grade3/<br>
-                                📁 grade4/<br>
-                                📁 grade5/<br>
-                                📁 grade6/
-                            </p>
-                            <p style="font-size:0.9em; margin-top:10px; color:#999;">
-                                В каждой папке поместите HTML-файлы уроков
-                            </p>
+                            <span class="icon">📭</span>
+                            <h3>Нет данных</h3>
+                            <p>В файле lessons.json нет уроков</p>
+                            <p class="hint">Добавьте уроки в JSON файл</p>
                         </div>
                     `;
-                    return;
                 }
 
-                // Отображаем
-                renderAll();
-
             } catch (e) {
-                console.error('Ошибка сканирования:', e);
-                statusEl.textContent = '❌ Ошибка сканирования';
+                console.error('Ошибка загрузки JSON:', e);
+                statusEl.textContent = '❌ Ошибка загрузки';
                 statusEl.classList.remove('loading');
 
+                // Показываем подробную ошибку
                 contentArea.innerHTML = `
                     <div class="empty-state">
                         <span class="icon">❌</span>
-                        <h3>Ошибка сканирования</h3>
-                        <p>Проверьте, что папки существуют и доступны</p>
-                        <p style="font-size:0.9em; margin-top:10px; color:#999;">
+                        <h3>Ошибка загрузки данных</h3>
+                        <p>Не удалось загрузить файл lessons.json</p>
+                        <p class="hint" style="color: #c0392b; font-size: 0.9em; margin-top: 15px;">
                             ${e.message}
+                        </p>
+                        <p class="hint" style="margin-top: 20px;">
+                            📁 Убедитесь, что файл <strong>lessons.json</strong> лежит в одной папке с index.html
+                        </p>
+                        <p class="hint">
+                            📝 Пример содержимого JSON:<br>
+                            <code style="background: #f8f9fa; padding: 10px; display: inline-block; border-radius: 8px; margin-top: 10px; text-align: left;">
+                                {<br>
+                                &nbsp;&nbsp;"4 класс": [<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file": "grade4/food_junk_or_healthy.html"<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                &nbsp;&nbsp;]<br>
+                                }
+                            </code>
                         </p>
                     </div>
                 `;
@@ -907,13 +831,26 @@
             if (activeClass && lessonsData[activeClass]) {
                 renderLessons(activeClass);
             } else {
-                // Иначе показываем первый класс
-                const firstClass = Object.keys(lessonsData)[0];
-                if (firstClass) {
-                    activeClass = firstClass;
-                    renderLessons(firstClass);
-                    renderClasses();
+                // Иначе показываем первый класс с уроками
+                const classNames = Object.keys(lessonsData);
+                for (const className of classNames) {
+                    if (lessonsData[className].length > 0) {
+                        activeClass = className;
+                        renderLessons(className);
+                        renderClasses();
+                        return;
+                    }
                 }
+                
+                // Если нет уроков ни в одном классе
+                document.getElementById('contentArea').innerHTML = `
+                    <div class="empty-state">
+                        <span class="icon">📭</span>
+                        <h3>Нет уроков</h3>
+                        <p>Добавьте уроки в файл lessons.json</p>
+                        <p class="hint">Пример: grade4/food_junk_or_healthy.html</p>
+                    </div>
+                `;
             }
         }
 
@@ -973,7 +910,8 @@
                     <div class="empty-state">
                         <span class="icon">📭</span>
                         <h3>Нет уроков</h3>
-                        <p>В папке ${className.toLowerCase().replace(' ', '')} нет HTML-файлов</p>
+                        <p>В этом классе пока нет добавленных уроков</p>
+                        <p class="hint">Добавьте уроки в JSON файл</p>
                     </div>
                 `;
                 return;
@@ -1011,9 +949,9 @@
                 else if (nameLower.includes('writing')) type = '✍️ Writing';
                 else if (nameLower.includes('speaking')) type = '🎤 Speaking';
                 else if (nameLower.includes('listening')) type = '🎧 Listening';
-                else if (nameLower.includes('test') || nameLower.includes('quiz') || nameLower.includes('exam')) type =
-                    '📋 Test';
+                else if (nameLower.includes('test') || nameLower.includes('quiz') || nameLower.includes('exam')) type = '📋 Test';
                 else if (nameLower.includes('project')) type = '📁 Project';
+                else if (nameLower.includes('food')) type = '🍔 Food';
 
                 return `
                     <a href="${lesson.file}" class="lesson-card" target="_blank" style="animation-delay: ${index * 0.03}s">
@@ -1077,37 +1015,31 @@
         });
 
         // ================================================================
-        //  🚀 ЗАПУСК СКАНИРОВАНИЯ
+        //  🚀 ЗАПУСК
         // ================================================================
 
-        // Запускаем сканирование при загрузке
-        scanFolders();
+        // Загружаем данные из JSON
+        loadLessonsFromJSON();
 
-        // Повторное сканирование по кнопке (скрытая функция)
-        document.addEventListener('dblclick', function(e) {
-            if (e.target.tagName === 'H1') {
-                document.getElementById('scanStatus').textContent = '🔄 Повторное сканирование...';
-                scanFolders();
-            }
-        });
-
-        console.log('%c🇬🇧 ENGLISH LESSONS - АВТОМАТИЧЕСКОЕ СКАНИРОВАНИЕ', 'font-size: 20px; font-weight: bold; color: #c0392b;');
-        console.log('%c📁 СТРУКТУРА ПАПОК:', 'font-size: 14px; font-weight: bold;');
-        console.log('Создайте папки в одной директории с этим файлом:');
-        console.log('  📁 grade1/  ← сюда кладите файлы для 1 класса');
-        console.log('  📁 grade2/  ← сюда кладите файлы для 2 класса');
-        console.log('  📁 grade3/  ← сюда кладите файлы для 3 класса');
-        console.log('  📁 grade4/  ← сюда кладите файлы для 4 класса');
-        console.log('  📁 grade5/  ← сюда кладите файлы для 5 класса');
-        console.log('  📁 grade6/  ← сюда кладите файлы для 6 класса');
+        console.log('%c🇬🇧 ENGLISH LESSONS - JSON VERSION', 'font-size: 20px; font-weight: bold; color: #c0392b;');
+        console.log('%c📁 СТРУКТУРА:', 'font-size: 14px; font-weight: bold;');
+        console.log('  📄 index.html');
+        console.log('  📄 lessons.json  ← сюда добавляйте уроки');
+        console.log('  📁 grade4/');
+        console.log('     📄 food_junk_or_healthy.html');
         console.log('');
-        console.log('%c📝 ИМЕНА ФАЙЛОВ:', 'font-size: 14px; font-weight: bold;');
-        console.log('Файлы автоматически преобразуются:');
-        console.log('  alphabet_colors.html → Alphabet Colors');
-        console.log('  my_family.html → My Family');
-        console.log('  present_simple_tense.html → Present Simple Tense');
+        console.log('%c📝 КАК ДОБАВИТЬ НОВЫЙ УРОК:', 'font-size: 14px; font-weight: bold;');
+        console.log('1. Откройте lessons.json');
+        console.log('2. Добавьте в нужный класс:');
+        console.log('   "4 класс": [');
+        console.log('     { "file": "grade4/food_junk_or_healthy.html" },');
+        console.log('     { "file": "grade4/new_lesson.html" }');
+        console.log('   ]');
+        console.log('3. Создайте файл new_lesson.html в папке grade4');
+        console.log('4. Обновите страницу');
         console.log('');
-        console.log('🔄 Двойной клик на заголовке "English Lessons" - повторное сканирование');
+        console.log('💡 Название урока автоматически форматируется из имени файла:');
+        console.log('   food_junk_or_healthy.html → Food Junk Or Healthy');
     </script>
 
 </body>
