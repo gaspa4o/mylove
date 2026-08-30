@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food: Healthy or Junk? — English Worksheet • Grade 4</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍎</text></svg>">
+<style>
+  :root {
+    --bg: #FFF8EE;
+    --bg-2: #FFEACB;
+    --healthy: #2D8A47;
+    --healthy-light: #C5E9CB;
+    --junk: #E63946;
+    --junk-light: #FFD0CC;
+    --accent: #FF6B35;
+    --yellow: #FFC857;
+    --dark: #2D2419;
+    --muted: #7A6B5A;
+    --card: #FFFFFF;
+    --border: #E8DCC4;
+  }
+  * { -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+  .font-display { font-family: 'Fredoka', sans-serif; letter-spacing: -0.01em; }
+  .bg-pattern {
+    background-color: var(--bg);
+    background-image: 
+      radial-gradient(circle at 15% 15%, rgba(255, 200, 87, 0.3) 0%, transparent 35%),
+      radial-gradient(circle at 85% 25%, rgba(45, 138, 71, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 75% 85%, rgba(255, 107, 53, 0.2) 0%, transparent 35%),
+      radial-gradient(circle at 20% 80%, rgba(230, 57, 70, 0.1) 0%, transparent 30%);
+  }
+  .tab-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    white-space: nowrap;
+  }
+  .tab-btn.active {
+    background: var(--dark);
+    color: var(--yellow);
+    box-shadow: 0 8px 20px rgba(45, 36, 25, 0.3);
+  }
+  .tab-btn:not(.active):hover {
+    background: var(--bg-2);
+    transform: translateY(-2px);
+  }
+  .word-card {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+  }
+  .word-card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  }
+  .word-card .emoji-big { transition: transform 0.3s; }
+  .word-card:hover .emoji-big { transform: scale(1.2) rotate(-8deg); }
+  .speak-btn { transition: all 0.2s; }
+  .speak-btn:hover { background: var(--accent); color: white; transform: scale(1.1); }
+  .speak-btn:active { transform: scale(0.95); }
+  .speak-btn.speaking { background: var(--accent); color: white; animation: speakPulse 1s infinite; }
+  @keyframes speakPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,53,0.5); } 50% { box-shadow: 0 0 0 8px rgba(255,107,53,0); } }
+  .memory-card {
+    perspective: 1000px;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+  }
+  .memory-inner {
+    position: relative; width: 100%; height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .memory-card.flipped .memory-inner,
+  .memory-card.matched .memory-inner { transform: rotateY(180deg); }
+  .memory-card.matched { pointer-events: none; }
+  .memory-card.matched .memory-back {
+    background: var(--healthy-light);
+    border-color: var(--healthy);
+    animation: matchPulse 0.6s ease-out;
+  }
+  @keyframes matchPulse {
+    0% { transform: rotateY(180deg) scale(1); }
+    50% { transform: rotateY(180deg) scale(1.08); }
+    100% { transform: rotateY(180deg) scale(1); }
+  }
+  .memory-front, .memory-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    border: 3px solid var(--dark);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .memory-front { background: var(--dark); color: var(--yellow); }
+  .memory-back { background: var(--card); transform: rotateY(180deg); padding: 8px; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .floating { animation: float 3s ease-in-out infinite; }
+  @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  .pop { animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+  .shake { animation: shake 0.4s ease-in-out; }
+  @keyframes confetti-fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+  .confetti {
+    position: fixed; width: 12px; height: 12px;
+    pointer-events: none; z-index: 9999;
+    animation: confetti-fall 2.5s linear forwards;
+  }
+  .badge-healthy { background: var(--healthy); color: white; }
+  .badge-junk { background: var(--junk); color: white; }
+  .drop-zone { transition: all 0.3s; }
+  .drop-zone.highlight { background: var(--yellow) !important; transform: scale(1.05); }
+  .drop-zone.correct { background: var(--healthy-light) !important; border-color: var(--healthy) !important; }
+  .answer-btn {
+    transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .answer-btn:not(:disabled):hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+  .answer-btn.correct { background: var(--healthy) !important; color: white !important; border-color: var(--healthy) !important; }
+  .answer-btn.wrong { background: var(--junk) !important; color: white !important; border-color: var(--junk) !important; animation: shake 0.4s; }
+  .word-token { transition: all 0.2s; cursor: pointer; user-select: none; }
+  .word-token:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+  .word-token.used { opacity: 0.25; pointer-events: none; }
+  .tab-content { display: none; animation: fadeInUp 0.5s ease-out; }
+  .tab-content.active { display: block; }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .progress-bar { transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg-2); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; }
+  .float-deco {
+    position: absolute; font-size: 3rem; opacity: 0.5;
+    pointer-events: none; animation: floatBig 12s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes floatBig {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(20px, -25px) rotate(12deg); }
+    66% { transform: translate(-15px, 15px) rotate(-12deg); }
+  }
+  .sentence-slot {
+    min-height: 56px;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    transition: all 0.3s;
+  }
+  .sentence-slot.over { background: var(--yellow) !important; border-color: var(--accent); }
+  .sentence-slot.filled { border-style: solid; background: var(--bg-2); }
+  @media (max-width: 640px) {
+    .tab-btn { padding: 10px 14px; font-size: 14px; }
+  }
+</style>
+</head>
+<body class="bg-pattern min-h-screen">
+
+<div class="float-deco" style="top: 8%; left: 4%;">🥕</div>
+<div class="float-deco" style="top: 30%; right: 5%; animation-delay: -3s;">🍩</div>
+<div class="float-deco" style="bottom: 20%; left: 6%; animation-delay: -6s;">🍎</div>
+<div class="float-deco" style="bottom: 40%; right: 8%; animation-delay: -9s;">🥦</div>
+
+<div class="max-w-6xl mx-auto px-4 py-6 md:py-10 relative">
+
+  <header class="mb-8 relative">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm font-bold mb-3 border-2 border-[var(--border)]">
+          <span class="w-2 h-2 rounded-full bg-[var(--healthy)] animate-pulse"></span>
+          <span class="text-[var(--muted)]">English Worksheet • Grade 4</span>
+        </div>
+        <h1 class="font-display font-bold text-4xl md:text-6xl leading-none">
+          <span class="text-[var(--dark)]">Food:</span><br>
+          <span class="text-[var(--healthy)]">Healthy</span>
+          <span class="text-[var(--muted)] text-3xl md:text-4xl">or</span>
+          <span class="text-[var(--junk)]">Junk?</span>
+        </h1>
+        <p class="text-[var(--muted)] mt-3 max-w-xl font-semibold">
+          Hello, food explorer! 🍎 Today we learn about food and how to say what we eat — and what we don't!
+        </p>
+      </div>
+      <div class="flex flex-col gap-3">
+        <div class="bg-white rounded-2xl p-4 border-2 border-[var(--border)] shadow-sm">
+          <label class="block text-xs font-bold text-[var(--muted)] mb-1 uppercase tracking-wide">Your name</label>
+          <input id="studentName" type="text" placeholder="Type your name..." class="font-display font-semibold text-lg bg-transparent outline-none w-44 border-b-2 border-[var(--border)] focus:border-[var(--accent)] pb-1">
+        </div>
+        <div class="bg-[var(--dark)] text-[var(--yellow)] rounded-2xl p-4 text-center">
+          <div class="text-xs font-bold uppercase tracking-wider opacity-80">Your score</div>
+          <div class="font-display font-bold text-3xl" id="totalScore">0</div>
+          <div class="text-xs opacity-70">stars earned</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sticky top-3 z-40 mb-8">
+    <div class="flex gap-2 overflow-x-auto p-2 bg-white/90 backdrop-blur rounded-2xl border-2 border-[var(--border)] shadow-lg no-print">
+      <button class="tab-btn active font-display font-semibold px-5 py-3 rounded-xl text-base md:text-lg flex items-center gap-2" data-tab="hello">
+        <span class="text-xl">👋</span> Hello
+      </button>
+      <button class="tab-btn font-display font-semibold px-5 py-3 rounded-xl text-base md:text-lg flex items-center gap-2" data-tab="words">
+        <span class="text-xl">📖</span> Words
+      </button>
+      <button class="tab-btn font-display font-semibold px-5 py-3 rounded-xl text-base md:text-lg flex items-center gap-2" data-tab="grammar">
+        <span class="text-xl">✍️</span> Grammar
+      </button>
+      <button class="tab-btn font-display font-semibold px-5 py-3 rounded-xl text-base md:text-lg flex items-center gap-2" data-tab="tasks">
+        <span class="text-xl">🎯</span> Tasks
+      </button>
+      <button class="tab-btn font-display font-semibold px-5 py-3 rounded-xl text-base md:text-lg flex items-center gap-2" data-tab="game">
+        <span class="text-xl">🃏</span> Memory Game
+      </button>
+      <button class="tab-btn font-display font-semibold px-5 py-3 rounded-xl text-base md:text-lg flex items-center gap-2" data-tab="quiz">
+        <span class="text-xl">🏆</span> Final Quiz
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============ HELLO ============ -->
+    <section class="tab-content active" data-content="hello">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-3xl p-8 border-2 border-[var(--border)] shadow-sm relative overflow-hidden">
+          <div class="absolute -top-8 -right-8 text-9xl opacity-10">🍔</div>
+          <h2 class="font-display font-bold text-3xl mb-4 text-[var(--dark)]">Welcome to the Food Lesson! 🎉</h2>
+          <p class="text-lg mb-4 font-semibold">Today you will:</p>
+          <ul class="space-y-3 text-base">
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-[var(--healthy-light)] flex items-center justify-center font-bold text-[var(--healthy)]">1</span>
+              <span>Learn <b>7 new food words</b> and listen to them</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-[var(--healthy-light)] flex items-center justify-center font-bold text-[var(--healthy)]">2</span>
+              <span>Learn to say <b>"I eat"</b> and <b>"I don't eat"</b></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-[var(--healthy-light)] flex items-center justify-center font-bold text-[var(--healthy)]">3</span>
+              <span>Sort food into <b class="text-[var(--healthy)]">Healthy</b> and <b class="text-[var(--junk)]">Junk</b></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-[var(--healthy-light)] flex items-center justify-center font-bold text-[var(--healthy)]">4</span>
+              <span>Play the <b>Memory Game</b> and take the <b>Final Quiz</b></span>
+            </li>
+          </ul>
+          <div class="mt-6 p-4 bg-[var(--bg-2)] rounded-xl border-l-4 border-[var(--accent)]">
+            <p class="text-sm font-semibold text-[var(--muted)]">💡 Tip:</p>
+            <p class="text-base">Click the <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[var(--accent)] text-white text-xs">🔊</span> button to hear how words sound!</p>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="bg-gradient-to-br from-[var(--healthy)] to-[#1F6B37] text-white rounded-3xl p-8 relative overflow-hidden">
+            <div class="absolute -bottom-4 -right-4 text-8xl opacity-30">🥗</div>
+            <div class="relative">
+              <span class="badge-healthy px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Healthy Food</span>
+              <h3 class="font-display font-bold text-2xl mt-3 mb-2">Good for you! 💪</h3>
+              <p class="opacity-90">Vegetables, fruits, fish, cereal — they give you energy and make you strong.</p>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-[var(--junk)] to-[#B02838] text-white rounded-3xl p-8 relative overflow-hidden">
+            <div class="absolute -bottom-4 -right-4 text-8xl opacity-30">🍔</div>
+            <div class="relative">
+              <span class="badge-junk px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Junk Food</span>
+              <h3 class="font-display font-bold text-2xl mt-3 mb-2">Not so good... 😬</h3>
+              <p class="opacity-90">Sweets, chips, burgers — tasty but eat only a little, not every day!</p>
+            </div>
+          </div>
+          <button onclick="switchTab('words')" class="w-full bg-[var(--dark)] text-[var(--yellow)] font-display font-bold text-xl py-5 rounded-2xl hover:scale-[1.02] transition-transform shadow-lg">
+            Let's start! →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORDS ============ -->
+    <section class="tab-content" data-content="words">
+      <div class="mb-6">
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[var(--dark)]">New Words 📖</h2>
+        <p class="text-[var(--muted)] font-semibold mt-1">Click any card to hear the word. Repeat after the speaker!</p>
+      </div>
+      <div id="vocabGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+      <div class="mt-8 bg-[var(--bg-2)] rounded-2xl p-6 border-2 border-[var(--border)]">
+        <h3 class="font-display font-bold text-xl mb-3">🔍 Quick Test</h3>
+        <p class="mb-4 font-semibold">Look at the picture. Which word is it?</p>
+        <div id="quickTest" class="space-y-4"></div>
+      </div>
+    </section>
+
+    <!-- ============ GRAMMAR ============ -->
+    <section class="tab-content" data-content="grammar">
+      <div class="mb-6">
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[var(--dark)]">Grammar Time ✍️</h2>
+        <p class="text-[var(--muted)] font-semibold mt-1">Learn how to talk about food you like — or don't!</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white rounded-3xl p-8 border-2 border-[var(--healthy)] shadow-md relative overflow-hidden">
+          <div class="absolute top-4 right-4 text-6xl opacity-20">✅</div>
+          <div class="badge-healthy inline-block px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">Positive (+)</div>
+          <h3 class="font-display font-bold text-3xl text-[var(--healthy)] mb-3">I eat</h3>
+          <p class="text-[var(--muted)] font-semibold mb-4">Use it for food you like and eat.</p>
+          <div class="space-y-2">
+            <div class="bg-[var(--healthy-light)] rounded-xl p-3 flex items-center gap-3">
+              <span class="text-3xl">🥕</span>
+              <span class="font-display font-bold text-lg">I eat vegetables.</span>
+              <button onclick="speakEat('vegetables')" class="speak-btn ml-auto w-8 h-8 rounded-full bg-white flex items-center justify-center">🔊</button>
+            </div>
+            <div class="bg-[var(--healthy-light)] rounded-xl p-3 flex items-center gap-3">
+              <span class="text-3xl">🍎</span>
+              <span class="font-display font-bold text-lg">I eat fruits.</span>
+              <button onclick="speakEat('fruits')" class="speak-btn ml-auto w-8 h-8 rounded-full bg-white flex items-center justify-center">🔊</button>
+            </div>
+            <div class="bg-[var(--healthy-light)] rounded-xl p-3 flex items-center gap-3">
+              <span class="text-3xl">🐟</span>
+              <span class="font-display font-bold text-lg">I eat fish.</span>
+              <button onclick="speakEat('fish')" class="speak-btn ml-auto w-8 h-8 rounded-full bg-white flex items-center justify-center">🔊</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 border-2 border-[var(--junk)] shadow-md relative overflow-hidden">
+          <div class="absolute top-4 right-4 text-6xl opacity-20">🚫</div>
+          <div class="badge-junk inline-block px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">Negative (–)</div>
+          <h3 class="font-display font-bold text-3xl text-[var(--junk)] mb-3">I don't eat</h3>
+          <p class="text-[var(--muted)] font-semibold mb-4">Use it for food you don't like or don't eat.</p>
+          <div class="space-y-2">
+            <div class="bg-[var(--junk-light)] rounded-xl p-3 flex items-center gap-3">
+              <span class="text-3xl">🍔</span>
+              <span class="font-display font-bold text-lg">I don't eat junk food.</span>
+              <button onclick="speakDontEat('junk food')" class="speak-btn ml-auto w-8 h-8 rounded-full bg-white flex items-center justify-center">🔊</button>
+            </div>
+            <div class="bg-[var(--junk-light)] rounded-xl p-3 flex items-center gap-3">
+              <span class="text-3xl">🍬</span>
+              <span class="font-display font-bold text-lg">I don't eat sweets.</span>
+              <button onclick="speakDontEat('sweets')" class="speak-btn ml-auto w-8 h-8 rounded-full bg-white flex items-center justify-center">🔊</button>
+            </div>
+            <div class="bg-[var(--junk-light)] rounded-xl p-3 flex items-center gap-3">
+              <span class="text-3xl">🍖</span>
+              <span class="font-display font-bold text-lg">I don't eat meat.</span>
+              <button onclick="speakDontEat('meat')" class="speak-btn ml-auto w-8 h-8 rounded-full bg-white flex items-center justify-center">🔊</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-[var(--border)] shadow-sm">
+        <h3 class="font-display font-bold text-2xl mb-5">🧩 How to build a sentence</h3>
+        <div class="flex flex-wrap items-center gap-3 justify-center">
+          <div class="bg-[var(--dark)] text-[var(--yellow)] font-display font-bold text-xl px-5 py-3 rounded-xl">I</div>
+          <div class="text-2xl text-[var(--accent)] font-bold">+</div>
+          <div class="bg-[var(--healthy)] text-white font-display font-bold text-xl px-5 py-3 rounded-xl">eat</div>
+          <div class="text-[var(--muted)] font-bold">/</div>
+          <div class="bg-[var(--junk)] text-white font-display font-bold text-xl px-5 py-3 rounded-xl">don't eat</div>
+          <div class="text-2xl text-[var(--accent)] font-bold">+</div>
+          <div class="bg-[var(--yellow)] text-[var(--dark)] font-display font-bold text-xl px-5 py-3 rounded-xl border-2 border-[var(--dark)]">food</div>
+        </div>
+        <div class="mt-6 grid sm:grid-cols-2 gap-3">
+          <div class="bg-[var(--healthy-light)] p-4 rounded-xl text-center font-display font-bold text-lg flex items-center justify-center gap-2">
+            I + eat + cereal. <button onclick="speakEat('cereal')" class="speak-btn w-8 h-8 rounded-full bg-white flex items-center justify-center">🔊</button>
+          </div>
+          <div class="bg-[var(--junk-light)] p-4 rounded-xl text-center font-display font-bold text-lg flex items-center justify-center gap-2">
+            I + don't eat + sweets. <button onclick="speakDontEat('sweets')" class="speak-btn w-8 h-8 rounded-full bg-white flex items-center justify-center">🔊</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TASKS ============ -->
+    <section class="tab-content" data-content="tasks">
+      <div class="mb-6">
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[var(--dark)]">Practice Tasks 🎯</h2>
+        <p class="text-[var(--muted)] font-semibold mt-1">Four fun tasks. Complete them all to earn stars!</p>
+      </div>
+
+      <!-- Task 1: Sort -->
+      <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-[var(--border)] shadow-sm mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+          <h3 class="font-display font-bold text-2xl"><span class="text-[var(--accent)]">Task 1.</span> Sort the food!</h3>
+          <div class="text-sm font-bold text-[var(--muted)]"><span id="task1Done">0</span>/8 sorted</div>
+        </div>
+        <p class="mb-4 text-[var(--muted)] font-semibold">Click a food, then click <b class="text-[var(--healthy)]">Healthy</b> or <b class="text-[var(--junk)]">Junk</b>.</p>
+        <div id="sortFood" class="flex flex-wrap gap-3 mb-5"></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="drop-zone border-2 border-[var(--healthy)] rounded-2xl p-4 min-h-[120px]" data-zone="healthy">
+            <div class="text-center mb-2">
+              <span class="badge-healthy px-3 py-1 rounded-full text-sm font-bold">🥗 Healthy</span>
+            </div>
+            <div class="flex flex-wrap gap-2 justify-center items-center min-h-[60px]" id="zone-healthy"></div>
+          </div>
+          <div class="drop-zone border-2 border-[var(--junk)] rounded-2xl p-4 min-h-[120px]" data-zone="junk">
+            <div class="text-center mb-2">
+              <span class="badge-junk px-3 py-1 rounded-full text-sm font-bold">🍔 Junk</span>
+            </div>
+            <div class="flex flex-wrap gap-2 justify-center items-center min-h-[60px]" id="zone-junk"></div>
+          </div>
+        </div>
+        <div id="task1Result" class="mt-4 hidden"></div>
+      </div>
+
+      <!-- Task 2: Match -->
+      <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-[var(--border)] shadow-sm mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+          <h3 class="font-display font-bold text-2xl"><span class="text-[var(--accent)]">Task 2.</span> Match the picture!</h3>
+          <div class="text-sm font-bold text-[var(--muted)]"><span id="task2Done">0</span>/6 matched</div>
+        </div>
+        <p class="mb-4 text-[var(--muted)] font-semibold">Click a picture, then click the matching word.</p>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4" id="matchPictures"></div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="matchWords"></div>
+        <div id="task2Result" class="mt-4 hidden"></div>
+      </div>
+
+      <!-- Task 3: eat / don't eat -->
+      <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-[var(--border)] shadow-sm mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+          <h3 class="font-display font-bold text-2xl"><span class="text-[var(--accent)]">Task 3.</span> Choose: eat or don't eat?</h3>
+          <div class="text-sm font-bold text-[var(--muted)]"><span id="task3Done">0</span>/6 done</div>
+        </div>
+        <p class="mb-4 text-[var(--muted)] font-semibold">Look at the picture and choose the correct sentence.</p>
+        <div id="eatTask" class="space-y-4"></div>
+        <div id="task3Result" class="mt-4 hidden"></div>
+      </div>
+
+      <!-- Task 4: Build sentence -->
+      <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-[var(--border)] shadow-sm mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+          <h3 class="font-display font-bold text-2xl"><span class="text-[var(--accent)]">Task 4.</span> Build a sentence!</h3>
+          <div class="text-sm font-bold text-[var(--muted)]"><span id="task4Done">0</span>/4 done</div>
+        </div>
+        <p class="mb-4 text-[var(--muted)] font-semibold">Click the words in the correct order.</p>
+        <div id="buildTask" class="space-y-6"></div>
+        <div id="task4Result" class="mt-4 hidden"></div>
+      </div>
+    </section>
+
+    <!-- ============ MEMORY GAME ============ -->
+    <section class="tab-content" data-content="game">
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-[var(--dark)]">Memory Game 🃏</h2>
+          <p class="text-[var(--muted)] font-semibold mt-1">Find pairs: a picture and its English word!</p>
+        </div>
+        <div class="flex gap-3">
+          <div class="bg-white rounded-xl p-3 border-2 border-[var(--border)] text-center min-w-[80px]">
+            <div class="text-xs font-bold text-[var(--muted)] uppercase">Moves</div>
+            <div class="font-display font-bold text-2xl" id="moves">0</div>
+          </div>
+          <div class="bg-white rounded-xl p-3 border-2 border-[var(--border)] text-center min-w-[80px]">
+            <div class="text-xs font-bold text-[var(--muted)] uppercase">Pairs</div>
+            <div class="font-display font-bold text-2xl"><span id="pairs">0</span>/7</div>
+          </div>
+          <button onclick="resetMemory()" class="bg-[var(--accent)] text-white font-display font-bold px-5 rounded-xl hover:scale-105 transition-transform">↻ Reset</button>
+        </div>
+      </div>
+      <div id="memoryGrid" class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3"></div>
+      <div id="memoryWin" class="hidden mt-6 bg-gradient-to-r from-[var(--healthy)] to-[var(--accent)] text-white rounded-3xl p-8 text-center pop">
+        <div class="text-6xl mb-3">🎉</div>
+        <h3 class="font-display font-bold text-3xl mb-2">Great job!</h3>
+        <p class="text-lg mb-1">You found all pairs in <b id="winMoves">0</b> moves!</p>
+        <p class="opacity-90" id="winMessage">You are a Food Master!</p>
+        <button onclick="resetMemory()" class="mt-4 bg-white text-[var(--dark)] font-display font-bold px-6 py-3 rounded-xl hover:scale-105 transition-transform">Play again ↻</button>
+      </div>
+    </section>
+
+    <!-- ============ QUIZ ============ -->
+    <section class="tab-content" data-content="quiz">
+      <div class="mb-6">
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[var(--dark)]">Final Quiz 🏆</h2>
+        <p class="text-[var(--muted)] font-semibold mt-1">Answer 6 questions and become a Food Champion!</p>
+      </div>
+      <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-[var(--border)] shadow-sm">
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-[var(--muted)]">Question <span id="qNum">1</span> of 6</span>
+            <span class="font-bold text-[var(--accent)]">Score: <span id="qScore">0</span></span>
+          </div>
+          <div class="w-full h-3 bg-[var(--bg-2)] rounded-full overflow-hidden">
+            <div class="progress-bar h-full bg-gradient-to-r from-[var(--healthy)] to-[var(--accent)]" id="qProgress" style="width: 16.6%"></div>
+          </div>
+        </div>
+        <div id="quizContainer"></div>
+        <div id="quizResult" class="hidden mt-6 text-center pop"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="mt-12 text-center text-sm text-[var(--muted)] font-semibold">
+    <p>🍎 Eat healthy, learn happily! 🥦</p>
+    <p class="mt-1 opacity-70">English Worksheet • Grade 4 • Topic: Food</p>
+  </footer>
+</div>
+
+<script>
+/* ============ ДАННЫЕ ============ */
+const vocabulary = [
+  { word: 'vegetables', emoji: '🥦', transcription: '/ˈvedʒtəblz/', type: 'healthy', ru: 'овощи' },
+  { word: 'fruits', emoji: '🍎', transcription: '/fruːts/', type: 'healthy', ru: 'фрукты' },
+  { word: 'meat', emoji: '🍖', transcription: '/miːt/', type: 'healthy', ru: 'мясо' },
+  { word: 'fish', emoji: '🐟', transcription: '/fɪʃ/', type: 'healthy', ru: 'рыба' },
+  { word: 'cereal', emoji: '🥣', transcription: '/ˈsɪəriəl/', type: 'healthy', ru: 'каша / хлопья' },
+  { word: 'sweets', emoji: '🍬', transcription: '/swiːts/', type: 'junk', ru: 'сладости' },
+  { word: 'junk food', emoji: '🍔', transcription: '/dʒʌŋk fuːd/', type: 'junk', ru: 'вредная еда' }
+];
+
+const extraFood = [
+  { emoji: '🥕', en: 'carrot', type: 'healthy' },
+  { emoji: '🍌', en: 'banana', type: 'healthy' },
+  { emoji: '🍅', en: 'tomato', type: 'healthy' },
+  { emoji: '🥛', en: 'milk', type: 'healthy' },
+  { emoji: '🍪', en: 'cookie', type: 'junk' },
+  { emoji: '🍕', en: 'pizza', type: 'junk' },
+  { emoji: '🍟', en: 'chips', type: 'junk' },
+  { emoji: '🍰', en: 'cake', type: 'junk' },
+  { emoji: '🥚', en: 'egg', type: 'healthy' },
+  { emoji: '🍞', en: 'bread', type: 'healthy' }
+];
+
+let totalScore = 0;
+
+/* ============ РЕЧЬ ============ */
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+  u.pitch = 1.1;
+  const voices = speechSynthesis.getVoices();
+  const enVoice = voices.find(v => v.lang.startsWith('en'));
+  if (enVoice) u.voice = enVoice;
+  speechSynthesis.speak(u);
+}
+// Вспомогательные функции — никаких апострофов в onclick!
+function speakEat(word) { speak('I eat ' + word); }
+function speakDontEat(word) { speak('I don\'t eat ' + word); }
+
+if ('speechSynthesis' in window) {
+  speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+}
+
+/* ============ ВКЛАДКИ ============ */
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.dataset.content === name));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+});
+
+/* ============ WORDS: СЕТКА ============ */
+function renderVocab() {
+  const grid = document.getElementById('vocabGrid');
+  grid.innerHTML = vocabulary.map(v => `
+    <div class="word-card bg-white rounded-2xl p-5 border-2 border-[var(--border)] cursor-pointer" onclick="speak('${v.word}'); this.querySelector('.speak-btn').classList.add('speaking'); setTimeout(()=>this.querySelector('.speak-btn').classList.remove('speaking'),800)">
+      <div class="flex justify-between items-start mb-2">
+        <span class="emoji-big text-5xl md:text-6xl">${v.emoji}</span>
+        <span class="speak-btn w-8 h-8 rounded-full bg-[var(--bg-2)] flex items-center justify-center text-sm">🔊</span>
+      </div>
+      <h3 class="font-display font-bold text-xl md:text-2xl capitalize">${v.word}</h3>
+      <p class="text-sm text-[var(--muted)] font-semibold">${v.transcription}</p>
+      <div class="mt-2 flex items-center justify-between">
+        <span class="text-xs font-bold ${v.type === 'healthy' ? 'text-[var(--healthy)]' : 'text-[var(--junk)]'} uppercase tracking-wide">${v.type === 'healthy' ? '🥗 healthy' : '🍔 junk'}</span>
+        <span class="text-xs text-[var(--muted)] font-semibold">${v.ru}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============ WORDS: БЫСТРЫЙ ТЕСТ ============ */
+let quickTestIdx = 0;
+const quickTestQuestions = [];
+function buildQuickTest() {
+  quickTestQuestions.length = 0;
+  const shuffled = [...vocabulary].sort(() => Math.random() - 0.5);
+  shuffled.slice(0, 5).forEach(item => {
+    const options = [item];
+    while (options.length < 3) {
+      const r = vocabulary[Math.floor(Math.random() * vocabulary.length)];
+      if (!options.find(o => o.word === r.word)) options.push(r);
+    }
+    options.sort(() => Math.random() - 0.5);
+    quickTestQuestions.push({ correct: item, options });
+  });
+  quickTestIdx = 0;
+  renderQuickTest();
+}
+function renderQuickTest() {
+  const container = document.getElementById('quickTest');
+  if (quickTestIdx >= quickTestQuestions.length) {
+    container.innerHTML = `<div class="p-6 bg-[var(--healthy-light)] rounded-xl text-center">
+      <div class="text-4xl mb-2">🎉</div>
+      <h3 class="font-display font-bold text-xl text-[var(--healthy)]">Great! You finished all words!</h3>
+      <button onclick="buildQuickTest()" class="mt-3 bg-[var(--dark)] text-[var(--yellow)] font-display font-bold px-5 py-2 rounded-xl">Try again ↻</button>
+    </div>`;
+    return;
+  }
+  const q = quickTestQuestions[quickTestIdx];
+  container.innerHTML = `
+    <div class="bg-white rounded-xl p-4 border-2 border-[var(--border)]">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="text-6xl floating">${q.correct.emoji}</span>
+        <div>
+          <p class="font-bold text-[var(--muted)] text-sm">Question ${quickTestIdx + 1} of ${quickTestQuestions.length}</p>
+          <p class="font-display font-bold text-xl">What is this?</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2" id="quickTestOptions">
+        ${q.options.map(o => `
+          <button onclick="answerQuickTest('${o.word}', '${q.correct.word}')" class="answer-btn px-5 py-3 bg-[var(--bg-2)] rounded-xl font-display font-bold text-lg border-2 border-[var(--border)]">${o.word}</button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+function answerQuickTest(picked, correct) {
+  const btns = document.querySelectorAll('#quickTestOptions button');
+  btns.forEach(b => {
+    b.disabled = true;
+    if (b.textContent === correct) b.classList.add('correct');
+    else if (b.textContent === picked && picked !== correct) b.classList.add('wrong');
+  });
+  if (picked === correct) { addScore(1); confetti(); }
+  setTimeout(() => { quickTestIdx++; renderQuickTest(); }, 1200);
+}
+
+/* ============ TASK 1: СОРТИРОВКА ============ */
+let sortItems = [];
+let selectedSort = null;
+let task1Done = 0;
+
+function initTask1() {
+  const allItems = [
+    ...vocabulary.filter(v => v.word !== 'junk food'),
+    ...extraFood.slice(0, 4)
+  ].sort(() => Math.random() - 0.5).slice(0, 8);
+  sortItems = allItems.map((it, i) => ({ ...it, id: 's' + i, placed: null }));
+  task1Done = 0;
+  document.getElementById('task1Done').textContent = 0;
+  document.getElementById('zone-healthy').innerHTML = '';
+  document.getElementById('zone-junk').innerHTML = '';
+  document.getElementById('task1Result').classList.add('hidden');
+  renderSortItems();
+}
+function renderSortItems() {
+  const container = document.getElementById('sortFood');
+  const remaining = sortItems.filter(it => !it.placed);
+  container.innerHTML = remaining.length 
+    ? remaining.map(it => `
+        <button onclick="selectSort('${it.id}')" id="sort-${it.id}" class="sort-item bg-white border-2 ${selectedSort === it.id ? 'border-[var(--accent)] scale-110' : 'border-[var(--border)]'} rounded-xl p-3 flex items-center gap-2 font-display font-bold transition-all">
+          <span class="text-3xl">${it.emoji}</span>
+        </button>
+      `).join('')
+    : `<div class="text-[var(--muted)] font-semibold italic">All sorted! Click "Check" to see your result.</div>`;
+  document.querySelectorAll('.drop-zone').forEach(z => z.classList.toggle('highlight', selectedSort && !sortItems.find(it => it.id === selectedSort)?.placed));
+}
+function selectSort(id) {
+  selectedSort = (selectedSort === id) ? null : id;
+  renderSortItems();
+}
+function placeSort(zone) {
+  if (!selectedSort) return;
+  const item = sortItems.find(it => it.id === selectedSort);
+  if (!item || item.placed) return;
+  item.placed = zone;
+  task1Done++;
+  document.getElementById('task1Done').textContent = task1Done;
+  const target = document.getElementById('zone-' + zone);
+  const chip = document.createElement('div');
+  chip.className = 'pop bg-white border-2 ' + (zone === 'healthy' ? 'border-[var(--healthy)]' : 'border-[var(--junk)]') + ' rounded-lg px-3 py-1 flex items-center gap-2 font-display font-bold text-sm';
+  chip.id = 'placed-' + item.id;
+  chip.innerHTML = `<span class="text-2xl">${item.emoji}</span><button onclick="unplaceSort('${item.id}')" class="text-[var(--muted)] hover:text-[var(--junk)] font-bold ml-1">✕</button>`;
+  target.appendChild(chip);
+  selectedSort = null;
+  renderSortItems();
+  if (task1Done === sortItems.length) {
+    checkTask1();
+  }
+}
+function unplaceSort(id) {
+  const item = sortItems.find(it => it.id === id);
+  if (!item) return;
+  const chip = document.getElementById('placed-' + id);
+  if (chip) chip.remove();
+  item.placed = null;
+  task1Done--;
+  document.getElementById('task1Done').textContent = task1Done;
+  renderSortItems();
+  document.getElementById('task1Result').classList.add('hidden');
+}
+function checkTask1() {
+  let correct = 0;
+  sortItems.forEach(it => {
+    if (it.placed === it.type) correct++;
+    const chip = document.getElementById('placed-' + it.id);
+    if (chip) {
+      chip.classList.remove('border-[var(--healthy)]', 'border-[var(--junk)]');
+      chip.classList.add(it.placed === it.type ? 'border-[var(--healthy)]' : 'border-[var(--junk)]');
+      chip.style.background = it.placed === it.type ? 'var(--healthy-light)' : 'var(--junk-light)';
+    }
+  });
+  const res = document.getElementById('task1Result');
+  res.className = 'mt-4 p-4 rounded-xl text-center font-display font-bold text-lg pop';
+  if (correct === sortItems.length) {
+    res.style.background = 'var(--healthy-light)';
+    res.style.color = 'var(--healthy)';
+    res.innerHTML = '🎉 Perfect! All correct! +5 ⭐';
+    addScore(5); confetti();
+  } else {
+    res.style.background = 'var(--junk-light)';
+    res.style.color = 'var(--junk)';
+    res.innerHTML = `You got ${correct}/${sortItems.length} right. Try again!`;
+  }
+  res.classList.remove('hidden');
+}
+
+/* ============ TASK 2: МАТЧ ============ */
+let matchItems = [];
+let selectedMatch = null;
+let task2Done = 0;
+
+function initTask2() {
+  matchItems = [...vocabulary].sort(() => Math.random() - 0.5);
+  task2Done = 0;
+  document.getElementById('task2Done').textContent = 0;
+  document.getElementById('task2Result').classList.add('hidden');
+  renderMatch();
+}
+function renderMatch() {
+  document.getElementById('matchPictures').innerHTML = matchItems.map(m => `
+    <button onclick="selectMatchPic('${m.word}')" id="pic-${m.word}" class="answer-btn bg-[var(--bg-2)] border-2 border-[var(--border)] rounded-2xl p-4 text-center">
+      <span class="text-5xl block">${m.emoji}</span>
+      <span class="text-xs font-bold text-[var(--muted)] mt-2 block">picture</span>
+    </button>
+  `).join('');
+  document.getElementById('matchWords').innerHTML = [...matchItems].sort(() => Math.random() - 0.5).map(m => `
+    <button onclick="selectMatchWord('${m.word}')" id="word-${m.word}" class="answer-btn bg-white border-2 border-[var(--border)] rounded-2xl p-4 font-display font-bold text-xl capitalize">${m.word}</button>
+  `).join('');
+}
+function selectMatchPic(word) {
+  if (document.getElementById('pic-' + word).disabled) return;
+  if (selectedMatch && selectedMatch.startsWith('w-')) {
+    checkMatch(selectedMatch.replace('w-', ''), word);
+  } else {
+    selectedMatch = 'p-' + word;
+    document.querySelectorAll('[id^="pic-"]').forEach(b => b.classList.remove('border-[var(--accent)]', 'scale-105'));
+    document.getElementById('pic-' + word).classList.add('border-[var(--accent)]', 'scale-105');
+  }
+}
+function selectMatchWord(word) {
+  if (document.getElementById('word-' + word).disabled) return;
+  if (selectedMatch && selectedMatch.startsWith('p-')) {
+    checkMatch(selectedMatch.replace('p-', ''), word);
+  } else {
+    selectedMatch = 'w-' + word;
+    document.querySelectorAll('[id^="word-"]').forEach(b => b.classList.remove('border-[var(--accent)]', 'scale-105'));
+    document.getElementById('word-' + word).classList.add('border-[var(--accent)]', 'scale-105');
+  }
+}
+function checkMatch(picWord, wordWord) {
+  selectedMatch = null;
+  document.querySelectorAll('[id^="pic-"], [id^="word-"]').forEach(b => {
+    b.classList.remove('border-[var(--accent)]', 'scale-105');
+  });
+  if (picWord === wordWord) {
+    const pic = document.getElementById('pic-' + picWord);
+    const wd = document.getElementById('word-' + picWord);
+    pic.classList.add('correct'); wd.classList.add('correct');
+    pic.disabled = true; wd.disabled = true;
+    task2Done++;
+    document.getElementById('task2Done').textContent = task2Done;
+    confetti();
+    if (task2Done === matchItems.length) {
+      addScore(5);
+      const res = document.getElementById('task2Result');
+      res.className = 'mt-4 p-4 rounded-xl text-center font-display font-bold text-lg pop';
+      res.style.background = 'var(--healthy-light)';
+      res.style.color = 'var(--healthy)';
+      res.innerHTML = '🎉 All matched! +5 ⭐';
+      res.classList.remove('hidden');
+    }
+  } else {
+    const pic = document.getElementById('pic-' + picWord);
+    const wd = document.getElementById('word-' + wordWord);
+    pic.classList.add('shake'); wd.classList.add('shake');
+    setTimeout(() => { pic.classList.remove('shake'); wd.classList.remove('shake'); }, 400);
+  }
+}
+
+/* ============ TASK 3: eat / don't eat ============ */
+// ИСПРАВЛЕНО: используем 'eat' и 'dont' (без апострофа) в onclick
+const eatQuestions = [
+  { emoji: '🥦', word: 'vegetables', correct: 'eat' },
+  { emoji: '🍬', word: 'sweets', correct: 'dont' },
+  { emoji: '🍎', word: 'fruits', correct: 'eat' },
+  { emoji: '🍔', word: 'junk food', correct: 'dont' },
+  { emoji: '🥣', word: 'cereal', correct: 'eat' },
+  { emoji: '🍟', word: 'chips', correct: 'dont' }
+];
+let task3Done = 0;
+
+function initTask3() {
+  task3Done = 0;
+  document.getElementById('task3Done').textContent = 0;
+  document.getElementById('task3Result').classList.add('hidden');
+  document.getElementById('eatTask').innerHTML = eatQuestions.map((q, i) => `
+    <div class="bg-[var(--bg-2)] rounded-xl p-4 flex flex-wrap items-center gap-3">
+      <span class="text-4xl">${q.emoji}</span>
+      <span class="font-display font-bold text-lg">I
+        <button onclick="answerEat(${i}, 'eat')" id="eat-${i}-eat" class="answer-btn mx-1 px-4 py-2 bg-white border-2 border-[var(--healthy)] text-[var(--healthy)] rounded-lg font-bold">eat</button>
+        <button onclick="answerEat(${i}, 'dont')" id="eat-${i}-dont" class="answer-btn mx-1 px-4 py-2 bg-white border-2 border-[var(--junk)] text-[var(--junk)] rounded-lg font-bold">don't eat</button>
+        <span class="font-bold ml-2" id="eat-${i}-word">${q.word}.</span>
+        <button onclick="speakSentence(${i})" class="speak-btn ml-1 w-7 h-7 rounded-full bg-white flex items-center justify-center text-xs">🔊</button>
+      </span>
+      <span class="ml-auto" id="eat-${i}-result"></span>
+    </div>
+  `).join('');
+}
+
+function speakSentence(i) {
+  const q = eatQuestions[i];
+  if (q.correct === 'eat') speak('I eat ' + q.word);
+  else speak('I don\'t eat ' + q.word);
+}
+
+function answerEat(i, ans) {
+  const q = eatQuestions[i];
+  const eatBtn = document.getElementById('eat-' + i + '-eat');
+  const dontBtn = document.getElementById('eat-' + i + '-dont');
+  if (eatBtn.disabled) return;
+  eatBtn.disabled = true;
+  dontBtn.disabled = true;
+  const res = document.getElementById('eat-' + i + '-result');
+  if (ans === q.correct) {
+    (ans === 'eat' ? eatBtn : dontBtn).classList.add('correct');
+    (ans === 'eat' ? dontBtn : eatBtn).classList.add('opacity-30');
+    res.innerHTML = '✅';
+    confetti();
+    task3Done++;
+    speakSentence(i);
+  } else {
+    (ans === 'eat' ? eatBtn : dontBtn).classList.add('wrong');
+    (ans === 'eat' ? dontBtn : eatBtn).classList.add('correct');
+    res.innerHTML = '❌';
+    speakSentence(i);
+  }
+  document.getElementById('task3Done').textContent = task3Done;
+  if (task3Done === eatQuestions.length) {
+    addScore(5);
+    const res2 = document.getElementById('task3Result');
+    res2.className = 'mt-4 p-4 rounded-xl text-center font-display font-bold text-lg pop';
+    res2.style.background = 'var(--healthy-light)';
+    res2.style.color = 'var(--healthy)';
+    res2.innerHTML = '🎉 Perfect! +5 ⭐';
+    res2.classList.remove('hidden');
+  }
+}
+
+/* ============ TASK 4: СБОРКА ПРЕДЛОЖЕНИЯ ============ */
+// ИСПРАВЛЕНО: передаём только индекс токена, не само слово
+const buildQuestions = [
+  { correct: ['I', 'eat', 'vegetables'], emoji: '🥦' },
+  { correct: ['I', "don't", 'eat', 'sweets'], emoji: '🍬' },
+  { correct: ['I', 'eat', 'fruits'], emoji: '🍎' },
+  { correct: ['I', "don't", 'eat', 'junk', 'food'], emoji: '🍔' }
+];
+let task4Done = 0;
+
+function initTask4() {
+  task4Done = 0;
+  document.getElementById('task4Done').textContent = 0;
+  document.getElementById('task4Result').classList.add('hidden');
+  document.getElementById('buildTask').innerHTML = buildQuestions.map((q, i) => {
+    q._shuffled = [...q.correct].sort(() => Math.random() - 0.5);
+    q._userAnswer = [];
+    q._tokenUsed = {};
+    return `
+      <div class="bg-[var(--bg-2)] rounded-2xl p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-4xl">${q.emoji}</span>
+          <span class="font-bold text-[var(--muted)]">Sentence ${i+1}</span>
+        </div>
+        <div class="sentence-slot bg-white rounded-xl p-3 flex flex-wrap gap-2 items-center min-h-[56px]" id="slot-${i}">
+          <span class="text-[var(--muted)] text-sm font-semibold">Click words below ↓</span>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-3" id="bank-${i}">
+          ${q._shuffled.map((w, j) => `
+            <button onclick="addWord(${i}, ${j})" id="tok-${i}-${j}" class="word-token bg-white border-2 border-[var(--border)] rounded-lg px-4 py-2 font-display font-bold text-lg">${w}</button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function addWord(qIdx, tIdx) {
+  const q = buildQuestions[qIdx];
+  if (q._tokenUsed[tIdx]) return;
+  q._tokenUsed[tIdx] = true;
+  const word = q._shuffled[tIdx];
+  q._userAnswer.push(word);
+  document.getElementById('tok-' + qIdx + '-' + tIdx).classList.add('used');
+  const slot = document.getElementById('slot-' + qIdx);
+  if (q._userAnswer.length === 1) slot.innerHTML = '';
+  const chip = document.createElement('span');
+  chip.className = 'pop bg-[var(--yellow)] text-[var(--dark)] border-2 border-[var(--dark)] rounded-lg px-3 py-1.5 font-display font-bold text-lg cursor-pointer';
+  chip.textContent = word;
+  chip.onclick = () => removeWord(qIdx, tIdx);
+  chip.id = 'placed-' + qIdx + '-' + tIdx;
+  slot.appendChild(chip);
+  if (q._userAnswer.length === q.correct.length) checkBuild(qIdx);
+}
+
+function removeWord(qIdx, tIdx) {
+  const q = buildQuestions[qIdx];
+  q._tokenUsed[tIdx] = false;
+  const word = q._shuffled[tIdx];
+  const idx = q._userAnswer.indexOf(word);
+  if (idx >= 0) q._userAnswer.splice(idx, 1);
+  document.getElementById('tok-' + qIdx + '-' + tIdx).classList.remove('used');
+  const chip = document.getElementById('placed-' + qIdx + '-' + tIdx);
+  if (chip) chip.remove();
+  const slot = document.getElementById('slot-' + qIdx);
+  if (q._userAnswer.length === 0) slot.innerHTML = '<span class="text-[var(--muted)] text-sm font-semibold">Click words below ↓</span>';
+}
+
+function checkBuild(qIdx) {
+  const q = buildQuestions[qIdx];
+  const correct = q._userAnswer.every((w, i) => w === q.correct[i]);
+  const slot = document.getElementById('slot-' + qIdx);
+  const bank = document.getElementById('bank-' + qIdx);
+  if (correct) {
+    slot.style.background = 'var(--healthy-light)';
+    slot.style.borderColor = 'var(--healthy)';
+    bank.querySelectorAll('button').forEach(b => b.disabled = true);
+    task4Done++;
+    document.getElementById('task4Done').textContent = task4Done;
+    speak(q._userAnswer.join(' '));
+    confetti();
+    if (task4Done === buildQuestions.length) {
+      addScore(5);
+      const res = document.getElementById('task4Result');
+      res.className = 'mt-4 p-4 rounded-xl text-center font-display font-bold text-lg pop';
+      res.style.background = 'var(--healthy-light)';
+      res.style.color = 'var(--healthy)';
+      res.innerHTML = '🎉 All sentences built! +5 ⭐';
+      res.classList.remove('hidden');
+    }
+  } else {
+    slot.classList.add('shake');
+    setTimeout(() => {
+      slot.classList.remove('shake');
+      q._userAnswer = [];
+      q._tokenUsed = {};
+      slot.innerHTML = '<span class="text-[var(--muted)] text-sm font-semibold">Try again! Click words below ↓</span>';
+      slot.style.background = 'white';
+      bank.querySelectorAll('button').forEach(b => { b.disabled = false; b.classList.remove('used'); });
+    }, 600);
+  }
+}
+
+/* ============ MEMORY GAME ============ */
+let memoryCards = [];
+let firstCard = null, secondCard = null;
+let lockBoard = false, moves = 0, matchedPairs = 0;
+const totalPairs = vocabulary.length;
+
+function resetMemory() {
+  memoryCards = [];
+  vocabulary.forEach((v, i) => {
+    memoryCards.push({ id: 'p'+i, pair: 'pair'+i, type: 'pic', content: v.emoji, word: v.word });
+    memoryCards.push({ id: 'w'+i, pair: 'pair'+i, type: 'word', content: v.word, word: v.word });
+  });
+  memoryCards.sort(() => Math.random() - 0.5);
+  moves = 0; matchedPairs = 0;
+  firstCard = null; secondCard = null; lockBoard = false;
+  document.getElementById('moves').textContent = 0;
+  document.getElementById('pairs').textContent = 0;
+  document.getElementById('memoryWin').classList.add('hidden');
+  renderMemory();
+}
+function renderMemory() {
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = memoryCards.map(c => `
+    <div class="memory-card" data-id="${c.id}" data-pair="${c.pair}" onclick="flipCard(this)">
+      <div class="memory-inner">
+        <div class="memory-front">
+          <span class="text-3xl">?</span>
+          <span class="text-xs font-bold mt-1">FOOD</span>
+        </div>
+        <div class="memory-back ${c.type === 'pic' ? '' : 'p-2'}">
+          ${c.type === 'pic' 
+            ? `<span class="text-4xl md:text-5xl">${c.content}</span>`
+            : `<span class="font-display font-bold text-base md:text-lg text-center capitalize">${c.content}</span>`}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+function flipCard(card) {
+  if (lockBoard || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  card.classList.add('flipped');
+  const cardData = memoryCards.find(m => m.id === card.dataset.id);
+  if (cardData.type === 'word') speak(cardData.word);
+  if (!firstCard) { firstCard = card; return; }
+  secondCard = card;
+  moves++;
+  document.getElementById('moves').textContent = moves;
+  if (firstCard.dataset.pair === secondCard.dataset.pair) {
+    setTimeout(() => {
+      firstCard.classList.add('matched');
+      secondCard.classList.add('matched');
+      matchedPairs++;
+      document.getElementById('pairs').textContent = matchedPairs;
+      const cardData = memoryCards.find(m => m.id === firstCard.dataset.id);
+      speak(cardData.word);
+      confetti();
+      if (matchedPairs === totalPairs) {
+        addScore(10);
+        setTimeout(showMemoryWin, 500);
+      }
+      firstCard = null; secondCard = null; lockBoard = false;
+    }, 500);
+  } else {
+    lockBoard = true;
+    setTimeout(() => {
+      firstCard.classList.remove('flipped');
+      secondCard.classList.remove('flipped');
+      firstCard = null; secondCard = null; lockBoard = false;
+    }, 1100);
+  }
+}
+function showMemoryWin() {
+  document.getElementById('winMoves').textContent = moves;
+  const msg = moves <= 10 ? 'You are a Food Master! 🏆' : moves <= 16 ? 'Great memory! 🌟' : 'Well done! 👍';
+  document.getElementById('winMessage').textContent = msg;
+  document.getElementById('memoryWin').classList.remove('hidden');
+  document.getElementById('memoryWin').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  confettiBurst();
+}
+
+/* ============ QUIZ ============ */
+const quizQuestions = [
+  { type: 'picture', q: 'Which one is healthy?', emoji: '🍎', options: ['Healthy', 'Junk'], correct: 0 },
+  { type: 'choice', q: 'Choose the correct sentence:', options: ['I eat vegetables.', 'I don\'t eat vegetables.', 'I eats vegetables.', 'I eating vegetables.'], correct: 0 },
+  { type: 'picture', q: 'What is this? 🍔', options: ['vegetables', 'fruits', 'junk food', 'cereal'], correct: 2 },
+  { type: 'choice', q: 'Sweets are ___ food.', options: ['healthy', 'junk', 'fruit', 'fish'], correct: 1 },
+  { type: 'picture', q: 'I ___ fish. 🐟 (I like it!)', options: ['eat', 'don\'t eat'], correct: 0 },
+  { type: 'choice', q: 'Cereal, fruits and vegetables are:', options: ['Junk food', 'Healthy food', 'Sweets', 'Meat'], correct: 1 }
+];
+let quizIdx = 0, quizScore = 0;
+function renderQuiz() {
+  if (quizIdx >= quizQuestions.length) {
+    showQuizResult();
+    return;
+  }
+  const q = quizQuestions[quizIdx];
+  document.getElementById('qNum').textContent = quizIdx + 1;
+  document.getElementById('qScore').textContent = quizScore;
+  document.getElementById('qProgress').style.width = ((quizIdx) / quizQuestions.length * 100) + '%';
+  
+  let mediaHTML = '';
+  if (q.type === 'picture' && q.emoji) {
+    mediaHTML = `<div class="text-center mb-4"><div class="text-8xl floating inline-block">${q.emoji}</div></div>`;
+  }
+  
+  document.getElementById('quizContainer').innerHTML = `
+    <div class="pop">
+      <h3 class="font-display font-bold text-2xl md:text-3xl mb-5 text-center">${q.q}</h3>
+      ${mediaHTML}
+      <div class="grid ${q.options.length === 2 ? 'grid-cols-2' : 'sm:grid-cols-2'} gap-3" id="quizOptions">
+        ${q.options.map((o, i) => `
+          <button onclick="answerQuiz(${i}, ${q.correct})" class="answer-btn bg-[var(--bg-2)] border-2 border-[var(--border)] rounded-xl p-4 font-display font-bold text-lg md:text-xl">${o}</button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('quizResult').classList.add('hidden');
+}
+function answerQuiz(picked, correct) {
+  const btns = document.querySelectorAll('#quizOptions button');
+  btns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === correct) b.classList.add('correct');
+    else if (i === picked) b.classList.add('wrong');
+  });
+  if (picked === correct) {
+    quizScore++;
+    confetti();
+    speak('Correct!');
+  }
+  setTimeout(() => {
+    quizIdx++;
+    renderQuiz();
+  }, 1400);
+}
+function showQuizResult() {
+  document.getElementById('qProgress').style.width = '100%';
+  const percent = Math.round(quizScore / quizQuestions.length * 100);
+  let title, message, emoji;
+  if (percent === 100) { title = 'CHAMPION!'; message = 'Perfect score! You know all about food!'; emoji = '🏆'; addScore(15); confettiBurst(); }
+  else if (percent >= 70) { title = 'GREAT JOB!'; message = 'You are a Food Expert!'; emoji = '🌟'; addScore(10); confettiBurst(); }
+  else if (percent >= 50) { title = 'GOOD WORK!'; message = 'Keep learning, you are doing great!'; emoji = '👍'; addScore(5); confetti(); }
+  else { title = 'TRY AGAIN!'; message = 'Review the words and try once more!'; emoji = '📚'; }
+  
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = '';
+  const res = document.getElementById('quizResult');
+  res.className = 'mt-6 text-center pop';
+  res.innerHTML = `
+    <div class="text-8xl mb-4">${emoji}</div>
+    <h3 class="font-display font-bold text-3xl md:text-4xl mb-2">${title}</h3>
+    <p class="text-xl font-semibold text-[var(--muted)] mb-4">${message}</p>
+    <div class="inline-block bg-[var(--dark)] text-[var(--yellow)] rounded-2xl px-8 py-4">
+      <div class="text-sm font-bold uppercase tracking-wider opacity-80">Your result</div>
+      <div class="font-display font-bold text-4xl">${quizScore} / ${quizQuestions.length}</div>
+      <div class="text-sm opacity-80">${percent}% correct</div>
+    </div>
+    <div class="mt-5">
+      <button onclick="resetQuiz()" class="bg-[var(--accent)] text-white font-display font-bold px-6 py-3 rounded-xl hover:scale-105 transition-transform">Try again ↻</button>
+    </div>
+  `;
+  res.classList.remove('hidden');
+}
+function resetQuiz() {
+  quizIdx = 0; quizScore = 0;
+  renderQuiz();
+}
+
+/* ============ ОБЩИЕ ============ */
+function addScore(n) {
+  totalScore += n;
+  const el = document.getElementById('totalScore');
+  el.textContent = totalScore;
+  el.classList.add('pop');
+  setTimeout(() => el.classList.remove('pop'), 400);
+}
+
+function confetti() {
+  const colors = ['#FFC857', '#FF6B35', '#2D8A47', '#E63946', '#FFEACB'];
+  const emojis = ['⭐', '🎉', '✨'];
+  for (let i = 0; i < 12; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    if (Math.random() > 0.6) {
+      c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      c.style.fontSize = '16px';
+      c.style.width = 'auto';
+      c.style.height = 'auto';
+      c.style.background = 'transparent';
+    } else {
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    }
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.animationDelay = Math.random() * 0.3 + 's';
+    c.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
+  }
+}
+
+function confettiBurst() {
+  for (let i = 0; i < 5; i++) setTimeout(confetti, i * 200);
+}
+
+/* ============ ИНИЦИАЛИЗАЦИЯ ============ */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.drop-zone').forEach(z => {
+    z.addEventListener('click', () => placeSort(z.dataset.zone));
+  });
+  renderVocab();
+  buildQuickTest();
+  initTask1();
+  initTask2();
+  initTask3();
+  initTask4();
+  resetMemory();
+  renderQuiz();
+});
+</script>
+</body>
+</html>
