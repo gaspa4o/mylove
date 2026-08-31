@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Глагол to be · Рабочий лист · 3 класс</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  /* ============ База ============ */
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#D7E9F3;
+    --paper:#FDFEFF;
+    --ink:#234A60;
+    --ink-soft:#62829A;
+    --blue:#3E8FC1;
+    --blue-deep:#2A6C96;
+    --blue-soft:#BCDCEE;
+    --blue-pale:#EDF6FB;
+    --line:#DCE9F2;
+    --green:#4C9A6E;
+    --green-bg:#E7F4EC;
+    --green-line:#BFE0CB;
+    --coral:#DD7150;
+    --coral-bg:#FBEDE6;
+    --coral-line:#F2CDBD;
+    --sun:#F1BE4B;
+  }
+  body{
+    font-family:'Nunito',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    background-image:radial-gradient(rgba(255,255,255,.5) 1.5px, transparent 1.6px);
+    background-size:26px 26px;
+    min-height:100vh;
+    padding:26px 16px 70px;
+  }
+  button{font-family:inherit}
+  b{font-weight:800}
+
+  .blob{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+  .blob.b1{width:440px;height:440px;background:rgba(255,255,255,.75);top:-160px;left:-140px}
+  .blob.b2{width:560px;height:560px;background:#BFE0F2;bottom:-240px;right:-180px;opacity:.55}
+
+  .wrap{max-width:1060px;margin:0 auto;position:relative;z-index:1}
+
+  /* ============ Шапка ============ */
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+  .brand{display:flex;align-items:center;gap:16px}
+  .brand-badge{
+    width:58px;height:58px;border-radius:20px;background:var(--paper);
+    display:flex;align-items:center;justify-content:center;color:var(--blue);
+    box-shadow:0 8px 20px -8px rgba(42,108,150,.4);flex-shrink:0;
+  }
+  .brand-badge svg{width:28px;height:28px}
+  .brand h1{font-family:'Montserrat Alternates';font-size:27px;font-weight:800;line-height:1.1}
+  .brand h1 .to-be{color:var(--blue)}
+  .brand p{color:var(--ink-soft);font-weight:600;font-size:14px;margin-top:3px}
+
+  .score-widget{
+    display:flex;align-items:center;gap:14px;background:var(--paper);
+    border-radius:20px;padding:12px 20px 12px 14px;box-shadow:0 10px 26px -12px rgba(42,108,150,.35);
+  }
+  .score-star{
+    width:46px;height:46px;border-radius:50%;background:#FCF3DA;color:var(--sun);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .score-star svg{width:24px;height:24px;fill:currentColor}
+  .score-label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+  .score-count{font-size:20px;font-weight:800;color:var(--blue-deep)}
+  .score-count em{font-style:normal;font-size:13px;color:var(--ink-soft);font-weight:700}
+  .score-bar{width:130px;height:7px;border-radius:99px;background:var(--blue-pale);margin-top:5px;overflow:hidden}
+  .score-bar i{display:block;height:100%;width:0;background:var(--blue);border-radius:99px;transition:width .5s cubic-bezier(.2,.9,.3,1.2)}
+  #scoreNum{display:inline-block}
+  #scoreNum.bump{animation:bump .5s}
+  @keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.45)}100%{transform:scale(1)}}
+
+  /* ============ Вкладки-папки ============ */
+  .tabs{display:flex;gap:8px;padding:0 26px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    display:flex;align-items:center;gap:8px;white-space:nowrap;
+    border:none;cursor:pointer;padding:13px 18px 15px;
+    border-radius:16px 16px 0 0;background:rgba(255,255,255,.5);color:var(--ink-soft);
+    font-weight:800;font-size:14.5px;transform:translateY(7px);
+    border:1px solid rgba(255,255,255,.75);border-bottom:none;transition:.2s;
+  }
+  .tab svg{width:17px;height:17px}
+  .tab:hover{background:rgba(255,255,255,.85);color:var(--blue-deep)}
+  .tab.active{
+    background:var(--paper);color:var(--blue-deep);transform:translateY(0);
+    box-shadow:0 -8px 18px -10px rgba(42,108,150,.25);
+  }
+
+  /* ============ Лист ============ */
+  .sheet{
+    position:relative;background:var(--paper);border-radius:26px;
+    padding:38px 46px 52px 66px;min-height:560px;
+    box-shadow:0 30px 60px -22px rgba(42,108,150,.35);
+  }
+  .sheet::before{
+    content:'';position:absolute;left:16px;top:0;bottom:0;width:20px;
+    background-image:radial-gradient(circle 7px, var(--bg) 7px, transparent 7.5px);
+    background-size:20px 96px;background-repeat:repeat-y;background-position:0 30px;
+  }
+  .panel{display:none}
+  .panel.active{display:block;animation:popIn .4s ease}
+  @keyframes popIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .panel-head{margin-bottom:22px}
+  .kicker{
+    display:inline-block;background:var(--blue-pale);color:var(--blue-deep);
+    font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+    padding:5px 14px;border-radius:99px;margin-bottom:10px;
+  }
+  .panel-head h2{font-family:'Montserrat Alternates';font-size:25px;font-weight:800}
+
+  .how-to{
+    display:flex;align-items:flex-start;gap:11px;background:var(--blue-pale);
+    border:1.5px dashed var(--blue-soft);border-radius:16px;padding:13px 18px;
+    color:var(--ink-soft);font-weight:600;font-size:14.5px;margin-bottom:28px;
+  }
+  .how-to svg{width:19px;height:19px;flex-shrink:0;margin-top:1px;color:var(--blue)}
+
+  /* ============ Теория ============ */
+  .theory-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:30px;margin-bottom:30px}
+  .theory-text p{font-size:17px;line-height:1.75;margin-bottom:14px}
+  .theory-text .f-am,.theory-text .f-is,.theory-text .f-are{
+    display:inline-block;padding:0 8px;border-radius:8px;color:#fff;font-size:15.5px;
+  }
+  .f-am{background:#3E8FC1}.f-is{background:#4E97C4}.f-are{background:#79B4D6}
+  .note-strip{
+    display:flex;gap:12px;align-items:flex-start;background:#FCF6E7;
+    border:1.5px solid #F0E3BC;border-radius:16px;padding:14px 18px;font-size:15px;line-height:1.6;
+  }
+  .note-strip svg{width:20px;height:20px;color:var(--sun);flex-shrink:0;margin-top:2px}
+
+  .cheatsheet{display:flex;flex-direction:column;gap:12px}
+  .cheat-row{
+    display:flex;align-items:center;gap:16px;background:var(--blue-pale);
+    border-left:6px solid var(--c,#3E8FC1);border-radius:14px;padding:14px 20px;
+  }
+  .cheat-verb{font-family:'Montserrat Alternates';font-size:26px;font-weight:800;color:var(--c,#3E8FC1);min-width:64px}
+  .cheat-prons{font-size:15.5px;font-weight:700;color:var(--ink-soft)}
+  .cheat-hint{font-size:13.5px;color:var(--ink-soft);font-weight:600;padding-left:6px}
+
+  .demo-block{
+    background:var(--blue-pale);border-radius:22px;padding:26px 28px;
+  }
+  .demo-title{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--blue-deep);margin-bottom:16px;font-size:16px}
+  .demo-title svg{width:19px;height:19px}
+  .pron-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+  .pron-chip{
+    display:flex;flex-direction:column;align-items:center;gap:0;cursor:pointer;
+    background:#fff;border:2px solid var(--line);border-radius:14px;padding:8px 18px;
+    font-weight:800;font-size:17px;color:var(--ink);transition:.15s;box-shadow:0 2px 0 var(--line);
+  }
+  .pron-chip small{font-size:11px;font-weight:700;color:var(--ink-soft)}
+  .pron-chip:hover{border-color:var(--blue);transform:translateY(-2px)}
+  .pron-chip.picked{outline:3px solid var(--blue);outline-offset:2px;border-color:var(--blue)}
+  .demo-card{
+    background:#fff;border-radius:18px;padding:26px 28px;box-shadow:0 6px 18px -10px rgba(42,108,150,.3);
+  }
+  .demo-sentence{font-family:'Montserrat Alternates';font-size:29px;font-weight:800;line-height:1.5}
+  .demo-sentence.swap{animation:popIn .3s ease}
+  .hl-pron,.hl-verb{color:var(--blue-deep);border:3px solid var(--blue);border-radius:10px;padding:0 8px}
+  .hl-verb{background:var(--blue-pale)}
+  .demo-translate{margin-top:12px;color:var(--ink-soft);font-weight:700;font-size:16px}
+  .demo-translate.swap{animation:popIn .3s ease}
+
+  /* ============ Задание: вставь глагол ============ */
+  .letter{
+    position:relative;background:#fff;border:2px solid var(--line);border-radius:22px;
+    padding:34px 38px 38px;box-shadow:0 8px 22px -14px rgba(42,108,150,.35);margin-bottom:24px;
+  }
+  .letter-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+  .letter-from{font-weight:800;font-size:15px;color:var(--blue-deep)}
+  .letter-from small{display:block;font-weight:700;color:var(--ink-soft);font-size:13px;margin-top:2px}
+  .stamp{background:#fff;padding:6px;transform:rotate(4deg);box-shadow:0 3px 8px rgba(42,108,150,.25);border-radius:4px}
+  .stamp svg{display:block;width:56px;height:38px;border-radius:2px}
+  .letter-text{font-size:18.5px;line-height:2.35;font-weight:600}
+
+  .gap{
+    display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;
+    min-width:78px;height:40px;margin:0 3px;cursor:pointer;
+    background:var(--blue-pale);border:none;border-bottom:2.5px dashed var(--blue-soft);
+    border-radius:11px;font-weight:800;font-size:18px;color:var(--blue-deep);transition:.15s;
+  }
+  .gap:hover{border-bottom-color:var(--blue)}
+  .gap .q{color:var(--blue-soft);font-size:17px}
+  .gap.filled .q{display:none}
+  .gap.picked{outline:3px solid var(--blue);outline-offset:2px}
+  .gap.correct{background:var(--green-bg);border-bottom:2.5px solid var(--green);color:var(--green)}
+  .gap.correct::after{content:' ✓';font-size:15px}
+  .gap.wrong{background:var(--coral-bg);border-bottom:2.5px solid var(--coral);color:var(--coral);animation:shake .4s}
+  .gap.wrong::after{content:' ✗';font-size:15px}
+  .locked .gap,.locked .verb-btn{pointer-events:none}
+
+  .verb-panel{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:8px}
+  .verb-label{font-weight:800;color:var(--ink-soft);font-size:15px;margin-right:4px}
+  .verb-btn{
+    min-width:96px;padding:14px 22px;border-radius:16px;border:2px solid var(--blue-soft);
+    background:#fff;color:var(--blue-deep);font-size:22px;font-weight:800;cursor:pointer;
+    box-shadow:0 3px 0 var(--blue-soft);transition:.15s;
+  }
+  .verb-btn:hover{transform:translateY(-2px);border-color:var(--blue);box-shadow:0 5px 0 var(--blue-soft)}
+  .verb-btn:active{transform:translateY(1px);box-shadow:0 1px 0 var(--blue-soft)}
+  .task-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;
+    font-weight:800;font-size:15.5px;border-radius:999px;padding:13px 26px;transition:.15s;
+  }
+  .btn svg{width:17px;height:17px}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 4px 0 var(--blue-deep)}
+  .btn-primary:hover{background:#4A9CCB}
+  .btn-primary:active{transform:translateY(3px);box-shadow:0 1px 0 var(--blue-deep)}
+  .btn-ghost{background:#fff;color:var(--blue-deep);border:2px solid var(--blue-soft)}
+  .btn-ghost:hover{border-color:var(--blue)}
+
+  .result-banner{
+    display:none;margin-top:22px;padding:17px 22px;border-radius:18px;
+    align-items:center;gap:14px;font-weight:700;font-size:16px;line-height:1.5;
+  }
+  .result-banner.show{display:flex;animation:popIn .35s}
+  .result-banner .rb-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .result-banner .rb-icon svg{width:21px;height:21px}
+  .result-banner.good{background:var(--green-bg);border:1.5px solid var(--green-line)}
+  .result-banner.good .rb-icon{background:#D3EBDC;color:var(--green)}
+  .result-banner.mid{background:#FCF6E7;border:1.5px solid #F0E3BC}
+  .result-banner.mid .rb-icon{background:#F6E9C4;color:#C99A2E}
+  .result-banner.bad{background:var(--coral-bg);border:1.5px solid var(--coral-line)}
+  .result-banner.bad .rb-icon{background:#F6D8CB;color:var(--coral)}
+  .rb-actions{margin-left:auto;flex-shrink:0}
+  .rb-text b{color:var(--blue-deep)}
+
+  /* ============ Игра: найди пару ============ */
+  .pairs-wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:70px;margin-bottom:8px}
+  .pairs-col{display:flex;flex-direction:column;gap:13px;position:relative;z-index:1}
+  .pair-card{
+    background:#fff;border:2px solid var(--line);border-radius:16px;padding:15px 10px;
+    font-weight:800;font-size:21px;color:var(--ink);cursor:pointer;transition:.15s;
+    box-shadow:0 3px 0 var(--line);
+  }
+  .pair-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+  .pair-card.picked{outline:3px solid var(--blue);outline-offset:2px;border-color:var(--blue)}
+  .pair-card.done{background:var(--green-bg);border-color:var(--green-line);color:var(--green);opacity:.62;pointer-events:none;box-shadow:none}
+  .pair-card.done::after{content:' ✓'}
+  .pair-card.wrong{animation:shake .4s;border-color:var(--coral)}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .pairs-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+  /* ============ Игра: сортировка ============ */
+  .sort-pool{
+    display:flex;flex-wrap:wrap;gap:12px;min-height:76px;background:var(--blue-pale);
+    border-radius:18px;padding:18px;margin-bottom:24px;
+  }
+  .chip{
+    display:inline-flex;flex-direction:column;align-items:center;gap:1px;
+    background:#fff;border:2px solid var(--line);border-radius:14px;padding:8px 16px;
+    font-weight:800;font-size:17.5px;color:var(--ink);cursor:pointer;transition:.15s;box-shadow:0 2px 0 var(--line);
+  }
+  .chip small{font-size:11px;font-weight:700;color:var(--ink-soft)}
+  .chip:hover{border-color:var(--blue)}
+  .chip.picked{outline:3px solid var(--blue);outline-offset:2px;border-color:var(--blue)}
+  .chip.drop-in{animation:dropIn .35s}
+  @keyframes dropIn{from{transform:scale(1.15);opacity:0}to{transform:none;opacity:1}}
+  .chip.right{background:var(--green-bg);border-color:var(--green-line);color:var(--green)}
+  .chip.miss{background:var(--coral-bg);border-color:var(--coral-line);color:var(--coral);animation:shake .4s}
+  .locked .chip,.locked .bin{pointer-events:none}
+
+  .bins{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:8px}
+  .bin{background:#fff;border:2px solid var(--line);border-radius:20px;overflow:hidden;transition:.15s}
+  .bin:hover{border-color:var(--blue)}
+  .bin-head{
+    padding:12px;text-align:center;font-family:'Montserrat Alternates';font-size:27px;font-weight:800;
+    color:var(--blue-deep);border-bottom:2px solid var(--line);display:flex;justify-content:center;align-items:baseline;gap:10px;
+  }
+  .bin-head small{font-family:'Nunito';font-size:12px;font-weight:700;color:var(--ink-soft)}
+  .bin-drop{
+    min-height:150px;padding:14px;display:flex;flex-wrap:wrap;gap:9px;align-content:flex-start;
+    border:2px dashed transparent;border-radius:0 0 18px 18px;margin:4px;
+  }
+  .bin:hover .bin-drop{border-color:var(--blue-soft)}
+
+  footer{margin-top:26px;text-align:center;color:var(--ink-soft);font-weight:700;font-size:13px}
+
+  /* ============ Тосты ============ */
+  #toasts{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:100;display:flex;flex-direction:column;gap:8px;align-items:center}
+  .toast{
+    display:flex;align-items:center;gap:9px;background:var(--ink);color:#fff;
+    padding:12px 22px;border-radius:999px;font-weight:700;font-size:14.5px;
+    box-shadow:0 12px 28px rgba(35,74,96,.3);animation:toastIn .25s;
+  }
+  .toast svg{width:16px;height:16px;color:#A8D4EE}
+  @keyframes toastIn{from{opacity:0;transform:translateY(14px)}}
+  .toast.out{opacity:0;transform:translateY(10px);transition:.35s}
+
+  /* ============ Адаптив ============ */
+  @media (max-width:760px){
+    body{padding:16px 10px 60px}
+    .sheet{padding:28px 22px 40px;border-radius:20px}
+    .sheet::before{display:none}
+    .brand h1{font-size:22px}
+    .theory-grid{grid-template-columns:1fr}
+    .letter{padding:24px 20px}
+    .letter-text{font-size:16.5px;line-height:2.2}
+    .pairs-wrap{gap:34px}
+    .pair-card{font-size:17px;padding:12px 8px}
+    .demo-sentence{font-size:23px}
+  }
+  @media (max-width:560px){
+    .bins{grid-template-columns:1fr}
+    .bin-drop{min-height:64px}
+    .topbar{justify-content:center;text-align:center}
+  }
+</style>
+</head>
+<body>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="wrap">
+
+  <!-- Шапка -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-badge"><i data-lucide="book-open"></i></div>
+      <div>
+        <h1>Глагол <span class="to-be">to be</span></h1>
+        <p>Интерактивный рабочий лист · английский язык · 3 класс</p>
+      </div>
+    </div>
+    <div class="score-widget" id="scoreWidget">
+      <div class="score-star"><i data-lucide="star"></i></div>
+      <div>
+        <span class="score-label">Правильных ответов</span>
+        <span class="score-count"><span id="scoreNum">0</span> <em>/ 24</em></span>
+        <div class="score-bar"><i id="scoreBarFill"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Вкладки-папки -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="theory"><i data-lucide="book-open"></i>Теория</button>
+    <button class="tab" data-tab="fill"><i data-lucide="pencil-line"></i>Вставь глагол</button>
+    <button class="tab" data-tab="pairs"><i data-lucide="link"></i>Найди пару</button>
+    <button class="tab" data-tab="sort"><i data-lucide="inbox"></i>Сортировка</button>
+  </nav>
+
+  <main class="sheet">
+
+    <!-- ============ 1. ТЕОРИЯ ============ -->
+    <section class="panel active" id="panel-theory">
+      <div class="panel-head">
+        <span class="kicker">Папка 1 · Правило</span>
+        <h2>Знакомься: глагол to be</h2>
+      </div>
+      <div class="how-to">
+        <i data-lucide="info"></i>
+        <p>Прочитай правило, посмотри шпаргалку, а потом нажимай на местоимения внизу — увидишь живые примеры.</p>
+      </div>
+
+      <div class="theory-grid">
+        <div class="theory-text">
+          <p><b>to be</b> переводится как «быть», «находиться». По-русски мы говорим: «Кот серый», а по-английски глагол обязателен: «Кот <i>есть</i> серый → The cat <b>is</b> grey».</p>
+          <p>В настоящем времени у to be всего <b>три формы</b>: <b class="f-am">am</b>, <b class="f-is">is</b>, <b class="f-are">are</b>. Какую выбрать — зависит от того, <b>кто</b> действует. Загляни в шпаргалку.</p>
+          <div class="note-strip">
+            <i data-lucide="lightbulb"></i>
+            <p>В разговоре англичане часто говорят короче: <b>I am → I'm</b>, &nbsp;<b>He is → He's</b>, &nbsp;<b>They are → They're</b>.</p>
+          </div>
+        </div>
+        <div class="cheatsheet">
+          <div class="cheat-row" style="--c:#3E8FC1">
+            <span class="cheat-verb">am</span>
+            <span class="cheat-prons">только с <b>I</b> (я)</span>
+          </div>
+          <div class="cheat-row" style="--c:#4E97C4">
+            <span class="cheat-verb">is</span>
+            <span class="cheat-prons">с <b>he, she, it</b> (он, она, оно, кот, мяч…)</span>
+          </div>
+          <div class="cheat-row" style="--c:#79B4D6">
+            <span class="cheat-verb">are</span>
+            <span class="cheat-prons">с <b>you, we, they</b> и со всеми «во множественном числе»</span>
+          </div>
+          <p class="cheat-hint">Подсказка-запоминалка: <b>I — am</b>, <b>он/она/оно — is</b>, <b>все остальные — are</b>.</p>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-title"><i data-lucide="mouse-pointer-click"></i>Нажимай на местоимения — смотри, какая форма с ним дружит</div>
+        <div class="pron-chips">
+          <button class="pron-chip picked" data-pron="i"><b>I</b><small>я</small></button>
+          <button class="pron-chip" data-pron="you"><b>You</b><small>ты</small></button>
+          <button class="pron-chip" data-pron="he"><b>He</b><small>он</small></button>
+          <button class="pron-chip" data-pron="she"><b>She</b><small>она</small></button>
+          <button class="pron-chip" data-pron="it"><b>It</b><small>оно</small></button>
+          <button class="pron-chip" data-pron="we"><b>We</b><small>мы</small></button>
+          <button class="pron-chip" data-pron="they"><b>They</b><small>они</small></button>
+        </div>
+        <div class="demo-card">
+          <div class="demo-sentence" id="demoSentence"></div>
+          <div class="demo-translate" id="demoTranslate"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. ВСТАВЬ ГЛАГОЛ ============ -->
+    <section class="panel" id="panel-fill">
+      <div class="panel-head">
+        <span class="kicker">Папка 2 · Письмо от Тома</span>
+        <h2>Вставь am, is или are</h2>
+      </div>
+      <div class="how-to">
+        <i data-lucide="mouse-pointer-click"></i>
+        <p>Нажми на пропуск в письме — он обведётся синим. Потом нажми нужный глагол внизу. Когда заполнишь всё — жми «Проверить задание».</p>
+      </div>
+
+      <div id="fillTask">
+        <div class="letter">
+          <div class="letter-head">
+            <div class="letter-from">From: Tom <small>London, England</small></div>
+            <div class="stamp">
+              <svg viewBox="0 0 60 40">
+                <rect width="60" height="40" fill="#2A4B8D"/>
+                <path d="M0 0 L60 40 M60 0 L0 40" stroke="#fff" stroke-width="9"/>
+                <path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8323E" stroke-width="4"/>
+                <rect x="25" width="10" height="40" fill="#fff"/><rect y="15" width="60" height="10" fill="#fff"/>
+                <rect x="27.5" width="5" height="40" fill="#C8323E"/><rect y="17.5" width="60" height="5" fill="#C8323E"/>
+              </svg>
+            </div>
+          </div>
+          <p class="letter-text">
+            Hello! My name <button class="gap" data-answer="is"><span class="q">?</span></button> Tom.
+            I <button class="gap" data-answer="am"><span class="q">?</span></button> eight.
+            This <button class="gap" data-answer="is"><span class="q">?</span></button> my family.
+            We <button class="gap" data-answer="are"><span class="q">?</span></button> from London.
+            My mum <button class="gap" data-answer="is"><span class="q">?</span></button> a doctor.
+            My dad <button class="gap" data-answer="is"><span class="q">?</span></button> a teacher.
+            My little sister <button class="gap" data-answer="is"><span class="q">?</span></button> four.
+            My grandma and grandpa <button class="gap" data-answer="are"><span class="q">?</span></button> teachers too.
+            Our dog Rex <button class="gap" data-answer="is"><span class="q">?</span></button> funny.
+            My friends <button class="gap" data-answer="are"><span class="q">?</span></button> kind.
+            I love my family!
+          </p>
+        </div>
+
+        <div class="verb-panel">
+          <span class="verb-label">Выбери глагол:</span>
+          <button class="verb-btn" data-verb="am">am</button>
+          <button class="verb-btn" data-verb="is">is</button>
+          <button class="verb-btn" data-verb="are">are</button>
+        </div>
+
+        <div class="task-actions">
+          <button class="btn btn-primary" id="fillCheck"><i data-lucide="check"></i>Проверить задание</button>
+        </div>
+
+        <div class="result-banner" id="fillBanner">
+          <div class="rb-icon"><i data-lucide="check"></i></div>
+          <div class="rb-text" id="fillBannerText"></div>
+          <div class="rb-actions">
+            <button class="btn btn-ghost" id="fillReset"><i data-lucide="rotate-ccw"></i>Стереть ответы</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. ИГРА «НАЙДИ ПАРУ» ============ -->
+    <section class="panel" id="panel-pairs">
+      <div class="panel-head">
+        <span class="kicker">Папка 3 · Игра 1</span>
+        <h2>Соедини местоимение и глагол</h2>
+      </div>
+      <div class="how-to">
+        <i data-lucide="link"></i>
+        <p>Нажми местоимение слева, затем его глагол справа. Правильная пара соединится линией. Найди все шесть!</p>
+      </div>
+
+      <div class="pairs-wrap" id="pairsWrap">
+        <svg class="pairs-lines" id="pairsLines"></svg>
+        <div class="pairs-col" id="pairsLeft"></div>
+        <div class="pairs-col" id="pairsRight"></div>
+      </div>
+
+      <div class="result-banner" id="pairsBanner">
+        <div class="rb-icon"><i data-lucide="party-popper"></i></div>
+        <div class="rb-text"><b>Волшебно!</b> Все шесть пар найдены. Ты настоящий знаток to be!</div>
+        <div class="rb-actions">
+          <button class="btn btn-ghost" id="pairsRestart"><i data-lucide="rotate-ccw"></i>Играть заново</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. ИГРА «СОРТИРОВКА» ============ -->
+    <section class="panel" id="panel-sort">
+      <div class="panel-head">
+        <span class="kicker">Папка 4 · Игра 2</span>
+        <h2>Разложи слова по корзинам</h2>
+      </div>
+      <div class="how-to">
+        <i data-lucide="inbox"></i>
+        <p>Выбери карточку (она обведётся синим), потом нажми корзину am, is или are. Когда разложишь все десять — нажми «Проверить».</p>
+      </div>
+
+      <div id="sortTask">
+        <div class="sort-pool" id="sortPool"></div>
+        <div class="bins">
+          <div class="bin" data-bin="am">
+            <div class="bin-head">am <small>I</small></div>
+            <div class="bin-drop"></div>
+          </div>
+          <div class="bin" data-bin="is">
+            <div class="bin-head">is <small>he · she · it</small></div>
+            <div class="bin-drop"></div>
+          </div>
+          <div class="bin" data-bin="are">
+            <div class="bin-head">are <small>you · we · they</small></div>
+            <div class="bin-drop"></div>
+          </div>
+        </div>
+        <div class="task-actions">
+          <button class="btn btn-primary" id="sortCheck"><i data-lucide="check"></i>Проверить</button>
+        </div>
+        <div class="result-banner" id="sortBanner">
+          <div class="rb-icon"><i data-lucide="check"></i></div>
+          <div class="rb-text" id="sortBannerText"></div>
+          <div class="rb-actions">
+            <button class="btn btn-ghost" id="sortReset"><i data-lucide="rotate-ccw"></i>Разобрать заново</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>Домашнее задание по английскому языку · глагол to be · 3 класс</footer>
+</div>
+<div id="toasts"></div>
+
+<script>
+/* ================= ОБЩЕЕ ================= */
+const TOTAL = 24; // 10 (письмо) + 6 (пары) + 10 (сортировка)
+const sectionScores = { fill: 0, pairs: 0, sort: 0 };
+let celebrated = false;
+
+function refreshIcons(){ if (window.lucide) lucide.createIcons(); }
+
+function renderScore(animate = true){
+  const total = Object.values(sectionScores).reduce((a,b)=>a+b,0);
+  const num = document.getElementById('scoreNum');
+  num.textContent = total;
+  if (animate){ num.classList.remove('bump'); void num.offsetWidth; num.classList.add('bump'); }
+  document.getElementById('scoreBarFill').style.width = (total/TOTAL*100)+'%';
+  if (total >= TOTAL && !celebrated){
+    celebrated = true;
+    const r = document.getElementById('scoreWidget').getBoundingClientRect();
+    spawnBurst(r.left + r.width/2, r.top + r.height/2, 30);
+    toast('Ты выполнил весь лист! Ты — звезда to be!', 'party');
+  }
+}
+function setScore(section, val){ sectionScores[section] = val; renderScore(); }
+
+function toast(msg, type){
+  const box = document.getElementById('toasts');
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = (type==='party' ? '<i data-lucide="party-popper"></i>' : '<i data-lucide="info"></i>') + '<span>'+msg+'</span>';
+  box.appendChild(t); refreshIcons();
+  setTimeout(()=>t.classList.add('out'), 2200);
+  setTimeout(()=>t.remove(), 2650);
+}
+
+function shuffle(arr){
+  const a = [...arr];
+  for (let i = a.length-1; i > 0; i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* Разлетающиеся частички при праздновании */
+function spawnBurst(x, y, count = 14){
+  const colors = ['#3E8FC1','#79B4D6','#F1BE4B','#ffffff','#2A6C96'];
+  for (let i = 0; i < count; i++){
+    const s = document.createElement('span');
+    s.className = 'fleck';
+    const size = 6 + Math.random()*7;
+    const ang = Math.random()*Math.PI*2;
+    const dist = 55 + Math.random()*75;
+    s.style.cssText = `left:${x}px;top:${y}px;width:${size}px;height:${size}px;background:${colors[i%colors.length]};border-radius:${Math.random()<.5?'50%':'3px'};--dx:${Math.cos(ang)*dist}px;--dy:${Math.sin(ang)*dist-35}px`;
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(), 850);
+  }
+}
+
+/* Переключение вкладок-папок */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + t.dataset.tab));
+  if (t.dataset.tab === 'pairs') requestAnimationFrame(redrawLines);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}));
+
+/* ================= ТЕОРИЯ: живая демонстрация ================= */
+const demo = {
+  i:    { en: ['I','am','a pupil.'],      ru: 'Я ученик.' },
+  you:  { en: ['You','are','my friend.'], ru: 'Ты мой друг.' },
+  he:   { en: ['He','is','a boy.'],       ru: 'Он мальчик.' },
+  she:  { en: ['She','is','my sister.'],  ru: 'Она моя сестра.' },
+  it:   { en: ['It','is','a cat.'],       ru: 'Это кот.' },
+  we:   { en: ['We','are','friends.'],    ru: 'Мы друзья.' },
+  they: { en: ['They','are','pupils.'],   ru: 'Они ученики.' }
+};
+function showDemo(key){
+  const d = demo[key];
+  const s = document.getElementById('demoSentence');
+  const t = document.getElementById('demoTranslate');
+  s.innerHTML = `<span class="hl-pron">${d.en[0]}</span> <span class="hl-verb">${d.en[1]}</span> ${d.en[2]}`;
+  t.textContent = d.ru;
+  s.classList.remove('swap'); t.classList.remove('swap');
+  void s.offsetWidth;
+  s.classList.add('swap'); t.classList.add('swap');
+}
+document.querySelectorAll('.pron-chip').forEach(c => c.addEventListener('click', () => {
+  document.querySelectorAll('.pron-chip').forEach(x => x.classList.toggle('picked', x === c));
+  showDemo(c.dataset.pron);
+}));
+showDemo('i');
+
+/* ================= ЗАДАНИЕ: ВСТАВЬ ГЛАГОЛ ================= */
+const gaps = [...document.querySelectorAll('.gap')];
+let chosenGap = null;
+
+gaps.forEach(g => g.addEventListener('click', () => {
+  if (document.getElementById('fillTask').classList.contains('locked')) return;
+  chosenGap = g;
+  gaps.forEach(x => x.classList.toggle('picked', x === g));
+}));
+
+document.querySelectorAll('.verb-btn').forEach(b => b.addEventListener('click', () => {
+  if (!chosenGap){ toast('Сначала выбери пропуск в письме — нажми на него!'); return; }
+  chosenGap.querySelector('.q').textContent = '';
+  chosenGap.classList.add('filled');
+  chosenGap.dataset.chosen = b.dataset.verb;
+  chosenGap.textContent = b.dataset.verb;      // слово видно синим внутри обведённого слота
+  chosenGap.classList.add('picked');           // выбранный ответ остаётся обведён синим
+}));
+
+document.getElementById('fillCheck').addEventListener('click', () => {
+  let ok = 0;
+  gaps.forEach(g => {
+    if (!g.dataset.chosen) return;
+    const good = g.dataset.chosen === g.dataset.answer;
+    g.classList.remove('picked','correct','wrong');
+    g.classList.add(good ? 'correct' : 'wrong');
+    if (good) ok++;
+  });
+  setScore('fill', ok);
+  document.getElementById('fillTask').classList.add('locked');
+  const banner = document.getElementById('fillBanner');
+  const text = document.getElementById('fillBannerText');
+  const icon = banner.querySelector('.rb-icon').firstElementChild;
+  banner.classList.remove('good','mid','bad');
+  if (ok === 10){
+    banner.classList.add('good'); icon.setAttribute('data-lucide','party-popper');
+    text.innerHTML = `<b>Превосходно!</b> Все 10 ответов правильные. Письмо Тому теперь читается идеально!`;
+    const r = banner.getBoundingClientRect();
+    setTimeout(()=>spawnBurst(r.left + 60, r.top + r.height/2, 18), 200);
+  } else if (ok >= 7){
+    banner.classList.add('mid'); icon.setAttribute('data-lucide','check');
+    text.innerHTML = `<b>Молодец!</b> Правильных ответов: <b>${ok} из 10</b>. Ошибки отмечены — исправь и проверь снова.`;
+  } else {
+    banner.classList.add('bad'); icon.setAttribute('data-lucide','rotate-ccw');
+    text.innerHTML = `Правильных ответов: <b>${ok} из 10</b>. Загляни в теорию и попробуй ещё раз — у тебя получится!`;
+  }
+  banner.classList.add('show');
+  refreshIcons();
+});
+
+document.getElementById('fillReset').addEventListener('click', () => {
+  gaps.forEach(g => {
+    g.classList.remove('filled','picked','correct','wrong');
+    g.dataset.chosen = '';
+    g.innerHTML = '<span class="q">?</span>';
+  });
+  chosenGap = null;
+  document.getElementById('fillTask').classList.remove('locked');
+  document.getElementById('fillBanner').classList.remove('show');
+  setScore('fill', 0);
+});
+
+/* ================= ИГРА «НАЙДИ ПАРУ» ================= */
+const pairsLeftData  = [['i','I'],['he','He'],['we','We'],['you','You'],['they','They'],['she','She']];
+const pairsRightData = [['they','are'],['i','am'],['she','is'],['we','are'],['he','is'],['you','are']];
+let selPair = null, pairsFound = 0, pairPairs = [];
+
+function buildPairs(){
+  const L = document.getElementById('pairsLeft');
+  const R = document.getElementById('pairsRight');
+  L.innerHTML = ''; R.innerHTML = '';
+  pairsLeftData.forEach(([key,label]) => {
+    const b = document.createElement('button');
+    b.className = 'pair-card'; b.textContent = label;
+    b.dataset.pair = key; b.dataset.side = 'l';
+    b.addEventListener('click', onPairCard);
+    L.appendChild(b);
+  });
+  pairsRightData.forEach(([key,verb]) => {
+    const b = document.createElement('button');
+    b.className = 'pair-card'; b.textContent = verb;
+    b.dataset.pair = key; b.dataset.side = 'r';
+    b.addEventListener('click', onPairCard);
+    R.appendChild(b);
+  });
+}
+
+function onPairCard(e){
+  const el = e.currentTarget;
+  if (el.classList.contains('done')) return;
+
+  if (selPair === el){ el.classList.remove('picked'); selPair = null; return; }
+
+  if (!selPair){ selPair = el; el.classList.add('picked'); return; }
+
+  if (selPair.dataset.side !== el.dataset.side){
+    if (selPair.dataset.pair === el.dataset.pair){
+      const l = selPair.dataset.side === 'l' ? selPair : el;
+      const r = selPair.dataset.side === 'r' ? selPair : el;
+      l.classList.remove('picked'); r.classList.remove('picked');
+      l.classList.add('done'); r.classList.add('done');
+      pairPairs.push([l, r]);
+      redrawLines();
+      selPair = null;
+      pairsFound++;
+      setScore('pairs', pairsFound);
+      if (pairsFound === 6){
+        const banner = document.getElementById('pairsBanner');
+        banner.classList.add('show');
+        const br = banner.getBoundingClientRect();
+        setTimeout(()=>spawnBurst(br.left + 80, br.top + br.height/2, 22), 250);
+      }
+    } else {
+      const a = selPair, b = el;
+      a.classList.remove('picked');
+      a.classList.add('wrong'); b.classList.add('wrong');
+      selPair = null;
+      setTimeout(()=>{ a.classList.remove('wrong'); b.classList.remove('wrong'); }, 450);
+    }
+  } else {
+    selPair.classList.remove('picked');
+    selPair = el; el.classList.add('picked');
+  }
+}
+
+function redrawLines(){
+  const wrap = document.getElementById('pairsWrap');
+  const svg = document.getElementById('pairsLines');
+  if (!wrap.offsetParent){ svg.innerHTML = ''; return; }   // вкладка скрыта
+  const wr = wrap.getBoundingClientRect();
+  svg.setAttribute('viewBox', `0 0 ${wr.width} ${wr.height}`);
+  let d = '';
+  pairPairs.forEach(([l, r]) => {
+    const lr = l.getBoundingClientRect(), rr = r.getBoundingClientRect();
+    const x1 = lr.right - wr.left - 6, y1 = lr.top + lr.height/2 - wr.top;
+    const x2 = rr.left - wr.left + 6,  y2 = rr.top + rr.height/2 - wr.top;
+    d += `M ${x1} ${y1} C ${x1+45} ${y1}, ${x2-45} ${y2}, ${x2} ${y2} `;
+  });
+  svg.innerHTML = d ? `<path d="${d}" fill="none" stroke="#3E8FC1" stroke-width="3" stroke-linecap="round" opacity=".5"/>` : '';
+}
+window.addEventListener('resize', redrawLines);
+
+document.getElementById('pairsRestart').addEventListener('click', () => {
+  pairPairs = []; pairsFound = 0; selPair = null;
+  document.getElementById('pairsLines').innerHTML = '';
+  document.getElementById('pairsBanner').classList.remove('show');
+  buildPairs();
+  setScore('pairs', 0);
+});
+buildPairs();
+
+/* ================= ИГРА «СОРТИРОВКА» ================= */
+const sortWords = [
+  ['I','я','am'], ['you','ты','are'], ['he','он','is'], ['she','она','is'], ['it','оно','is'],
+  ['we','мы','are'], ['they','они','are'], ['my cat','мой кот','is'], ['my friends','мои друзья','are'], ['Tom','Том','is']
+];
+let sortSel = null;
+
+function buildSort(){
+  const pool = document.getElementById('sortPool');
+  pool.innerHTML = '';
+  document.querySelectorAll('.bin-drop').forEach(d => d.innerHTML = '');
+  shuffle(sortWords).forEach(([word, tr, bin]) => {
+    const c = document.createElement('button');
+    c.className = 'chip'; c.dataset.bin = bin;
+    c.innerHTML = `<b>${word}</b><small>${tr}</small>`;
+    c.addEventListener('click', () => {
+      if (document.getElementById('sortTask').classList.contains('locked')) return;
+      if (sortSel === c){ c.classList.remove('picked'); sortSel = null; return; }
+      if (sortSel) sortSel.classList.remove('picked');
+      sortSel = c; c.classList.add('picked');
+    });
+    pool.appendChild(c);
+  });
+  sortSel = null;
+}
+
+document.querySelectorAll('.bin').forEach(bin => bin.addEventListener('click', () => {
+  if (document.getElementById('sortTask').classList.contains('locked')) return;
+  if (!sortSel){ toast('Сначала выбери карточку со словом!'); return; }
+  sortSel.classList.remove('drop-in');
+  bin.querySelector('.bin-drop').appendChild(sortSel);
+  void sortSel.offsetWidth;
+  sortSel.classList.add('drop-in');
+  sortSel.classList.remove('picked');
+  sortSel = null;
+}));
+
+document.getElementById('sortCheck').addEventListener('click', () => {
+  const chips = [...document.querySelectorAll('#panel-sort .chip')];
+  if (chips.some(c => !c.closest('.bin'))){ toast('Разложи все карточки по корзинам!'); return; }
+  let ok = 0;
+  chips.forEach(c => {
+    c.classList.remove('right','miss');
+    const good = c.closest('.bin').dataset.bin === c.dataset.bin;
+    c.classList.add(good ? 'right' : 'miss');
+    if (good) ok++;
+  });
+  setScore('sort', ok);
+  document.getElementById('sortTask').classList.add('locked');
+  const banner = document.getElementById('sortBanner');
+  const text = document.getElementById('sortBannerText');
+  const icon = banner.querySelector('.rb-icon').firstElementChild;
+  banner.classList.remove('good','mid','bad');
+  if (ok === 10){
+    banner.classList.add('good'); icon.setAttribute('data-lucide','party-popper');
+    text.innerHTML = `<b>Идеально!</b> Все 10 карточек на своих местах. Ты отлично знаешь to be!`;
+    setTimeout(()=>spawnBurst(window.innerWidth/2, window.innerHeight/2 - 60, 26), 200);
+  } else if (ok >= 7){
+    banner.classList.add('mid'); icon.setAttribute('data-lucide','check');
+    text.innerHTML = `<b>Хорошо!</b> На своих местах: <b>${ok} из 10</b>. Карточки с ошибкой подсвечены розовым.`;
+  } else {
+    banner.classList.add('bad'); icon.setAttribute('data-lucide','rotate-ccw');
+    text.innerHTML = `На своих местах: <b>${ok} из 10</b>. Повтори шпаргалку и разбери заново!`;
+  }
+  banner.classList.add('show');
+  refreshIcons();
+});
+
+document.getElementById('sortReset').addEventListener('click', () => {
+  document.getElementById('sortTask').classList.remove('locked');
+  document.getElementById('sortBanner').classList.remove('show');
+  buildSort();
+  setScore('sort', 0);
+});
+buildSort();
+
+/* Старт */
+refreshIcons();
+renderScore(false);
+</script>
+</body>
+</html>
