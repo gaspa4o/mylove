@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Body Parts — English Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4ecd8;
+  --paper: #fffdf7;
+  --ink: #2a2520;
+  --muted: #7d6b5a;
+  --primary: #2d5e4e;
+  --primary-dark: #1f4639;
+  --primary-soft: #e3ede9;
+  --accent: #e07a3c;
+  --accent-soft: #fce7d3;
+  --selected: #f4b942;
+  --selected-soft: #fff3d6;
+  --correct: #4a9b5e;
+  --correct-soft: #d6eadb;
+  --incorrect: #d9534f;
+  --incorrect-soft: #f8d7d5;
+  --border: #d4c4a8;
+  --shadow: 0 6px 20px rgba(45, 70, 60, 0.08);
+  --shadow-lg: 0 12px 32px rgba(45, 70, 60, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  background-image: 
+    radial-gradient(circle at 15% 8%, rgba(224, 122, 60, 0.10) 0%, transparent 35%),
+    radial-gradient(circle at 85% 92%, rgba(45, 94, 78, 0.10) 0%, transparent 35%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%23d4c4a8' fill-opacity='0.18'%3E%3Cpath d='M30 12c-3 0-5 2-5 5 0 1 1 2 1 3-1 1-3 1-3 3 0 2 2 3 4 3s3-1 5-1 3 1 5 1 4-1 4-3c0-2-2-2-3-3 0-1 1-2 1-3 0-3-2-5-5-5z'/%3E%3Cpath d='M15 35c-2 0-3 1-3 3 0 1 0 1 1 2-1 1-2 1-2 2 0 1 1 2 3 2 1 0 2-1 3-1s2 1 3 1c2 0 3-1 3-2 0-1-1-1-2-2 1-1 1-1 1-2 0-2-1-3-3-3z'/%3E%3Cpath d='M48 42c-2 0-3 1-3 3 0 1 0 1 1 2-1 1-2 1-2 2 0 1 1 2 3 2 1 0 2-1 3-1s2 1 3 1c2 0 3-1 3-2 0-1-1-1-2-2 1-1 1-1 1-2 0-2-1-3-3-3z'/%3E%3C/g%3E%3C/svg%3E");
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+header {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  background: var(--paper);
+  border-radius: 24px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--accent), var(--primary));
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.title-block h1 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.title-block .subtitle {
+  color: var(--muted);
+  font-size: 1.02rem;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.title-block .subtitle span {
+  display: inline-block;
+  padding: 2px 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-right: 6px;
+}
+
+.score-panel {
+  display: flex;
+  gap: 12px;
+}
+
+.score-card {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 10px 18px;
+  text-align: center;
+  min-width: 90px;
+  transition: transform 0.3s ease;
+}
+
+.score-card.score { border-color: var(--primary); background: var(--primary-soft); }
+.score-card.mistakes { border-color: var(--incorrect); background: var(--incorrect-soft); }
+
+.score-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.score-value {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.score-card.score .score-value { color: var(--primary); }
+.score-card.mistakes .score-value { color: var(--incorrect); }
+
+.score-value.pulse { animation: pulse 0.6s ease; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.tabs {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  background: var(--paper);
+  padding: 8px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  position: sticky;
+  top: 12px;
+  z-index: 100;
+}
+
+.tab-btn {
+  flex: 1;
+  min-width: 130px;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.tab-btn:hover {
+  background: var(--accent-soft);
+  color: var(--primary);
+}
+
+.tab-btn.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(45, 94, 78, 0.3);
+}
+
+.tab-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: none;
+  background: var(--paper);
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.intro-text {
+  color: var(--muted);
+  margin-bottom: 24px;
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+.intro-text strong { color: var(--accent); }
+
+/* Theory */
+.theory-intro {
+  background: linear-gradient(135deg, var(--primary-soft), var(--accent-soft));
+  padding: 20px 24px;
+  border-radius: 16px;
+  border-left: 5px solid var(--accent);
+  margin-bottom: 28px;
+  font-size: 1.05rem;
+}
+
+.theory-intro p { color: var(--ink); }
+.theory-intro p + p { margin-top: 8px; }
+
+.theory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.theory-card {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.theory-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.theory-img {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 12px;
+  background: var(--bg);
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--primary-soft);
+}
+
+.theory-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.theory-name {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.theory-ru {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.theory-desc {
+  font-size: 0.85rem;
+  color: var(--ink);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.speak-icon {
+  background: var(--accent);
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.speak-icon:hover { transform: scale(1.15); background: var(--primary); }
+
+/* Vocabulary */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.vocab-card {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vocab-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, var(--accent), var(--primary));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.vocab-card:hover::before { opacity: 1; }
+.vocab-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.vocab-img {
+  width: 100%;
+  height: 140px;
+  background: var(--bg);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.vocab-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vocab-word {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vocab-word:hover { color: var(--accent); }
+
+.vocab-ru {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 2px;
+}
+
+.vocab-example {
+  font-size: 0.85rem;
+  color: var(--ink);
+  margin-top: 8px;
+  font-style: italic;
+  padding: 8px 10px;
+  background: var(--primary-soft);
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+}
+
+.vocab-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.btn-mini {
+  background: var(--paper);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Nunito', sans-serif;
+  flex: 1;
+}
+
+.btn-mini:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Memory */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.memory-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.memory-card.flipped .memory-inner,
+.memory-card.matched .memory-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-front, .memory-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--border);
+  padding: 6px;
+}
+
+.memory-front {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+}
+
+.memory-back {
+  background: var(--paper);
+  transform: rotateY(180deg);
+  overflow: hidden;
+}
+
+.memory-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.memory-back .memory-word-text {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: center;
+}
+
+.memory-card.matched .memory-back {
+  background: var(--correct-soft);
+  border-color: var(--correct);
+  animation: matchedPulse 0.6s ease;
+}
+
+.memory-card.matched .memory-word-text {
+  color: var(--correct);
+}
+
+@keyframes matchedPulse {
+  0%, 100% { transform: rotateY(180deg) scale(1); }
+  50% { transform: rotateY(180deg) scale(1.1); }
+}
+
+/* Reading */
+.reading-block {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.reading-block h3 {
+  font-family: 'Fredoka', sans-serif;
+  color: var(--primary);
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reading-text {
+  font-size: 1.15rem;
+  line-height: 2;
+  color: var(--ink);
+}
+
+.reading-word {
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+  position: relative;
+}
+
+.reading-word.clickable:hover {
+  background: var(--accent-soft);
+}
+
+.reading-word.clickable::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.4;
+}
+
+.reading-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(45, 94, 78, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(45, 94, 78, 0.35);
+}
+
+.btn-secondary {
+  background: var(--paper);
+  color: var(--primary);
+  border: 2px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-accent:hover {
+  background: #c66730;
+  transform: translateY(-2px);
+}
+
+/* Tooltip */
+.word-tooltip {
+  position: absolute;
+  background: var(--ink);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  max-width: 220px;
+  font-size: 0.9rem;
+  animation: tooltipIn 0.2s ease;
+  pointer-events: auto;
+}
+
+.word-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--ink);
+  border-bottom: 0;
+}
+
+@keyframes tooltipIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tooltip-word {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.tooltip-translation {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.tooltip-speak {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+}
+
+.tooltip-speak:hover { background: white; color: var(--ink); }
+
+/* Guess task */
+.guess-block {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.guess-question {
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.guess-question strong {
+  color: var(--primary);
+  font-family: 'Fredoka', sans-serif;
+  margin-right: 6px;
+}
+
+.speak-text-btn {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 8px;
+  transition: all 0.2s;
+  vertical-align: middle;
+}
+
+.speak-text-btn:hover {
+  background: var(--accent);
+  color: white;
+  transform: scale(1.1);
+}
+
+.guess-options {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.guess-option {
+  flex: 1;
+  min-width: 140px;
+  max-width: 200px;
+  background: var(--paper);
+  border: 3px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.guess-option:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+}
+
+.guess-option img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.option-name {
+  display: block;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 8px;
+  color: var(--primary);
+  text-transform: capitalize;
+}
+
+.guess-option.selected {
+  background: var(--selected-soft);
+  border-color: var(--selected);
+  box-shadow: 0 0 0 4px rgba(244, 185, 66, 0.2);
+}
+
+.guess-option.correct {
+  background: var(--correct-soft);
+  border-color: var(--correct);
+  box-shadow: 0 0 0 4px rgba(74, 155, 94, 0.25);
+  animation: correctBounce 0.5s ease;
+}
+
+.guess-option.incorrect {
+  background: var(--incorrect-soft);
+  border-color: var(--incorrect);
+  box-shadow: 0 0 0 4px rgba(217, 83, 79, 0.2);
+  animation: shake 0.4s ease;
+}
+
+@keyframes correctBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* Select task */
+.select-block {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.select-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.select-animal-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--primary);
+  flex-shrink: 0;
+  background: var(--bg);
+}
+
+.select-animal-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.select-question {
+  font-size: 1.05rem;
+  flex: 1;
+  min-width: 240px;
+}
+
+.select-question strong {
+  color: var(--primary);
+  font-family: 'Fredoka', sans-serif;
+}
+
+.select-question em {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 4px;
+}
+
+.select-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.select-option {
+  background: var(--paper);
+  border: 2.5px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.select-option:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.select-option img {
+  width: 100%;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.select-option .option-name {
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.select-option.selected {
+  background: var(--selected-soft);
+  border-color: var(--selected);
+  box-shadow: 0 0 0 3px rgba(244, 185, 66, 0.25);
+}
+
+.select-option.correct {
+  background: var(--correct-soft);
+  border-color: var(--correct);
+  animation: correctBounce 0.5s ease;
+}
+
+.select-option.incorrect {
+  background: var(--incorrect-soft);
+  border-color: var(--incorrect);
+  animation: shake 0.4s ease;
+}
+
+/* Result display */
+.result-display {
+  margin-top: 20px;
+  padding: 16px 22px;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  display: none;
+}
+
+.result-display.success {
+  background: var(--correct-soft);
+  color: var(--correct);
+  border: 2px solid var(--correct);
+}
+
+.result-display.partial {
+  background: var(--selected-soft);
+  color: #b8821a;
+  border: 2px solid var(--selected);
+}
+
+.result-display.fail {
+  background: var(--incorrect-soft);
+  color: var(--incorrect);
+  border: 2px solid var(--incorrect);
+}
+
+.action-buttons {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+footer {
+  max-width: 1200px;
+  margin: 30px auto 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 20px;
+}
+
+footer strong { color: var(--primary); }
+
+@media (max-width: 720px) {
+  body { padding: 12px; }
+  header { padding: 20px; }
+  .title-block h1 { font-size: 1.7rem; }
+  .tab-content { padding: 20px; }
+  .tab-btn { min-width: 100px; font-size: 0.85rem; padding: 10px 8px; }
+  .memory-grid { grid-template-columns: repeat(4, 1fr); }
+  .select-animal-img { width: 100px; height: 100px; }
+  .score-card { padding: 8px 12px; min-width: 70px; }
+  .score-value { font-size: 1.4rem; }
+}
+
+@media (max-width: 480px) {
+  .memory-grid { grid-template-columns: repeat(3, 1fr); }
+  .memory-front { font-size: 1.2rem; }
+  .memory-back .memory-word-text { font-size: 0.9rem; }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  z-index: 2000;
+  animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <div class="title-block">
+      <h1>Animal Body Parts</h1>
+      <p class="subtitle">
+        <span>4 класс</span> Interactive English Worksheet · Части тела животных
+      </p>
+    </div>
+    <div class="score-panel">
+      <div class="score-card score">
+        <div class="score-label">⭐ Stars</div>
+        <div class="score-value" id="score-value">0</div>
+      </div>
+      <div class="score-card mistakes">
+        <div class="score-label">✗ Errors</div>
+        <div class="score-value" id="mistakes-value">0</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button class="tab-btn active" data-tab="theory">📚 Theory</button>
+  <button class="tab-btn" data-tab="vocab">📖 Vocabulary</button>
+  <button class="tab-btn" data-tab="memory">🃏 Memory</button>
+  <button class="tab-btn" data-tab="reading">📖 Reading</button>
+  <button class="tab-btn" data-tab="guess">🐾 Guess</button>
+  <button class="tab-btn" data-tab="select">✓ Body Parts</button>
+</nav>
+
+<main>
+
+  <!-- THEORY TAB -->
+  <section id="theory" class="tab-content active">
+    <h2 class="section-title">Theory · Теория</h2>
+    <div class="theory-intro">
+      <p>Animals are amazing! 🐾 They all have different <strong>body parts</strong> (части тела).</p>
+      <p>Each body part helps the animal: <strong>paws</strong> help to walk, <strong>wings</strong> help to fly, <strong>fins</strong> help to swim, <strong>hooves</strong> help to run fast.</p>
+      <p>Press <strong>🔊</strong> on any card to hear how to say the word in English.</p>
+    </div>
+    <div class="theory-grid" id="theory-grid"></div>
+  </section>
+
+  <!-- VOCABULARY TAB -->
+  <section id="vocab" class="tab-content">
+    <h2 class="section-title">Vocabulary · Словарь</h2>
+    <p class="intro-text">Click on any <strong>word</strong> to hear pronunciation · Нажми на слово, чтобы услышать произношение</p>
+    <div class="vocab-grid" id="vocab-grid"></div>
+  </section>
+
+  <!-- MEMORY TAB -->
+  <section id="memory" class="tab-content">
+    <h2 class="section-title">Memory Cards · Найди пары</h2>
+    <p class="intro-text">Find pairs: a <strong>word</strong> + the matching <strong>picture</strong>. Click cards to flip them.</p>
+    <div class="memory-grid" id="memory-grid"></div>
+    <div class="result-display" id="memory-result"></div>
+    <div class="action-buttons">
+      <button class="btn btn-secondary" onclick="renderMemory()">🔄 New Game</button>
+    </div>
+  </section>
+
+  <!-- READING TAB -->
+  <section id="reading" class="tab-content">
+    <h2 class="section-title">Reading · Чтение</h2>
+    <p class="intro-text">Click on <strong>any word</strong> in the text to see its translation and hear pronunciation.</p>
+    <div id="reading-container"></div>
+  </section>
+
+  <!-- GUESS TAB -->
+  <section id="guess" class="tab-content">
+    <h2 class="section-title">Guess the Animal · Угадай животное</h2>
+    <p class="intro-text">Read the description. Click on the animal you think it is.</p>
+    <div id="guess-container"></div>
+    <div class="result-display" id="guess-result"></div>
+    <div class="action-buttons">
+      <button class="btn btn-primary" onclick="checkGuess()">✓ Check · Проверить</button>
+      <button class="btn btn-secondary" onclick="resetGuess()">↻ Reset · Сбросить</button>
+    </div>
+  </section>
+
+  <!-- SELECT TAB -->
+  <section id="select" class="tab-content">
+    <h2 class="section-title">Body Parts · Части тела</h2>
+    <p class="intro-text">Look at the animal. Choose <strong>all</strong> body parts it has. You can pick several answers.</p>
+    <div id="select-container"></div>
+    <div class="result-display" id="select-result"></div>
+    <div class="action-buttons">
+      <button class="btn btn-primary" onclick="checkSelect()">✓ Check · Проверить</button>
+      <button class="btn btn-secondary" onclick="resetSelect()">↻ Reset · Сбросить</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Animal Body Parts</strong> — Interactive English Worksheet for 4th grade</p>
+  <p>Click words to listen · Read carefully · Have fun learning! 🐶🐱🐟🐦🐴</p>
+</footer>
+
+<script>
+// ===== IMAGES =====
+const IMAGES = {
+  dog: 'https://z-cdn-media.chatglm.cn/files/a67e7bfc-8e9a-4c1f-a693-b10824b547cc.jpeg?auth_key=1887148080-e5c318bf7a294891aa7e9abf3c1a83f1-0-b0d7e785cf2353827afe6e24bd766486',
+  nose: 'https://z-cdn-media.chatglm.cn/files/1696ee90-acc3-4d0b-88f6-22d57d3c5ce2.jpeg?auth_key=1887148080-27a93b49abe74e81a5e7adadb6a69015-0-cefdcde14d928ae54dbb0c017d644338',
+  tail: 'https://z-cdn-media.chatglm.cn/files/d91ecb86-42cc-41d0-b168-f4901829ea97.jpeg?auth_key=1887148080-3f49cbf836d84aca916f7e8e86b58015-0-25e6204d7868c28b6ec0fc0215547e97',
+  cat: 'https://z-cdn-media.chatglm.cn/files/2f327f9e-08ca-440c-b598-84a7435c4152.jpeg?auth_key=1887148080-e55eb33b279042d4b8ad73282d54e7e8-0-502022cba654e20fd8607d8135514d90',
+  wing: 'https://z-cdn-media.chatglm.cn/files/d7020d1f-fefa-4dbf-8630-a3d287347c58.jpeg?auth_key=1887148080-a24e00683dc64ad490a58dc15f3b68d5-0-57204df71c0d62495df3aeea33161758',
+  ear: 'https://z-cdn-media.chatglm.cn/files/7a1434ab-fb2a-4efc-b770-e7a0098d8c33.jpeg?auth_key=1887148080-fa6df56ded7140b8872b71cb9a3c49a3-0-51966f3b151c25b9e3ae829d729b2c3f',
+  mouth: 'https://z-cdn-media.chatglm.cn/files/a1678ca3-ee1b-474a-a85e-40e46dfb3f77.jpeg?auth_key=1887148080-9b14db8de19241908e77bc8ac02c0617-0-2c0e156bd8e7cd995e53e56f995a9bb7',
+  paw: 'https://z-cdn-media.chatglm.cn/files/d996d911-e7c0-4625-95db-f0b60d172667.jpeg?auth_key=1887148080-95cd5d1f50a847f4bccf8a1a79fd5581-0-aca6f7591d66332aff8138078ca8312a',
+  fish: 'https://z-cdn-media.chatglm.cn/files/4f96c401-4fce-4d11-9716-ba61e792994e.jpeg?auth_key=1887148080-f234fe8c889c4b999ee3bfb659553d76-0-6844ac567f3ff9253a2d3c4a15e4723f',
+  claws: 'https://z-cdn-media.chatglm.cn/files/a6b2d552-e749-4d9b-8e72-86bb2af54e85.jpeg?auth_key=1887148080-312cf8ed33d541069bfef08c00db7426-0-d1ac4e0f08b92e766b99c678294c9bbe',
+  fur: 'https://z-cdn-media.chatglm.cn/files/8044b0f1-5f2b-4a44-a703-35ca25d2721e.jpeg?auth_key=1887148080-2f8331f274b74ee88d04b0b5261fa352-0-7aabbe6fbf2d5ea53174f7550f74bd20',
+  scales: 'https://z-cdn-media.chatglm.cn/files/73eb06eb-3b9c-44b3-a377-a215b0a0d8f1.jpeg?auth_key=1887148080-9dbf5ac9e9fc437ab42add1a732a151e-0-90d657d1e85396a7a42c88fc825bff25',
+  beak: 'https://z-cdn-media.chatglm.cn/files/c5cafd26-fbc7-4a05-b16a-cadadca14219.jpeg?auth_key=1887148080-142d6c1960f048468a09f1214c86ce43-0-803292fedc5a4b31be82798746593245',
+  hooves: 'https://z-cdn-media.chatglm.cn/files/d3589b39-d003-4e7b-9601-e1baf935483f.jpeg?auth_key=1887148080-bb44b191573e4f208f6140460ef27caf-0-705f78e76a1c4a92a6407b6c23f396eb'
+};
+
+// ===== VOCABULARY DATA (12 items) =====
+const vocabulary = [
+  { word: 'nose', ru: 'нос', img: 'nose', 
+    desc: 'To smell things', example: 'The dog has a wet nose.' },
+  { word: 'tail', ru: 'хвост', img: 'tail', 
+    desc: 'To show feelings or balance', example: 'The cat has a long tail.' },
+  { word: 'wing', ru: 'крыло', img: 'wing', 
+    desc: 'To fly in the sky', example: 'A bird has two wings.' },
+  { word: 'ear', ru: 'ухо', img: 'ear', 
+    desc: 'To hear sounds', example: 'Rabbits have long ears.' },
+  { word: 'mouth', ru: 'рот', img: 'mouth', 
+    desc: 'To eat and to speak', example: 'The lion has a big mouth.' },
+  { word: 'paw', ru: 'лапа', img: 'paw', 
+    desc: 'To walk and run', example: 'The cat has soft paws.' },
+  { word: 'fin', ru: 'плавник', img: 'fish', 
+    desc: 'To swim in water', example: 'A fish has fins to swim.' },
+  { word: 'claws', ru: 'когти', img: 'claws', 
+    desc: 'To climb and dig', example: 'The cat has sharp claws.' },
+  { word: 'fur', ru: 'шерсть', img: 'fur', 
+    desc: 'To keep warm', example: 'The bear has thick fur.' },
+  { word: 'scales', ru: 'чешуя', img: 'scales', 
+    desc: 'To protect the body', example: 'A fish has small scales.' },
+  { word: 'beak', ru: 'клюв', img: 'beak', 
+    desc: 'To eat and drink', example: 'The bird has a yellow beak.' },
+  { word: 'hooves', ru: 'копыта', img: 'hooves', 
+    desc: 'To run and walk on hard ground', example: 'A horse has four hooves.' }
+];
+
+// ===== STATE =====
+const state = {
+  score: 0,
+  mistakes: 0,
+  prevScore: 0,
+  prevMistakes: 0
+};
+
+// ===== SPEECH SYNTHESIS =====
+let voices = [];
+function loadVoices() {
+  voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+}
+if (window.speechSynthesis) {
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function speak(text) {
+  if (!window.speechSynthesis) {
+    alert('К сожалению, синтез речи не поддерживается в вашем браузере.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.85;
+  utterance.pitch = 1;
+  const englishVoice = voices.find(v => v.lang === 'en-US') || voices.find(v => v.lang.startsWith('en'));
+  if (englishVoice) utterance.voice = englishVoice;
+  window.speechSynthesis.speak(utterance);
+}
+
+// ===== TABS =====
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// ===== SCORE =====
+function updateScore() {
+  const scoreEl = document.getElementById('score-value');
+  const mistakesEl = document.getElementById('mistakes-value');
+  
+  scoreEl.textContent = state.score;
+  mistakesEl.textContent = state.mistakes;
+  
+  if (state.score > state.prevScore) {
+    scoreEl.classList.remove('pulse');
+    void scoreEl.offsetWidth;
+    scoreEl.classList.add('pulse');
+  }
+  if (state.mistakes > state.prevMistakes) {
+    mistakesEl.classList.remove('pulse');
+    void mistakesEl.offsetWidth;
+    mistakesEl.classList.add('pulse');
+  }
+  state.prevScore = state.score;
+  state.prevMistakes = state.mistakes;
+}
+
+// ===== THEORY =====
+function renderTheory() {
+  const grid = document.getElementById('theory-grid');
+  grid.innerHTML = '';
+  vocabulary.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'theory-card';
+    card.innerHTML = `
+      <div class="theory-img"><img src="${IMAGES[item.img]}" alt="${item.word}"></div>
+      <div class="theory-name">
+        ${item.word}
+        <button class="speak-icon" title="Listen">🔊</button>
+      </div>
+      <div class="theory-ru">${item.ru}</div>
+      <div class="theory-desc">${item.desc}</div>
+    `;
+    card.querySelector('.speak-icon').addEventListener('click', (e) => {
+      e.stopPropagation();
+      speak(item.word);
+    });
+    card.addEventListener('click', () => speak(item.word));
+    grid.appendChild(card);
+  });
+}
+
+// ===== VOCABULARY =====
+function renderVocabulary() {
+  const grid = document.getElementById('vocab-grid');
+  grid.innerHTML = '';
+  vocabulary.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'vocab-card';
+    card.innerHTML = `
+      <div class="vocab-img"><img src="${IMAGES[item.img]}" alt="${item.word}"></div>
+      <div class="vocab-word" data-word="${item.word}">
+        ${item.word}
+        <button class="speak-icon" title="Listen">🔊</button>
+      </div>
+      <div class="vocab-ru">${item.ru}</div>
+      <div class="vocab-example">"${item.example}"</div>
+      <div class="vocab-actions">
+        <button class="btn-mini" data-action="word">Say word</button>
+        <button class="btn-mini" data-action="example">Say example</button>
+      </div>
+    `;
+    card.querySelector('.vocab-word').addEventListener('click', () => speak(item.word));
+    card.querySelectorAll('.btn-mini').forEach(b => {
+      b.addEventListener('click', () => {
+        speak(b.dataset.action === 'word' ? item.word : item.example);
+      });
+    });
+    grid.appendChild(card);
+  });
+}
+
+// ===== MEMORY GAME =====
+let memoryFlipped = [];
+let memoryMatched = new Set();
+let memoryLock = false;
+
+function renderMemory() {
+  const cards = [];
+  vocabulary.forEach((item, i) => {
+    cards.push({ type: 'word', value: item.word, pairId: i });
+    cards.push({ type: 'image', value: item.img, pairId: i });
+  });
+  cards.sort(() => Math.random() - 0.5);
+  
+  const grid = document.getElementById('memory-grid');
+  grid.innerHTML = '';
+  memoryFlipped = [];
+  memoryMatched = new Set();
+  memoryLock = false;
+  hideResult('memory-result');
+  
+  cards.forEach((card, idx) => {
+    const el = document.createElement('div');
+    el.className = 'memory-card';
+    el.dataset.idx = idx;
+    el.dataset.pairId = card.pairId;
+    el.innerHTML = `
+      <div class="memory-inner">
+        <div class="memory-front">?</div>
+        <div class="memory-back">
+          ${card.type === 'word' 
+            ? `<span class="memory-word-text">${card.value}</span>` 
+            : `<img src="${IMAGES[card.value]}" alt="${card.value}">`}
+        </div>
+      </div>
+    `;
+    el.addEventListener('click', () => flipMemoryCard(el, card));
+    grid.appendChild(el);
+  });
+}
+
+function flipMemoryCard(el, card) {
+  if (memoryLock) return;
+  if (el.classList.contains('flipped') || el.classList.contains('matched')) return;
+  if (memoryFlipped.length >= 2) return;
+  
+  el.classList.add('flipped');
+  if (card.type === 'word') speak(card.value);
+  
+  memoryFlipped.push({ el, card });
+  
+  if (memoryFlipped.length === 2) {
+    memoryLock = true;
+    const [a, b] = memoryFlipped;
+    if (a.card.pairId === b.card.pairId) {
+      setTimeout(() => {
+        a.el.classList.add('matched');
+        b.el.classList.add('matched');
+        memoryMatched.add(a.card.pairId);
+        state.score += 10;
+        updateScore();
+        if (memoryMatched.size === vocabulary.length) {
+          showResult('memory-result', '🎉 Молодец! Ты нашёл все 12 пар! +120 звёзд!', 'success');
+          launchConfetti();
+        }
+        memoryFlipped = [];
+        memoryLock = false;
+      }, 700);
+    } else {
+      setTimeout(() => {
+        a.el.classList.remove('flipped');
+        b.el.classList.remove('flipped');
+        state.mistakes += 1;
+        updateScore();
+        memoryFlipped = [];
+        memoryLock = false;
+      }, 1200);
+    }
+  }
+}
+
+// ===== READING =====
+const readingTexts = [
+  {
+    title: 'My Dog Rex',
+    text: 'My dog Rex is big and brown. He has thick fur and a long tail. He has big ears and a wet nose. Rex has four strong paws and sharp claws. He likes to run in the park. I love my dog!'
+  },
+  {
+    title: 'A Little Bird',
+    text: 'Look at the little bird! It has two wings and a yellow beak. The bird has short legs and a long tail. It has soft feathers. The bird can fly high in the sky. It sings songs in the morning.'
+  },
+  {
+    title: 'A Fish in the Sea',
+    text: 'A fish lives in the sea. It has fins and a tail. The fish has small scales on its body. It can swim very fast. It has no legs and no paws. The fish has small eyes and a small mouth.'
+  },
+  {
+    title: 'A Horse on the Farm',
+    text: 'A horse lives on a farm. It has four hooves and a long tail. The horse has brown fur and big ears. It has a long mouth. The horse can run very fast. I like to ride the horse!'
+  }
+];
+
+// Dictionary for reading task
+const wordDict = {
+  'my': 'мой', 'dog': 'собака', 'rex': 'Рекс', 'is': 'есть', 'big': 'большой',
+  'and': 'и', 'brown': 'коричневый', 'he': 'он', 'has': 'имеет', 'a': '',
+  'long': 'длинный', 'tail': 'хвост', 'ears': 'уши', 'his': 'его', 'nose': 'нос',
+  'wet': 'мокрый', 'four': 'четыре', 'strong': 'сильные', 'paws': 'лапы',
+  'sharp': 'острые', 'claws': 'когти', 'thick': 'густая', 'fur': 'шерсть',
+  'likes': 'любит', 'to': '', 'run': 'бегать', 'in': 'в', 'the': '',
+  'park': 'парк', 'can': 'мочь', 'jump': 'прыгать', 'play': 'играть',
+  'with': 'с', 'ball': 'мяч', 'i': 'я', 'love': 'люблю',
+  'look': 'смотри', 'at': 'на', 'little': 'маленькая', 'bird': 'птица',
+  'it': 'она', 'two': 'две', 'wings': 'крылья', 'yellow': 'жёлтый',
+  'beak': 'клюв', 'short': 'короткие', 'legs': 'ноги', 'soft': 'мягкие',
+  'feathers': 'перья', 'fly': 'летать', 'high': 'высоко', 'sky': 'небо',
+  'sings': 'поёт', 'songs': 'песни', 'morning': 'утро', 'like': 'нравится',
+  'watch': 'наблюдать', 'fish': 'рыба', 'lives': 'живёт', 'sea': 'море',
+  'fins': 'плавники', 'small': 'маленькие', 'scales': 'чешуя', 'body': 'тело',
+  'its': 'её', 'swim': 'плавать', 'very': 'очень', 'fast': 'быстро',
+  'no': 'нет', 'eyes': 'глаза', 'mouth': 'рот', 'horse': 'лошадь',
+  'farm': 'ферма', 'hooves': 'копыта', 'ride': 'кататься',
+  'paw': 'лапа', 'ear': 'ухо', 'wing': 'крыло', 'fin': 'плавник',
+  'claw': 'коготь', 'fur': 'шерсть', 'scale': 'чешуйка', 'hooves': 'копыта',
+  'beak': 'клюв', 'cats': 'кошки', 'cat': 'кошка'
+};
+
+function cleanWord(w) {
+  return w.toLowerCase().replace(/[^a-z']/g, '');
+}
+
+function renderReading() {
+  const container = document.getElementById('reading-container');
+  container.innerHTML = '';
+  readingTexts.forEach((item, idx) => {
+    const block = document.createElement('div');
+    block.className = 'reading-block';
+    
+    const title = document.createElement('h3');
+    title.innerHTML = `${idx + 1}. ${item.title} <button class="speak-text-btn" title="Listen to text">🔊</button>`;
+    title.querySelector('.speak-text-btn').addEventListener('click', () => speak(item.text));
+    block.appendChild(title);
+    
+    const para = document.createElement('p');
+    para.className = 'reading-text';
+    const tokens = item.text.split(/(\s+)/);
+    tokens.forEach(token => {
+      if (/^\s+$/.test(token)) {
+        para.appendChild(document.createTextNode(token));
+      } else {
+        const clean = cleanWord(token);
+        const span = document.createElement('span');
+        span.className = 'reading-word';
+        span.textContent = token;
+        const translation = wordDict[clean];
+        if (translation !== undefined) {
+          span.classList.add('clickable');
+          span.dataset.word = clean;
+          span.dataset.translation = translation || '—';
+          span.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showWordTooltip(span, clean, translation || '');
+          });
+        }
+        para.appendChild(span);
+      }
+    });
+    block.appendChild(para);
+    
+    const actions = document.createElement('div');
+    actions.className = 'reading-actions';
+    actions.innerHTML = `<button class="btn btn-accent">🔊 Listen to full text</button>`;
+    actions.querySelector('button').addEventListener('click', () => speak(item.text));
+    block.appendChild(actions);
+    
+    container.appendChild(block);
+  });
+}
+
+let activeTooltip = null;
+
+function showWordTooltip(span, word, translation) {
+  if (activeTooltip) {
+    activeTooltip.remove();
+    activeTooltip = null;
+  }
+  
+  const tooltip = document.createElement('div');
+  tooltip.className = 'word-tooltip';
+  tooltip.innerHTML = `
+    <div class="tooltip-word">${word}</div>
+    <div class="tooltip-translation">${translation || '—'}</div>
+    <button class="tooltip-speak">🔊 Listen</button>
+  `;
+  
+  document.body.appendChild(tooltip);
+  
+  const rect = span.getBoundingClientRect();
+  const tipRect = tooltip.getBoundingClientRect();
+  
+  let left = rect.left + rect.width / 2 - tipRect.width / 2;
+  left = Math.max(8, Math.min(window.innerWidth - tipRect.width - 8, left));
+  
+  let top = window.scrollY + rect.top - tipRect.height - 10;
+  if (top < window.scrollY + 10) {
+    top = window.scrollY + rect.bottom + 10;
+  }
+  
+  tooltip.style.left = left + 'px';
+  tooltip.style.top = top + 'px';
+  
+  tooltip.querySelector('.tooltip-speak').addEventListener('click', (e) => {
+    e.stopPropagation();
+    speak(word);
+  });
+  
+  activeTooltip = tooltip;
+  
+  setTimeout(() => {
+    const closeHandler = (e) => {
+      if (!tooltip.contains(e.target) && e.target !== span) {
+        tooltip.remove();
+        activeTooltip = null;
+        document.removeEventListener('click', closeHandler);
+      }
+    };
+    document.addEventListener('click', closeHandler);
+  }, 50);
+}
+
+// ===== GUESS THE ANIMAL =====
+const guessTasks = [
+  {
+    description: 'I am big and brown. I have thick fur, four paws, and a long tail. My nose is wet and black. I have sharp claws. I can run and bark. I am a pet. Who am I?',
+    options: ['dog', 'cat', 'fish'],
+    correct: 'dog'
+  },
+  {
+    description: 'I am small and brown. I have soft fur, a long tail, and big eyes. I have long whiskers and sharp claws. I have paws. I can climb trees. Who am I?',
+    options: ['cat', 'dog', 'fish'],
+    correct: 'cat'
+  },
+  {
+    description: 'I have no legs and no paws. I live in water. I have fins and a tail. I have small scales on my body. I can swim very fast. Who am I?',
+    options: ['fish', 'cat', 'dog'],
+    correct: 'fish'
+  },
+  {
+    description: 'I live on a farm. I have four hooves and a long tail. I have brown fur and big ears. I can run very fast. You can ride me. Who am I?',
+    options: ['dog', 'fish', 'cat'],
+    correct: 'dog'
+  }
+];
+
+let guessSelections = {};
+
+function renderGuess() {
+  const container = document.getElementById('guess-container');
+  container.innerHTML = '';
+  guessSelections = {};
+  
+  guessTasks.forEach((task, idx) => {
+    const block = document.createElement('div');
+    block.className = 'guess-block';
+    block.dataset.idx = idx;
+    
+    block.innerHTML = `
+      <div class="guess-question">
+        <strong>Question ${idx + 1}.</strong>
+        <span>${task.description}</span>
+        <button class="speak-text-btn" title="Listen">🔊</button>
+      </div>
+      <div class="guess-options">
+        ${task.options.map(opt => `
+          <div class="guess-option" data-animal="${opt}" data-idx="${idx}" tabindex="0">
+            <img src="${IMAGES[opt]}" alt="${opt}">
+            <span class="option-name">${opt}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(block);
+  });
+  
+  container.querySelectorAll('.guess-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const idx = opt.dataset.idx;
+      const animal = opt.dataset.animal;
+      const block = opt.closest('.guess-block');
+      block.querySelectorAll('.guess-option').forEach(s => s.classList.remove('selected'));
+      opt.classList.add('selected');
+      guessSelections[idx] = animal;
+      speak(animal);
+    });
+  });
+  
+  container.querySelectorAll('.speak-text-btn').forEach((btn, i) => {
+    btn.addEventListener('click', () => speak(guessTasks[i].description));
+  });
+}
+
+function checkGuess() {
+  let correct = 0;
+  let wrong = 0;
+  let answered = 0;
+  
+  guessTasks.forEach((task, idx) => {
+    const block = document.querySelector(`.guess-block[data-idx="${idx}"]`);
+    block.querySelectorAll('.guess-option').forEach(opt => {
+      opt.classList.remove('selected', 'correct', 'incorrect');
+      const animal = opt.dataset.animal;
+      const userChoice = guessSelections[idx];
+      
+      if (userChoice === animal) {
+        answered++;
+        if (animal === task.correct) {
+          opt.classList.add('correct');
+          correct++;
+        } else {
+          opt.classList.add('incorrect');
+          wrong++;
+        }
+      } else if (animal === task.correct && userChoice !== undefined) {
+        opt.classList.add('correct');
+      }
+    });
+  });
+  
+  if (answered === 0) {
+    showResult('guess-result', 'Please choose an answer for each question first! · Сначала выбери ответ для каждого вопроса!', 'partial');
+    return;
+  }
+  
+  state.score += correct * 15;
+  state.mistakes += wrong;
+  updateScore();
+  
+  const total = guessTasks.length;
+  let type = 'fail';
+  let msg = '';
+  if (correct === total) {
+    type = 'success';
+    msg = `🎉 Отлично! Все ${total} правильно! +${correct * 15} звёзд!`;
+    launchConfetti();
+  } else if (correct >= total / 2) {
+    type = 'partial';
+    msg = `Хорошо! Правильно: ${correct} из ${total}. Попробуй ещё раз!`;
+  } else {
+    type = 'fail';
+    msg = `Правильно: ${correct} из ${total}. Прочитай описание ещё раз и попробуй снова!`;
+  }
+  showResult('guess-result', msg, type);
+}
+
+function resetGuess() {
+  guessSelections = {};
+  document.querySelectorAll('.guess-option').forEach(opt => {
+    opt.classList.remove('selected', 'correct', 'incorrect');
+  });
+  hideResult('guess-result');
+}
+
+// ===== BODY PARTS SELECTION =====
+const selectTasks = [
+  {
+    animal: 'dog',
+    img: 'dog',
+    options: ['nose', 'tail', 'ear', 'paw', 'mouth', 'wing', 'fin', 'claws', 'fur', 'scales', 'beak', 'hooves'],
+    correct: ['nose', 'tail', 'ear', 'paw', 'mouth', 'fur', 'claws']
+  },
+  {
+    animal: 'cat',
+    img: 'cat',
+    options: ['nose', 'tail', 'ear', 'paw', 'mouth', 'wing', 'fin', 'claws', 'fur', 'scales', 'beak', 'hooves'],
+    correct: ['nose', 'tail', 'ear', 'paw', 'mouth', 'fur', 'claws']
+  },
+  {
+    animal: 'fish',
+    img: 'fish',
+    options: ['nose', 'tail', 'ear', 'paw', 'mouth', 'wing', 'fin', 'claws', 'fur', 'scales', 'beak', 'hooves'],
+    correct: ['tail', 'mouth', 'fin', 'scales']
+  }
+];
+
+let selectSelections = {};
+
+function renderSelect() {
+  const container = document.getElementById('select-container');
+  container.innerHTML = '';
+  selectSelections = {};
+  
+  selectTasks.forEach((task, idx) => {
+    const block = document.createElement('div');
+    block.className = 'select-block';
+    block.dataset.idx = idx;
+    
+    block.innerHTML = `
+      <div class="select-header">
+        <div class="select-animal-img"><img src="${IMAGES[task.img]}" alt="${task.animal}"></div>
+        <div class="select-question">
+          <strong>Question ${idx + 1}.</strong> Look at the <strong>${task.animal}</strong>.
+          Which body parts does it have?
+          <em>You can choose several answers · Можно выбрать несколько вариантов</em>
+          <button class="speak-text-btn" title="Listen">🔊</button>
+        </div>
+      </div>
+      <div class="select-options">
+        ${task.options.map(opt => `
+          <div class="select-option" data-part="${opt}" data-idx="${idx}" tabindex="0">
+            <img src="${IMAGES[opt]}" alt="${opt}">
+            <span class="option-name">${opt}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(block);
+  });
+  
+  container.querySelectorAll('.select-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const idx = opt.dataset.idx;
+      const part = opt.dataset.part;
+      if (opt.classList.contains('correct') || opt.classList.contains('incorrect')) return;
+      const isSelected = opt.classList.toggle('selected');
+      if (!selectSelections[idx]) selectSelections[idx] = new Set();
+      if (isSelected) {
+        selectSelections[idx].add(part);
+        speak(part);
+      } else {
+        selectSelections[idx].delete(part);
+      }
+    });
+  });
+  
+  container.querySelectorAll('.speak-text-btn').forEach((btn, i) => {
+    btn.addEventListener('click', () => speak(`Look at the ${selectTasks[i].animal}. Which body parts does it have?`));
+  });
+}
+
+function checkSelect() {
+  let correctCount = 0;
+  let wrongCount = 0;
+  let totalCorrect = 0;
+  let answeredAny = false;
+  
+  selectTasks.forEach((task, idx) => {
+    totalCorrect += task.correct.length;
+    const block = document.querySelector(`.select-block[data-idx="${idx}"]`);
+    block.querySelectorAll('.select-option').forEach(opt => {
+      opt.classList.remove('selected');
+      const part = opt.dataset.part;
+      const isSelected = selectSelections[idx] && selectSelections[idx].has(part);
+      const shouldSelect = task.correct.includes(part);
+      
+      if (isSelected) answeredAny = true;
+      
+      if (isSelected && shouldSelect) {
+        opt.classList.add('correct');
+        correctCount++;
+      } else if (isSelected && !shouldSelect) {
+        opt.classList.add('incorrect');
+        wrongCount++;
+      } else if (!isSelected && shouldSelect) {
+        opt.classList.add('incorrect');
+        wrongCount++;
+      }
+    });
+  });
+  
+  if (!answeredAny) {
+    showResult('select-result', 'Please select at least one body part! · Выбери хотя бы одну часть тела!', 'partial');
+    return;
+  }
+  
+  state.score += correctCount * 5;
+  state.mistakes += wrongCount;
+  updateScore();
+  
+  let type = 'fail';
+  let msg = '';
+  if (wrongCount === 0) {
+    type = 'success';
+    msg = `🎉 Отлично! Все ${correctCount} правильно! +${correctCount * 5} звёзд!`;
+    launchConfetti();
+  } else if (correctCount >= totalCorrect * 0.6) {
+    type = 'partial';
+    msg = `Хорошо! Правильно: ${correctCount} из ${totalCorrect}. Ошибок: ${wrongCount}. Попробуй ещё раз!`;
+  } else {
+    type = 'fail';
+    msg = `Правильно: ${correctCount} из ${totalCorrect}. Ошибок: ${wrongCount}. Посмотри на картинку внимательнее!`;
+  }
+  showResult('select-result', msg, type);
+}
+
+function resetSelect() {
+  selectSelections = {};
+  document.querySelectorAll('.select-option').forEach(opt => {
+    opt.classList.remove('selected', 'correct', 'incorrect');
+  });
+  hideResult('select-result');
+}
+
+// ===== RESULTS =====
+function showResult(id, message, type) {
+  const el = document.getElementById(id);
+  el.textContent = message;
+  el.className = `result-display ${type}`;
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function hideResult(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'none';
+}
+
+// ===== CONFETTI =====
+function launchConfetti() {
+  const colors = ['#e07a3c', '#2d5e4e', '#f4b942', '#4a9b5e', '#d9534f', '#fffdf7'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDuration = (2 + Math.random() * 2) + 's';
+    c.style.animationDelay = Math.random() * 0.5 + 's';
+    if (Math.random() > 0.5) c.style.borderRadius = '50%';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 5000);
+  }
+}
+
+// ===== INIT =====
+renderTheory();
+renderVocabulary();
+renderMemory();
+renderReading();
+renderGuess();
+renderSelect();
+updateScore();
+</script>
+
+</body>
+</html>

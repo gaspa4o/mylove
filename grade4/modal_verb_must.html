@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modal Verb MUST — Рабочий лист • 4 класс</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg: #FFF4E6;
+  --bg-2: #FFE8CC;
+  --primary: #FF6B35;
+  --primary-dark: #E54B16;
+  --primary-light: #FFB088;
+  --teal: #0D7377;
+  --teal-light: #14B8A6;
+  --yellow: #FFD93D;
+  --yellow-dark: #E5B82A;
+  --green: #4ECB71;
+  --green-dark: #2E8B57;
+  --red: #FF4757;
+  --red-dark: #C0392B;
+  --pink: #FF6B9D;
+  --ink: #2C2A4A;
+  --muted: #6B6890;
+  --card: #FFFFFF;
+  --border: #FFD9B3;
+  --shadow: 0 4px 24px rgba(255, 107, 53, 0.12);
+  --shadow-lg: 0 12px 40px rgba(255, 107, 53, 0.18);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  margin: 0;
+  min-height: 100vh;
+  line-height: 1.5;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 217, 61, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(20, 184, 166, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
+}
+
+.font-display { font-family: 'Fredoka', sans-serif; }
+
+/* Плавающие декоративные фигуры */
+.bg-shape {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.45;
+  z-index: 0;
+}
+.bg-shape-1 { top: 10%; right: 5%; width: 80px; height: 80px; background: var(--yellow); border-radius: 50%; animation: float 8s ease-in-out infinite; }
+.bg-shape-2 { bottom: 15%; left: 3%; width: 100px; height: 100px; background: var(--teal-light); border-radius: 30%; animation: float 10s ease-in-out infinite reverse; }
+.bg-shape-3 { top: 50%; right: 8%; width: 60px; height: 60px; background: var(--pink); border-radius: 40%; animation: float 7s ease-in-out infinite; }
+.bg-shape-4 { top: 70%; left: 8%; width: 50px; height: 50px; background: var(--primary); border-radius: 50%; animation: float 9s ease-in-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0,0) rotate(0); }
+  50% { transform: translate(10px, -20px) rotate(15deg); }
+}
+
+/* Шапка */
+.app-header {
+  background: linear-gradient(135deg, var(--primary) 0%, #FF8E53 50%, var(--primary-dark) 100%);
+  color: white;
+  padding: 28px 20px 0;
+  border-radius: 0 0 36px 36px;
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+.app-header::before {
+  content: '';
+  position: absolute;
+  width: 220px; height: 220px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 50%;
+  top: -110px; right: -60px;
+}
+.app-header::after {
+  content: '';
+  position: absolute;
+  width: 140px; height: 140px;
+  background: rgba(255, 217, 61, 0.35);
+  border-radius: 50%;
+  bottom: -70px; left: 12%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  backdrop-filter: blur(8px);
+}
+
+.header-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+.header-sub {
+  margin: 4px 0 0;
+  font-size: 15px;
+  opacity: 0.95;
+  font-weight: 600;
+}
+
+.header-badge {
+  margin-left: auto;
+  background: rgba(255,255,255,0.22);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Вкладки-папки */
+.tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding: 0 4px;
+  position: relative;
+  z-index: 3;
+}
+.tab {
+  background: rgba(255,255,255,0.18);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 14px 14px 0 0;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  position: relative;
+  letter-spacing: 0.3px;
+}
+.tab:hover { background: rgba(255,255,255,0.32); transform: translateY(-2px); }
+.tab.active {
+  background: var(--bg);
+  color: var(--primary-dark);
+  font-weight: 700;
+  transform: translateY(-2px);
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.06);
+}
+.tab i { font-size: 14px; }
+
+/* Основная часть */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 16px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.panel { display: none; animation: fadeIn 0.4s ease; }
+.panel.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Карточки */
+.card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--border);
+  margin-bottom: 22px;
+}
+
+.card-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed var(--border);
+}
+.card-title .icon {
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.card-subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+/* Теория */
+.theory-hero {
+  background: linear-gradient(135deg, #FFF8E7 0%, #FFE0B8 100%);
+  border-radius: 18px;
+  padding: 22px;
+  border: 2px solid var(--yellow);
+  position: relative;
+  margin-bottom: 18px;
+}
+.theory-hero h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 26px;
+  color: var(--primary-dark);
+  margin: 0 0 10px;
+}
+.theory-hero p { margin: 6px 0; font-size: 16px; }
+.big-must {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--primary);
+  display: inline-block;
+  background: white;
+  padding: 4px 22px;
+  border-radius: 12px;
+  margin: 4px 0;
+  box-shadow: 0 4px 0 var(--yellow-dark);
+  vertical-align: middle;
+}
+
+.theory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 720px) { .theory-grid { grid-template-columns: 1fr; } }
+
+.theory-block {
+  background: #FFFBF5;
+  border-radius: 14px;
+  padding: 16px;
+  border-left: 5px solid var(--primary);
+}
+.theory-block.negative { border-left-color: var(--red); }
+.theory-block h4 {
+  font-family: 'Fredoka', sans-serif;
+  margin: 0 0 8px;
+  font-size: 17px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theory-block .formula {
+  background: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  color: var(--primary-dark);
+  margin: 8px 0;
+  border: 1px dashed var(--primary);
+  font-size: 15px;
+}
+.theory-block.negative .formula {
+  color: var(--red-dark);
+  border-color: var(--red);
+}
+
+.example {
+  background: #F0FAF8;
+  border-left: 4px solid var(--teal-light);
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin: 8px 0;
+  font-size: 15px;
+}
+.example strong { color: var(--teal); font-family: 'Fredoka', sans-serif; }
+.example .ru { color: var(--muted); font-size: 13px; display: block; margin-top: 2px; }
+
+/* Вопросы */
+.task { margin-bottom: 6px; }
+.question {
+  background: #FFFBF5;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+}
+.question:hover { border-color: var(--primary-light); }
+.question-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  background: var(--primary);
+  color: white;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.question-text {
+  font-size: 16px;
+  font-weight: 600;
+  display: inline;
+  line-height: 1.7;
+}
+
+/* Варианты ответов */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 4px;
+}
+.option {
+  background: white;
+  border: 2px solid var(--border);
+  padding: 9px 18px;
+  border-radius: 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.option:hover {
+  border-color: var(--primary);
+  background: #FFF1E0;
+  transform: translateY(-1px);
+}
+.option.selected {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary-dark);
+  transform: scale(1.02);
+  box-shadow: 0 4px 14px rgba(255,107,53,0.4);
+}
+.option.selected.mustnt-opt {
+  background: var(--pink);
+  border-color: #E0407A;
+  box-shadow: 0 4px 14px rgba(255,107,157,0.4);
+}
+.option.correct {
+  background: var(--green) !important;
+  color: white !important;
+  border-color: var(--green-dark) !important;
+  box-shadow: 0 4px 14px rgba(78,203,113,0.4) !important;
+}
+.option.incorrect {
+  background: var(--red) !important;
+  color: white !important;
+  border-color: var(--red-dark) !important;
+  box-shadow: 0 4px 14px rgba(255,71,87,0.4) !important;
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* Кнопки */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 11px 22px;
+  border-radius: 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.btn-check { background: var(--green); color: white; }
+.btn-check:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(78,203,113,0.35); }
+.btn-reset { background: #F0E6E0; color: var(--ink); }
+.btn-reset:hover { background: #E0D5CC; transform: translateY(-2px); }
+
+/* Результат */
+.result-msg {
+  margin-top: 14px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+.result-msg.show { display: flex; animation: pop 0.3s ease; }
+.result-msg.success { background: #E3F8EC; color: var(--green-dark); border: 2px solid var(--green); }
+.result-msg.partial { background: #FFF3D6; color: #B07900; border: 2px solid var(--yellow-dark); }
+.result-msg.fail { background: #FFE3E5; color: var(--red-dark); border: 2px solid var(--red); }
+
+@keyframes pop {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Чтение */
+.reading-text {
+  font-size: 18px;
+  line-height: 2.1;
+  background: #FAFFFC;
+  padding: 22px 24px;
+  border-radius: 14px;
+  border: 2px solid #D0EBE7;
+  margin-bottom: 14px;
+}
+.reading-text .word {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 1px 3px;
+  margin: 0 1px;
+  transition: all 0.2s;
+  position: relative;
+  border-bottom: 2px dotted transparent;
+  display: inline-block;
+}
+.reading-text .word:hover {
+  background: rgba(255, 217, 61, 0.5);
+  border-bottom-color: var(--primary);
+}
+.reading-text .word.translation-active {
+  background: var(--yellow);
+  border-bottom-color: var(--primary);
+}
+
+.reading-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--teal);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reading-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.reading-controls .btn-listen {
+  background: var(--teal);
+  color: white;
+  padding: 9px 18px;
+  font-size: 14px;
+}
+.reading-controls .btn-listen:hover { background: var(--teal-light); transform: translateY(-2px); }
+
+.translation-popup {
+  position: fixed;
+  background: var(--ink);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  max-width: 220px;
+  text-align: center;
+}
+.translation-popup.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.translation-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--ink);
+}
+
+/* Ввод текста */
+.fill-input {
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  background: white;
+  color: var(--primary-dark);
+  min-width: 110px;
+  text-align: center;
+  display: inline-block;
+  margin: 0 4px;
+  vertical-align: middle;
+  transition: all 0.2s;
+}
+.fill-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255,107,53,0.15);
+}
+.fill-input.correct {
+  border-color: var(--green);
+  background: #E3F8EC;
+  color: var(--green-dark);
+}
+.fill-input.incorrect {
+  border-color: var(--red);
+  background: #FFE3E5;
+  color: var(--red-dark);
+  animation: shake 0.4s;
+}
+
+/* Соединение пар */
+.match-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.match-side {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  user-select: none;
+  position: relative;
+}
+.match-side:hover { border-color: var(--primary); transform: translateY(-1px); }
+.match-side.selected {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary-dark);
+  box-shadow: 0 4px 14px rgba(255,107,53,0.3);
+}
+.match-side.paired {
+  background: #FFE8CC;
+  color: var(--primary-dark);
+  border-color: var(--primary);
+  border-style: dashed;
+}
+.match-side.paired::after {
+  content: ' 🔗';
+  font-size: 14px;
+}
+.match-side.correct-pair {
+  background: var(--green) !important;
+  color: white !important;
+  border-color: var(--green-dark) !important;
+  border-style: solid !important;
+}
+.match-side.correct-pair::after { content: ' ✓'; }
+.match-side.wrong-pair {
+  background: var(--red) !important;
+  color: white !important;
+  border-color: var(--red-dark) !important;
+  animation: shake 0.4s;
+}
+.match-side.wrong-pair::after { content: ' ✗'; }
+.match-side.show-correct {
+  background: #E3F8EC !important;
+  color: var(--green-dark) !important;
+  border: 2px dashed var(--green) !important;
+  animation: pulse 0.6s ease;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@media (max-width: 600px) {
+  .match-row { grid-template-columns: 1fr; }
+}
+
+/* Порядок слов */
+.wordbank {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+  padding: 12px;
+  background: #FFF8E7;
+  border-radius: 10px;
+  border: 2px dashed var(--yellow-dark);
+  min-height: 50px;
+}
+.word-chip {
+  background: var(--yellow);
+  border: 2px solid var(--yellow-dark);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+}
+.word-chip:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(229,184,42,0.35); }
+.word-chip.used { opacity: 0.3; cursor: default; pointer-events: none; }
+
+.answer-zone {
+  min-height: 54px;
+  border: 2px dashed var(--primary);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  background: #FFFBF5;
+  margin-top: 8px;
+  transition: all 0.2s;
+}
+.answer-zone .word-chip {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary-dark);
+}
+.answer-zone .word-chip:hover { transform: none; }
+.answer-zone.correct { border-color: var(--green); background: #E3F8EC; border-style: solid; }
+.answer-zone.incorrect { border-color: var(--red); background: #FFE3E5; border-style: solid; }
+
+.answer-zone .placeholder {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Словарь */
+.dict-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.dict-card {
+  background: #FFFBF5;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  transition: all 0.2s;
+  position: relative;
+}
+.dict-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--primary-light); }
+.dict-card.special {
+  background: linear-gradient(135deg, #FFF1DC 0%, #FFE0B8 100%);
+  border-color: var(--primary);
+  border-width: 3px;
+}
+.dict-card.special::before {
+  content: 'MAIN';
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  background: var(--primary);
+  color: white;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+}
+.dict-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+.dict-en {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--primary-dark);
+}
+.dict-card.special .dict-en { font-size: 22px; }
+.dict-audio {
+  background: var(--teal);
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.dict-audio:hover { background: var(--teal-light); transform: scale(1.1); }
+.dict-audio.speaking { animation: audioPulse 0.6s ease; }
+@keyframes audioPulse {
+  0%, 100% { transform: scale(1); background: var(--teal); }
+  50% { transform: scale(1.25); background: var(--teal-light); }
+}
+.dict-ru { color: var(--ink); font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.dict-note { color: var(--muted); font-size: 13px; }
+
+/* Игра */
+.game-area {
+  background: linear-gradient(135deg, #FFF8E7 0%, #FFE8CC 100%);
+  border-radius: 18px;
+  padding: 24px;
+  border: 3px solid var(--yellow);
+  position: relative;
+  overflow: hidden;
+}
+.score-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.score-label { color: var(--muted); font-size: 13px; }
+.score-value {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 22px;
+  color: var(--primary-dark);
+}
+.progress-bar {
+  flex: 1;
+  min-width: 100px;
+  height: 12px;
+  background: #FFE8CC;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--yellow));
+  transition: width 0.4s;
+  border-radius: 6px;
+}
+
+.game-card {
+  background: white;
+  border-radius: 18px;
+  padding: 30px 24px;
+  margin: 16px auto;
+  max-width: 560px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  border: 3px solid var(--primary);
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Fredoka', sans-serif;
+  min-height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s;
+}
+.game-card.correct { border-color: var(--green); background: #F0FBF4; animation: correctPulse 0.5s; }
+.game-card.wrong { border-color: var(--red); background: #FFF5F5; animation: shake 0.4s; }
+@keyframes correctPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.game-buckets {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.bucket {
+  flex: 1;
+  min-width: 150px;
+  max-width: 220px;
+  padding: 22px 16px;
+  border-radius: 16px;
+  border: 4px dashed;
+  cursor: pointer;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  transition: all 0.2s;
+  text-align: center;
+  background: white;
+}
+.bucket.must {
+  border-color: var(--green);
+  color: var(--green-dark);
+}
+.bucket.mustnt {
+  border-color: var(--red);
+  color: var(--red-dark);
+}
+.bucket:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+.bucket.flash-correct { background: var(--green) !important; color: white !important; border-style: solid !important; }
+.bucket.flash-wrong { background: var(--red) !important; color: white !important; border-style: solid !important; }
+
+.game-result {
+  text-align: center;
+  padding: 30px;
+}
+.game-result h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 28px;
+  color: var(--primary-dark);
+  margin: 0 0 10px;
+}
+.game-result .big-score {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 60px;
+  color: var(--primary);
+  margin: 16px 0;
+}
+.game-result .emoji {
+  font-size: 70px;
+  display: block;
+  margin: 10px 0;
+  animation: bounce 1s ease infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Конфетти */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.9;
+}
+
+/* Подсказки */
+.hint-box {
+  background: #FFF8E7;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px dashed var(--yellow-dark);
+  margin-top: 14px;
+  font-size: 15px;
+}
+.hint-box h4 {
+  font-family: 'Fredoka', sans-serif;
+  color: var(--primary-dark);
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+/* Адаптивность */
+@media (max-width: 640px) {
+  .tab { font-size: 13px; padding: 10px 12px; }
+  .card { padding: 16px; }
+  .reading-text { font-size: 16px; padding: 16px; }
+  .header-title { font-size: 22px; }
+  .header-icon { width: 48px; height: 48px; font-size: 24px; }
+  .option { padding: 8px 14px; font-size: 14px; }
+  .game-card { font-size: 18px; padding: 24px 16px; }
+  .bucket { font-size: 17px; padding: 16px 12px; }
+  .big-must { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-shape bg-shape-1"></div>
+<div class="bg-shape bg-shape-2"></div>
+<div class="bg-shape bg-shape-3"></div>
+<div class="bg-shape bg-shape-4"></div>
+
+<header class="app-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="header-icon">📘</div>
+      <div>
+        <h1 class="header-title">Modal Verb MUST</h1>
+        <p class="header-sub">Рабочий лист по английскому языку • 4 класс</p>
+      </div>
+      <div class="header-badge">
+        <i class="fas fa-star"></i>
+        <span>Тема: Must / Mustn't</span>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="dictionary"><i class="fas fa-language"></i> Словарь</button>
+      <button class="tab" data-tab="theory"><i class="fas fa-book-open"></i> Теория</button>
+      <button class="tab" data-tab="exercises"><i class="fas fa-pencil-alt"></i> Упражнения</button>
+      <button class="tab" data-tab="reading"><i class="fas fa-book-reader"></i> Чтение</button>
+      <button class="tab" data-tab="test"><i class="fas fa-clipboard-check"></i> Тест</button>
+      <button class="tab" data-tab="game"><i class="fas fa-gamepad"></i> Игра</button>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- СЛОВАРЬ (ПЕРЕМЕЩЕН В НАЧАЛО) -->
+  <section class="panel active" data-panel="dictionary">
+    <div class="card">
+      <h2 class="card-title"><span class="icon"><i class="fas fa-language"></i></span> Словарь</h2>
+      <p class="card-subtitle">Начни с изучения новых слов. Нажми на 🔊, чтобы услышать произношение. Слово <strong>must</strong> выделено — это главное слово урока!</p>
+      <div class="dict-grid" id="dictGrid"></div>
+    </div>
+  </section>
+
+  <!-- ТЕОРИЯ -->
+  <section class="panel" data-panel="theory">
+    <div class="card">
+      <h2 class="card-title"><span class="icon"><i class="fas fa-book-open"></i></span> Что такое модальный глагол MUST?</h2>
+      <p class="card-subtitle">Глагол <strong>must</strong> — это самый «строгий» модальный глагол в английском языке.</p>
+      
+      <div class="theory-hero">
+        <h3>MUST = «должен», «надо»</h3>
+        <p>Мы используем <strong>must</strong>, когда говорим о <strong>правилах</strong>, <strong>законах</strong> и <strong>обязанностях</strong>.</p>
+        <p style="margin-top:12px;">
+          <span class="big-must">MUST</span>
+          <button class="dict-audio" onclick="speakWord(this, 'must')" style="vertical-align: middle; margin-left: 12px; width: 44px; height: 44px;"><i class="fas fa-volume-up"></i></button>
+        </p>
+        <p style="font-size:14px; color: var(--muted); margin-top: 10px;">
+          <i class="fas fa-hand-pointer"></i> Нажми на значок <strong>🔊</strong>, чтобы услышать, как звучит слово!
+        </p>
+      </div>
+
+      <div class="theory-grid">
+        <div class="theory-block">
+          <h4><i class="fas fa-check-circle" style="color:var(--green)"></i> Утверждение (+)</h4>
+          <div class="formula">Подлежащее + must + глагол</div>
+          <div class="example">
+            <strong>I must do my homework.</strong>
+            <span class="ru">Я должен делать домашнее задание.</span>
+          </div>
+          <div class="example">
+            <strong>Children must listen to the teacher.</strong>
+            <span class="ru">Дети должны слушать учителя.</span>
+          </div>
+          <div style="font-size:13px; color: var(--muted); margin-top:10px;">
+            <i class="fas fa-lightbulb" style="color: var(--yellow-dark);"></i> После <strong>must</strong> идёт глагол <strong>без to</strong>!
+          </div>
+        </div>
+
+        <div class="theory-block negative">
+          <h4><i class="fas fa-times-circle" style="color:var(--red)"></i> Отрицание (—)</h4>
+          <div class="formula">Подлежащее + must not (mustn't) + глагол</div>
+          <div class="example">
+            <strong>You mustn't run here.</strong>
+            <span class="ru">Здесь нельзя бегать.</span>
+          </div>
+          <div class="example">
+            <strong>We mustn't eat in class.</strong>
+            <span class="ru">Нельзя есть на уроке.</span>
+          </div>
+          <div style="font-size:13px; color: var(--muted); margin-top:10px;">
+            <i class="fas fa-lightbulb" style="color: var(--yellow-dark);"></i> <strong>mustn't</strong> = «нельзя», «запрещено»
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #F0FAF8; padding: 16px; border-radius: 12px; margin-top: 18px; border-left: 5px solid var(--teal-light);">
+        <h4 style="font-family:'Fredoka',sans-serif; color: var(--teal); margin: 0 0 10px; font-size: 17px;"><i class="fas fa-info-circle"></i> Когда используем must?</h4>
+        <ul style="margin: 0; padding-left: 22px; font-size: 15px; line-height: 1.8;">
+          <li><strong>Правила:</strong> "You must wear a uniform." — Ты должен носить форму.</li>
+          <li><strong>Законы:</strong> "You mustn't cross on red." — Нельзя переходить на красный.</li>
+          <li><strong>Обязанности:</strong> "I must help my mom." — Я должен помочь маме.</li>
+          <li><strong>Безопасность:</strong> "Children mustn't play with fire." — Детям нельзя играть с огнём.</li>
+        </ul>
+      </div>
+
+      <div class="hint-box">
+        <h4><i class="fas fa-magic" style="color: var(--primary);"></i> Лайфхак для запоминания</h4>
+        <p style="margin: 0;">
+          Если по-русски ты говоришь <strong>«должен»</strong> или <strong>«надо»</strong> — используй <strong>must</strong>.<br>
+          А если говоришь <strong>«нельзя»</strong> или <strong>«запрещено»</strong> — используй <strong>mustn't</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- УПРАЖНЕНИЯ -->
+  <section class="panel" data-panel="exercises">
+    <div class="card">
+      <h2 class="card-title"><span class="icon"><i class="fas fa-pencil-alt"></i></span> Упражнения</h2>
+      <p class="card-subtitle">Выполни все задания. Сначала выбери ответ, затем нажми «Проверить».</p>
+    </div>
+
+    <!-- Упражнение 1 -->
+    <div class="card task" data-task="ex1">
+      <h3 class="card-title"><span class="icon"><i class="fas fa-list-ol"></i></span> Упражнение 1: Выбери must или mustn't</h3>
+      
+      <div class="question" data-q="1">
+        <span class="question-num">1</span>
+        <span class="question-text">I ___ brush my teeth every morning.</span>
+        <div class="options">
+          <button class="option" data-correct="true">must</button>
+          <button class="option mustnt-opt">mustn't</button>
+        </div>
+      </div>
+      <div class="question" data-q="2">
+        <span class="question-num">2</span>
+        <span class="question-text">You ___ run in the school corridor.</span>
+        <div class="options">
+          <button class="option">must</button>
+          <button class="option mustnt-opt" data-correct="true">mustn't</button>
+        </div>
+      </div>
+      <div class="question" data-q="3">
+        <span class="question-num">3</span>
+        <span class="question-text">Students ___ listen to the teacher.</span>
+        <div class="options">
+          <button class="option" data-correct="true">must</button>
+          <button class="option mustnt-opt">mustn't</button>
+        </div>
+      </div>
+      <div class="question" data-q="4">
+        <span class="question-num">4</span>
+        <span class="question-text">We ___ eat in the classroom.</span>
+        <div class="options">
+          <button class="option">must</button>
+          <button class="option mustnt-opt" data-correct="true">mustn't</button>
+        </div>
+      </div>
+      <div class="question" data-q="5">
+        <span class="question-num">5</span>
+        <span class="question-text">Children ___ help their parents.</span>
+        <div class="options">
+          <button class="option" data-correct="true">must</button>
+          <button class="option mustnt-opt">mustn't</button>
+        </div>
+      </div>
+      <div class="question" data-q="6">
+        <span class="question-num">6</span>
+        <span class="question-text">You ___ be late for school.</span>
+        <div class="options">
+          <button class="option">must</button>
+          <button class="option mustnt-opt" data-correct="true">mustn't</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-check" onclick="checkTask('ex1')"><i class="fas fa-check"></i> Проверить</button>
+        <button class="btn btn-reset" onclick="resetTask('ex1')"><i class="fas fa-redo"></i> Сбросить</button>
+      </div>
+      <div class="result-msg" id="result-ex1"></div>
+    </div>
+
+    <!-- Упражнение 2 -->
+    <div class="card task" data-task="ex2">
+      <h3 class="card-title"><span class="icon"><i class="fas fa-keyboard"></i></span> Упражнение 2: Вставь must или mustn't</h3>
+      <p style="color: var(--muted); font-size: 14px; margin: 0 0 12px;">Напиши подходящее слово в пустое поле.</p>
+
+      <div class="question" data-q="1">
+        <span class="question-num">1</span>
+        <span class="question-text">We <input type="text" class="fill-input" data-correct="must" placeholder="?"> wash our hands before dinner.</span>
+      </div>
+      <div class="question" data-q="2">
+        <span class="question-num">2</span>
+        <span class="question-text">She <input type="text" class="fill-input" data-correct="mustn't" placeholder="?"> play near the road.</span>
+      </div>
+      <div class="question" data-q="3">
+        <span class="question-num">3</span>
+        <span class="question-text">Pupils <input type="text" class="fill-input" data-correct="must" placeholder="?"> do their homework.</span>
+      </div>
+      <div class="question" data-q="4">
+        <span class="question-num">4</span>
+        <span class="question-text">You <input type="text" class="fill-input" data-correct="mustn't" placeholder="?"> pick flowers in the park.</span>
+      </div>
+      <div class="question" data-q="5">
+        <span class="question-num">5</span>
+        <span class="question-text">They <input type="text" class="fill-input" data-correct="must" placeholder="?"> be quiet in the library.</span>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-check" onclick="checkFillTask('ex2')"><i class="fas fa-check"></i> Проверить</button>
+        <button class="btn btn-reset" onclick="resetTask('ex2')"><i class="fas fa-redo"></i> Сбросить</button>
+      </div>
+      <div class="result-msg" id="result-ex2"></div>
+    </div>
+
+    <!-- Упражнение 3 (ПОПЕРЕДЕЛАНО: Ситуация -> Правило) -->
+    <div class="card task" data-task="ex3">
+      <h3 class="card-title"><span class="icon"><i class="fas fa-link"></i></span> Упражнение 3: Соедини ситуацию и правило</h3>
+      <p style="color: var(--muted); font-size: 14px; margin: 0 0 12px;">Нажми на фразу слева, потом на подходящее правило справа. Нажми на связанную фразу, чтобы убрать связь.</p>
+      <div id="match-container"></div>
+
+      <div class="actions">
+        <button class="btn btn-check" onclick="checkMatch('ex3')"><i class="fas fa-check"></i> Проверить</button>
+        <button class="btn btn-reset" onclick="resetMatch('ex3')"><i class="fas fa-redo"></i> Сбросить</button>
+      </div>
+      <div class="result-msg" id="result-ex3"></div>
+    </div>
+
+    <!-- Упражнение 4 -->
+    <div class="card task" data-task="ex4">
+      <h3 class="card-title"><span class="icon"><i class="fas fa-sort"></i></span> Упражнение 4: Поставь слова по порядку</h3>
+      <p style="color: var(--muted); font-size: 14px; margin: 0 0 12px;">Нажимай на слова по порядку, чтобы построить предложение. Нажми на слово в ответе, чтобы вернуть его назад.</p>
+
+      <div class="question" data-q="1" data-correct="I must wash my hands">
+        <span class="question-num">1</span>
+        <span class="question-text">руки / помыть / я / должен / мои</span>
+        <div class="wordbank" data-zone="wo1">
+          <span class="word-chip" data-word="I">I</span>
+          <span class="word-chip" data-word="must">must</span>
+          <span class="word-chip" data-word="wash">wash</span>
+          <span class="word-chip" data-word="my">my</span>
+          <span class="word-chip" data-word="hands">hands</span>
+        </div>
+        <div class="answer-zone" data-answer-zone="wo1"><span class="placeholder">Нажимай на слова выше...</span></div>
+      </div>
+
+      <div class="question" data-q="2" data-correct="You mustn't run here">
+        <span class="question-num">2</span>
+        <span class="question-text">здесь / нельзя / бегать / тебе</span>
+        <div class="wordbank" data-zone="wo2">
+          <span class="word-chip" data-word="You">You</span>
+          <span class="word-chip" data-word="mustn't">mustn't</span>
+          <span class="word-chip" data-word="run">run</span>
+          <span class="word-chip" data-word="here">here</span>
+        </div>
+        <div class="answer-zone" data-answer-zone="wo2"><span class="placeholder">Нажимай на слова выше...</span></div>
+      </div>
+
+      <div class="question" data-q="3" data-correct="We must do our homework">
+        <span class="question-num">3</span>
+        <span class="question-text">должны / мы / делать / домашнее задание / наше</span>
+        <div class="wordbank" data-zone="wo3">
+          <span class="word-chip" data-word="We">We</span>
+          <span class="word-chip" data-word="must">must</span>
+          <span class="word-chip" data-word="do">do</span>
+          <span class="word-chip" data-word="our">our</span>
+          <span class="word-chip" data-word="homework">homework</span>
+        </div>
+        <div class="answer-zone" data-answer-zone="wo3"><span class="placeholder">Нажимай на слова выше...</span></div>
+      </div>
+
+      <div class="question" data-q="4" data-correct="Children mustn't play with fire">
+        <span class="question-num">4</span>
+        <span class="question-text">с / огнём / детям / играть / нельзя</span>
+        <div class="wordbank" data-zone="wo4">
+          <span class="word-chip" data-word="Children">Children</span>
+          <span class="word-chip" data-word="mustn't">mustn't</span>
+          <span class="word-chip" data-word="play">play</span>
+          <span class="word-chip" data-word="with">with</span>
+          <span class="word-chip" data-word="fire">fire</span>
+        </div>
+        <div class="answer-zone" data-answer-zone="wo4"><span class="placeholder">Нажимай на слова выше...</span></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-check" onclick="checkWordOrder('ex4')"><i class="fas fa-check"></i> Проверить</button>
+        <button class="btn btn-reset" onclick="resetWordOrder('ex4')"><i class="fas fa-redo"></i> Сбросить</button>
+      </div>
+      <div class="result-msg" id="result-ex4"></div>
+    </div>
+  </section>
+
+  <!-- ЧТЕНИЕ (ИСПРАВЛЕНО: добавлены data-task) -->
+  <section class="panel" data-panel="reading">
+    <div class="card">
+      <h2 class="card-title"><span class="icon"><i class="fas fa-book-reader"></i></span> Чтение</h2>
+      <p class="card-subtitle">Прочитай тексты. <strong>Нажми на любое слово</strong>, чтобы увидеть его перевод! Также можно послушать текст целиком.</p>
+    </div>
+
+    <div class="card task" data-task="reading1">
+      <h3 class="reading-title">📚 Текст 1: School Rules</h3>
+      <div class="reading-controls">
+        <button class="btn btn-listen" onclick="speakText('reading1-text')"><i class="fas fa-volume-up"></i> Слушать текст</button>
+      </div>
+      <p class="reading-text" id="reading1-text">
+        <span class="word" data-tr="Том">Tom</span> <span class="word" data-tr="глагол be (3 л. ед.ч.)">is</span> <span class="word" data-tr="(неопред. артикль)">a</span> <span class="word" data-tr="ученик">pupil</span>. <span class="word" data-tr="он">He</span> <span class="word" data-tr="ходит">goes</span> <span class="word" data-tr="в">to</span> <span class="word" data-tr="школу">school</span> <span class="word" data-tr="каждый">every</span> <span class="word" data-tr="день">day</span>. <span class="word" data-tr="Том">Tom</span> <span class="word" data-tr="должен">must</span> <span class="word" data-tr="носить">wear</span> <span class="word" data-tr="(неопред. артикль)">a</span> <span class="word" data-tr="форму">uniform</span>. <span class="word" data-tr="он">He</span> <span class="word" data-tr="должен">must</span> <span class="word" data-tr="приходить">arrive</span> <span class="word" data-tr="вовремя">on time</span>. <span class="word" data-tr="ученики">Pupils</span> <span class="word" data-tr="должны">must</span> <span class="word" data-tr="слушать">listen</span> <span class="word" data-tr="к">to</span> <span class="word" data-tr="(опред. артикль)">the</span> <span class="word" data-tr="учителя">teacher</span>. <span class="word" data-tr="они">They</span> <span class="word" data-tr="должны">must</span> <span class="word" data-tr="делать">do</span> <span class="word" data-tr="свою">their</span> <span class="word" data-tr="домашнее задание">homework</span>. <span class="word" data-tr="но">But</span> <span class="word" data-tr="они">they</span> <span class="word" data-tr="нельзя">mustn't</span> <span class="word" data-tr="бегать">run</span> <span class="word" data-tr="в">in</span> <span class="word" data-tr="(опред. артикль)">the</span> <span class="word" data-tr="коридоре">corridor</span>. <span class="word" data-tr="они">They</span> <span class="word" data-tr="нельзя">mustn't</span> <span class="word" data-tr="есть">eat</span> <span class="word" data-tr="в">in</span> <span class="word" data-tr="классе">class</span>. <span class="word" data-tr="Том">Tom</span> <span class="word" data-tr="любит">likes</span> <span class="word" data-tr="свою">his</span> <span class="word" data-tr="школу">school</span>.
+      </p>
+      
+      <h4 style="font-family:'Fredoka',sans-serif; color: var(--primary-dark); margin: 16px 0 8px; font-size: 17px;"><i class="fas fa-question-circle"></i> Задание к тексту 1:</h4>
+      <div class="question" data-q="1">
+        <span class="question-num">1</span>
+        <span class="question-text">What must Tom wear?</span>
+        <div class="options">
+          <button class="option" data-correct="true">A uniform</button>
+          <button class="option">A T-shirt</button>
+          <button class="option">Jeans</button>
+        </div>
+      </div>
+      <div class="question" data-q="2">
+        <span class="question-num">2</span>
+        <span class="question-text">What mustn't pupils do in the corridor?</span>
+        <div class="options">
+          <button class="option">Walk</button>
+          <button class="option" data-correct="true">Run</button>
+          <button class="option">Talk</button>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-check" onclick="checkTask('reading1')"><i class="fas fa-check"></i> Проверить</button>
+        <button class="btn btn-reset" onclick="resetTask('reading1')"><i class="fas fa-redo"></i> Сбросить</button>
+      </div>
+      <div class="result-msg" id="result-reading1"></div>
+    </div>
+
+    <div class="card task" data-task="reading2">
+      <h3 class="reading-title">🦁 Текст 2: At the Zoo</h3>
+      <div class="reading-controls">
+        <button class="btn btn-listen" onclick="speakText('reading2-text')"><i class="fas fa-volume-up"></i> Слушать текст</button>
+      </div>
+      <p class="reading-text" id="reading2-text">
+        <span class="word" data-tr="сегодня">Today</span> <span class="word" data-tr="глагол be (3 л.)">is</span> <span class="word" data-tr="суббота">Saturday</span>. <span class="word" data-tr="Майя">Maya</span> <span class="word" data-tr="и">and</span> <span class="word" data-tr="её">her</span> <span class="word" data-tr="папа">dad</span> <span class="word" data-tr="в">are at</span> <span class="word" data-tr="(опред. артикль)">the</span> <span class="word" data-tr="зоопарке">zoo</span>. <span class="word" data-tr="там">There</span> <span class="word" data-tr="есть">are</span> <span class="word" data-tr="много">many</span> <span class="word" data-tr="правил">rules</span>. <span class="word" data-tr="посетителям">Visitors</span> <span class="word" data-tr="нельзя">mustn't</span> <span class="word" data-tr="кормить">feed</span> <span class="word" data-tr="(опред. артикль)">the</span> <span class="word" data-tr="животных">animals</span>. <span class="word" data-tr="они">They</span> <span class="word" data-tr="нельзя">mustn't</span> <span class="word" data-tr="трогать">touch</span> <span class="word" data-tr="их">them</span>. <span class="word" data-tr="дети">Children</span> <span class="word" data-tr="должны">must</span> <span class="word" data-tr="оставаться">stay</span> <span class="word" data-tr="с">with</span> <span class="word" data-tr="своими">their</span> <span class="word" data-tr="родителями">parents</span>. <span class="word" data-tr="они">They</span> <span class="word" data-tr="нельзя">mustn't</span> <span class="word" data-tr="лезть">climb</span> <span class="word" data-tr="(опред. артикль)">the</span> <span class="word" data-tr="заборы">fences</span>. <span class="word" data-tr="но">But</span> <span class="word" data-tr="посетители">visitors</span> <span class="word" data-tr="должны">must</span> <span class="word" data-tr="брать">take</span> <span class="word" data-tr="фото">photos</span> <span class="word" data-tr="и">and</span> <span class="word" data-tr="они">they</span> <span class="word" data-tr="должны">must</span> <span class="word" data-tr="улыбаться">smile</span>! <span class="word" data-tr="Майя">Maya</span> <span class="word" data-tr="любит">loves</span> <span class="word" data-tr="(опред. артикль)">the</span> <span class="word" data-tr="обезьянок">monkeys</span>.
+      </p>
+      
+      <h4 style="font-family:'Fredoka',sans-serif; color: var(--primary-dark); margin: 16px 0 8px; font-size: 17px;"><i class="fas fa-question-circle"></i> Задание к тексту 2:</h4>
+      <div class="question" data-q="1">
+        <span class="question-num">1</span>
+        <span class="question-text">What mustn't visitors do at the zoo?</span>
+        <div class="options">
+          <button class="option">Take photos</button>
+          <button class="option" data-correct="true">Feed the animals</button>
+          <button class="option">Smile</button>
+        </div>
+      </div>
+      <div class="question" data-q="2">
+        <span class="question-num">2</span>
+        <span class="question-text">Who must children stay with?</span>
+        <div class="options">
+          <button class="option">Friends</button>
+          <button class="option" data-correct="true">Their parents</button>
+          <button class="option">Teachers</button>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-check" onclick="checkTask('reading2')"><i class="fas fa-check"></i> Проверить</button>
+        <button class="btn btn-reset" onclick="resetTask('reading2')"><i class="fas fa-redo"></i> Сбросить</button>
+      </div>
+      <div class="result-msg" id="result-reading2"></div>
+    </div>
+
+    <div class="card task" data-task="reading3">
+      <h3 class="reading-title">🏠 Текст 3: Home Rules</h3>
+      <div class="reading-controls">
+        <button class="btn btn-listen" onclick="speakText('reading3-text')"><i class="fas fa-volume-up"></i> Слушать текст</button>
+      </div>
+      <p class="reading-text" id="reading3-text">
+        <span class="word" data-tr="в">In</span> <span class="word" data-tr="моей">my</span> <span class="word" data-tr="семье">family</span>, <span class="word" data-tr="мы">we</span> <span class="word" data-tr="имеем">have</span> <span class="word" data-tr="правила">rules</span> <span class="word" data-tr="тоже">too</span>. <span class="word" data-tr="я">I</span> <span class="word" data-tr="должен">must</span> <span class="word" data-tr="заправлять">make</span> <span class="word" data-tr="свою">my</span> <span class="word" data-tr="кровать">bed</span> <span class="word" data-tr="утром">in the morning</span>. <span class="word" data-tr="я">I</span> <span class="word" data-tr="должен">must</span> <span class="word" data-tr="помогать">help</span> <span class="word" data-tr="моей">my</span> <span class="word" data-tr="маме">mom</span> <span class="word" data-tr="на">in</span> <span class="word" data-tr="(опред. артикль)">the</span> <span class="word" data-tr="кухне">kitchen</span>. <span class="word" data-tr="я">I</span> <span class="word" data-tr="нельзя">mustn't</span> <span class="word" data-tr="смотреть">watch</span> <span class="word" data-tr="телевизор">TV</span> <span class="word" data-tr="перед">before</span> <span class="word" data-tr="домашним заданием">homework</span>. <span class="word" data-tr="я">I</span> <span class="word" data-tr="должен">must</span> <span class="word" data-tr="чистить">brush</span> <span class="word" data-tr="свои">my</span> <span class="word" data-tr="зубы">teeth</span> <span class="word" data-tr="перед сном">before bed</span>. <span class="word" data-tr="я">I</span> <span class="word" data-tr="нельзя">mustn't</span> <span class="word" data-tr="есть">eat</span> <span class="word" data-tr="слишком">too</span> <span class="word" data-tr="много">many</span> <span class="word" data-tr="конфет">sweets</span>. <span class="word" data-tr="правила">Rules</span> <span class="word" data-tr="помогают">help</span> <span class="word" data-tr="нашей">our</span> <span class="word" data-tr="семье">family</span> <span class="word" data-tr="быть">be</span> <span class="word" data-tr="счастливой">happy</span>.
+      </p>
+      
+      <h4 style="font-family:'Fredoka',sans-serif; color: var(--primary-dark); margin: 16px 0 8px; font-size: 17px;"><i class="fas fa-question-circle"></i> Задание к тексту 3:</h4>
+      <div class="question" data-q="1">
+        <span class="question-num">1</span>
+        <span class="question-text">What must the child do in the morning?</span>
+        <div class="options">
+          <button class="option">Watch TV</button>
+          <button class="option" data-correct="true">Make the bed</button>
+          <button class="option">Eat sweets</button>
+        </div>
+      </div>
+      <div class="question" data-q="2">
+        <span class="question-num">2</span>
+        <span class="question-text">What mustn't the child do before homework?</span>
+        <div class="options">
+          <button class="option">Brush teeth</button>
+          <button class="option">Help mom</button>
+          <button class="option" data-correct="true">Watch TV</button>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-check" onclick="checkTask('reading3')"><i class="fas fa-check"></i> Проверить</button>
+        <button class="btn btn-reset" onclick="resetTask('reading3')"><i class="fas fa-redo"></i> Сбросить</button>
+      </div>
+      <div class="result-msg" id="result-reading3"></div>
+    </div>
+  </section>
+
+  <!-- ТЕСТ -->
+  <section class="panel" data-panel="test">
+    <div class="card">
+      <h2 class="card-title"><span class="icon"><i class="fas fa-clipboard-check"></i></span> Итоговый тест</h2>
+      <p class="card-subtitle">Проверь, как ты усвоил тему! Ответь на все вопросы и нажми «Проверить».</p>
+    </div>
+
+    <div class="card task" data-task="test">
+      <div class="question" data-q="1">
+        <span class="question-num">1</span>
+        <span class="question-text">Выбери правильный вариант: "We ___ cross the road on red."</span>
+        <div class="options">
+          <button class="option">must</button>
+          <button class="option mustnt-opt" data-correct="true">mustn't</button>
+        </div>
+      </div>
+      <div class="question" data-q="2">
+        <span class="question-num">2</span>
+        <span class="question-text">Выбери правильный вариант: "I ___ do my homework every day."</span>
+        <div class="options">
+          <button class="option" data-correct="true">must</button>
+          <button class="option mustnt-opt">mustn't</button>
+        </div>
+      </div>
+      <div class="question" data-q="3">
+        <span class="question-num">3</span>
+        <span class="question-text">Как переводится "must"?</span>
+        <div class="options">
+          <button class="option">могу</button>
+          <button class="option" data-correct="true">должен</button>
+          <button class="option">хочу</button>
+          <button class="option">буду</button>
+        </div>
+      </div>
+      <div class="question" data-q="4">
+        <span class="question-num">4</span>
+        <span class="question-text">Как переводится "mustn't"?</span>
+        <div class="options">
+          <button class="option">должен</button>
+          <button class="option">можно</button>
+          <button class="option" data-correct="true">нельзя</button>
+          <button class="option">нужно</button>
+        </div>
+      </div>
+      <div class="question" data-q="5">
+        <span class="question-num">5</span>
+        <span class="question-text">Что идёт ПОСЛЕ глагола must?</span>
+        <div class="options">
+          <button class="option">глагол с частицей to</button>
+          <button class="option" data-correct="true">глагол без to</button>
+          <button class="option">существительное</button>
+          <button class="option">прилагательное</button>
+        </div>
+      </div>
+      <div class="question" data-q="6">
+        <span class="question-num">6</span>
+        <span class="question-text">Выбери правильное предложение:</span>
+        <div class="options">
+          <button class="option">You must to listen to me.</button>
+          <button class="option" data-correct="true">You must listen to me.</button>
+          <button class="option">You must listening to me.</button>
+          <button class="option">You must listens to me.</button>
+        </div>
+      </div>
+      <div class="question" data-q="7">
+        <span class="question-num">7</span>
+        <span class="question-text">"Дети не должны играть с огнём." Как это будет по-английски?</span>
+        <div class="options">
+          <button class="option">Children must play with fire.</button>
+          <button class="option" data-correct="true">Children mustn't play with fire.</button>
+          <button class="option">Children can play with fire.</button>
+          <button class="option">Children mustn't to play with fire.</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-check" onclick="checkTask('test')"><i class="fas fa-check"></i> Проверить</button>
+        <button class="btn btn-reset" onclick="resetTask('test')"><i class="fas fa-redo"></i> Сбросить</button>
+      </div>
+      <div class="result-msg" id="result-test"></div>
+    </div>
+  </section>
+
+  <!-- ИГРА -->
+  <section class="panel" data-panel="game">
+    <div class="card">
+      <h2 class="card-title"><span class="icon"><i class="fas fa-gamepad"></i></span> Игра: Сортировка правил</h2>
+      <p class="card-subtitle">Прочитай предложение и реши: это надо делать (MUST) или нельзя (MUSTN'T)?</p>
+    </div>
+
+    <div class="card">
+      <div class="game-area" id="gameArea">
+        <div class="score-bar">
+          <div>
+            <div class="score-label">Счёт</div>
+            <div class="score-value"><span id="gameScore">0</span> / <span id="gameTotal">10</span></div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress" style="width: 0%;"></div></div>
+          <div>
+            <div class="score-label">Карточка</div>
+            <div class="score-value"><span id="gameCurrent">1</span></div>
+          </div>
+        </div>
+        <div class="game-card" id="gameCard">
+          <span id="gameSentence">...</span>
+        </div>
+        <div class="game-buckets">
+          <div class="bucket must" onclick="gameAnswer('must')">
+            <i class="fas fa-check-circle"></i> MUST
+            <div style="font-size:13px; font-weight:400; margin-top:4px;">надо / должен</div>
+          </div>
+          <div class="bucket mustnt" onclick="gameAnswer('mustnt')">
+            <i class="fas fa-times-circle"></i> MUSTN'T
+            <div style="font-size:13px; font-weight:400; margin-top:4px;">нельзя</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="translation-popup" id="translationPopup"></div>
+
+<script>
+/* ==================== ВКЛАДКИ ==================== */
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.panel');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.tab;
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`[data-panel="${target}"]`).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+/* ==================== ПЕРЕВОД СЛОВ В ТЕКСТЕ ==================== */
+const popup = document.getElementById('translationPopup');
+let activeWord = null;
+
+document.addEventListener('click', (e) => {
+  const word = e.target.closest('.word');
+  if (word && word.dataset.tr) {
+    e.stopPropagation();
+    if (word === activeWord) {
+      word.classList.remove('translation-active');
+      popup.classList.remove('show');
+      activeWord = null;
+      return;
+    }
+    if (activeWord) activeWord.classList.remove('translation-active');
+    activeWord = word;
+    word.classList.add('translation-active');
+    popup.textContent = word.dataset.tr;
+    popup.classList.add('show');
+    requestAnimationFrame(() => {
+      const rect = word.getBoundingClientRect();
+      const popupW = popup.offsetWidth;
+      const popupH = popup.offsetHeight;
+      let left = rect.left + rect.width/2 - popupW/2;
+      let top = rect.top - popupH - 8;
+      left = Math.max(8, Math.min(window.innerWidth - popupW - 8, left));
+      if (top < 8) top = rect.bottom + 8;
+      popup.style.left = left + 'px';
+      popup.style.top = top + 'px';
+    });
+    return;
+  }
+  if (activeWord) {
+    activeWord.classList.remove('translation-active');
+    activeWord = null;
+  }
+  popup.classList.remove('show');
+});
+
+window.addEventListener('scroll', () => {
+  if (activeWord) {
+    activeWord.classList.remove('translation-active');
+    activeWord = null;
+    popup.classList.remove('show');
+  }
+}, { passive: true });
+
+/* ==================== ПРОИЗНОШЕНИЕ ==================== */
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+  u.pitch = 1.0;
+  speechSynthesis.speak(u);
+}
+
+function speakWord(btn, text) {
+  speak(text);
+  btn.classList.add('speaking');
+  setTimeout(() => btn.classList.remove('speaking'), 800);
+}
+
+function speakText(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const text = el.textContent.replace(/\s+/g, ' ').trim();
+  speak(text);
+}
+
+/* ==================== ВЫБОР ВАРИАНТОВ И ПРОВЕРКА ==================== */
+document.querySelectorAll('.options').forEach(group => {
+  group.addEventListener('click', e => {
+    const opt = e.target.closest('.option');
+    if (!opt) return;
+    const question = group.closest('.question');
+    // Блокируем изменение после проверки
+    if (question.querySelector('.option.correct, .option.incorrect')) return;
+    group.querySelectorAll('.option.selected').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+});
+
+function checkTask(taskId) {
+  const task = document.querySelector(`[data-task="${taskId}"]`);
+  if (!task) return;
+  const questions = task.querySelectorAll('.question');
+  let correct = 0, total = 0, answered = 0;
+  
+  questions.forEach(q => {
+    total++;
+    const options = q.querySelectorAll('.option');
+    const selected = q.querySelector('.option.selected');
+    if (selected) answered++;
+    
+    options.forEach(opt => {
+      opt.classList.remove('correct', 'incorrect');
+      if (opt.dataset.correct === 'true') {
+        if (selected === opt) {
+          opt.classList.add('correct'); // Выбран правильный -> зелёный
+          correct++;
+        } else if (selected) {
+          opt.classList.add('correct'); // Показываем правильный -> зелёный
+        }
+      } else {
+        if (selected === opt) {
+          opt.classList.add('incorrect'); // Выбран неправильный -> красный
+        }
+      }
+    });
+  });
+  
+  showResult(taskId, correct, total, answered);
+}
+
+function resetTask(taskId) {
+  const task = document.querySelector(`[data-task="${taskId}"]`);
+  if (!task) return;
+  task.querySelectorAll('.option').forEach(o => {
+    o.classList.remove('selected', 'correct', 'incorrect');
+  });
+  task.querySelectorAll('.fill-input').forEach(i => {
+    i.value = '';
+    i.classList.remove('correct', 'incorrect');
+  });
+  const msg = document.getElementById(`result-${taskId}`);
+  if (msg) msg.classList.remove('show');
+}
+
+/* ==================== ВВОД ТЕКСТА ==================== */
+document.querySelectorAll('.fill-input').forEach(inp => {
+  inp.addEventListener('input', () => {
+    inp.classList.remove('correct', 'incorrect');
+  });
+});
+
+function checkFillTask(taskId) {
+  const task = document.querySelector(`[data-task="${taskId}"]`);
+  if (!task) return;
+  const inputs = task.querySelectorAll('.fill-input');
+  let correct = 0, total = 0, answered = 0;
+  
+  const normalize = s => s.toLowerCase().replace(/['`'’]/g, "").replace(/\s+/g, '').replace(/not/g, 'nt');
+  
+  inputs.forEach(inp => {
+    total++;
+    const val = inp.value.trim();
+    const expected = inp.dataset.correct;
+    if (val) answered++;
+    inp.classList.remove('correct', 'incorrect');
+    if (val && normalize(val) === normalize(expected)) {
+      inp.classList.add('correct'); // Зелёный
+      correct++;
+    } else if (val) {
+      inp.classList.add('incorrect'); // Красный
+    }
+  });
+  
+  showResult(taskId, correct, total, answered);
+}
+
+/* ==================== СОЕДИНЕНИЕ ПАР (ОБНОВЛЕННЫЕ ДАННЫЕ) ==================== */
+const matchData = {
+  ex3: {
+    left: [
+      { id: 'l1', text: 'You are in the library.', correct: 'r1' },
+      { id: 'l2', text: 'The light is red.', correct: 'r4' },
+      { id: 'l3', text: 'Your hands are dirty.', correct: 'r2' },
+      { id: 'l4', text: 'You have a test tomorrow.', correct: 'r3' },
+    ],
+    right: [
+      { id: 'r1', text: 'You must be quiet.' },
+      { id: 'r2', text: 'You must wash them.' },
+      { id: 'r3', text: 'You must do your homework.' },
+      { id: 'r4', text: "You mustn't cross the road." },
+    ]
+  }
+};
+
+const matchState = {};
+
+function initMatch(taskId) {
+  const data = matchData[taskId];
+  if (!data) return;
+  const container = document.getElementById('match-container');
+  if (!container) return;
+  
+  const rightShuffled = [...data.right].sort(() => Math.random() - 0.5);
+  matchState[taskId] = { selected: null, pairs: {} };
+  
+  let html = '';
+  data.left.forEach((left, i) => {
+    const right = rightShuffled[i];
+    html += `
+      <div class="match-row">
+        <div class="match-side match-left" data-id="${left.id}" data-correct="${left.correct}" data-task="${taskId}">
+          ${left.text}
+        </div>
+        <div class="match-side match-right" data-id="${right.id}" data-task="${taskId}">
+          ${right.text}
+        </div>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+  
+  container.querySelectorAll('.match-side').forEach(side => {
+    side.addEventListener('click', () => handleMatchClick(side, taskId));
+  });
+}
+
+function handleMatchClick(side, taskId) {
+  if (side.classList.contains('correct-pair') || side.classList.contains('wrong-pair') || side.classList.contains('show-correct')) {
+    return;
+  }
+  
+  const state = matchState[taskId];
+  if (!state) return;
+  
+  if (side.classList.contains('paired')) {
+    side.classList.remove('paired');
+    const partnerId = state.pairs[side.dataset.id];
+    if (partnerId) {
+      const partner = document.querySelector(`.match-side[data-id="${partnerId}"][data-task="${taskId}"]`);
+      if (partner) partner.classList.remove('paired');
+      delete state.pairs[side.dataset.id];
+      delete state.pairs[partnerId];
+    }
+    return;
+  }
+  
+  if (!state.selected) {
+    state.selected = side;
+    side.classList.add('selected');
+    return;
+  }
+  
+  if (state.selected === side) {
+    side.classList.remove('selected');
+    state.selected = null;
+    return;
+  }
+  
+  const sameColumn = state.selected.classList.contains('match-left') === side.classList.contains('match-left');
+  if (sameColumn) {
+    state.selected.classList.remove('selected');
+    state.selected = side;
+    side.classList.add('selected');
+    return;
+  }
+  
+  state.selected.classList.remove('selected');
+  state.selected.classList.add('paired');
+  side.classList.add('paired');
+  state.pairs[state.selected.dataset.id] = side.dataset.id;
+  state.pairs[side.dataset.id] = state.selected.dataset.id;
+  state.selected = null;
+}
+
+function checkMatch(taskId) {
+  const data = matchData[taskId];
+  const state = matchState[taskId];
+  if (!data || !state) return;
+  
+  let correct = 0, total = data.left.length, paired = 0;
+  
+  document.querySelectorAll(`.match-side[data-task="${taskId}"]`).forEach(s => {
+    s.classList.remove('correct-pair', 'wrong-pair', 'show-correct');
+  });
+  
+  data.left.forEach(left => {
+    const pairedWith = state.pairs[left.id];
+    if (pairedWith) {
+      paired++;
+      const leftEl = document.querySelector(`.match-side.match-left[data-id="${left.id}"][data-task="${taskId}"]`);
+      const rightEl = document.querySelector(`.match-side.match-right[data-id="${pairedWith}"][data-task="${taskId}"]`);
+      
+      if (pairedWith === left.correct) {
+        correct++;
+        if (leftEl) leftEl.classList.add('correct-pair'); // Зелёный
+        if (rightEl) rightEl.classList.add('correct-pair'); // Зелёный
+      } else {
+        if (leftEl) leftEl.classList.add('wrong-pair'); // Красный
+        if (rightEl) rightEl.classList.add('wrong-pair'); // Красный
+        const correctRight = document.querySelector(`.match-side.match-right[data-id="${left.correct}"][data-task="${taskId}"]`);
+        if (correctRight && !correctRight.classList.contains('paired')) {
+          correctRight.classList.add('show-correct');
+        }
+      }
+    }
+  });
+  
+  showResult(taskId, correct, total, paired);
+}
+
+function resetMatch(taskId) {
+  initMatch(taskId);
+  const msg = document.getElementById(`result-${taskId}`);
+  if (msg) msg.classList.remove('show');
+}
+
+/* ==================== ПОРЯДОК СЛОВ ==================== */
+function shuffleWordBanks() {
+  document.querySelectorAll('.wordbank').forEach(bank => {
+    const chips = Array.from(bank.children);
+    const shuffled = chips.sort(() => Math.random() - 0.5);
+    shuffled.forEach(c => bank.appendChild(c));
+  });
+}
+
+document.querySelectorAll('.wordbank').forEach(bank => {
+  const zoneId = bank.dataset.zone;
+  const zone = document.querySelector(`[data-answer-zone="${zoneId}"]`);
+  if (!zone) return;
+  
+  bank.querySelectorAll('.word-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      if (chip.classList.contains('used')) return;
+      
+      const ph = zone.querySelector('.placeholder');
+      if (ph) ph.style.display = 'none';
+      
+      const clone = document.createElement('span');
+      clone.className = 'word-chip in-answer';
+      clone.dataset.word = chip.dataset.word;
+      clone.textContent = chip.textContent;
+      clone.addEventListener('click', () => {
+        zone.removeChild(clone);
+        chip.classList.remove('used');
+        if (zone.querySelectorAll('.word-chip').length === 0) {
+          if (ph) ph.style.display = '';
+        }
+        zone.classList.remove('correct', 'incorrect');
+      });
+      zone.appendChild(clone);
+      chip.classList.add('used');
+      zone.classList.remove('correct', 'incorrect');
+    });
+  });
+});
+
+function checkWordOrder(taskId) {
+  const task = document.querySelector(`[data-task="${taskId}"]`);
+  if (!task) return;
+  const questions = task.querySelectorAll('.question');
+  let correct = 0, total = 0, answered = 0;
+  
+  questions.forEach(q => {
+    total++;
+    const expected = q.dataset.correct;
+    const zone = q.querySelector('.answer-zone');
+    const chips = zone.querySelectorAll('.word-chip');
+    if (chips.length > 0) answered++;
+    const built = Array.from(chips).map(c => c.dataset.word).join(' ');
+    zone.classList.remove('correct', 'incorrect');
+    if (built === expected) {
+      zone.classList.add('correct'); // Зелёный
+      correct++;
+    } else if (chips.length > 0) {
+      zone.classList.add('incorrect'); // Красный
+    }
+  });
+  
+  showResult(taskId, correct, total, answered);
+}
+
+function resetWordOrder(taskId) {
+  const task = document.querySelector(`[data-task="${taskId}"]`);
+  if (!task) return;
+  task.querySelectorAll('.answer-zone').forEach(zone => {
+    zone.querySelectorAll('.word-chip').forEach(c => c.remove());
+    zone.classList.remove('correct', 'incorrect');
+    const ph = zone.querySelector('.placeholder');
+    if (ph) ph.style.display = '';
+  });
+  task.querySelectorAll('.wordbank .word-chip').forEach(c => c.classList.remove('used'));
+  const msg = document.getElementById(`result-${taskId}`);
+  if (msg) msg.classList.remove('show');
+}
+
+/* ==================== СООБЩЕНИЕ О РЕЗУЛЬТАТЕ ==================== */
+function showResult(taskId, correct, total, answered) {
+  const msg = document.getElementById(`result-${taskId}`);
+  if (!msg) return;
+  
+  if (answered < total) {
+    msg.className = 'result-msg show partial';
+    msg.innerHTML = `<i class="fas fa-exclamation-circle"></i> Ты ответил на ${answered} из ${total}. Ответь на все вопросы!`;
+    setTimeout(() => msg.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    return;
+  }
+  
+  const percent = Math.round(correct / total * 100);
+  let cls, emoji, text;
+  if (percent === 100) {
+    cls = 'success';
+    emoji = '🎉';
+    text = `Отлично! Все верно! Ты настоящий эксперт по глаголу must!`;
+  } else if (percent >= 70) {
+    cls = 'success';
+    emoji = '👍';
+    text = `Хорошо! ${correct} из ${total}. Почти идеально!`;
+  } else if (percent >= 40) {
+    cls = 'partial';
+    emoji = '💪';
+    text = `${correct} из ${total}. Повтори теорию и попробуй снова!`;
+  } else {
+    cls = 'fail';
+    emoji = '📚';
+    text = `${correct} из ${total}. Не переживай! Изучи теорию ещё раз.`;
+  }
+  
+  msg.className = `result-msg show ${cls}`;
+  msg.innerHTML = `<i class="fas fa-flag-checkered"></i> ${text} ${emoji}`;
+  
+  setTimeout(() => msg.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+  
+  if (percent === 100) launchConfetti();
+}
+
+/* ==================== КОНФЕТТИ ==================== */
+function launchConfetti() {
+  const colors = ['#FF6B35', '#FFD93D', '#4ECB71', '#14B8A6', '#FF6B9D'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.top = '-20px';
+      c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      const size = 6 + Math.random() * 10;
+      c.style.width = size + 'px';
+      c.style.height = size + 'px';
+      document.body.appendChild(c);
+      
+      const duration = 2000 + Math.random() * 2000;
+      const drift = (Math.random() - 0.5) * 300;
+      c.animate([
+        { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+        { transform: `translate(${drift}px, ${window.innerHeight + 50}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+      ], { duration, easing: 'cubic-bezier(0.4, 0.0, 0.6, 1)' });
+      
+      setTimeout(() => c.remove(), duration);
+    }, i * 25);
+  }
+}
+
+/* ==================== ИГРА ==================== */
+const gameCards = [
+  { sentence: "I ___ brush my teeth every day.", answer: "must" },
+  { sentence: "You ___ run on the road.", answer: "mustnt" },
+  { sentence: "We ___ do our homework.", answer: "must" },
+  { sentence: "Children ___ play with fire.", answer: "mustnt" },
+  { sentence: "You ___ listen to your mom.", answer: "must" },
+  { sentence: "We ___ be late for school.", answer: "mustnt" },
+  { sentence: "I ___ wash my hands before dinner.", answer: "must" },
+  { sentence: "You ___ eat in the library.", answer: "mustnt" },
+  { sentence: "Students ___ be quiet in class.", answer: "must" },
+  { sentence: "You ___ cross on red light.", answer: "mustnt" }
+];
+
+let gameState = { index: 0, score: 0, locked: false };
+
+function updateGameUI() {
+  const card = gameCards[gameState.index];
+  document.getElementById('gameSentence').textContent = card.sentence;
+  document.getElementById('gameCurrent').textContent = gameState.index + 1;
+  document.getElementById('gameScore').textContent = gameState.score;
+  document.getElementById('gameTotal').textContent = gameCards.length;
+  const progress = (gameState.index / gameCards.length) * 100;
+  document.getElementById('gameProgress').style.width = progress + '%';
+  document.getElementById('gameCard').classList.remove('correct', 'wrong');
+}
+
+function gameAnswer(answer) {
+  if (gameState.locked) return;
+  gameState.locked = true;
+  
+  const card = gameCards[gameState.index];
+  const isCorrect = answer === card.answer;
+  
+  const cardEl = document.getElementById('gameCard');
+  const buckets = document.querySelectorAll('.bucket');
+  
+  if (isCorrect) {
+    cardEl.classList.add('correct');
+    if (answer === 'must') buckets[0].classList.add('flash-correct');
+    else buckets[1].classList.add('flash-correct');
+    gameState.score++;
+    document.getElementById('gameScore').textContent = gameState.score;
+  } else {
+    cardEl.classList.add('wrong');
+    if (answer === 'must') buckets[0].classList.add('flash-wrong');
+    else buckets[1].classList.add('flash-wrong');
+  }
+  
+  setTimeout(() => {
+    buckets.forEach(b => b.classList.remove('flash-correct', 'flash-wrong'));
+    gameState.index++;
+    
+    if (gameState.index >= gameCards.length) {
+      showGameResult();
+    } else {
+      updateGameUI();
+      gameState.locked = false;
+    }
+  }, 1200);
+}
+
+function showGameResult() {
+  const area = document.getElementById('gameArea');
+  const percent = Math.round(gameState.score / gameCards.length * 100);
+  let emoji, message;
+  if (percent === 100) { emoji = '🏆'; message = 'Идеально! Ты знаешь все правила!'; }
+  else if (percent >= 70) { emoji = '🎉'; message = 'Отличная работа!'; }
+  else if (percent >= 40) { emoji = '👍'; message = 'Хорошо, но можно лучше!'; }
+  else { emoji = '💪'; message = 'Не сдавайся! Попробуй ещё раз.'; }
+  
+  area.innerHTML = `
+    <div class="game-result">
+      <div class="emoji">${emoji}</div>
+      <h3>${message}</h3>
+      <div class="big-score">${gameState.score} / ${gameCards.length}</div>
+      <button class="btn btn-check" onclick="restartGame()"><i class="fas fa-redo"></i> Играть снова</button>
+    </div>
+  `;
+  
+  if (percent === 100) launchConfetti();
+}
+
+function restartGame() {
+  gameState = { index: 0, score: 0, locked: false };
+  const area = document.getElementById('gameArea');
+  area.innerHTML = `
+    <div class="score-bar">
+      <div>
+        <div class="score-label">Счёт</div>
+        <div class="score-value"><span id="gameScore">0</span> / <span id="gameTotal">10</span></div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="gameProgress" style="width: 0%;"></div></div>
+      <div>
+        <div class="score-label">Карточка</div>
+        <div class="score-value"><span id="gameCurrent">1</span></div>
+      </div>
+    </div>
+    <div class="game-card" id="gameCard">
+      <span id="gameSentence">...</span>
+    </div>
+    <div class="game-buckets">
+      <div class="bucket must" onclick="gameAnswer('must')">
+        <i class="fas fa-check-circle"></i> MUST
+        <div style="font-size:13px; font-weight:400; margin-top:4px;">надо / должен</div>
+      </div>
+      <div class="bucket mustnt" onclick="gameAnswer('mustnt')">
+        <i class="fas fa-times-circle"></i> MUSTN'T
+        <div style="font-size:13px; font-weight:400; margin-top:4px;">нельзя</div>
+      </div>
+    </div>
+  `;
+  updateGameUI();
+}
+
+/* ==================== СЛОВАРЬ ==================== */
+const dictionary = [
+  { en: 'must', ru: 'должен, надо', note: 'Модальный глагол — выражает обязанность или правило', special: true },
+  { en: "mustn't", ru: 'нельзя, запрещено', note: 'Сокращение от "must not"' },
+  { en: 'rule', ru: 'правило', note: '' },
+  { en: 'wear', ru: 'носить (одежду)', note: '' },
+  { en: 'uniform', ru: 'форма', note: 'Школьная форма' },
+  { en: 'listen', ru: 'слушать', note: 'listen to — слушать кого-то' },
+  { en: 'quiet', ru: 'тихий', note: 'be quiet — быть тихим' },
+  { en: 'cross', ru: 'переходить', note: 'cross the road — переходить дорогу' },
+  { en: 'road', ru: 'дорога', note: '' },
+  { en: 'safe', ru: 'безопасный', note: '' },
+  { en: 'careful', ru: 'осторожный', note: 'be careful — будь осторожен' },
+  { en: 'corridor', ru: 'коридор', note: '' },
+  { en: 'library', ru: 'библиотека', note: '' },
+  { en: 'homework', ru: 'домашнее задание', note: 'do homework — делать дз' },
+  { en: 'pupil', ru: 'ученик', note: '' },
+  { en: 'teacher', ru: 'учитель', note: '' },
+];
+
+function initDictionary() {
+  const grid = document.getElementById('dictGrid');
+  if (!grid) return;
+  grid.innerHTML = dictionary.map((w, i) => `
+    <div class="dict-card ${w.special ? 'special' : ''}">
+      <div class="dict-card-head">
+        <span class="dict-en">${w.en}</span>
+        <button class="dict-audio" data-idx="${i}" aria-label="Слушать слово"><i class="fas fa-volume-up"></i></button>
+      </div>
+      <div class="dict-ru">${w.ru}</div>
+      ${w.note ? `<div class="dict-note">${w.note}</div>` : ''}
+    </div>
+  `).join('');
+  
+  grid.querySelectorAll('.dict-audio').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx);
+      speakWord(btn, dictionary[idx].en);
+    });
+  });
+}
+
+/* ==================== ИНИЦИАЛИЗАЦИЯ ==================== */
+initMatch('ex3');
+initDictionary();
+shuffleWordBanks();
+updateGameUI();
+
+if ('speechSynthesis' in window) {
+  speechSynthesis.onvoiceschanged = () => {};
+  speechSynthesis.getVoices();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appearance · English Worksheet · 4th Grade</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f3ff;
+  --bg2: #ede5ff;
+  --primary: #9b6dff;
+  --primary-dark: #7c3aed;
+  --primary-light: #c4a5ff;
+  --accent: #e0c8ff;
+  --accent-light: #f3e8ff;
+  --text: #4c1d95;
+  --text-soft: #7c5cb0;
+  --card: #ffffff;
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --pink: #f472b6;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #f7f3ff 0%, #ede5ff 50%, #f3e8ff 100%);
+  color: var(--text);
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; margin: 0; }
+body::before {
+  content: '';
+  position: fixed; top: -10%; left: -10%;
+  width: 60%; height: 60%;
+  background: radial-gradient(circle, rgba(155,109,255,0.18) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+  animation: float1 12s ease-in-out infinite;
+}
+body::after {
+  content: '';
+  position: fixed; bottom: -10%; right: -10%;
+  width: 60%; height: 60%;
+  background: radial-gradient(circle, rgba(244,114,182,0.15) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+  animation: float2 15s ease-in-out infinite;
+}
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, 20px); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, -20px); }
+}
+.container {
+  position: relative; z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.header {
+  text-align: center;
+  padding: 35px 25px;
+  margin-bottom: 25px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(243,232,255,0.85) 100%);
+  border-radius: 32px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(155,109,255,0.25);
+  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.1);
+}
+.header h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.header p {
+  font-size: 1.15rem;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.tab-button {
+  padding: 12px 22px;
+  border: none;
+  background: white;
+  color: var(--primary-dark);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+}
+.tab-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.2);
+}
+.tab-button.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+.tab-content { display: none; animation: fadeIn 0.5s; }
+.tab-content.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(155,109,255,0.12);
+  margin-bottom: 20px;
+}
+.section-title {
+  font-size: 1.7rem;
+  color: var(--primary-dark);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.section-title .badge {
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: var(--primary-dark);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 18px;
+}
+.vocab-card {
+  background: linear-gradient(135deg, #ffffff 0%, #faf7ff 100%);
+  border-radius: 18px;
+  padding: 18px 14px;
+  text-align: center;
+  border: 2px solid #ede5ff;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.vocab-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(155,109,255,0.15), transparent);
+  transition: left 0.6s;
+}
+.vocab-card:hover::before { left: 100%; }
+.vocab-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: var(--primary);
+  box-shadow: 0 12px 25px rgba(124, 58, 237, 0.2);
+}
+.vocab-card .icon-wrap {
+  width: 60px; height: 60px;
+  margin: 0 auto 10px;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+.vocab-card .word {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 4px;
+  font-family: 'Fredoka', sans-serif;
+}
+.vocab-card .translation {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+.vocab-card .speak {
+  position: absolute;
+  top: 8px; right: 8px;
+  background: var(--primary);
+  color: white;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.vocab-card:hover .speak { opacity: 1; }
+
+/* Character Game */
+.character-game {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 25px;
+}
+@media (max-width: 880px) {
+  .character-game { grid-template-columns: 1fr; }
+}
+.character-display {
+  background: linear-gradient(160deg, #f3e8ff 0%, #e0c8ff 100%);
+  border-radius: 24px;
+  padding: 25px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(155,109,255,0.2);
+}
+.character-display::before {
+  content: '';
+  position: absolute;
+  top: -30px; left: -30px;
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, rgba(244,114,182,0.3), transparent 70%);
+  border-radius: 50%;
+}
+.character-display::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(155,109,255,0.3), transparent 70%);
+  border-radius: 50%;
+}
+.character-photo {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  border-radius: 20px;
+  border: 5px solid white;
+  box-shadow: 0 15px 30px rgba(124, 58, 237, 0.25);
+  position: relative;
+  z-index: 1;
+  animation: bounce 3s ease-in-out infinite;
+  object-fit: cover;
+  aspect-ratio: 3/4;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.character-name {
+  font-size: 2rem;
+  font-family: 'Fredoka', sans-serif;
+  color: var(--primary-dark);
+  margin-top: 15px;
+  position: relative;
+  z-index: 1;
+}
+.character-counter {
+  display: inline-block;
+  margin-top: 6px;
+  background: white;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  position: relative;
+  z-index: 1;
+}
+.character-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+.btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 22px rgba(124, 58, 237, 0.45);
+}
+.btn-secondary {
+  background: white;
+  color: var(--primary-dark);
+  border: 2px solid var(--primary);
+}
+.btn-secondary:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+}
+.description-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.option-group {
+  background: linear-gradient(135deg, #faf7ff 0%, #f3e8ff 100%);
+  border-radius: 16px;
+  padding: 14px 16px;
+  border: 1.5px solid rgba(155,109,255,0.15);
+}
+.option-label {
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+  font-family: 'Fredoka', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.option-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.option-btn {
+  padding: 8px 16px;
+  border: 2px solid #d9c4ff;
+  background: white;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: var(--text-soft);
+  transition: all 0.2s;
+  font-size: 0.95rem;
+}
+.option-btn:hover:not(.locked) {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+.option-btn.selected {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border-color: var(--primary-dark);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+.option-btn.correct {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  color: white;
+  border-color: #059669;
+}
+.option-btn.incorrect {
+  background: linear-gradient(135deg, #f87171 0%, #dc2626 100%);
+  color: white;
+  border-color: #dc2626;
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+.feedback-box {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e0c8ff 100%);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 15px;
+  text-align: center;
+  border: 2px dashed var(--primary);
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feedback-box .sentence {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  font-family: 'Fredoka', sans-serif;
+}
+
+/* Memory Game */
+.memory-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+  padding: 15px 25px;
+  border-radius: 50px;
+}
+.memory-info span {
+  font-weight: 700;
+  color: var(--primary-dark);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+}
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+@media (max-width: 500px) {
+  .memory-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+}
+.memory-card {
+  aspect-ratio: 3/4;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.memory-card-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.memory-card.flipped .memory-card-inner,
+.memory-card.matched .memory-card-inner {
+  transform: rotateY(180deg);
+}
+.memory-card.matched { pointer-events: none; }
+.memory-card-front, .memory-card-back {
+  position: absolute;
+  width: 100%; height: 100%;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid;
+}
+.memory-card-front {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border-color: var(--primary-dark);
+  font-size: 2rem;
+}
+.memory-card-front::after {
+  content: '?';
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.memory-card-back {
+  background: white;
+  color: var(--primary-dark);
+  transform: rotateY(180deg);
+  border-color: var(--accent);
+  padding: 8px;
+  text-align: center;
+}
+.memory-card-back .text-card {
+  font-size: 1.15rem;
+  font-weight: 800;
+  font-family: 'Fredoka', sans-serif;
+  line-height: 1.2;
+}
+.memory-card.matched .memory-card-back {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-color: var(--success);
+  color: #065f46;
+}
+
+/* Guess Who */
+.guess-description {
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+  padding: 20px 25px;
+  border-radius: 18px;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  border-left: 5px solid var(--primary);
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+.guess-description .highlight {
+  background: white;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 800;
+}
+.guess-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+.guess-option {
+  background: white;
+  border: 3px solid var(--accent);
+  border-radius: 18px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  overflow: hidden;
+}
+.guess-option:hover {
+  transform: scale(1.05) translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.2);
+}
+.guess-option.correct {
+  border-color: var(--success);
+  background: #d1fae5;
+  animation: pulse 0.5s;
+}
+.guess-option.incorrect {
+  border-color: var(--error);
+  background: #fee2e2;
+  opacity: 0.5;
+  animation: shake 0.4s;
+}
+.guess-option .name {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+.guess-option img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* Test */
+.question {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+  border-left: 5px solid var(--primary);
+  border: 1px solid rgba(155,109,255,0.15);
+  border-left-width: 5px;
+  transition: all 0.3s;
+}
+.question:hover { box-shadow: 0 6px 18px rgba(124, 58, 237, 0.12); }
+.question-text {
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+.question-number {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 28px;
+  font-family: 'Fredoka', sans-serif;
+  margin-right: 8px;
+  font-size: 0.9rem;
+}
+.answers { display: flex; flex-direction: column; gap: 8px; }
+.answer-option {
+  padding: 10px 16px;
+  background: #faf7ff;
+  border: 2px solid #e0c8ff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  color: var(--text);
+}
+.answer-option:hover {
+  border-color: var(--primary);
+  background: var(--accent-light);
+  transform: translateX(3px);
+}
+.answer-option.selected {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border-color: var(--primary-dark);
+}
+.answer-option.correct {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  color: white;
+  border-color: #059669;
+}
+.answer-option.incorrect {
+  background: linear-gradient(135deg, #f87171 0%, #dc2626 100%);
+  color: white;
+  border-color: #dc2626;
+}
+.test-result {
+  text-align: center;
+  padding: 25px;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+  border-radius: 20px;
+  margin-top: 20px;
+  display: none;
+}
+.test-result.show { display: block; animation: fadeIn 0.6s; }
+.test-result .score {
+  font-size: 3rem;
+  font-family: 'Fredoka', sans-serif;
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+.test-result .stars {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+.test-result .message {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+/* Theory */
+.theory-block {
+  margin-bottom: 22px;
+  padding: 18px 22px;
+  background: linear-gradient(135deg, #faf7ff 0%, #f3e8ff 100%);
+  border-radius: 16px;
+  border-left: 5px solid var(--primary);
+}
+.theory-block h3 {
+  color: var(--primary-dark);
+  font-size: 1.35rem;
+  margin-bottom: 10px;
+}
+.theory-block p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 8px 0;
+  color: var(--text);
+}
+.theory-block .example {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin: 8px 0;
+  font-style: italic;
+  border: 1px dashed var(--primary);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+.theory-block .example b { color: var(--pink); font-style: normal; }
+
+/* Practice */
+.practice-item {
+  background: linear-gradient(135deg, #faf7ff 0%, #f3e8ff 100%);
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(155,109,255,0.15);
+}
+.fill-sentence {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.fill-blank {
+  display: inline-block;
+  min-width: 90px;
+  padding: 4px 12px;
+  border-bottom: 3px solid var(--primary);
+  background: white;
+  border-radius: 8px 8px 0 0;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin: 0 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.fill-blank:hover { background: var(--accent-light); }
+.fill-blank.filled { background: var(--accent-light); }
+.fill-blank.correct {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: var(--success);
+}
+.fill-blank.incorrect {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: var(--error);
+}
+.word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+}
+.word-bank-item {
+  padding: 6px 14px;
+  background: white;
+  border: 2px solid var(--primary);
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--primary-dark);
+  transition: all 0.2s;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+}
+.word-bank-item:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+.word-bank-item.used {
+  opacity: 0.3;
+  pointer-events: none;
+  background: #e0c8ff;
+  border-color: #e0c8ff;
+  color: white;
+  text-decoration: line-through;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(150%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+  font-weight: 700;
+  transition: transform 0.4s;
+  z-index: 1000;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.05rem;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.success { background: linear-gradient(135deg, #34d399 0%, #059669 100%); }
+.toast.error { background: linear-gradient(135deg, #f87171 0%, #dc2626 100%); }
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 10px; height: 14px;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 2px;
+}
+@keyframes confettiFall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* Stars rating */
+.stars-rating {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin: 10px 0;
+}
+.stars-rating .star {
+  font-size: 2rem;
+  filter: grayscale(1) opacity(0.3);
+  transition: all 0.3s;
+}
+.stars-rating .star.active {
+  filter: none;
+  animation: starPop 0.5s;
+}
+@keyframes starPop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+.intro-tip {
+  background: linear-gradient(135deg, #fef9c3 0%, #fde68a 100%);
+  border-left: 5px solid #f59e0b;
+  padding: 14px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #92400e;
+}
+.intro-tip b { color: #78350f; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Appearance ✨</h1>
+    <p>Описание внешности · 4th Grade English Worksheet</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-button active" onclick="switchTab('vocab', this)">📖 Vocabulary</button>
+    <button class="tab-button" onclick="switchTab('theory', this)">📚 Theory</button>
+    <button class="tab-button" onclick="switchTab('practice', this)">✏️ Practice</button>
+    <button class="tab-button" onclick="switchTab('game1', this)">🎮 Describe</button>
+    <button class="tab-button" onclick="switchTab('game2', this)">🧠 Memory</button>
+    <button class="tab-button" onclick="switchTab('game3', this)">🔍 Guess Who</button>
+    <button class="tab-button" onclick="switchTab('test', this)">📝 Test</button>
+  </div>
+
+  <!-- VOCABULARY -->
+  <div id="vocab" class="tab-content active">
+    <div class="card">
+      <h2 class="section-title">📖 Vocabulary <span class="badge">18 words</span></h2>
+      <div class="intro-tip">👆 Нажми на карточку, чтобы услышать произношение слова!</div>
+      <div class="vocab-grid" id="vocabGrid"></div>
+    </div>
+  </div>
+
+  <!-- THEORY -->
+  <div id="theory" class="tab-content">
+    <div class="card">
+      <h2 class="section-title">📚 Theory <span class="badge">How to describe</span></h2>
+      <div class="theory-block">
+        <h3>1. Структура описания 👤</h3>
+        <p>Чтобы описать человека, используй <b>am / is / are</b> для роста и телосложения, и <b>have / has</b> для волос, глаз и особенностей.</p>
+        <div class="example">
+          He <b>is</b> tall. — Он высокий.<br>
+          She <b>has</b> long hair. — У неё длинные волосы.
+        </div>
+      </div>
+      <div class="theory-block">
+        <h3>2. Рост и телосложение 📏</h3>
+        <p>Используем <b>is</b> (он/она есть):</p>
+        <div class="example">
+          He <b>is tall</b>. — Он высокий.<br>
+          She <b>is short</b>. — Она низкая.<br>
+          He <b>is slim</b>. — Он стройный.<br>
+          She <b>is plump</b>. — Она полная.
+        </div>
+      </div>
+      <div class="theory-block">
+        <h3>3. Волосы и глаза 👁️</h3>
+        <p>Используем <b>has</b> (имеет). Сначала длина, потом цвет:</p>
+        <div class="example">
+          He <b>has short brown hair</b>. — У него короткие каштановые волосы.<br>
+          She <b>has long blonde hair</b>. — У неё длинные светлые волосы.<br>
+          He <b>has blue eyes</b>. — У него голубые глаза.
+        </div>
+      </div>
+      <div class="theory-block">
+        <h3>4. Особенности 🎓</h3>
+        <p>Про очки, бороду, усы и веснушки тоже используем <b>has</b>:</p>
+        <div class="example">
+          She <b>has glasses</b>. — У неё очки.<br>
+          He <b>has a beard</b>. — У него борода.<br>
+          She <b>has freckles</b>. — У неё веснушки.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICE -->
+  <div id="practice" class="tab-content">
+    <div class="card">
+      <h2 class="section-title">✏️ Practice <span class="badge">Fill in the gaps</span></h2>
+      <div class="intro-tip">👇 Прочитай предложение, выбери нужное слово из списка и нажми на пустое место. <br><b>Подсказка:</b> Нажми на заполненное поле, чтобы вернуть слово обратно.</div>
+      <div id="practiceSentences"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary" onclick="checkPractice()">🔍 Check Answers</button>
+        <button class="btn btn-secondary" onclick="resetPractice()">🔄 Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME 1: Describe Character -->
+  <div id="game1" class="tab-content">
+    <div class="card">
+      <h2 class="section-title">🎮 Describe the Character <span class="badge">5 photos</span></h2>
+      <div class="intro-tip">👀 Посмотри на фото и выбери правильные слова, чтобы описать внешность человека!</div>
+      <div class="character-game">
+        <div>
+          <div class="character-display">
+            <img id="charImg" src="" alt="Character" class="character-photo">
+            <div class="character-name" id="charName"></div>
+            <div class="character-counter" id="charCounter"></div>
+            <div class="character-nav">
+              <button class="btn btn-secondary" onclick="prevChar()">⬅ Prev</button>
+              <button class="btn btn-secondary" onclick="nextChar()">Next ➡</button>
+            </div>
+          </div>
+        </div>
+        <div class="description-options" id="descOptions"></div>
+      </div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary" onclick="checkDescription()">✅ Check</button>
+        <button class="btn btn-secondary" onclick="resetDescription()">🔄 Reset</button>
+      </div>
+      <div class="feedback-box" id="feedbackBox">
+        <span class="sentence">Выбери характеристики и нажми "Check"!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME 2: Memory -->
+  <div id="game2" class="tab-content">
+    <div class="card">
+      <h2 class="section-title">🧠 Memory Game <span class="badge">8 pairs</span></h2>
+      <div class="memory-info">
+        <span>🎯 Moves: <span id="movesCount">0</span></span>
+        <span>⭐ Pairs: <span id="pairsCount">0</span> / 8</span>
+        <button class="btn btn-secondary" onclick="initMemory()">🔄 New Game</button>
+      </div>
+      <div class="intro-tip">🔎 Найди пары: английское слово ↔ русский перевод!</div>
+      <div class="memory-grid" id="memoryGrid"></div>
+    </div>
+  </div>
+
+  <!-- GAME 3: Guess Who -->
+  <div id="game3" class="tab-content">
+    <div class="card">
+      <h2 class="section-title">🔍 Guess Who? <span class="badge">5 riddles</span></h2>
+      <div class="game-stats" style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
+        <div class="stat-item" style="background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); padding: 10px 20px; border-radius: 50px; font-weight: 700; color: var(--primary-dark); font-family: 'Fredoka', sans-serif;">Question: <span class="val" id="guessQNum" style="color: var(--pink); margin-left: 6px; font-size: 1.2rem;">1</span>/5</div>
+        <div class="stat-item" style="background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); padding: 10px 20px; border-radius: 50px; font-weight: 700; color: var(--primary-dark); font-family: 'Fredoka', sans-serif;">Correct: <span class="val" id="guessScore" style="color: var(--pink); margin-left: 6px; font-size: 1.2rem;">0</span></div>
+      </div>
+      <div class="guess-description" id="guessDesc"></div>
+      <div class="guess-grid" id="guessGrid"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary" id="nextGuessBtn" onclick="nextGuess()" style="display: none;">Next Riddle ➡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST -->
+  <div id="test" class="tab-content">
+    <div class="card">
+      <h2 class="section-title">📝 Final Test <span class="badge">6 questions</span></h2>
+      <div id="testQuestions"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary" onclick="checkTest()">🏁 Finish Test</button>
+        <button class="btn btn-secondary" onclick="resetTest()">🔄 Try Again</button>
+      </div>
+      <div class="test-result" id="testResult">
+        <div class="stars" id="testStars"></div>
+        <div class="score" id="testScore"></div>
+        <div class="message" id="testMessage"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+/* ========= Данные персонажей с реальными фото ========= */
+const characters = [
+  {
+    name: 'Sarah',
+    img: 'https://z-cdn-media.chatglm.cn/files/cd65b0f5-ade0-47f4-8a8f-2addcefd22e4.jpeg?auth_key=1887126700-7f70aa5191b3424b823e1ed23edd43e0-0-9a83dddfb6a0b8c578ca0017cda7b420',
+    correct: { height: 'tall', build: 'slim', hairColor: 'blonde', hairStyle: 'short', eyes: 'blue', special: 'none' }
+  },
+  {
+    name: 'Leo',
+    img: 'https://z-cdn-media.chatglm.cn/files/eb700e2d-9d1b-4e31-99ee-128ede3da8fb.jpeg?auth_key=1887126700-d094bbb0d746477d9087f0629c3e6f7b-0-0e72679a56cf18750a8b9548e015ae8c',
+    correct: { height: 'short', build: 'slim', hairColor: 'red', hairStyle: 'curly', eyes: 'green', special: 'freckles' }
+  },
+  {
+    name: 'Mr. Brown',
+    img: 'https://z-cdn-media.chatglm.cn/files/08f2d404-927a-4748-abe0-868da6426252.jpeg?auth_key=1887126700-c900ac907b9c463088a1b5cb1a91321f-0-df72eabf28b858cbd7d53735793aa368',
+    correct: { height: 'tall', build: 'slim', hairColor: 'grey', hairStyle: 'short', eyes: 'blue', special: 'beard' }
+  },
+  {
+    name: 'David',
+    img: 'https://z-cdn-media.chatglm.cn/files/b51562ab-73df-4690-83ab-1e4a3a980ebb.jpeg?auth_key=1887126700-b96c1862960e4d829e086e60b14c07eb-0-98106f295403936f4d63ee0f8eaebb81',
+    correct: { height: 'medium', build: 'plump', hairColor: 'brown', hairStyle: 'short', eyes: 'brown', special: 'mustache' }
+  },
+  {
+    name: 'Mia',
+    img: 'https://z-cdn-media.chatglm.cn/files/6e4eff76-fa03-489d-b731-e37331578a7e.jpeg?auth_key=1887126700-6c3f5adaf7b34343b695227a8877ee3f-0-33db4aa25601e5b507f3f9821a13a8ce',
+    correct: { height: 'tall', build: 'slim', hairColor: 'black', hairStyle: 'long', eyes: 'green', special: 'none' }
+  }
+];
+
+/* ========= Словарь ========= */
+const vocab = [
+  { word: 'tall', tr: 'высокий', icon: '📏' },
+  { word: 'short', tr: 'низкий', icon: '🤏' },
+  { word: 'slim', tr: 'стройный', icon: '🧍' },
+  { word: 'plump', tr: 'полный', icon: '🐻' },
+  { word: 'blonde', tr: 'блонд', icon: '💛' },
+  { word: 'brown hair', tr: 'каштановый', icon: '🟤' },
+  { word: 'black hair', tr: 'чёрный', icon: '🖤' },
+  { word: 'red hair', tr: 'рыжий', icon: '🦰' },
+  { word: 'grey hair', tr: 'седой', icon: '👨‍🦳' },
+  { word: 'long', tr: 'длинный', icon: '💁‍♀️' },
+  { word: 'curly', tr: 'кудрявый', icon: '🌀' },
+  { word: 'straight', tr: 'прямой', icon: '➿' },
+  { word: 'glasses', tr: 'очки', icon: '👓' },
+  { word: 'beard', tr: 'борода', icon: '🧔' },
+  { word: 'freckles', tr: 'веснушки', icon: '😊' },
+  { word: 'blue eyes', tr: 'голубые глаза', icon: '👁️' },
+  { word: 'green eyes', tr: 'зелёные глаза', icon: '🟢' },
+  { word: 'brown eyes', tr: 'карие глаза', icon: '🟤' }
+];
+
+function renderVocab() {
+  const grid = document.getElementById('vocabGrid');
+  grid.innerHTML = vocab.map(v => `
+    <div class="vocab-card" onclick="speak('${v.word}')">
+      <div class="speak">🔊</div>
+      <div class="icon-wrap">${v.icon}</div>
+      <div class="word">${v.word}</div>
+      <div class="translation">${v.tr}</div>
+    </div>
+  `).join('');
+}
+
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = 0.9;
+    speechSynthesis.speak(u);
+  }
+}
+
+/* ========= Practice (Обновленный) ========= */
+const practiceData = [
+  { 
+    sentence: '1. Sarah is [[tall]] and [[slim]]. She has [[short]] [[blonde]] hair.',
+    words: ['tall', 'slim', 'short', 'blonde', 'plump', 'curly', 'red'] 
+  },
+  { 
+    sentence: '2. Leo is [[short]]. He has [[curly]] [[red]] hair and [[freckles]].',
+    words: ['short', 'curly', 'red', 'freckles', 'tall', 'straight', 'black', 'beard'] 
+  },
+  { 
+    sentence: '3. Mr. Brown is [[tall]] and slim. He has [[grey]] hair and a [[beard]].',
+    words: ['tall', 'grey', 'beard', 'short', 'blonde', 'mustache', 'glasses'] 
+  },
+  { 
+    sentence: '4. David is [[medium]] and [[plump]]. He has a [[mustache]].',
+    words: ['medium', 'plump', 'mustache', 'tall', 'slim', 'beard', 'freckles'] 
+  },
+  { 
+    sentence: '5. Mia is [[tall]]. She has [[long]] [[black]] hair.',
+    words: ['tall', 'long', 'black', 'short', 'curly', 'blonde', 'brown'] 
+  }
+];
+
+let selectedWord = null;
+let selectedChipId = null;
+
+function renderPractice() {
+  const cont = document.getElementById('practiceSentences');
+  let html = '';
+  practiceData.forEach((p, i) => {
+    // Предложение
+    html += `<div class="practice-item"><div class="fill-sentence">`;
+    let parts = p.sentence.split(/\[\[(.+?)\]\]/);
+    parts.forEach((part, j) => {
+      if (j % 2 === 1) {
+        const id = `p-${i}-${j}`;
+        html += `<span class="fill-blank" id="${id}" data-answer="${part}" onclick="placeWord('${id}')">___</span>`;
+      } else {
+        html += part;
+      }
+    });
+    html += `</div>`;
+    // Локальный банк слов
+    html += `<div class="word-bank">`;
+    p.words.forEach(w => {
+      const chipId = `wb-${i}-${w}`;
+      html += `<div class="word-bank-item" id="${chipId}" onclick="selectWord('${w}', '${chipId}')">${w}</div>`;
+    });
+    html += `</div></div>`;
+  });
+  cont.innerHTML = html;
+}
+
+function selectWord(word, chipId) {
+  const chip = document.getElementById(chipId);
+  if (chip.classList.contains('used')) return;
+  
+  selectedWord = word;
+  selectedChipId = chipId;
+  
+  // Подсветка выбора
+  document.querySelectorAll('.word-bank-item').forEach(el => {
+    el.style.background = '';
+    el.style.color = '';
+  });
+  chip.style.background = 'var(--primary)';
+  chip.style.color = 'white';
+}
+
+function placeWord(blankId) {
+  const el = document.getElementById(blankId);
+  
+  // Если поле уже заполнено, очищаем его и возвращаем слово
+  if (el.dataset.placedChip && !selectedWord) {
+    document.getElementById(el.dataset.placedChip).classList.remove('used');
+    el.textContent = '___';
+    el.classList.remove('filled', 'correct', 'incorrect');
+    delete el.dataset.placed;
+    delete el.dataset.placedChip;
+    return;
+  }
+  
+  // Если новое слово не выбрано, ничего не делаем
+  if (!selectedWord) {
+    showToast('Сначала выбери слово!', 'error');
+    return;
+  }
+  
+  // Если поле было заполнено, освобождаем старый чип
+  if (el.dataset.placedChip) {
+    document.getElementById(el.dataset.placedChip).classList.remove('used');
+  }
+  
+  // Ставим новое слово
+  el.textContent = selectedWord;
+  el.dataset.placed = selectedWord;
+  el.dataset.placedChip = selectedChipId;
+  el.classList.add('filled');
+  el.classList.remove('correct', 'incorrect');
+  
+  // Помечаем чип как использованный
+  document.getElementById(selectedChipId).classList.add('used');
+  
+  // Сброс выбора
+  selectedWord = null;
+  selectedChipId = null;
+  document.querySelectorAll('.word-bank-item').forEach(el => {
+    el.style.background = '';
+    el.style.color = '';
+  });
+}
+
+function checkPractice() {
+  let correct = 0, total = 0;
+  document.querySelectorAll('.fill-blank').forEach(el => {
+    const answer = el.dataset.answer;
+    const placed = el.dataset.placed || '';
+    total++;
+    el.classList.remove('correct', 'incorrect');
+    if (placed === answer) {
+      el.classList.add('correct');
+      correct++;
+    } else {
+      el.classList.add('incorrect');
+    }
+  });
+  if (correct === total) {
+    showToast('🎉 Excellent! All correct!', 'success');
+    confetti();
+  } else {
+    showToast(`${correct} из ${total} правильно. Попробуй ещё!`, 'error');
+  }
+}
+
+function resetPractice() {
+  renderPractice();
+}
+
+/* ========= GAME 1: Describe Character ========= */
+let currentChar = 0;
+let charSelections = {};
+
+const optionGroups = [
+  { key: 'height', label: '📏 Height', options: ['tall', 'short', 'medium'] },
+  { key: 'build', label: '💪 Build', options: ['slim', 'plump', 'skinny'] },
+  { key: 'hairColor', label: '🎨 Hair Color', options: ['blonde', 'brown', 'black', 'red', 'grey'] },
+  { key: 'hairStyle', label: '💇 Hair Style', options: ['short', 'long', 'curly', 'straight'] },
+  { key: 'eyes', label: '👁️ Eyes', options: ['blue', 'brown', 'green', 'grey'] },
+  { key: 'special', label: '✨ Special', options: ['glasses', 'beard', 'mustache', 'freckles', 'none'] }
+];
+
+function renderCharacter() {
+  const c = characters[currentChar];
+  document.getElementById('charImg').src = c.img;
+  document.getElementById('charName').textContent = c.name;
+  document.getElementById('charCounter').textContent = `${currentChar + 1} / ${characters.length}`;
+  renderOptions();
+  document.getElementById('feedbackBox').innerHTML = `<span class="sentence">Опиши внешность ${c.name}!</span>`;
+}
+
+function renderOptions() {
+  charSelections = {};
+  const container = document.getElementById('descOptions');
+  container.innerHTML = optionGroups.map(g => `
+    <div class="option-group">
+      <div class="option-label">${g.label}</div>
+      <div class="option-buttons">
+        ${g.options.map(o => `<button class="option-btn" data-group="${g.key}" data-value="${o}" onclick="selectOption('${g.key}','${o}')">${o}</button>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function selectOption(group, value) {
+  charSelections[group] = value;
+  document.querySelectorAll(`.option-btn[data-group="${group}"]`).forEach(b => {
+    b.classList.remove('selected', 'correct', 'incorrect');
+    if (b.dataset.value === value) b.classList.add('selected');
+  });
+  // Clear feedback when new option is selected
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct', 'incorrect'));
+}
+
+function checkDescription() {
+  const c = characters[currentChar];
+  let correctCount = 0;
+  let totalCount = 0;
+
+  const allFilled = optionGroups.every(g => charSelections[g.key]);
+  if (!allFilled) {
+    showToast('Выбери все характеристики!', 'error');
+    return;
+  }
+
+  optionGroups.forEach(g => {
+    const userVal = charSelections[g.key];
+    const correctVal = c.correct[g.key];
+    totalCount++;
+    document.querySelectorAll(`.option-btn[data-group="${g.key}"]`).forEach(b => {
+      b.classList.remove('correct', 'incorrect');
+      if (b.dataset.value === correctVal) {
+        b.classList.add('correct');
+      } else if (b.dataset.value === userVal && userVal !== correctVal) {
+        b.classList.add('incorrect');
+      }
+    });
+    if (userVal === correctVal) correctCount++;
+  });
+
+  const isPlural = c.name === 'Sarah' || c.name === 'Mia';
+  const pron = isPlural ? 'She' : 'He';
+  let sentence = `${c.name} <b>is ${charSelections.height}</b> and <b>${charSelections.build}</b>. `;
+  sentence += `${pron} <b>has ${charSelections.hairStyle} ${charSelections.hairColor} hair</b> and <b>${charSelections.eyes} eyes</b>. `;
+  if (charSelections.special !== 'none') {
+    sentence += `${pron} <b>has ${charSelections.special}</b>.`;
+  } else {
+    sentence += `${pron} has no special features.`;
+  }
+
+  const fb = document.getElementById('feedbackBox');
+  if (correctCount === totalCount) {
+    fb.innerHTML = `<div>
+      <div style="font-size: 1.6rem; margin-bottom: 8px;">🎉 Perfect!</div>
+      <div class="sentence">${sentence}</div>
+    </div>`;
+    confetti();
+  } else {
+    fb.innerHTML = `<div>
+      <div style="font-size: 1.3rem; margin-bottom: 8px;">Правильно: ${correctCount}/${totalCount}</div>
+      <div class="sentence">${sentence}</div>
+    </div>`;
+  }
+}
+
+function resetDescription() {
+  renderOptions();
+  document.getElementById('feedbackBox').innerHTML = `<span class="sentence">Опиши внешность ${characters[currentChar].name}!</span>`;
+}
+
+function nextChar() {
+  currentChar = (currentChar + 1) % characters.length;
+  renderCharacter();
+}
+
+function prevChar() {
+  currentChar = (currentChar - 1 + characters.length) % characters.length;
+  renderCharacter();
+}
+
+/* ========= GAME 2: Memory ========= */
+const memoryPairs = [
+  { en: 'tall', ru: 'высокий' },
+  { en: 'short', ru: 'низкий' },
+  { en: 'slim', ru: 'стройный' },
+  { en: 'plump', ru: 'полный' },
+  { en: 'blonde', ru: 'блонд' },
+  { en: 'curly', ru: 'кудрявый' },
+  { en: 'long', ru: 'длинный' },
+  { en: 'glasses', ru: 'очки' }
+];
+
+let memoryCards = [];
+let flipped = [];
+let matchedCount = 0;
+let movesCount = 0;
+
+function initMemory() {
+  matchedCount = 0;
+  movesCount = 0;
+  flipped = [];
+  const cards = [];
+  memoryPairs.forEach((p, i) => {
+    cards.push({ id: i*2, pairId: i, type: 'en', text: p.en });
+    cards.push({ id: i*2+1, pairId: i, type: 'ru', text: p.ru });
+  });
+  memoryCards = cards.sort(() => Math.random() - 0.5);
+  document.getElementById('memoryGrid').innerHTML = memoryCards.map(c => `
+    <div class="memory-card" data-id="${c.id}" data-pair="${c.pairId}" onclick="flipCard(${c.id})">
+      <div class="memory-card-inner">
+        <div class="memory-card-front"></div>
+        <div class="memory-card-back"><div class="text-card">${c.text}</div></div>
+      </div>
+    </div>
+  `).join('');
+  updateMemoryStats();
+}
+
+function flipCard(id) {
+  const card = document.querySelector(`.memory-card[data-id="${id}"]`);
+  if (card.classList.contains('flipped') || card.classList.contains('matched') || flipped.length >= 2) return;
+  card.classList.add('flipped');
+  flipped.push(card);
+  if (flipped.length === 2) {
+    movesCount++;
+    updateMemoryStats();
+    const [a, b] = flipped;
+    if (a.dataset.pair === b.dataset.pair) {
+      setTimeout(() => {
+        a.classList.add('matched');
+        b.classList.add('matched');
+        matchedCount++;
+        updateMemoryStats();
+        flipped = [];
+        if (matchedCount === memoryPairs.length) {
+          showToast(`🎉 Победа! Ходов: ${movesCount}`, 'success');
+          confetti();
+        }
+      }, 500);
+    } else {
+      setTimeout(() => {
+        a.classList.remove('flipped');
+        b.classList.remove('flipped');
+        flipped = [];
+      }, 1100);
+    }
+  }
+}
+
+function updateMemoryStats() {
+  document.getElementById('movesCount').textContent = movesCount;
+  document.getElementById('pairsCount').textContent = matchedCount;
+}
+
+/* ========= GAME 3: Guess Who ========= */
+const guessRiddles = [
+  { desc: 'She is tall and slim. She has <span class="highlight">short blonde hair</span> and <span class="highlight">blue eyes</span>. She has no special features.', answer: 'Sarah' },
+  { desc: 'He is short and slim. He has <span class="highlight">curly red hair</span> and <span class="highlight">green eyes</span>. He has <span class="highlight">freckles</span>.', answer: 'Leo' },
+  { desc: 'He is tall and slim. He has <span class="highlight">short grey hair</span> and <span class="highlight">blue eyes</span>. He has a <span class="highlight">beard</span>.', answer: 'Mr. Brown' },
+  { desc: 'He is medium height and plump. He has <span class="highlight">short brown hair</span> and <span class="highlight">brown eyes</span>. He has a <span class="highlight">mustache</span>.', answer: 'David' },
+  { desc: 'She is tall and slim. She has <span class="highlight">long black hair</span> and <span class="highlight">green eyes</span>. She has no special features.', answer: 'Mia' }
+];
+
+let currentGuess = 0;
+let guessScore = 0;
+let guessAnswered = false;
+
+function renderGuess() {
+  const r = guessRiddles[currentGuess];
+  document.getElementById('guessDesc').innerHTML = r.desc;
+  document.getElementById('guessQNum').textContent = currentGuess + 1;
+  document.getElementById('guessScore').textContent = guessScore;
+  document.getElementById('nextGuessBtn').style.display = 'none';
+  guessAnswered = false;
+  document.getElementById('guessGrid').innerHTML = characters.map(c => `
+    <div class="guess-option" data-name="${c.name}" onclick="checkGuess('${c.name}')">
+      <img src="${c.img}" alt="${c.name}">
+      <div class="name">${c.name}</div>
+    </div>
+  `).join('');
+}
+
+function checkGuess(name) {
+  if (guessAnswered) return;
+  guessAnswered = true;
+  const correct = guessRiddles[currentGuess].answer;
+  document.querySelectorAll('.guess-option').forEach(el => {
+    el.style.pointerEvents = 'none';
+    if (el.dataset.name === correct) {
+      el.classList.add('correct');
+    } else if (el.dataset.name === name && name !== correct) {
+      el.classList.add('incorrect');
+    }
+  });
+  if (name === correct) {
+    guessScore++;
+    document.getElementById('guessScore').textContent = guessScore;
+    showToast('🎉 Правильно!', 'success');
+    confetti();
+  } else {
+    showToast(`Это ${correct}!`, 'error');
+  }
+  document.getElementById('nextGuessBtn').style.display = currentGuess < guessRiddles.length - 1 ? 'inline-flex' : 'none';
+  if (currentGuess === guessRiddles.length - 1) {
+    setTimeout(() => {
+      showToast(`Игра окончена! Счёт: ${guessScore}/${guessRiddles.length}`, 'success');
+      confetti();
+    }, 1500);
+  }
+}
+
+function nextGuess() {
+  currentGuess++;
+  renderGuess();
+}
+
+/* ========= TEST ========= */
+const testQuestions = [
+  {
+    q: 'Sarah is 180 cm. She is ___.',
+    options: ['tall', 'short', 'plump'],
+    correct: 0
+  },
+  {
+    q: 'Leo has ___ hair. (волосы рыжего цвета)',
+    options: ['black', 'red', 'grey'],
+    correct: 1
+  },
+  {
+    q: 'Mr. Brown ___ a beard.',
+    options: ['is', 'has', 'have'],
+    correct: 1
+  },
+  {
+    q: 'David has a mustache. "Mustache" means:',
+    options: ['борода', 'усы', 'очки'],
+    correct: 1
+  },
+  {
+    q: 'Mia ___ long black hair.',
+    options: ['is', 'have', 'has'],
+    correct: 2
+  },
+  {
+    q: 'Mr. Brown has grey hair. He is ___.',
+    options: ['young', 'old', 'short'],
+    correct: 1
+  }
+];
+
+let testAnswers = {};
+
+function renderTest() {
+  document.getElementById('testQuestions').innerHTML = testQuestions.map((q, i) => `
+    <div class="question" id="q-${i}">
+      <div class="question-text"><span class="question-number">${i+1}</span>${q.q}</div>
+      <div class="answers">
+        ${q.options.map((o, j) => `
+          <div class="answer-option" data-q="${i}" data-o="${j}" onclick="selectAnswer(${i}, ${j})">${o}</div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  testAnswers = {};
+  document.getElementById('testResult').classList.remove('show');
+}
+
+function selectAnswer(qIdx, optIdx) {
+  testAnswers[qIdx] = optIdx;
+  document.querySelectorAll(`.answer-option[data-q="${qIdx}"]`).forEach(el => {
+    el.classList.remove('selected', 'correct', 'incorrect');
+    if (parseInt(el.dataset.o) === optIdx) el.classList.add('selected');
+  });
+}
+
+function checkTest() {
+  let score = 0;
+  testQuestions.forEach((q, i) => {
+    document.querySelectorAll(`.answer-option[data-q="${i}"]`).forEach(el => {
+      el.classList.remove('selected', 'correct', 'incorrect');
+      const oIdx = parseInt(el.dataset.o);
+      if (oIdx === q.correct) el.classList.add('correct');
+      else if (testAnswers[i] === oIdx) el.classList.add('incorrect');
+    });
+    if (testAnswers[i] === q.correct) score++;
+  });
+  const result = document.getElementById('testResult');
+  result.classList.add('show');
+  document.getElementById('testScore').textContent = `${score} / ${testQuestions.length}`;
+  const stars = score === testQuestions.length ? 3 : score >= testQuestions.length - 1 ? 2 : score >= testQuestions.length / 2 ? 1 : 0;
+  document.getElementById('testStars').innerHTML = ['⭐','⭐','⭐'].map((s, i) =>
+    `<span class="star ${i < stars ? 'active' : ''}">${s}</span>`
+  ).join('');
+  const messages = ['Попробуй ещё раз! 💪', 'Неплохо! Ты молодец! 👍', 'Отлично! Почти идеально! 🌟', 'Великолепно! Всё верно! 🏆'];
+  document.getElementById('testMessage').textContent = messages[stars];
+  if (stars === 3) confetti();
+  result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetTest() {
+  renderTest();
+}
+
+/* ========= Helper ========= */
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + (type || '');
+  setTimeout(() => t.classList.add('show'), 50);
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function confetti() {
+  const colors = ['#9b6dff', '#ec4899', '#f59e0b', '#10b981', '#3b82f6', '#c4a5ff'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animation = `confettiFall ${2 + Math.random() * 2}s linear forwards`;
+    c.style.animationDelay = Math.random() * 0.5 + 's';
+    c.style.transform = `rotate(${Math.random() * 360}deg)`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4500);
+  }
+}
+
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ========= INIT ========= */
+renderVocab();
+renderPractice();
+renderCharacter();
+initMemory();
+renderGuess();
+renderTest();
+</script>
+
+</body>
+</html>

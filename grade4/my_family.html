@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Family: English Worksheet</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fdf6e3;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #ff6b6b;
+            text-align: center;
+        }
+        h2 {
+            border-bottom: 3px dashed #ffd166;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .tab-button {
+            background: #ffd166;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            color: #333;
+        }
+        .tab-button:hover {
+            background: #ff6b6b;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Theory */
+        .vocab-group {
+            background: #e8f7ff;
+            border-left: 5px solid #06aed5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .vocab-group h3 {
+            text-align: left;
+            color: #06aed5;
+            margin-top: 0;
+        }
+        .vocab-group ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .vocab-group li {
+            padding: 5px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        .word { font-weight: bold; color: #333; margin-left: 5px; }
+        .trans { color: #888; margin-left: 5px; }
+
+        .audio-btn {
+            background: #06aed5;
+            border: none;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .audio-btn:hover {
+            background: #048baf;
+            transform: scale(1.1);
+        }
+
+        /* Meme Cards Game */
+        .card-game {
+            text-align: center;
+            background: #fff0f6;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ff70a6;
+        }
+        .card {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff70a6;
+            margin: 20px 0;
+            min-height: 50px;
+        }
+        .game-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .game-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        .game-btn:hover { background: #5849c2; }
+        .game-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .game-stats {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .feedback {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 10px;
+            min-height: 30px;
+        }
+
+        /* Reading & Exercises */
+        .text-block {
+            background: #f1f8e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #c5e1a5;
+        }
+        .vocab-box {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .vocab-box h4 {
+            margin: 0 0 10px 0;
+            color: #856404;
+        }
+        .vocab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .vocab-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 15px;
+            border: 1px solid #ffe082;
+        }
+        
+        select {
+            padding: 5px;
+            font-size: 16px;
+            border: 2px solid #06aed5;
+            border-radius: 5px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        /* Test */
+        .test-question {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .test-options label {
+            display: block;
+            padding: 8px;
+            margin: 5px 0;
+            background: #f9f9f9;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .test-options label:hover { background: #e8f7ff; }
+        input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        /* Подсветка для теста */
+        .test-options label.correct {
+            background: #d4edda; /* Светло-зеленый */
+            color: #155724; /* Темно-зеленый */
+            border: 1px solid #c3e6cb;
+            font-weight: bold;
+        }
+        .test-options label.incorrect {
+            background: #f8d7da; /* Светло-красный */
+            color: #721c24; /* Темно-красный */
+            border: 1px solid #f5c6cb;
+            font-weight: bold;
+        }
+
+        /* My Family Task */
+        .my-family-task textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px dashed #ff6b6b;
+            border-radius: 10px;
+            font-family: inherit;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .btn-check {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            display: block;
+            margin-left: auto;
+        }
+        .btn-check:hover { background: #45a049; }
+
+        .info-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>My Family Interactive Worksheet</h1>
+    <p style="text-align:center; font-size:18px;">Тема: Моя семья, внешность, характер и хобби. 4 класс.</p>
+
+    <div class="tabs">
+        <button class="tab-button active" onclick="showSection('theory', event)">1. Теория и лексика</button>
+        <button class="tab-button" onclick="showSection('cards', event)">2. Игра: Угадай категорию</button>
+        <button class="tab-button" onclick="showSection('reading', event)">3. Чтение и тексты</button>
+        <button class="tab-button" onclick="showSection('test', event)">4. Тест</button>
+        <button class="tab-button" onclick="showSection('family', event)">5. Моя семья</button>
+    </div>
+
+    <!-- РАЗДЕЛ 1: ТЕОРИЯ -->
+    <div id="theory" class="section active">
+        <h2>Повторение лексики</h2>
+        <p>Давай вспомним слова, которые нам понадобятся сегодня на уроке. Нажимай на синюю кнопку (🔊), чтобы послушать, как произносится слово.</p>
+        
+        <div class="vocab-group">
+            <h3>📁 Члены семьи (Family Members)</h3>
+            <ul>
+                <li><button class="audio-btn" onclick="speakWord('Mother')">🔊</button><span class="word">Mother / Mom</span> - <span class="trans">мама</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Father')">🔊</button><span class="word">Father / Dad</span> - <span class="trans">папа</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Sister')">🔊</button><span class="word">Sister</span> - <span class="trans">сестра</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Brother')">🔊</button><span class="word">Brother</span> - <span class="trans">брат</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Grandmother')">🔊</button><span class="word">Grandmother</span> - <span class="trans">бабушка</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Grandfather')">🔊</button><span class="word">Grandfather</span> - <span class="trans">дедушка</span></li>
+            </ul>
+        </div>
+
+        <div class="vocab-group">
+            <h3>📁 Внешность (Appearance)</h3>
+            <ul>
+                <li><button class="audio-btn" onclick="speakWord('Tall')">🔊</button><span class="word">Tall</span> - <span class="trans">высокий</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Short')">🔊</button><span class="word">Short</span> - <span class="trans">невысокий</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Blonde')">🔊</button><span class="word">Blonde</span> - <span class="trans">блондин(ка), светлые волосы</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Dark hair')">🔊</button><span class="word">Dark hair</span> - <span class="trans">темные волосы</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Blue eyes')">🔊</button><span class="word">Blue / Brown eyes</span> - <span class="trans">голубые / карие глаза</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Glasses')">🔊</button><span class="word">Glasses</span> - <span class="trans">очки</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Beautiful')">🔊</button><span class="word">Beautiful</span> - <span class="trans">красивый (о девушке/женщине)</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Handsome')">🔊</button><span class="word">Handsome</span> - <span class="trans">красивый (о мужчине)</span></li>
+            </ul>
+        </div>
+
+        <div class="vocab-group">
+            <h3>📁 Характер (Character)</h3>
+            <ul>
+                <li><button class="audio-btn" onclick="speakWord('Kind')">🔊</button><span class="word">Kind</span> - <span class="trans">добрый</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Clever')">🔊</button><span class="word">Clever / Smart</span> - <span class="trans">умный</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Funny')">🔊</button><span class="word">Funny</span> - <span class="trans">веселый, смешной</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Strict')">🔊</button><span class="word">Strict</span> - <span class="trans">строгий</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Friendly')">🔊</button><span class="word">Friendly</span> - <span class="trans">дружелюбный</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Lazy')">🔊</button><span class="word">Lazy</span> - <span class="trans">ленивый</span></li>
+            </ul>
+        </div>
+
+        <div class="vocab-group">
+            <h3>📁 Хобби и профессии (Hobbies & Jobs)</h3>
+            <ul>
+                <li><button class="audio-btn" onclick="speakWord('Doctor')">🔊</button><span class="word">Doctor</span> - <span class="trans">доктор</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Teacher')">🔊</button><span class="word">Teacher</span> - <span class="trans">учитель</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Play football')">🔊</button><span class="word">Play football</span> - <span class="trans">играть в футбол</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Read books')">🔊</button><span class="word">Read books</span> - <span class="trans">читать книги</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Cook')">🔊</button><span class="word">Cook</span> - <span class="trans">готовить еду</span></li>
+                <li><button class="audio-btn" onclick="speakWord('Draw pictures')">🔊</button><span class="word">Draw pictures</span> - <span class="trans">рисовать картинки</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- РАЗДЕЛ 2: ИГРА С КАРТОЧКАМИ -->
+    <div id="cards" class="section">
+        <h2>Игра: Угадай категорию</h2>
+        <div class="info-box">
+            <p><strong>Правила:</strong> На экране появится слово (например, "Blonde" или "Father"). Тебе нужно нажать на кнопку с правильной категорией: это Семья, Внешность, Характер или Хобби/Работа?</p>
+        </div>
+
+        <div class="card-game">
+            <div class="game-stats">
+                Слово: <span id="card-counter">1</span> / 20<br>
+                Очки: <span id="score">0</span>
+            </div>
+            <div class="card" id="word-display">Нажми "Начать игру"</div>
+            <div class="game-controls">
+                <button class="game-btn" onclick="checkAnswer('Family')">Family (Семья)</button>
+                <button class="game-btn" onclick="checkAnswer('Appearance')">Appearance (Внешность)</button>
+                <button class="game-btn" onclick="checkAnswer('Character')">Character (Характер)</button>
+                <button class="game-btn" onclick="checkAnswer('Hobby/Job')">Hobby/Job (Хобби/Работа)</button>
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <button class="game-btn" id="next-btn" style="display:none; background:#4caf50; margin-top:15px;" onclick="nextCard()">Следующее слово ➡️</button>
+            <button class="game-btn" id="start-btn" style="background:#ff6b6b; margin-top:15px;" onclick="startGame()">Начать игру 🚀</button>
+        </div>
+    </div>
+
+    <!-- РАЗДЕЛ 3: ЧТЕНИЕ И ТЕКСТЫ -->
+    <div id="reading" class="section">
+        <h2>Чтение и упражнения</h2>
+        <p>Прочитай тексты про семью. Вместо пропусков (выпадающих списков) выбери слова, которые подходят по смыслу. Если забыл слово, посмотри в словарик под текстом и нажми на 🔊, чтобы послушать слово!</p>
+
+        <!-- Текст про Папу -->
+        <div class="text-block">
+            <h3>Text 1: My Dad</h3>
+            <p>
+                My dad's name is John. He is very <select>
+                    <option value="">-выбери-</option>
+                    <option>tall</option>
+                    <option>short</option>
+                </select>. He has <select>
+                    <option value="">-выбери-</option>
+                    <option>blonde</option>
+                    <option>dark</option>
+                </select> hair and brown eyes. My dad is very <select>
+                    <option value="">-выбери-</option>
+                    <option>clever</option>
+                    <option>lazy</option>
+                </select> and kind. He works as a <select>
+                    <option value="">-выбери-</option>
+                    <option>doctor</option>
+                    <option>teacher</option>
+                </select>. On Sundays, he likes to <select>
+                    <option value="">-выбери-</option>
+                    <option>play football</option>
+                    <option>draw pictures</option>
+                </select> with me. He is a great dad!
+            </p>
+            <div class="vocab-box">
+                <h4>📚 Словарик к тексту (Dad):</h4>
+                <div class="vocab-list">
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Tall')">🔊</button> <strong>tall</strong> — высокий</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Short')">🔊</button> <strong>short</strong> — невысокий</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Hair')">🔊</button> <strong>hair</strong> — волосы</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Brown eyes')">🔊</button> <strong>brown eyes</strong> — карие глаза</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Kind')">🔊</button> <strong>kind</strong> — добрый</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Great')">🔊</button> <strong>great</strong> — отличный</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Текст про Маму -->
+        <div class="text-block">
+            <h3>Text 2: My Mom</h3>
+            <p>
+                My mom is very <select>
+                    <option value="">-выбери-</option>
+                    <option>beautiful</option>
+                    <option>strict</option>
+                </select>. She has <select>
+                    <option value="">-выбери-</option>
+                    <option>blue</option>
+                    <option>funny</option>
+                </select> eyes and blonde hair. She is a <select>
+                    <option value="">-выбери-</option>
+                    <option>teacher</option>
+                    <option>brother</option>
+                </select> at school. She likes to <select>
+                    <option value="">-выбери-</option>
+                    <option>cook</option>
+                    <option>play football</option>
+                </select> tasty food. My mom is friendly and <select>
+                    <option value="">-выбери-</option>
+                    <option>smart</option>
+                    <option>lazy</option>
+                </select>. I love her very much.
+            </p>
+            <div class="vocab-box">
+                <h4>📚 Словарик к тексту (Mom):</h4>
+                <div class="vocab-list">
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Beautiful')">🔊</button> <strong>beautiful</strong> — красивая</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Blue eyes')">🔊</button> <strong>blue eyes</strong> — голубые глаза</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Tasty food')">🔊</button> <strong>tasty food</strong> — вкусная еда</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Smart')">🔊</button> <strong>smart</strong> — умная</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Love')">🔊</button> <strong>love</strong> — любить</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Текст про Сестру -->
+        <div class="text-block">
+            <h3>Text 3: My Sister</h3>
+            <p>
+                I have a <select>
+                    <option value="">-выбери-</option>
+                    <option>sister</option>
+                    <option>father</option>
+                </select>. Her name is Lily. She is <select>
+                    <option value="">-выбери-</option>
+                    <option>short</option>
+                    <option>handsome</option>
+                </select> because she is 5 years old. She is very <select>
+                    <option value="">-выбери-</option>
+                    <option>funny</option>
+                    <option>strict</option>
+                </select> and likes to play. Lily likes to <select>
+                    <option value="">-выбери-</option>
+                    <option>draw pictures</option>
+                    <option>read books</option>
+                </select>. Sometimes she is <select>
+                    <option value="">-выбери-</option>
+                    <option>lazy</option>
+                    <option>kind</option>
+                </select> in the morning, but I love my sister.
+            </p>
+            <div class="vocab-box">
+                <h4>📚 Словарик к тексту (Sister):</h4>
+                <div class="vocab-list">
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Years old')">🔊</button> <strong>years old</strong> — лет (возраст)</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Funny')">🔊</button> <strong>funny</strong> — смешная</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Sometimes')">🔊</button> <strong>sometimes</strong> — иногда</div>
+                    <div class="vocab-item"><button class="audio-btn" onclick="speakWord('Morning')">🔊</button> <strong>morning</strong> — утро</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- РАЗДЕЛ 4: ТЕСТ -->
+    <div id="test" class="section">
+        <h2>Проверь себя: Тест</h2>
+        <p>Выбери правильный ответ. Это простые вопросы, где нельзя запутаться!</p>
+
+        <div class="test-question">
+            <p><strong>1. How do we say "мама" in English?</strong></p>
+            <div class="test-options">
+                <label><input type="radio" name="q1" value="wrong"> Father</label>
+                <label><input type="radio" name="q1" value="correct"> Mother</label>
+                <label><input type="radio" name="q1" value="wrong"> Brother</label>
+            </div>
+        </div>
+
+        <div class="test-question">
+            <p><strong>2. A person with light (светлые) hair is...</strong></p>
+            <div class="test-options">
+                <label><input type="radio" name="q2" value="wrong"> Dark</label>
+                <label><input type="radio" name="q2" value="correct"> Blonde</label>
+                <label><input type="radio" name="q2" value="wrong"> Tall</label>
+            </div>
+        </div>
+
+        <div class="test-question">
+            <p><strong>3. Someone who is very nice and helps people is...</strong></p>
+            <div class="test-options">
+                <label><input type="radio" name="q3" value="wrong"> Strict</label>
+                <label><input type="radio" name="q3" value="wrong"> Lazy</label>
+                <label><input type="radio" name="q3" value="correct"> Kind</label>
+            </div>
+        </div>
+
+        <div class="test-question">
+            <p><strong>4. "Play football" is a...</strong></p>
+            <div class="test-options">
+                <label><input type="radio" name="q4" value="wrong"> Family member</label>
+                <label><input type="radio" name="q4" value="correct"> Hobby</label>
+                <label><input type="radio" name="q4" value="wrong"> Appearance</label>
+            </div>
+        </div>
+
+        <div class="test-question">
+            <p><strong>5. "Beautiful" describes (описывает)...</strong></p>
+            <div class="test-options">
+                <label><input type="radio" name="q5" value="wrong"> Character</label>
+                <label><input type="radio" name="q5" value="correct"> Appearance</label>
+                <label><input type="radio" name="q5" value="wrong"> Hobby</label>
+            </div>
+        </div>
+
+        <button class="btn-check" onclick="checkTest()">Проверить тест</button>
+        <div id="test-result" style="text-align:center; font-size:22px; font-weight:bold; margin-top:20px;"></div>
+    </div>
+
+    <!-- РАЗДЕЛ 5: МОЯ СЕМЬЯ -->
+    <div id="family" class="section">
+        <h2>Задание: Моя семья</h2>
+        <div class="info-box">
+            <p><strong>Важно:</strong> В этом задании нет правильных или неправильных ответов! У каждого своя семья. Опиши свою семью, используя подсказку ниже. Можешь писать на английском прямо в текстовом поле.</p>
+        </div>
+
+        <p><strong>Шаблон-подсказка для тебя:</strong></p>
+        <ul>
+            <li>I have a ... (big / small) family.</li>
+            <li>My mother's name is ... She is ... (character) and ... (appearance). She likes to ... (hobby).</li>
+            <li>My father's name is ... He is ... (character) and ... (appearance). He likes to ... (hobby).</li>
+            <li>I have a ... (sister / brother). He/She is ... (character).</li>
+            <li>I love my family!</li>
+        </ul>
+
+        <textarea id="family-text" rows="12" placeholder="Напиши здесь историю про свою семью на английском языке..."></textarea>
+        
+        <button class="btn-check" onclick="saveText()">Готово! ✅</button>
+        <div id="save-msg" style="text-align:center; font-size:18px; color:green; margin-top:15px; display:none;">
+            Отличная работа! Ты молодец! 🎉
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --- Функция озвучки слов ---
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US'; 
+            utterance.rate = 0.9; 
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Ваш браузер не поддерживает озвучку слов.");
+        }
+    }
+
+    // --- Навигация по вкладкам ---
+    function showSection(sectionId, event) {
+        let sections = document.querySelectorAll('.section');
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        
+        let buttons = document.querySelectorAll('.tab-button');
+        buttons.forEach(b => {
+            b.style.background = '#ffd166';
+            b.style.color = '#333';
+        });
+        if (event) {
+            event.target.style.background = '#ff6b6b';
+            event.target.style.color = 'white';
+        }
+    }
+    document.querySelector('.tab-button').style.background = '#ff6b6b';
+    document.querySelector('.tab-button').style.color = 'white';
+
+    // --- Игра с карточками ---
+    const words = [
+        { word: "Blonde", cat: "Appearance" },
+        { word: "Father", cat: "Family" },
+        { word: "Kind", cat: "Character" },
+        { word: "Tall", cat: "Appearance" },
+        { word: "Sister", cat: "Family" },
+        { word: "Funny", cat: "Character" },
+        { word: "Doctor", cat: "Hobby/Job" },
+        { word: "Blue eyes", cat: "Appearance" },
+        { word: "Clever", cat: "Character" },
+        { word: "Grandmother", cat: "Family" },
+        { word: "Play football", cat: "Hobby/Job" },
+        { word: "Strict", cat: "Character" },
+        { word: "Glasses", cat: "Appearance" },
+        { word: "Brother", cat: "Family" },
+        { word: "Friendly", cat: "Character" },
+        { word: "Short", cat: "Appearance" },
+        { word: "Read books", cat: "Hobby/Job" },
+        { word: "Mother", cat: "Family" },
+        { word: "Pretty", cat: "Appearance" },
+        { word: "Lazy", cat: "Character" }
+    ];
+    
+    let shuffledWords = words.sort(() => Math.random() - 0.5);
+    let currentCard = 0;
+    let score = 0;
+
+    function startGame() {
+        currentCard = 0;
+        score = 0;
+        document.getElementById('start-btn').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'none';
+        updateStats();
+        showCard();
+    }
+
+    function showCard() {
+        if (currentCard < shuffledWords.length) {
+            document.getElementById('word-display').innerText = shuffledWords[currentCard].word;
+            document.getElementById('feedback').innerText = "";
+            enableButtons(true);
+        } else {
+            document.getElementById('word-display').innerText = "Игра окончена!";
+            document.getElementById('feedback').innerText = "Твой результат: " + score + " из 20!";
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('start-btn').style.display = 'inline-block';
+            document.getElementById('start-btn').innerText = "Играть снова 🔄";
+            shuffledWords = words.sort(() => Math.random() - 0.5);
+        }
+    }
+
+    function checkAnswer(selectedCat) {
+        let correctCat = shuffledWords[currentCard].cat;
+        let feedback = document.getElementById('feedback');
+        
+        if (selectedCat === correctCat) {
+            score++;
+            feedback.style.color = "green";
+            feedback.innerText = "✅ Верно!";
+        } else {
+            feedback.style.color = "red";
+            feedback.innerText = "❌ Неверно! Это: " + correctCat;
+        }
+        
+        updateStats();
+        enableButtons(false);
+        document.getElementById('next-btn').style.display = 'inline-block';
+    }
+
+    function nextCard() {
+        currentCard++;
+        document.getElementById('next-btn').style.display = 'none';
+        showCard();
+    }
+
+    function updateStats() {
+        document.getElementById('card-counter').innerText = currentCard + 1;
+        document.getElementById('score').innerText = score;
+    }
+
+    function enableButtons(state) {
+        let buttons = document.querySelectorAll('.card-game .game-btn');
+        buttons.forEach((btn, index) => {
+            if (index < 4) btn.disabled = !state;
+        });
+    }
+
+    // --- Проверка теста с подсветкой ---
+    function checkTest() {
+        let score = 0;
+        let labels = document.querySelectorAll('.test-options label');
+        
+        // 1. Очищаем старую подсветку
+        labels.forEach(label => {
+            label.classList.remove('correct', 'incorrect');
+        });
+
+        // 2. Проходим по всем 5 вопросам
+        for (let i = 1; i <= 5; i++) {
+            let selectedInput = document.querySelector(`input[name="q${i}"]:checked`);
+            let correctInput = document.querySelector(`input[name="q${i}"][value="correct"]`);
+            
+            // Подсвечиваем правильный ответ зелёным в любом случае
+            if (correctInput) {
+                correctInput.parentElement.classList.add('correct');
+            }
+            
+            // Если пользователь выбрал неправильный ответ, подсвечиваем его красным
+            if (selectedInput && selectedInput.value === 'wrong') {
+                selectedInput.parentElement.classList.add('incorrect');
+            }
+            
+            // Считаем баллы
+            if (selectedInput && selectedInput.value === 'correct') {
+                score++;
+            }
+        }
+
+        // 3. Выводим результат
+        let resultDiv = document.getElementById('test-result');
+        resultDiv.innerText = "Твой результат: " + score + " / 5";
+        
+        if (score === 5) {
+            resultDiv.style.color = "green";
+            resultDiv.innerText += " 🏆 Отлично!";
+        } else if (score >= 3) {
+            resultDiv.style.color = "orange";
+            resultDiv.innerText += " 👍 Хорошо!";
+        } else {
+            resultDiv.style.color = "red";
+            resultDiv.innerText += " 📖 Попробуй прочитать теорию еще раз!";
+        }
+    }
+
+    // --- Сохранение текста "Моя семья" ---
+    function saveText() {
+        let text = document.getElementById('family-text').value;
+        if(text.trim() === "") {
+            alert("Ты ничего не написал! Попробуй описать свою семью.");
+        } else {
+            document.getElementById('save-msg').style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>

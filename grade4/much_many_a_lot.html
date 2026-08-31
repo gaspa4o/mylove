@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>much · many · a lot of — English Worksheet · 4 класс</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg: #FFF8EE;
+  --bg-2: #FFEDD5;
+  --ink: #2A1F1A;
+  --muted: #6B5B4E;
+  --primary: #E85D2F;
+  --primary-dark: #B04320;
+  --accent: #F4A93C;
+  --accent-dark: #C8861E;
+  --green: #2E8B57;
+  --green-dark: #1B5E20;
+  --red: #D14545;
+  --red-dark: #8B0000;
+  --card: #FFFFFF;
+  --border: #E8D5BD;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+.bg-decor {
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(232,93,47,0.08), transparent 35%),
+    radial-gradient(circle at 90% 70%, rgba(244,169,60,0.10), transparent 35%),
+    radial-gradient(circle at 50% 90%, rgba(46,139,87,0.06), transparent 40%),
+    var(--bg);
+}
+.bg-decor::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(232,93,47,0.06) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+.floating {
+  position: fixed; font-size: 2.5rem; opacity: 0.15; z-index: 0;
+  pointer-events: none; animation: float 18s infinite ease-in-out;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-40px) rotate(8deg); }
+}
+
+header {
+  background: linear-gradient(135deg, #E85D2F 0%, #F4A93C 100%);
+  color: white; padding: 3rem 1.5rem 4rem; text-align: center;
+  border-radius: 0 0 40px 40px; position: relative; overflow: hidden;
+  box-shadow: 0 20px 50px rgba(232,93,47,0.25);
+}
+header::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.2), transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15), transparent 30%);
+  pointer-events: none;
+}
+.header-icon {
+  font-size: 3rem; margin-bottom: 0.5rem; display: inline-block;
+  animation: bounce 2s infinite ease-in-out;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+header h1 {
+  font-family: 'Fredoka', sans-serif; font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3.75rem);
+  letter-spacing: -1px; text-shadow: 0 3px 0 rgba(0,0,0,0.12); line-height: 1.1;
+}
+header .subtitle { margin-top: 0.75rem; font-size: 1.05rem; opacity: 0.95; font-weight: 600; }
+header .badges { margin-top: 1rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+.header-badge {
+  background: rgba(255,255,255,0.25); border: 1.5px solid rgba(255,255,255,0.4);
+  padding: 0.3rem 0.8rem; border-radius: 999px; font-size: 0.85rem;
+  font-weight: 700; backdrop-filter: blur(10px);
+}
+
+.tabs {
+  display: flex; gap: 10px; padding: 0 1rem;
+  max-width: 1100px; margin: -2rem auto 0;
+  position: relative; z-index: 10; flex-wrap: wrap; justify-content: center;
+}
+.tab-btn {
+  background: white; border: 2px solid var(--border);
+  padding: 0.85rem 1.4rem; border-radius: 16px;
+  font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.95rem;
+  color: var(--ink); cursor: pointer; transition: all 0.25s ease;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  box-shadow: 0 4px 0 var(--border);
+}
+.tab-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--border); }
+.tab-btn.active {
+  background: var(--primary); color: white;
+  border-color: var(--primary-dark); box-shadow: 0 4px 0 var(--primary-dark);
+}
+.tab-btn i { font-size: 1rem; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.tab-panel { display: none; animation: fadeIn 0.4s ease; }
+.tab-panel.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section {
+  background: var(--card); border: 2px solid var(--border);
+  border-radius: 24px; padding: 1.75rem; margin-bottom: 1.5rem;
+  box-shadow: 0 6px 0 var(--border);
+}
+.section-title {
+  font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.6rem;
+  display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; color: var(--ink);
+}
+.section-title .badge-icon {
+  background: var(--accent); color: white; width: 44px; height: 44px;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; box-shadow: 0 3px 0 var(--accent-dark); flex-shrink: 0;
+}
+.section-title.green .badge-icon { background: var(--green); box-shadow: 0 3px 0 var(--green-dark); }
+.section-title.primary .badge-icon { background: var(--primary); box-shadow: 0 3px 0 var(--primary-dark); }
+
+.intro-text {
+  font-size: 1.05rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6;
+}
+.intro-text strong { color: var(--ink); }
+
+.rule-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem; margin-top: 1rem;
+}
+.rule-card {
+  background: var(--card); border-radius: 20px; padding: 1.5rem;
+  border: 3px solid; position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.rule-card:hover { transform: translateY(-6px); }
+.rule-card.much { border-color: #FFB627; background: linear-gradient(135deg, #FFF8E1, #FFFFFF 60%); }
+.rule-card.many { border-color: #E85D2F; background: linear-gradient(135deg, #FFE8DD, #FFFFFF 60%); }
+.rule-card.alot { border-color: #2E8B57; background: linear-gradient(135deg, #E8F5E9, #FFFFFF 60%); }
+.rule-badge {
+  display: inline-block; font-family: 'Fredoka', sans-serif; font-weight: 700;
+  padding: 0.4rem 1rem; border-radius: 12px; color: white; font-size: 1.1rem;
+  margin-bottom: 0.5rem; box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+}
+.much .rule-badge { background: #FFB627; }
+.many .rule-badge { background: #E85D2F; }
+.alot .rule-badge { background: #2E8B57; }
+.rule-card h3 {
+  font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.15rem;
+  margin-bottom: 0.5rem; color: var(--ink);
+}
+.rule-card .desc { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+.rule-card .examples {
+  background: rgba(255,255,255,0.7); padding: 0.85rem 1rem; border-radius: 12px;
+  border-left: 4px solid; font-size: 0.95rem;
+}
+.much .examples { border-color: #FFB627; }
+.many .examples { border-color: #E85D2F; }
+.alot .examples { border-color: #2E8B57; }
+.rule-card .examples .ex { padding: 0.2rem 0; font-weight: 600; }
+.rule-card .examples .ex strong { font-family: 'Fredoka', sans-serif; font-size: 1.05rem; }
+.much .examples .ex strong { color: #C8861E; }
+.many .examples .ex strong { color: var(--primary); }
+.alot .examples .ex strong { color: var(--green); }
+
+.tip-box {
+  background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+  border: 2px solid #FFC107; border-radius: 16px;
+  padding: 1rem 1.25rem; margin: 1.5rem 0 0;
+  display: flex; gap: 0.85rem; align-items: flex-start;
+}
+.tip-box .tip-icon { color: #F57F17; font-size: 1.4rem; flex-shrink: 0; margin-top: 0.15rem; }
+.tip-box .tip-content { font-size: 0.95rem; line-height: 1.5; }
+.tip-box .tip-content strong { color: #C8861E; }
+
+.rule-table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  border-radius: 16px; overflow: hidden; border: 2px solid var(--border);
+  margin-top: 1rem; background: white;
+}
+.rule-table th, .rule-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+.rule-table th { background: var(--primary); color: white; font-family: 'Fredoka', sans-serif; font-weight: 600; }
+.rule-table tr:last-child td { border-bottom: none; }
+.rule-table tr:nth-child(even) td { background: var(--bg); }
+.rule-table td strong { color: var(--primary); }
+
+.vocab-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem; margin-top: 1rem;
+}
+.vocab-card { perspective: 1000px; height: 200px; cursor: pointer; }
+.vocab-inner {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.vocab-card.flipped .vocab-inner { transform: rotateY(180deg); }
+.vocab-front, .vocab-back {
+  position: absolute; inset: 0; backface-visibility: hidden;
+  border-radius: 20px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 1rem;
+  border: 3px solid; box-shadow: 0 6px 0 var(--border);
+}
+.vocab-front { background: white; border-color: var(--border); }
+.vocab-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white; border-color: var(--primary-dark);
+  box-shadow: 0 6px 0 var(--primary-dark);
+}
+.vocab-emoji { font-size: 3rem; margin-bottom: 0.5rem; }
+.vocab-word { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.4rem; color: var(--ink); }
+.vocab-ipa { font-size: 0.9rem; color: var(--muted); margin-top: 0.15rem; font-style: italic; }
+.vocab-back .vocab-trans { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 0.5rem; }
+.vocab-back .vocab-hint { font-size: 0.85rem; opacity: 0.95; text-align: center; }
+.vocab-speak {
+  position: absolute; top: 10px; right: 10px;
+  background: var(--accent); color: white; border: none;
+  width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+  box-shadow: 0 2px 0 var(--accent-dark); transition: transform 0.2s; z-index: 2;
+}
+.vocab-speak:hover { transform: scale(1.1); }
+.vocab-speak:active { transform: scale(0.95); }
+
+.food-section { margin-top: 1.5rem; }
+.food-section h3 {
+  font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.15rem;
+  margin-bottom: 0.75rem; color: var(--ink);
+}
+.food-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.food-chip {
+  background: white; border: 2px solid; padding: 0.4rem 0.85rem;
+  border-radius: 999px; font-weight: 700; font-size: 0.9rem;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  transition: transform 0.2s;
+}
+.food-chip:hover { transform: translateY(-2px); }
+.food-chip.countable {
+  border-color: var(--primary); color: var(--primary-dark);
+  background: linear-gradient(135deg, #fff, #FFF4E8);
+}
+.food-chip.uncountable {
+  border-color: var(--accent); color: var(--accent-dark);
+  background: linear-gradient(135deg, #fff, #FFF8E1);
+}
+.food-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.food-chip.countable .dot { background: var(--primary); }
+.food-chip.uncountable .dot { background: var(--accent); }
+.food-legend { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--muted); }
+.food-legend > div { display: flex; align-items: center; gap: 0.4rem; }
+
+.exercise {
+  background: white; border: 2px solid var(--border); border-radius: 24px;
+  padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 6px 0 var(--border);
+}
+.exercise-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.exercise-num {
+  background: var(--primary); color: white; width: 38px; height: 38px;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.1rem;
+  box-shadow: 0 3px 0 var(--primary-dark); flex-shrink: 0;
+}
+.exercise-title { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.2rem; color: var(--ink); }
+.exercise-instruction {
+  color: var(--muted); font-size: 0.95rem; margin: 0.5rem 0 1rem;
+  padding: 0.6rem 0.85rem; background: var(--bg); border-radius: 10px;
+  border-left: 4px solid var(--accent); font-style: italic;
+}
+
+.sentence-line {
+  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+  padding: 0.85rem 1rem; background: var(--bg); border-radius: 12px;
+  margin-bottom: 0.5rem; border: 2px solid transparent;
+  transition: all 0.3s; font-size: 1rem; font-weight: 600;
+}
+.sentence-line .gap { display: inline-flex; gap: 0.3rem; align-items: center; }
+.sentence-line.correct { border-color: var(--green); background: #E8F5E9; }
+.sentence-line.incorrect { border-color: var(--red); background: #FFEBEE; animation: shake 0.4s; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+.opt-btn {
+  background: white; border: 2px solid var(--border);
+  padding: 0.35rem 0.9rem; border-radius: 10px;
+  font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.95rem;
+  cursor: pointer; transition: all 0.2s; color: var(--ink);
+}
+.opt-btn:hover:not(.locked) { background: var(--bg-2); transform: translateY(-1px); }
+.opt-btn.selected { background: var(--primary); color: white; border-color: var(--primary-dark); }
+.opt-btn.correct { background: var(--green); color: white; border-color: var(--green-dark); }
+.opt-btn.wrong { background: var(--red); color: white; border-color: var(--red-dark); }
+.opt-btn.locked { cursor: default; }
+
+.text-input {
+  border: 2px solid var(--border); border-radius: 10px;
+  padding: 0.35rem 0.75rem; font-family: 'Fredoka', sans-serif; font-weight: 600;
+  min-width: 130px; text-align: center; background: white; font-size: 1rem; color: var(--ink);
+}
+.text-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(232,93,47,0.2); }
+.text-input.correct { border-color: var(--green); background: #E8F5E9; color: var(--green-dark); }
+.text-input.wrong { border-color: var(--red); background: #FFEBEE; color: var(--red-dark); }
+
+.match-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 0.5rem;
+}
+.match-col { display: flex; flex-direction: column; gap: 0.5rem; }
+.match-col-title {
+  font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.9rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 0.25rem; text-align: center;
+}
+.match-item {
+  background: white; border: 2px solid var(--border);
+  padding: 0.75rem 1rem; border-radius: 12px; text-align: center;
+  cursor: pointer; transition: all 0.2s; font-weight: 700; font-size: 1rem;
+}
+.match-item:hover:not(.matched) { background: var(--bg-2); transform: translateY(-1px); }
+.match-item.selected { background: var(--accent); color: white; border-color: var(--accent-dark); transform: scale(1.02); }
+.match-item.matched { background: var(--green); color: white; border-color: var(--green-dark); pointer-events: none; }
+.match-item.wrong { animation: shake 0.4s; }
+
+.word-bank {
+  background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+  border: 2px dashed #FFC107; border-radius: 14px;
+  padding: 0.75rem 1rem; margin-bottom: 1rem;
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+}
+.word-bank-label {
+  font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.85rem;
+  color: #C8861E; margin-right: 0.5rem;
+}
+.word-token {
+  background: white; border: 2px solid #FFC107; padding: 0.3rem 0.75rem;
+  border-radius: 999px; font-weight: 700; font-size: 0.9rem; color: var(--ink);
+}
+
+.check-btn {
+  background: var(--primary); color: white; border: none;
+  padding: 0.75rem 1.5rem; border-radius: 14px;
+  font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1rem;
+  cursor: pointer; box-shadow: 0 4px 0 var(--primary-dark);
+  transition: all 0.15s; display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem;
+}
+.check-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 0 var(--primary-dark); }
+.check-btn:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 2px 0 var(--primary-dark); }
+.check-btn.green { background: var(--green); box-shadow: 0 4px 0 var(--green-dark); }
+.check-btn.green:hover:not(:disabled) { box-shadow: 0 6px 0 var(--green-dark); }
+.check-btn:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: 0 4px 0 var(--primary-dark); }
+
+.feedback {
+  margin-top: 1rem; padding: 0.85rem 1.1rem; border-radius: 12px;
+  font-weight: 700; display: none; font-size: 0.95rem; line-height: 1.5;
+}
+.feedback.show { display: block; animation: pop 0.3s; }
+.feedback.success { background: #E8F5E9; color: var(--green-dark); border-left: 4px solid var(--green); }
+.feedback.error { background: #FFEBEE; color: var(--red-dark); border-left: 4px solid var(--red); }
+.feedback i { margin-right: 0.4rem; }
+@keyframes pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.test-progress-wrap { margin-bottom: 1.5rem; }
+.test-progress-info {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+  font-weight: 700; margin-bottom: 0.5rem; font-size: 0.95rem;
+}
+.test-progress {
+  height: 14px; background: var(--bg-2); border-radius: 7px; overflow: hidden;
+  border: 2px solid var(--border);
+}
+.test-progress-bar {
+  height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
+  width: 0%; transition: width 0.5s ease; border-radius: 5px;
+}
+
+.test-question {
+  background: white; border: 2px solid var(--border); border-radius: 18px;
+  padding: 1.25rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 4px 0 var(--border);
+}
+.test-q-num {
+  display: inline-block; background: var(--accent); color: white;
+  padding: 0.15rem 0.6rem; border-radius: 8px;
+  font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.5rem;
+}
+.test-q-text { font-weight: 700; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.5; }
+.test-options { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; }
+@media (max-width: 700px) { .test-options { grid-template-columns: 1fr; } }
+.test-opt {
+  background: var(--bg); border: 2px solid var(--border);
+  padding: 0.6rem 1rem; border-radius: 10px; cursor: pointer;
+  transition: all 0.2s; font-weight: 600; text-align: center; font-size: 0.95rem;
+}
+.test-opt:hover:not(.locked) { background: var(--bg-2); }
+.test-opt.selected { background: var(--primary); color: white; border-color: var(--primary-dark); }
+.test-opt.correct { background: var(--green); color: white; border-color: var(--green-dark); }
+.test-opt.wrong { background: var(--red); color: white; border-color: var(--red-dark); }
+.test-opt.locked { cursor: default; }
+
+.test-actions {
+  display: flex; gap: 0.75rem; justify-content: center;
+  margin-top: 1.5rem; flex-wrap: wrap;
+}
+
+.result-screen {
+  text-align: center; padding: 2rem 1.5rem; display: none; animation: fadeIn 0.5s ease;
+}
+.result-screen.show { display: block; }
+.result-emoji { font-size: 4rem; margin-bottom: 0.5rem; animation: bounce 1s infinite; }
+.result-title {
+  font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 2rem; margin-bottom: 0.5rem;
+}
+.result-score {
+  font-family: 'Fredoka', sans-serif; font-size: 4.5rem; font-weight: 700;
+  color: var(--primary); line-height: 1; margin: 1rem 0;
+  text-shadow: 0 3px 0 rgba(0,0,0,0.1);
+}
+.result-score .total { font-size: 2rem; color: var(--muted); font-weight: 600; }
+.result-message { font-size: 1.1rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 600; }
+.result-stars { font-size: 1.8rem; margin-bottom: 1rem; letter-spacing: 0.2rem; }
+.result-stars .empty { color: var(--border); }
+
+.confetti {
+  position: fixed; width: 12px; height: 12px;
+  pointer-events: none; z-index: 9999; top: -20px;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+footer { text-align: center; padding: 2rem 1rem; color: var(--muted); font-size: 0.85rem; }
+footer strong { color: var(--primary); }
+
+@media (max-width: 768px) {
+  .tab-btn { padding: 0.65rem 1rem; font-size: 0.85rem; }
+  .tab-btn span { display: none; }
+  .tab-btn i { font-size: 1.1rem; }
+  header { padding: 2rem 1rem 3rem; }
+  .section { padding: 1.25rem; }
+  .section-title { font-size: 1.3rem; }
+  .vocab-card { height: 180px; }
+  .match-grid { grid-template-columns: 1fr; }
+  .rule-card { padding: 1.25rem; }
+}
+@media (min-width: 769px) { .tab-btn span { display: inline; } }
+</style>
+</head>
+<body>
+
+<div class="bg-decor"></div>
+
+<div class="floating" style="top: 12%; left: 4%; animation-delay: 0s;">🍎</div>
+<div class="floating" style="top: 25%; right: 6%; animation-delay: 2s;">🍞</div>
+<div class="floating" style="top: 55%; left: 6%; animation-delay: 4s;">🥛</div>
+<div class="floating" style="top: 75%; right: 8%; animation-delay: 6s;">🧀</div>
+<div class="floating" style="top: 40%; right: 3%; animation-delay: 8s;">🍌</div>
+<div class="floating" style="top: 65%; left: 3%; animation-delay: 10s;">🥚</div>
+
+<header>
+  <div class="header-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+  <h1>much · many · a lot of</h1>
+  <p class="subtitle">Интерактивный рабочий лист · English · 4 класс</p>
+  <div class="badges">
+    <span class="header-badge"><i class="fa-solid fa-utensils"></i> Food</span>
+    <span class="header-badge"><i class="fa-solid fa-tags"></i> Shopping</span>
+    <span class="header-badge"><i class="fa-solid fa-coins"></i> Money</span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="theory"><i class="fa-solid fa-book-open"></i> <span>Теория</span></button>
+  <button class="tab-btn" data-tab="vocab"><i class="fa-solid fa-language"></i> <span>Лексика</span></button>
+  <button class="tab-btn" data-tab="practice"><i class="fa-solid fa-pencil"></i> <span>Упражнения</span></button>
+  <button class="tab-btn" data-tab="test"><i class="fa-solid fa-graduation-cap"></i> <span>Тест</span></button>
+</nav>
+
+<main>
+
+<!-- ===== THEORY ===== -->
+<section class="tab-panel active" id="theory">
+  <div class="section">
+    <h2 class="section-title"><span class="badge-icon"><i class="fa-solid fa-lightbulb"></i></span> Тема урока</h2>
+    <p class="intro-text">
+      Сегодня мы научимся рассказывать <strong>о количестве</strong> еды и вещей. Для этого используем слова
+      <strong>much</strong>, <strong>many</strong> и <strong>a lot of</strong>.
+      Они помогают ответить на вопрос «сколько?».
+    </p>
+
+    <div class="rule-grid">
+      <div class="rule-card many">
+        <span class="rule-badge">many</span>
+        <h3>С исчисляемыми</h3>
+        <p class="desc">Используем с тем, что можно посчитать поштучно: яблоки, яйца, магазины.</p>
+        <div class="examples">
+          <div class="ex">How <strong>many</strong> apples?</div>
+          <div class="ex">How <strong>many</strong> eggs?</div>
+          <div class="ex">How <strong>many</strong> shops?</div>
+        </div>
+      </div>
+
+      <div class="rule-card much">
+        <span class="rule-badge">much</span>
+        <h3>С неисчисляемыми</h3>
+        <p class="desc">Используем с тем, что нельзя посчитать: молоко, вода, деньги, сахар.</p>
+        <div class="examples">
+          <div class="ex">How <strong>much</strong> milk?</div>
+          <div class="ex">How <strong>much</strong> money?</div>
+          <div class="ex">How <strong>much</strong> bread?</div>
+        </div>
+      </div>
+
+      <div class="rule-card alot">
+        <span class="rule-badge">a lot of</span>
+        <h3>С любыми</h3>
+        <p class="desc">Используем и с исчисляемыми, и с неисчисляемыми. Часто в утверждениях.</p>
+        <div class="examples">
+          <div class="ex">I have <strong>a lot of</strong> apples.</div>
+          <div class="ex">She has <strong>a lot of</strong> milk.</div>
+          <div class="ex">We have <strong>a lot of</strong> money.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <i class="fa-solid fa-circle-info tip-icon"></i>
+      <div class="tip-content">
+        <strong>Совет:</strong> В утвердительных (+) предложениях чаще используем <strong>a lot of</strong> вместо much/many.
+        Слова <strong>much</strong> и <strong>many</strong> чаще встречаются в вопросах (?) и отрицаниях (-).
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title green"><span class="badge-icon"><i class="fa-solid fa-table"></i></span> Таблица-шпаргалка</h2>
+    <table class="rule-table">
+      <thead>
+        <tr><th>Слово</th><th>Когда используем</th><th>Пример</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>many</strong></td><td>исчисляемые (можно посчитать)</td><td>How <strong>many</strong> bananas?</td></tr>
+        <tr><td><strong>much</strong></td><td>неисчисляемые (нельзя посчитать)</td><td>How <strong>much</strong> water?</td></tr>
+        <tr><td><strong>a lot of</strong></td><td>оба типа, чаще в утверждениях</td><td>I have <strong>a lot of</strong> cheese.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tip-box" style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9); border-color: var(--green); margin-top: 1.5rem;">
+      <i class="fa-solid fa-circle-check tip-icon" style="color: var(--green);"></i>
+      <div class="tip-content">
+        <strong style="color: var(--green-dark);">Лайфхак:</strong> Если слово можно поставить во множественное число (apple → apples) — это <strong>many</strong>.
+        Если нельзя (milk, water, money) — это <strong>much</strong>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VOCABULARY ===== -->
+<section class="tab-panel" id="vocab">
+  <div class="section">
+    <h2 class="section-title primary"><span class="badge-icon"><i class="fa-solid fa-spell-check"></i></span> Новые слова</h2>
+    <p class="intro-text">
+      Нажми на карточку, чтобы увидеть перевод. Нажми на динамик, чтобы услышать произношение.
+    </p>
+    <div class="vocab-grid" id="vocabGrid"></div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title"><span class="badge-icon"><i class="fa-solid fa-apple-whole"></i></span> Лексика по теме «Еда»</h2>
+    <p class="intro-text">
+      Слова разделены на две группы. Запомни: <strong>many</strong> — для оранжевых, <strong>much</strong> — для жёлтых.
+    </p>
+
+    <div class="food-section">
+      <div class="food-legend">
+        <div><span class="dot" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--primary);"></span> исчисляемые (many)</div>
+        <div><span class="dot" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent);"></span> неисчисляемые (much)</div>
+      </div>
+      <h3>Исчисляемые (Countable)</h3>
+      <div class="food-list" id="countableList"></div>
+
+      <h3 style="margin-top:1rem;">Неисчисляемые (Uncountable)</h3>
+      <div class="food-list" id="uncountableList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRACTICE ===== -->
+<section class="tab-panel" id="practice">
+
+  <div class="exercise" id="ex1">
+    <div class="exercise-header">
+      <div class="exercise-num">1</div>
+      <div class="exercise-title">Choose: much or many?</div>
+    </div>
+    <div class="exercise-instruction">
+      Прочитай предложение и выбери правильное слово — <strong>much</strong> или <strong>many</strong>.
+    </div>
+    <div id="ex1List"></div>
+    <button class="check-btn" onclick="checkEx1()"><i class="fa-solid fa-check"></i> Проверить</button>
+    <div class="feedback" id="ex1Feedback"></div>
+  </div>
+
+  <div class="exercise" id="ex2">
+    <div class="exercise-header">
+      <div class="exercise-num">2</div>
+      <div class="exercise-title">Fill in: much, many, or a lot of</div>
+    </div>
+    <div class="exercise-instruction">
+      Впиши подходящее слово в каждое поле. Будь внимателен: в утверждениях используй <strong>a lot of</strong>!
+    </div>
+    <div id="ex2List"></div>
+    <button class="check-btn green" onclick="checkEx2()"><i class="fa-solid fa-check"></i> Проверить</button>
+    <div class="feedback" id="ex2Feedback"></div>
+  </div>
+
+  <div class="exercise" id="ex3">
+    <div class="exercise-header">
+      <div class="exercise-num">3</div>
+      <div class="exercise-title">Match: word + translation</div>
+    </div>
+    <div class="exercise-instruction">
+      Сначала нажми на английское слово, затем на его перевод. Найди все пары!
+    </div>
+    <div class="match-grid">
+      <div class="match-col">
+        <div class="match-col-title">English</div>
+        <div id="ex3En"></div>
+      </div>
+      <div class="match-col">
+        <div class="match-col-title">Русский</div>
+        <div id="ex3Ru"></div>
+      </div>
+    </div>
+    <div class="feedback" id="ex3Feedback"></div>
+  </div>
+
+  <div class="exercise" id="ex4">
+    <div class="exercise-header">
+      <div class="exercise-num">4</div>
+      <div class="exercise-title">Complete the dialogue</div>
+    </div>
+    <div class="exercise-instruction">
+      Вставь слова из «Word bank» в пропуски. Внимательно читай контекст!
+    </div>
+    <div class="word-bank">
+      <span class="word-bank-label"><i class="fa-solid fa-book"></i> Word bank:</span>
+      <span class="word-token">shop</span>
+      <span class="word-token">money</span>
+      <span class="word-token">price</span>
+      <span class="word-token">kilo</span>
+      <span class="word-token">expensive</span>
+      <span class="word-token">cheap</span>
+    </div>
+    <div id="ex4Dialogue"></div>
+    <button class="check-btn" onclick="checkEx4()"><i class="fa-solid fa-check"></i> Проверить</button>
+    <div class="feedback" id="ex4Feedback"></div>
+  </div>
+
+</section>
+
+<!-- ===== TEST ===== -->
+<section class="tab-panel" id="test">
+  <div class="section">
+    <h2 class="section-title primary"><span class="badge-icon"><i class="fa-solid fa-graduation-cap"></i></span> Финальный тест</h2>
+    <p class="intro-text">
+      Ответь на <strong>10 вопросов</strong>. За каждый правильный ответ ты получишь 1 балл. Удачи!
+    </p>
+
+    <div class="test-progress-wrap">
+      <div class="test-progress-info">
+        <span><i class="fa-solid fa-circle-question"></i> Отвечено: <span id="testAnswered">0</span>/10</span>
+        <span><i class="fa-solid fa-star"></i> Балл: <span id="testScore">0</span></span>
+      </div>
+      <div class="test-progress">
+        <div class="test-progress-bar" id="testProgressBar"></div>
+      </div>
+    </div>
+
+    <div id="testQuestions"></div>
+
+    <div class="test-actions" id="testActions">
+      <button class="check-btn green" id="submitTest" onclick="submitTest()" disabled>
+        <i class="fa-solid fa-flag-checkered"></i> Завершить тест
+      </button>
+      <button class="check-btn" onclick="resetTest()" style="background:var(--muted); box-shadow:0 4px 0 #4a3d34;">
+        <i class="fa-solid fa-rotate-left"></i> Начать заново
+      </button>
+    </div>
+
+    <div class="result-screen" id="resultScreen">
+      <div class="result-emoji" id="resultEmoji">🏆</div>
+      <div class="result-title" id="resultTitle">Отлично!</div>
+      <div class="result-stars" id="resultStars"></div>
+      <div class="result-score"><span id="resultScore">0</span><span class="total">/10</span></div>
+      <div class="result-message" id="resultMessage"></div>
+      <button class="check-btn" onclick="resetTest()"><i class="fa-solid fa-rotate-right"></i> Пройти ещё раз</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p><strong>English Worksheet</strong> · Grade 4 · Topic: <strong>much / many / a lot of</strong></p>
+  <p style="margin-top:0.5rem; opacity: 0.7;">Сделано для урока английского языка</p>
+</footer>
+
+<script>
+/* ============ DATA ============ */
+const vocabulary = [
+  { word: 'shop', trans: 'магазин', ipa: '/ʃɒp/', emoji: '🏪', hint: 'место, где продают еду' },
+  { word: 'money', trans: 'деньги', ipa: '/ˈmʌni/', emoji: '💵', hint: 'то, чем мы платим' },
+  { word: 'price', trans: 'цена', ipa: '/praɪs/', emoji: '🏷️', hint: 'сколько стоит вещь' },
+  { word: 'cheap', trans: 'дешёвый', ipa: '/tʃiːp/', emoji: '🪙', hint: 'низкая цена' },
+  { word: 'expensive', trans: 'дорогой', ipa: '/ɪkˈspensɪv/', emoji: '💎', hint: 'высокая цена' },
+  { word: 'kilo', trans: 'килограмм', ipa: '/ˈkiːləʊ/', emoji: '⚖️', hint: 'мера веса = 1000 грамм' }
+];
+
+const countableFood = ['apple', 'banana', 'orange', 'egg', 'tomato', 'potato', 'carrot', 'cake', 'sandwich', 'shop', 'kilo'];
+const uncountableFood = ['milk', 'water', 'juice', 'bread', 'cheese', 'meat', 'sugar', 'salt', 'rice', 'soup', 'butter', 'honey', 'money', 'tea', 'coffee'];
+
+const ex1Data = [
+  { before: 'How ', after: ' apples do you have?', answer: 'many' },
+  { before: 'How ', after: ' milk is in the bottle?', answer: 'much' },
+  { before: "I don't have ", after: ' money.', answer: 'much' },
+  { before: 'Are there ', after: ' shops near your house?', answer: 'many' },
+  { before: 'How ', after: ' sugar do you want?', answer: 'much' },
+  { before: 'How ', after: ' eggs are in the basket?', answer: 'many' },
+  { before: "There isn't ", after: ' bread at home.', answer: 'much' },
+  { before: 'How ', after: ' bananas are on the table?', answer: 'many' }
+];
+
+const ex2Data = [
+  { before: 'I have ', after: ' apples in my bag.', answer: 'a lot of' },
+  { before: 'How ', after: ' water do you drink every day?', answer: 'much' },
+  { before: 'Are there ', after: ' eggs in the fridge?', answer: 'many' },
+  { before: 'She has ', after: ' money in her purse.', answer: 'a lot of' },
+  { before: 'How ', after: ' bananas do you need?', answer: 'many' },
+  { before: 'There is ', after: ' milk in the glass.', answer: 'a lot of' }
+];
+
+const ex3Data = [
+  { en: 'shop', ru: 'магазин' },
+  { en: 'money', ru: 'деньги' },
+  { en: 'price', ru: 'цена' },
+  { en: 'cheap', ru: 'дешёвый' },
+  { en: 'expensive', ru: 'дорогой' },
+  { en: 'kilo', ru: 'килограмм' }
+];
+
+const ex4Data = [
+  { num: 1, before: "Tom: Let's go to the ", after: '! I need to buy food.', answer: 'shop' },
+  { num: 2, before: 'Anna: OK! How much ', after: ' do you have?', answer: 'money' },
+  { num: 3, before: 'Tom: 500 rubles. The ', after: ' of apples is 100 rubles.', answer: 'price' },
+  { num: 4, before: "Anna: Let's buy a ", after: ' of bananas too.', answer: 'kilo' },
+  { num: 5, before: "Tom: A kilo of bananas is 400 rubles? That's ", after: '!', answer: 'expensive' },
+  { num: 6, before: "Anna: Look! These oranges are 30 rubles. That's ", after: '!', answer: 'cheap' }
+];
+
+const testData = [
+  { q: 'How ___ apples do you need?', options: ['much', 'many', 'a lot of'], correct: 1 },
+  { q: "There isn't ___ milk in the fridge.", options: ['much', 'many', 'a lot of'], correct: 0 },
+  { q: 'I have ___ friends at school.', options: ['much', 'many', 'a lot of'], correct: 2 },
+  { q: 'The ___ of this banana is 50 rubles.', options: ['shop', 'price', 'kilo'], correct: 1 },
+  { q: 'This phone is 100,000 rubles. It is very ___.', options: ['cheap', 'expensive', 'kilo'], correct: 1 },
+  { q: "I'd like to buy a ___ of sugar, please.", options: ['kilo', 'money', 'shop'], correct: 0 },
+  { q: 'How ___ bread do we have?', options: ['much', 'many', 'a lot of'], correct: 0 },
+  { q: 'There are ___ tomatoes in the salad.', options: ['much', 'many', 'a lot of'], correct: 2 },
+  { q: 'I go to the ___ to buy bread and milk.', options: ['shop', 'kilo', 'price'], correct: 0 },
+  { q: "This juice is only 10 rubles. It's very ___.", options: ['expensive', 'cheap', 'money'], correct: 1 }
+];
+
+/* ============ STATE ============ */
+let ex1Answers = {};
+let ex2Answers = {};
+let ex3Selected = { en: null, ru: null };
+let ex3Matched = [];
+let ex4Answers = {};
+let testAnswers = {};
+let testSubmitted = false;
+
+/* ============ TABS ============ */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+/* ============ VOCABULARY ============ */
+function buildVocab() {
+  const grid = document.getElementById('vocabGrid');
+  vocabulary.forEach((v) => {
+    const card = document.createElement('div');
+    card.className = 'vocab-card';
+    card.innerHTML = `
+      <div class="vocab-inner">
+        <div class="vocab-front">
+          <button class="vocab-speak" onclick="speak('${v.word}'); event.stopPropagation();" aria-label="Произнести"><i class="fa-solid fa-volume-high"></i></button>
+          <div class="vocab-emoji">${v.emoji}</div>
+          <div class="vocab-word">${v.word}</div>
+          <div class="vocab-ipa">${v.ipa}</div>
+        </div>
+        <div class="vocab-back">
+          <div class="vocab-trans">${v.trans}</div>
+          <div class="vocab-hint">${v.hint}</div>
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    grid.appendChild(card);
+  });
+
+  const cList = document.getElementById('countableList');
+  countableFood.forEach(f => {
+    const chip = document.createElement('span');
+    chip.className = 'food-chip countable';
+    chip.innerHTML = `<span class="dot"></span>${f}`;
+    cList.appendChild(chip);
+  });
+
+  const uList = document.getElementById('uncountableList');
+  uncountableFood.forEach(f => {
+    const chip = document.createElement('span');
+    chip.className = 'food-chip uncountable';
+    chip.innerHTML = `<span class="dot"></span>${f}`;
+    uList.appendChild(chip);
+  });
+}
+
+function speak(word) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US';
+    u.rate = 0.9;
+    speechSynthesis.speak(u);
+  }
+}
+
+/* ============ EXERCISE 1 ============ */
+function buildEx1() {
+  const list = document.getElementById('ex1List');
+  ex1Data.forEach((item, i) => {
+    const line = document.createElement('div');
+    line.className = 'sentence-line';
+    line.id = `ex1-line-${i}`;
+    line.innerHTML = `
+      <span>${item.before}</span>
+      <span class="gap" id="ex1-gap-${i}">
+        <button class="opt-btn" data-q="${i}" data-opt="much">much</button>
+        <button class="opt-btn" data-q="${i}" data-opt="many">many</button>
+      </span>
+      <span>${item.after}</span>
+    `;
+    list.appendChild(line);
+  });
+  list.querySelectorAll('.opt-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.dataset.q;
+      const line = document.getElementById(`ex1-line-${q}`);
+      if (line.classList.contains('correct') || line.classList.contains('incorrect')) return;
+      line.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      ex1Answers[q] = btn.dataset.opt;
+    });
+  });
+}
+
+function checkEx1() {
+  let correct = 0;
+  ex1Data.forEach((item, i) => {
+    const line = document.getElementById(`ex1-line-${i}`);
+    line.classList.remove('correct', 'incorrect');
+    line.querySelectorAll('.opt-btn').forEach(b => {
+      b.classList.remove('selected');
+      if (b.dataset.opt === item.answer) b.classList.add('correct');
+      else if (b.dataset.opt === ex1Answers[i]) b.classList.add('wrong');
+      b.classList.add('locked');
+    });
+    if (ex1Answers[i] === item.answer) { correct++; line.classList.add('correct'); }
+    else { line.classList.add('incorrect'); }
+  });
+  const fb = document.getElementById('ex1Feedback');
+  const total = ex1Data.length;
+  if (correct === total) {
+    fb.className = 'feedback success show';
+    fb.innerHTML = `<i class="fa-solid fa-trophy"></i> Отлично! Все ${total} предложений верны. Ты супер!`;
+  } else {
+    fb.className = 'feedback error show';
+    fb.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Правильно: ${correct} из ${total}. Зелёные ответы — верные, красные — твои ошибки.`;
+  }
+}
+
+/* ============ EXERCISE 2 ============ */
+function buildEx2() {
+  const list = document.getElementById('ex2List');
+  ex2Data.forEach((item, i) => {
+    const line = document.createElement('div');
+    line.className = 'sentence-line';
+    line.id = `ex2-line-${i}`;
+    line.innerHTML = `
+      <span>${item.before}</span>
+      <input type="text" class="text-input" data-q="${i}" placeholder="?" autocomplete="off">
+      <span>${item.after}</span>
+    `;
+    list.appendChild(line);
+  });
+  list.querySelectorAll('.text-input').forEach(inp => {
+    inp.addEventListener('input', (e) => {
+      ex2Answers[inp.dataset.q] = e.target.value.trim().toLowerCase();
+      inp.classList.remove('correct', 'wrong');
+      const line = inp.closest('.sentence-line');
+      line.classList.remove('correct', 'incorrect');
+    });
+    inp.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkEx2(); });
+  });
+}
+
+function checkEx2() {
+  let correct = 0;
+  ex2Data.forEach((item, i) => {
+    const line = document.getElementById(`ex2-line-${i}`);
+    const inp = line.querySelector('.text-input');
+    const val = (ex2Answers[i] || '').toLowerCase().trim();
+    inp.classList.remove('correct', 'wrong');
+    line.classList.remove('correct', 'incorrect');
+    if (val === item.answer.toLowerCase()) {
+      inp.classList.add('correct'); correct++; line.classList.add('correct');
+    } else {
+      inp.classList.add('wrong'); line.classList.add('incorrect');
+    }
+  });
+  const fb = document.getElementById('ex2Feedback');
+  const total = ex2Data.length;
+  if (correct === total) {
+    fb.className = 'feedback success show';
+    fb.innerHTML = `<i class="fa-solid fa-trophy"></i> Великолепно! Все ${total} предложений правильные!`;
+  } else {
+    fb.className = 'feedback error show';
+    fb.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Правильно: ${correct} из ${total}. Помни: в утверждениях чаще используется <strong>a lot of</strong>.`;
+  }
+}
+
+/* ============ EXERCISE 3: MATCHING ============ */
+function buildEx3() {
+  const enCol = document.getElementById('ex3En');
+  const ruCol = document.getElementById('ex3Ru');
+  const enShuffled = [...ex3Data].sort(() => Math.random() - 0.5);
+  const ruShuffled = [...ex3Data].sort(() => Math.random() - 0.5);
+  enShuffled.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'match-item';
+    el.dataset.en = item.en;
+    el.textContent = item.en;
+    el.addEventListener('click', () => selectEn(item.en, el));
+    enCol.appendChild(el);
+  });
+  ruShuffled.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'match-item';
+    el.dataset.ru = item.ru;
+    el.textContent = item.ru;
+    el.addEventListener('click', () => selectRu(item.ru, el));
+    ruCol.appendChild(el);
+  });
+}
+
+function selectEn(en, el) {
+  if (ex3Matched.includes(en)) return;
+  document.querySelectorAll('#ex3En .match-item').forEach(m => m.classList.remove('selected'));
+  el.classList.add('selected');
+  ex3Selected.en = en;
+  tryMatch();
+}
+
+function selectRu(ru, el) {
+  const pair = ex3Data.find(d => d.ru === ru);
+  if (ex3Matched.includes(pair.en)) return;
+  document.querySelectorAll('#ex3Ru .match-item').forEach(m => m.classList.remove('selected'));
+  el.classList.add('selected');
+  ex3Selected.ru = ru;
+  tryMatch();
+}
+
+function tryMatch() {
+  if (!ex3Selected.en || !ex3Selected.ru) return;
+  const pair = ex3Data.find(d => d.en === ex3Selected.en);
+  const isCorrect = pair.ru === ex3Selected.ru;
+  if (isCorrect) {
+    document.querySelectorAll('.match-item.selected').forEach(m => {
+      m.classList.remove('selected');
+      m.classList.add('matched');
+    });
+    ex3Matched.push(ex3Selected.en);
+    ex3Selected = { en: null, ru: null };
+    if (ex3Matched.length === ex3Data.length) {
+      const fb = document.getElementById('ex3Feedback');
+      fb.className = 'feedback success show';
+      fb.innerHTML = `<i class="fa-solid fa-trophy"></i> Отличная работа! Все пары найдены!`;
+    }
+  } else {
+    document.querySelectorAll('.match-item.selected').forEach(m => {
+      m.classList.add('wrong');
+      setTimeout(() => { m.classList.remove('wrong', 'selected'); }, 400);
+    });
+    ex3Selected = { en: null, ru: null };
+  }
+}
+
+/* ============ EXERCISE 4: DIALOGUE ============ */
+function buildEx4() {
+  const div = document.getElementById('ex4Dialogue');
+  ex4Data.forEach((item, i) => {
+    const line = document.createElement('div');
+    line.className = 'sentence-line';
+    line.id = `ex4-line-${i}`;
+    line.innerHTML = `
+      <span style="color:var(--primary); font-weight:700; flex-shrink:0;">${item.num}.</span>
+      <span>${item.before}</span>
+      <input type="text" class="text-input" data-q="${i}" placeholder="___" autocomplete="off">
+      <span>${item.after}</span>
+    `;
+    div.appendChild(line);
+  });
+  div.querySelectorAll('.text-input').forEach(inp => {
+    inp.addEventListener('input', (e) => {
+      ex4Answers[inp.dataset.q] = e.target.value.trim().toLowerCase();
+      inp.classList.remove('correct', 'wrong');
+      const line = inp.closest('.sentence-line');
+      line.classList.remove('correct', 'incorrect');
+    });
+    inp.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkEx4(); });
+  });
+}
+
+function checkEx4() {
+  let correct = 0;
+  ex4Data.forEach((item, i) => {
+    const line = document.getElementById(`ex4-line-${i}`);
+    const inp = line.querySelector('.text-input');
+    const val = (ex4Answers[i] || '').toLowerCase().trim();
+    inp.classList.remove('correct', 'wrong');
+    line.classList.remove('correct', 'incorrect');
+    if (val === item.answer.toLowerCase()) {
+      inp.classList.add('correct'); correct++; line.classList.add('correct');
+    } else {
+      inp.classList.add('wrong'); line.classList.add('incorrect');
+    }
+  });
+  const fb = document.getElementById('ex4Feedback');
+  const total = ex4Data.length;
+  if (correct === total) {
+    fb.className = 'feedback success show';
+    fb.innerHTML = `<i class="fa-solid fa-trophy"></i> Превосходно! Диалог полностью составлен правильно!`;
+  } else {
+    fb.className = 'feedback error show';
+    fb.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Правильно: ${correct} из ${total}. Перечитай контекст и попробуй снова.`;
+  }
+}
+
+/* ============ TEST ============ */
+function buildTest() {
+  const container = document.getElementById('testQuestions');
+  testData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'test-question';
+    div.id = `test-q-${i}`;
+    div.innerHTML = `
+      <span class="test-q-num">Вопрос ${i + 1}</span>
+      <div class="test-q-text">${q.q}</div>
+      <div class="test-options">
+        ${q.options.map((opt, j) => `<div class="test-opt" data-q="${i}" data-opt="${j}" onclick="selectTest(${i}, ${j})">${opt}</div>`).join('')}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function selectTest(qi, oi) {
+  if (testSubmitted) return;
+  testAnswers[qi] = oi;
+  document.querySelectorAll(`#test-q-${qi} .test-opt`).forEach(opt => opt.classList.remove('selected'));
+  document.querySelector(`#test-q-${qi} .test-opt[data-opt="${oi}"]`).classList.add('selected');
+  updateTestProgress();
+}
+
+function updateTestProgress() {
+  const answered = Object.keys(testAnswers).length;
+  document.getElementById('testAnswered').textContent = answered;
+  const pct = (answered / testData.length) * 100;
+  document.getElementById('testProgressBar').style.width = pct + '%';
+  document.getElementById('submitTest').disabled = answered < testData.length;
+}
+
+function submitTest() {
+  if (Object.keys(testAnswers).length < testData.length) return;
+  testSubmitted = true;
+  let score = 0;
+  testData.forEach((q, i) => {
+    const opts = document.querySelectorAll(`#test-q-${i} .test-opt`);
+    opts.forEach(opt => {
+      opt.classList.remove('selected');
+      opt.classList.add('locked');
+      const oi = parseInt(opt.dataset.opt);
+      if (oi === q.correct) opt.classList.add('correct');
+      else if (oi === testAnswers[i]) opt.classList.add('wrong');
+    });
+    if (testAnswers[i] === q.correct) score++;
+  });
+  document.getElementById('testScore').textContent = score;
+  document.getElementById('submitTest').disabled = true;
+
+  setTimeout(() => {
+    document.getElementById('testQuestions').style.display = 'none';
+    document.getElementById('testActions').style.display = 'none';
+    const rs = document.getElementById('resultScreen');
+    rs.classList.add('show');
+    document.getElementById('resultScore').textContent = score;
+
+    let title, message, emoji, stars;
+    if (score === 10) {
+      title = 'Великолепно!'; message = 'Ты прекрасно освоил тему! Можно смело идти в магазин на английском!';
+      emoji = '🏆'; stars = '★★★★★';
+    } else if (score >= 8) {
+      title = 'Отлично!'; message = 'Ты хорошо усвоил материал. Ещё чуть-чуть — и будет идеально!';
+      emoji = '🌟'; stars = '★★★★☆';
+    } else if (score >= 5) {
+      title = 'Хорошо!'; message = 'Ты на правильном пути. Повтори теорию и попробуй снова.';
+      emoji = '👍'; stars = '★★★☆☆';
+    } else if (score >= 3) {
+      title = 'Неплохо!'; message = 'Стоит вернуться к теории и попрактиковаться ещё.';
+      emoji = '📚'; stars = '★★☆☆☆';
+    } else {
+      title = 'Не сдавайся!'; message = 'Вернись к теории и попробуй ещё раз. У тебя обязательно получится!';
+      emoji = '💪'; stars = '★☆☆☆☆';
+    }
+    document.getElementById('resultTitle').textContent = title;
+    document.getElementById('resultMessage').textContent = message;
+    document.getElementById('resultEmoji').textContent = emoji;
+    document.getElementById('resultStars').innerHTML = stars.split('').map(s => s === '★' ? '<span>★</span>' : '<span class="empty">★</span>').join('');
+
+    if (score >= 8) launchConfetti();
+    rs.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 600);
+}
+
+function resetTest() {
+  testAnswers = {};
+  testSubmitted = false;
+  document.getElementById('testScore').textContent = '0';
+  document.getElementById('testAnswered').textContent = '0';
+  document.getElementById('testProgressBar').style.width = '0%';
+  document.getElementById('submitTest').disabled = true;
+  document.getElementById('testQuestions').style.display = '';
+  document.getElementById('testActions').style.display = '';
+  document.getElementById('resultScreen').classList.remove('show');
+  testData.forEach((q, i) => {
+    document.querySelectorAll(`#test-q-${i} .test-opt`).forEach(opt => {
+      opt.classList.remove('selected', 'correct', 'wrong', 'locked');
+    });
+  });
+  document.getElementById('test').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ============ CONFETTI ============ */
+function launchConfetti() {
+  const colors = ['#E85D2F', '#F4A93C', '#2E8B57', '#FFB627', '#D14545', '#FF8A65'];
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    c.style.animation = `confetti-fall ${2 + Math.random() * 2}s linear forwards`;
+    c.style.animationDelay = Math.random() * 0.5 + 's';
+    c.style.width = (8 + Math.random() * 8) + 'px';
+    c.style.height = (8 + Math.random() * 8) + 'px';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4500);
+  }
+}
+
+/* ============ INIT ============ */
+buildVocab();
+buildEx1();
+buildEx2();
+buildEx3();
+buildEx4();
+buildTest();
+</script>
+</body>
+</html>

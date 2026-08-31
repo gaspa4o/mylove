@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present Continuous: Тренировка и новые слова</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F0FBF6;
+    --bg-2:#D4F0E3;
+    --card:#FFFFFF;
+    --text:#1F3D2E;
+    --muted:#5C7B6E;
+    --accent:#2ECC71;
+    --accent-2:#27AE60;
+    --accent-soft:#E9F9EF;
+    --orange:#FF9F43;
+    --orange-soft:#FFF3E0;
+    --green:#2ECC71;
+    --green-soft:#D5F5E3;
+    --warn:#F39C12;
+    --warn-soft:#FFF3CD;
+    --blue:#3498DB;
+    --pink:#FF6B9D;
+    --purple:#9B59B6;
+    --border:#BDEED9;
+    --neutral:#ECEFF1;
+    --neutral-border:#B0BEC5;
+    --shadow:0 8px 24px rgba(46, 204, 113, 0.15);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    font-family:'Nunito',sans-serif;
+    background:linear-gradient(135deg,#F0FBF6 0%,#D4F0E3 60%,#A9E4C2 100%);
+    background-attachment:fixed;
+    color:var(--text);
+    min-height:100vh;
+    line-height:1.6;
+    overflow-x:hidden;
+    font-weight:600;
+  }
+
+  .bg-decor{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .bg-decor span{
+    position:absolute;
+    border-radius:50%;
+    opacity:0.4;
+    animation:floatBubble 15s infinite ease-in-out;
+  }
+  .bg-decor span:nth-child(1){width:80px;height:80px;background:#2ECC71;top:10%;left:5%;animation-duration:18s;}
+  .bg-decor span:nth-child(2){width:120px;height:120px;background:#FF9F43;opacity:0.15;top:60%;left:80%;animation-duration:22s;}
+  .bg-decor span:nth-child(3){width:60px;height:60px;background:#9B59B6;opacity:0.2;top:80%;left:15%;animation-duration:20s;}
+  .bg-decor span:nth-child(4){width:100px;height:100px;background:#3498DB;opacity:0.18;top:30%;left:90%;animation-duration:25s;}
+
+  @keyframes floatBubble{
+    0%,100%{transform:translateY(0) translateX(0);}
+    50%{transform:translateY(-40px) translateX(20px);}
+  }
+
+  .helper{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:100;
+    background:var(--card);
+    border-radius:50px;
+    padding:12px 18px;
+    box-shadow:var(--shadow);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    max-width:320px;
+    border:3px solid var(--accent);
+    transition:transform 0.3s;
+  }
+  .helper:hover{transform:translateY(-4px);}
+  .helper-icon{font-size:38px;animation:bounce 2s infinite;}
+  @keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-6px);}
+  }
+  .helper-text{font-size:14px;font-weight:700;color:var(--text);}
+
+  .header{
+    position:relative;
+    z-index:2;
+    padding:24px 20px 0;
+    text-align:center;
+  }
+  .title{
+    font-size:clamp(36px,5vw,56px);
+    font-weight:900;
+    color:var(--accent-2);
+    text-shadow:3px 3px 0 #fff, 5px 5px 0 rgba(0,0,0,0.05);
+    letter-spacing:1px;
+    margin-bottom:6px;
+  }
+  .subtitle{
+    font-size:18px;
+    color:var(--muted);
+    font-weight:700;
+    margin-bottom:20px;
+  }
+
+  .tabs{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    padding:0 16px 24px;
+    position:relative;
+    z-index:2;
+  }
+  .tab{
+    background:var(--card);
+    border:3px solid var(--border);
+    border-radius:18px;
+    padding:12px 18px;
+    font-family:inherit;
+    font-size:15px;
+    font-weight:800;
+    color:var(--text);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:all 0.25s;
+    box-shadow:0 3px 0 var(--border);
+  }
+  .tab:hover{
+    transform:translateY(-2px);
+    border-color:var(--accent);
+    box-shadow:0 5px 0 var(--accent);
+  }
+  .tab.active{
+    background:var(--accent-2);
+    color:#fff;
+    border-color:var(--accent-2);
+    box-shadow:0 5px 0 #1A7A43;
+  }
+  .tab-icon{font-size:18px;}
+
+  .main{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 20px 80px;
+    position:relative;
+    z-index:2;
+  }
+  .tab-content{
+    display:none;
+    animation:fadeIn 0.5s ease;
+  }
+  .tab-content.active{display:block;}
+  @keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:24px;
+    padding:28px;
+    box-shadow:var(--shadow);
+    border:3px solid var(--border);
+    margin-bottom:24px;
+  }
+  .card-title{
+    font-size:28px;
+    font-weight:900;
+    color:var(--accent-2);
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .card-text{font-size:17px;margin-bottom:12px;font-weight:600;}
+  .card-text strong{color:var(--accent-2);font-weight:800;}
+  .highlight{
+    background:var(--accent-soft);
+    padding:2px 8px;
+    border-radius:8px;
+    font-weight:800;
+    color:var(--accent-2);
+  }
+
+  .be-emph{
+    font-weight:900;
+    color:#C25A00;
+  }
+  .be-emph.is{color:#1A5A99;}
+  .be-emph.are{color:#2F7A2A;}
+  .verb-ing{
+    font-weight:800;
+    color:var(--purple);
+  }
+
+  .theory-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+    margin:16px 0;
+  }
+  .info-block{
+    background:linear-gradient(135deg,#F0FBF6,#D4F0E3);
+    border-radius:18px;
+    padding:18px;
+    border-left:6px solid var(--accent);
+    font-weight:600;
+  }
+  .info-block h4{
+    font-size:19px;
+    font-weight:800;
+    color:var(--accent-2);
+    margin-bottom:8px;
+  }
+
+  .vocab-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:14px;
+    margin-top:16px;
+  }
+  .vocab-card{
+    background:#fff;
+    border:3px solid var(--border);
+    border-radius:14px;
+    padding:15px 10px;
+    text-align:center;
+    cursor:pointer;
+    transition:all 0.3s;
+    position:relative;
+    min-height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:18px;
+    color:var(--accent-2);
+  }
+  .vocab-card:hover{
+    transform:translateY(-3px);
+    border-color:var(--orange);
+    box-shadow:0 6px 12px rgba(0,0,0,0.08);
+  }
+  .vocab-card .ru{
+    display:none;
+    color:var(--orange);
+    font-size:18px;
+  }
+  .vocab-card.flipped{
+    background:var(--accent-soft);
+    border-color:var(--accent);
+  }
+  .vocab-card.flipped .en{display:none;}
+  .vocab-card.flipped .ru{display:block;}
+  
+  .sound-btn{
+    position:absolute;
+    top:5px;
+    right:5px;
+    background:var(--accent-soft);
+    border:none;
+    border-radius:50%;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:14px;
+    transition:transform 0.2s;
+  }
+  .sound-btn:hover{
+    transform:scale(1.1);
+    background:var(--accent);
+  }
+
+  .task{
+    background:var(--card);
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:var(--shadow);
+    border:3px solid var(--border);
+  }
+  .task-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .task-num{
+    background:var(--accent-2);
+    color:#fff;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:18px;
+    flex-shrink:0;
+  }
+  .task-title{
+    font-size:20px;
+    font-weight:800;
+    color:var(--text);
+  }
+  .task-instruction{
+    font-size:15px;
+    color:var(--muted);
+    margin-bottom:14px;
+    font-weight:600;
+  }
+
+  .sentence{
+    font-size:19px;
+    margin:14px 0;
+    line-height:1.8;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:6px;
+    font-weight:700;
+  }
+  .blank{
+    display:inline-flex;
+    gap:6px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .option{
+    background:#F0FBF6;
+    border:2px solid var(--border);
+    border-radius:12px;
+    padding:6px 14px;
+    font-family:inherit;
+    font-weight:700;
+    font-size:16px;
+    cursor:pointer;
+    transition:all 0.2s;
+    color:var(--text);
+  }
+  .option:hover{
+    border-color:var(--neutral-border);
+    background:var(--neutral);
+  }
+  .option.selected{
+    background:var(--neutral);
+    color:var(--text);
+    border-color:var(--neutral-border);
+    transform:scale(1.05);
+  }
+  .option.correct{
+    background:var(--green) !important;
+    color:#fff !important;
+    border-color:var(--green) !important;
+  }
+  .option.wrong{
+    background:var(--warn) !important;
+    color:#fff !important;
+    border-color:var(--warn) !important;
+    animation:shake 0.4s;
+  }
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-4px);}
+    75%{transform:translateX(4px);}
+  }
+
+  .words-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:10px 0;
+    padding:10px;
+    background:#F0FBF6;
+    border-radius:14px;
+    min-height:60px;
+    border:2px dashed var(--border);
+  }
+  .word{
+    background:var(--accent);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:10px;
+    font-family:inherit;
+    font-weight:800;
+    font-size:16px;
+    cursor:pointer;
+    transition:all 0.2s;
+    user-select:none;
+  }
+  .word:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,0.15);}
+  .word.used{opacity:0.3;cursor:default;pointer-events:none;}
+  .answer-area{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    min-height:60px;
+    padding:10px;
+    background:#fff;
+    border-radius:14px;
+    border:2px solid var(--accent);
+    margin-top:8px;
+    align-items:center;
+  }
+  .answer-area .word{background:var(--neutral);color:var(--text);border:1px solid var(--neutral-border);}
+  .answer-area .word.used{display:none;}
+  .clear-btn{
+    background:transparent;
+    border:2px solid var(--border);
+    color:var(--muted);
+    border-radius:10px;
+    padding:6px 12px;
+    font-family:inherit;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:8px;
+  }
+  .clear-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+  .btn-group{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .check-btn{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#fff;
+    border:none;
+    border-radius:20px;
+    padding:14px 32px;
+    font-family:inherit;
+    font-size:20px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 5px 0 #1A7A43;
+    transition:all 0.2s;
+  }
+  .check-btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 #1A7A43;}
+  .check-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #1A7A43;}
+  .reset-btn{
+    background:#fff;
+    color:var(--muted);
+    border:3px solid var(--border);
+    border-radius:20px;
+    padding:14px 32px;
+    font-family:inherit;
+    font-size:20px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 5px 0 var(--border);
+    transition:all 0.2s;
+  }
+  .reset-btn:hover{
+    transform:translateY(-2px);
+    color:var(--text);
+    box-shadow:0 7px 0 var(--border);
+  }
+  .reset-btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--border);}
+
+  .result{
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    border-radius:16px;
+    text-align:center;
+    font-size:20px;
+    font-weight:800;
+    animation:popIn 0.5s ease;
+  }
+  @keyframes popIn{
+    0%{transform:scale(0.8);opacity:0;}
+    100%{transform:scale(1);opacity:1;}
+  }
+  .result.show{display:block;}
+  .result.success{background:var(--green-soft);color:var(--green);}
+  .result.partial{background:var(--warn-soft);color:var(--warn);}
+  .result .stars{font-size:28px;margin-top:8px;display:block;}
+
+  .game-board{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    max-width:500px;
+    margin:0 auto;
+  }
+  .game-card{
+    aspect-ratio:1;
+    background:var(--accent-2);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:800;
+    cursor:pointer;
+    transition:all 0.3s;
+    border:3px solid #fff;
+    color:transparent;
+    position:relative;
+  }
+  .game-card::before{
+    content:'?';
+    color:#fff;
+    font-size:32px;
+  }
+  .game-card.flipped{
+    background:#fff;
+    color:var(--text);
+    border:3px solid var(--accent-2);
+  }
+  .game-card.flipped::before{display:none;}
+  .game-card.matched{
+    background:var(--green-soft);
+    color:var(--green);
+    border:3px solid var(--green);
+    cursor:default;
+    transform:scale(0.95);
+  }
+  .game-card.matched::before{display:none;}
+  
+  .game-status{
+    text-align:center;
+    font-size:20px;
+    font-weight:800;
+    color:var(--accent-2);
+    margin-bottom:20px;
+  }
+  .game-win{
+    display:none;
+    text-align:center;
+    background:var(--green-soft);
+    padding:20px;
+    border-radius:16px;
+    margin-top:20px;
+    font-size:22px;
+    font-weight:800;
+    color:var(--green);
+    animation:popIn 0.5s ease;
+  }
+  .game-win.show{display:block;}
+
+  @media(max-width:700px){
+    .game-board{grid-template-columns:repeat(3,1fr);}
+    .sentence{font-size:17px;}
+    .tab-text{display:none;}
+    .tab{padding:12px 14px;}
+    .helper{max-width:240px;bottom:10px;right:10px;}
+    .helper-text{font-size:12px;}
+    .card{padding:18px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-decor">
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<div class="helper" id="helper">
+  <div class="helper-icon">🐱</div>
+  <div class="helper-text" id="helperText">Мяу! Я кот Басик. Готов к новым словам и игре?</div>
+</div>
+
+<header class="header">
+  <h1 class="title">✨ Present Continuous ✨</h1>
+  <p class="subtitle">Тренировка, новые слова и игра • 4 класс</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="theory"><span class="tab-icon">📖</span><span class="tab-text">Теория</span></button>
+  <button class="tab" data-tab="vocabulary"><span class="tab-icon">📒</span><span class="tab-text">Словарик</span></button>
+  <button class="tab" data-tab="task1"><span class="tab-icon">1️⃣</span><span class="tab-text">Задание 1</span></button>
+  <button class="tab" data-tab="task2"><span class="tab-icon">2️⃣</span><span class="tab-text">Задание 2</span></button>
+  <button class="tab" data-tab="task3"><span class="tab-icon">3️⃣</span><span class="tab-text">Задание 3</span></button>
+  <button class="tab" data-tab="game"><span class="tab-icon">🎮</span><span class="tab-text">Игра</span></button>
+</nav>
+
+<main class="main">
+
+  <section id="theory" class="tab-content active">
+    <div class="card">
+      <h2 class="card-title">📖 Краткая теория</h2>
+      <p class="card-text">
+        <strong>Present Continuous</strong> (настоящее длительное время) — действие происходит <strong>прямо сейчас</strong>.
+      </p>
+      <p class="card-text">
+        Схема: <span class="highlight">Кто? + am/is/are + глагол+ing</span>
+      </p>
+      <div class="theory-grid">
+        <div class="info-block">
+          <h4>1️⃣ Просто -ing</h4>
+          <p>read → read<span class="verb-ing">ing</span><br>laugh → laugh<span class="verb-ing">ing</span></p>
+        </div>
+        <div class="info-block">
+          <h4>2️⃣ Убери -e</h4>
+          <p>smile → smil<span class="verb-ing">ing</span><br>skate → skat<span class="verb-ing">ing</span></p>
+        </div>
+        <div class="info-block">
+          <h4>3️⃣ Удвой согласную</h4>
+          <p>clap → cla<span style="color:var(--accent-2);">pp</span><span class="verb-ing">ing</span><br>hug → hu<span style="color:var(--accent-2);">gg</span><span class="verb-ing">ing</span></p>
+        </div>
+      </div>
+      <p class="card-text" style="margin-top:14px;">
+        В вопросах глагол <strong>to be</strong> переезжает в начало: <br>
+        <span class="be-emph are">Are</span> you read<span class="verb-ing">ing</span>? — Yes, I <span class="be-emph">am</span>. / No, I am not.
+      </p>
+    </div>
+  </section>
+
+  <section id="vocabulary" class="tab-content">
+    <div class="card">
+      <h2 class="card-title">📒 Словарик</h2>
+      <p class="card-text">Посмотри на английский глагол. Попробуй догадаться, что он значит. Нажми на динамик, чтобы услышать произношение. Нажми на карточку, чтобы увидеть перевод.</p>
+      <div class="vocab-grid" id="vocabGrid"></div>
+    </div>
+  </section>
+
+  <section id="task1" class="tab-content">
+    <div class="card">
+      <h2 class="card-title">1️⃣ Выбери правильный глагол</h2>
+      <p class="card-text">Прочитай перевод в скобках и выбери правильный глагол с окончанием -ing.</p>
+    </div>
+    <div class="task" id="task1Content"></div>
+    <div class="btn-group">
+      <button class="reset-btn" onclick="resetTask('task1Content')">Сбросить</button>
+      <button class="check-btn" onclick="checkSection('task1Content')">Проверить</button>
+    </div>
+    <div class="result" id="result-task1Content"></div>
+  </section>
+
+  <section id="task2" class="tab-content">
+    <div class="card">
+      <h2 class="card-title">2️⃣ Составь предложения</h2>
+      <p class="card-text">Нажимай на слова, чтобы собрать предложение в Present Continuous.</p>
+    </div>
+    <div class="task" id="task2Content"></div>
+    <div class="btn-group">
+      <button class="reset-btn" onclick="resetTask('task2Content')">Сбросить</button>
+      <button class="check-btn" onclick="checkSection('task2Content')">Проверить</button>
+    </div>
+    <div class="result" id="result-task2Content"></div>
+  </section>
+
+  <section id="task3" class="tab-content">
+    <div class="card">
+      <h2 class="card-title">3️⃣ Вопрос и ответ</h2>
+      <p class="card-text">Прочитай вопрос и выбери правильный короткий ответ.</p>
+    </div>
+    <div class="task" id="task3Content"></div>
+    <div class="btn-group">
+      <button class="reset-btn" onclick="resetTask('task3Content')">Сбросить</button>
+      <button class="check-btn" onclick="checkSection('task3Content')">Проверить</button>
+    </div>
+    <div class="result" id="result-task3Content"></div>
+  </section>
+
+  <section id="game" class="tab-content">
+    <div class="card">
+      <h2 class="card-title">🎮 Игра: Найди пару</h2>
+      <p class="card-text">Найди пары: глагол в начальной форме и его форма с окончанием -ing. Тренируй правила правописания!</p>
+      <div class="game-status" id="gameStatus">Найдено пар: 0 из 8</div>
+      <div class="game-board" id="game-board"></div>
+      <div class="game-win" id="gameWin">🎉 Поздравляю! Ты нашёл все пары! 🎉</div>
+      <div class="btn-group">
+        <button class="reset-btn" onclick="resetGame()">Начать заново</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/* ============ ДАННЫЕ ============ */
+const vocabulary = [
+  {en:"laugh", ru:"смеяться"},
+  {en:"cry", ru:"плакать"},
+  {en:"walk", ru:"гулять"},
+  {en:"talk", ru:"разговаривать"},
+  {en:"work", ru:"работать"},
+  {en:"study", ru:"учиться"},
+  {en:"help", ru:"помогать"},
+  {en:"clean", ru:"убирать"},
+  {en:"wash", ru:"мыть"},
+  {en:"carry", ru:"носить"},
+  {en:"hug", ru:"обнимать"},
+  {en:"clap", ru:"хлопать"},
+  {en:"bake", ru:"печь"},
+  {en:"paint", ru:"красить"},
+  {en:"wait", ru:"ждать"},
+  {en:"skate", ru:"кататься на коньках"},
+  {en:"ski", ru:"кататься на лыжах"},
+  {en:"smile", ru:"улыбаться"}
+];
+
+/* ============ ОЗВУЧКА ============ */
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
+/* ============ РЕНДЕР СЛОВАРИКА ============ */
+const vocabGrid = document.getElementById('vocabGrid');
+vocabulary.forEach(v=>{
+  const card = document.createElement('div');
+  card.className = 'vocab-card';
+  card.innerHTML = `
+    <button class="sound-btn" title="Озвучить">🔊</button>
+    <span class="en">${v.en}</span>
+    <span class="ru">${v.ru}</span>
+  `;
+  
+  const soundBtn = card.querySelector('.sound-btn');
+  soundBtn.onclick = (e) => {
+    e.stopPropagation();
+    speak(v.en);
+  };
+  
+  card.onclick = ()=>card.classList.toggle('flipped');
+  vocabGrid.appendChild(card);
+});
+
+/* ============ УТИЛИТА: подсветка to be ============ */
+function escapeHtml(str){
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function highlightBe(text){
+  const escaped = escapeHtml(text);
+  return escaped
+    .replace(/\b(am)\b/g, '<span class="be-emph">$1</span>')
+    .replace(/\b(is)\b/g, '<span class="be-emph is">$1</span>')
+    .replace(/\b(are)\b/g, '<span class="be-emph are">$1</span>')
+    .replace(/\b(isn\'t|isn&#39;t)\b/g, '<span class="be-emph is">$1</span>')
+    .replace(/\b(aren\'t|aren&#39;t)\b/g, '<span class="be-emph are">$1</span>')
+    .replace(/\b(Am)\b/g, '<span class="be-emph">$1</span>')
+    .replace(/\b(Is)\b/g, '<span class="be-emph is">$1</span>')
+    .replace(/\b(Are)\b/g, '<span class="be-emph are">$1</span>');
+}
+
+/* ============ РЕНДЕРЕРЫ ЗАДАНИЙ ============ */
+function renderChoice(containerId, items){
+  const c = document.getElementById(containerId);
+  items.forEach((item)=>{
+    const sentence = document.createElement('div');
+    sentence.className = 'sentence';
+    sentence.dataset.correct = item.correct;
+    sentence.dataset.type = 'choice';
+
+    const parts = item.q.split('___');
+    parts.forEach((part, i)=>{
+      const text = document.createElement('span');
+      text.innerHTML = highlightBe(part);
+      sentence.appendChild(text);
+      if(i < parts.length-1){
+        const blank = document.createElement('span');
+        blank.className = 'blank';
+        item.options.forEach(opt=>{
+          const btn = document.createElement('button');
+          btn.className = 'option';
+          btn.textContent = opt;
+          btn.onclick = ()=>{
+            blank.querySelectorAll('.option').forEach(b=>b.classList.remove('selected'));
+            btn.classList.add('selected');
+            sentence.dataset.answer = opt;
+          };
+          blank.appendChild(btn);
+        });
+        sentence.appendChild(blank);
+      }
+    });
+    c.appendChild(sentence);
+  });
+}
+
+function renderWordOrder(containerId, items){
+  const c = document.getElementById(containerId);
+  items.forEach((item)=>{
+    const wrap = document.createElement('div');
+    wrap.style.marginBottom = '20px';
+    wrap.dataset.correct = item.correct.join(' ').toLowerCase().replace(/[.?]/g,'');
+    wrap.dataset.type = 'wordorder';
+
+    const wordsBox = document.createElement('div');
+    wordsBox.className = 'words-container';
+
+    const answerArea = document.createElement('div');
+    answerArea.className = 'answer-area';
+
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'clear-btn';
+    clearBtn.textContent = '↺ Очистить';
+
+    const shuffled = [...item.words].sort(()=>Math.random()-0.5);
+    shuffled.forEach(w=>{
+      const word = document.createElement('div');
+      word.className = 'word';
+      word.textContent = w;
+      if(['am','is','are','Am','Is','Are'].includes(w)){
+        word.style.background = 'var(--accent-2)';
+        word.style.color = '#fff';
+      }
+      word.onclick = ()=>{
+        if(word.classList.contains('used')) return;
+        word.classList.add('used');
+        const ansWord = document.createElement('div');
+        ansWord.className = 'word';
+        ansWord.textContent = w;
+        if(['am','is','are','Am','Is','Are'].includes(w)){
+          ansWord.style.background = 'var(--accent-2)';
+          ansWord.style.color = '#fff';
+        }
+        ansWord.onclick = ()=>{
+          word.classList.remove('used');
+          ansWord.remove();
+          updateAnswer();
+        };
+        answerArea.appendChild(ansWord);
+        updateAnswer();
+      };
+      wordsBox.appendChild(word);
+    });
+
+    function updateAnswer(){
+      const arr = Array.from(answerArea.querySelectorAll('.word')).map(b=>b.textContent);
+      wrap.dataset.answer = arr.join(' ').toLowerCase();
+    }
+
+    clearBtn.onclick = ()=>{
+      answerArea.innerHTML = '';
+      wordsBox.querySelectorAll('.word').forEach(w=>w.classList.remove('used'));
+      wrap.dataset.answer = '';
+    };
+
+    wrap.appendChild(wordsBox);
+    wrap.appendChild(answerArea);
+    wrap.appendChild(clearBtn);
+    c.appendChild(wrap);
+  });
+}
+
+/* ============ ЗАПОЛНЕНИЕ ЗАДАНИЙ ============ */
+renderChoice('task1Content', [
+  {q:"The baby is ___ (плакать).", options:["crying","smiling","washing"], correct:"crying"},
+  {q:"We are ___ (кататься на коньках) now.", options:["skating","skiing","smiling"], correct:"skating"},
+  {q:"She is ___ (печь) a cake.", options:["baking","washing","clapping"], correct:"baking"},
+  {q:"They are ___ (хлопать) their hands.", options:["clapping","waiting","hugging"], correct:"clapping"},
+  {q:"He is ___ (чинить) the car.", options:["fixing","painting","walking"], correct:"fixing"},
+  {q:"I am ___ (улыбаться) at you.", options:["smiling","crying","talking"], correct:"smiling"},
+  {q:"The kids are ___ (разговаривать) loudly.", options:["talking","walking","working"], correct:"talking"},
+  {q:"My mum is ___ (убирать) the room.", options:["cleaning","washing","baking"], correct:"cleaning"},
+  {q:"The dog is ___ (носить) a stick.", options:["carrying","clapping","hugging"], correct:"carrying"},
+  {q:"We are ___ (учиться) English.", options:["studying","working","waiting"], correct:"studying"},
+  {q:"Look! He is ___ (смеяться).", options:["laughing","crying","skating"], correct:"laughing"},
+  {q:"She is ___ (красить) the wall.", options:["painting","baking","fixing"], correct:"painting"}
+]);
+
+renderWordOrder('task2Content', [
+  {words:["The","baby","is","crying","now","."], correct:["The","baby","is","crying","now","."]},
+  {words:["are","We","skating","in","the","park","."], correct:["We","are","skating","in","the","park","."]},
+  {words:["painting","She","is","a","picture","."], correct:["She","is","painting","a","picture","."]},
+  {words:["am","not","I","waiting","for","you","."], correct:["I","am","not","waiting","for","you","."]},
+  {words:["Is","he","fixing","the","car","?"], correct:["Is","he","fixing","the","car","?"]},
+  {words:["My","mum","is","baking","a","cake","."], correct:["My","mum","is","baking","a","cake","."]}
+]);
+
+renderChoice('task3Content', [
+  {q:"Is the baby crying? — Yes, ___.", options:["he is","he isn't","he am"], correct:"he is"},
+  {q:"Are you skating? — No, ___.", options:["I am not","I isn't","I don't"], correct:"I am not"},
+  {q:"Are they painting? — Yes, ___.", options:["they are","they is","they am"], correct:"they are"},
+  {q:"Is she sleeping? — No, ___.", options:["she isn't","she aren't","she don't"], correct:"she isn't"},
+  {q:"Are we waiting? — No, ___.", options:["we aren't","we isn't","we am not"], correct:"we aren't"},
+  {q:"Is he fixing the car? — Yes, ___.", options:["he is","he are","he am"], correct:"he is"}
+]);
+
+/* ============ ЛОГИКА ИГРЫ ============ */
+const gamePairs = [
+  {base: 'hug', ing: 'hugging'},
+  {base: 'clap', ing: 'clapping'},
+  {base: 'bake', ing: 'baking'},
+  {base: 'skate', ing: 'skating'},
+  {base: 'smile', ing: 'smiling'},
+  {base: 'cry', ing: 'crying'},
+  {base: 'paint', ing: 'painting'},
+  {base: 'wait', ing: 'waiting'}
+];
+
+let gameCards = [];
+let flippedCards = [];
+let matchedPairs = 0;
+
+function initGame() {
+  gameCards = [];
+  gamePairs.forEach(p => {
+    gameCards.push({text: p.base, match: p.ing, type: 'base'});
+    gameCards.push({text: p.ing, match: p.base, type: 'ing'});
+  });
+  gameCards = gameCards.sort(() => Math.random() - 0.5);
+  
+  const board = document.getElementById('game-board');
+  board.innerHTML = '';
+  matchedPairs = 0;
+  document.getElementById('gameStatus').textContent = 'Найдено пар: 0 из 8';
+  document.getElementById('gameWin').classList.remove('show');
+  
+  gameCards.forEach((card, index) => {
+    const el = document.createElement('div');
+    el.className = 'game-card';
+    el.dataset.index = index;
+    el.dataset.text = card.text;
+    el.dataset.match = card.match;
+    el.innerText = card.text;
+    el.onclick = () => flipCard(el);
+    board.appendChild(el);
+  });
+}
+
+function flipCard(el) {
+  if (el.classList.contains('flipped') || el.classList.contains('matched')) return;
+  if (flippedCards.length === 2) return;
+
+  el.classList.add('flipped');
+  flippedCards.push(el);
+
+  if (flippedCards.length === 2) {
+    setTimeout(checkMatch, 800);
+  }
+}
+
+function checkMatch() {
+  const [card1, card2] = flippedCards;
+  if (card1.dataset.match === card2.dataset.text) {
+    card1.classList.add('matched');
+    card2.classList.add('matched');
+    matchedPairs++;
+    document.getElementById('gameStatus').textContent = `Найдено пар: ${matchedPairs} из 8`;
+    if (matchedPairs === 8) {
+      document.getElementById('gameWin').classList.add('show');
+      document.getElementById('helperText').textContent = '🐱 Мяу! Ты собрал все пары! Молодец!';
+    }
+  } else {
+    card1.classList.remove('flipped');
+    card2.classList.remove('flipped');
+  }
+  flippedCards = [];
+}
+
+function resetGame() {
+  initGame();
+  document.getElementById('helperText').textContent = '🐱 Начинаем заново! Удачи!';
+}
+
+initGame();
+
+/* ============ ПРОВЕРКА И СБРОС ============ */
+function normalize(str){
+  return (str||'').toString().toLowerCase().replace(/[.!?,;:'"\s]+/g,' ').trim();
+}
+
+function resetTask(containerId){
+  const c = document.getElementById(containerId);
+  c.querySelectorAll('.option').forEach(b => b.classList.remove('selected', 'correct', 'wrong'));
+  c.querySelectorAll('.sentence').forEach(s => { delete s.dataset.answer; });
+  c.querySelectorAll('.answer-area').forEach(area => {
+    area.innerHTML = '';
+    area.style.borderColor = '';
+    area.style.background = '';
+  });
+  c.querySelectorAll('.words-container .word').forEach(w => w.classList.remove('used'));
+  const resEl = document.getElementById('result-' + containerId);
+  if (resEl) {
+    resEl.className = 'result';
+    resEl.innerHTML = '';
+  }
+  document.getElementById('helperText').textContent = '🐱 Сбросил! Начинай заново!';
+}
+
+function checkSection(containerId){
+  const c = document.getElementById(containerId);
+  let total = 0, correct = 0;
+
+  c.querySelectorAll('.sentence[data-type="choice"]').forEach(sent=>{
+    total++;
+    const answer = sent.dataset.answer;
+    const correctAns = sent.dataset.correct;
+    sent.querySelectorAll('.option').forEach(b=>b.classList.remove('correct','wrong'));
+    if(!answer) return;
+    if(answer === correctAns){
+      correct++;
+      sent.querySelectorAll('.option.selected').forEach(b=>b.classList.add('correct'));
+    } else {
+      sent.querySelectorAll('.option.selected').forEach(b=>b.classList.add('wrong'));
+      sent.querySelectorAll('.option').forEach(b=>{
+        if(b.textContent === correctAns) b.classList.add('correct');
+      });
+    }
+  });
+
+  c.querySelectorAll('div[data-type="wordorder"]').forEach(wrap=>{
+    total++;
+    const answer = wrap.dataset.answer;
+    const correctAns = wrap.dataset.correct;
+    const answerArea = wrap.querySelector('.answer-area');
+    answerArea.style.borderColor = '';
+    answerArea.style.background = '';
+    
+    if(!answer) return;
+    if(normalize(answer) === normalize(correctAns)){
+      correct++;
+      answerArea.style.borderColor = 'var(--green)';
+      answerArea.style.background = 'var(--green-soft)';
+    } else {
+      answerArea.style.borderColor = 'var(--warn)';
+      answerArea.style.background = 'var(--warn-soft)';
+      const hint = document.createElement('div');
+      hint.style.cssText = 'width:100%;margin-top:8px;font-size:14px;color:var(--warn);font-weight:800;';
+      hint.textContent = '✓ Правильно: ' + wrap.dataset.correct;
+      answerArea.appendChild(hint);
+    }
+  });
+
+  const resultEl = document.getElementById('result-' + containerId);
+  const percent = total ? Math.round((correct/total)*100) : 0;
+  let stars = '', message = '', cls = '';
+
+  if(percent === 100){
+    stars = '⭐⭐⭐';
+    message = 'Великолепно! Все верно!';
+    cls = 'success';
+  } else if(percent >= 70){
+    stars = '⭐⭐';
+    message = 'Отличная работа! Почти всё получилось!';
+    cls = 'success';
+  } else if(percent >= 50){
+    stars = '⭐';
+    message = 'Хороший старт! Попробуй ещё раз!';
+    cls = 'partial';
+  } else {
+    stars = '💪';
+    message = 'Не сдавайся! Попробуй ещё раз!';
+    cls = 'partial';
+  }
+
+  resultEl.className = 'result show ' + cls;
+  resultEl.innerHTML = `${message}<br><span style="font-size:24px;">${correct} из ${total}</span><br><span class="stars">${stars}</span>`;
+  setTimeout(()=>resultEl.scrollIntoView({behavior:'smooth', block:'center'}), 300);
+
+  const helperMsgs = percent >= 70 ? "🐱 Отлично поработал!" : "🐱 Не переживай, попробуй снова!";
+  document.getElementById('helperText').textContent = helperMsgs;
+}
+
+/* ============ ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ============ */
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    const target = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(target).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+
+    const owlTips = {
+      theory: "📖 Прочитай краткую теорию!",
+      vocabulary: "📒 Нажимай на динамик, чтобы услышать слово!",
+      task1: "1️⃣ Выбери правильный глагол. Не забывай про правила -ing!",
+      task2: "2️⃣ Составь предложения. Кликай по словам!",
+      task3: "3️⃣ Выбери правильный короткий ответ.",
+      game: "🎮 Найди пары: глагол и его форму с -ing!"
+    };
+    document.getElementById('helperText').textContent = owlTips[target];
+  });
+});
+</script>
+
+</body>
+</html>
