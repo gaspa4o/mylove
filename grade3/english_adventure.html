@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Adventure — 3 класс • Повторение</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #F5EFE0;
+  --bg-2: #FAF6EC;
+  --beige: #E8DCC4;
+  --beige-dark: #C9B998;
+  --beige-light: #F0E7D4;
+  --blue: #4A90C2;
+  --blue-dark: #2C5F8D;
+  --blue-light: #A7D0F0;
+  --blue-soft: #D9EAF7;
+  --text: #2C3E50;
+  --text-soft: #5A6E80;
+  --white: #FFFFFF;
+  --success: #6FAE5C;
+  --error: #E07A5F;
+  --shadow: 0 6px 20px rgba(44, 95, 141, 0.12);
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(167, 208, 240, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(232, 220, 196, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(217, 234, 247, 0.15) 0%, transparent 50%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+.cloud {
+  position: fixed;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+  animation: floatCloud 30s linear infinite;
+}
+.cloud-1 { top: 5%; left: -10%; width: 140px; }
+.cloud-2 { top: 20%; right: -10%; width: 110px; animation-duration: 40s; animation-direction: reverse; }
+.cloud-3 { bottom: 15%; left: -10%; width: 100px; animation-duration: 35s; }
+@keyframes floatCloud {
+  from { transform: translateX(0); }
+  to { transform: translateX(120vw); }
+}
+
+.app { max-width: 1400px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+  color: white;
+  padding: 22px 32px;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -80%;
+  left: 20%;
+  width: 180px;
+  height: 180px;
+  background: rgba(232, 220, 196, 0.15);
+  border-radius: 50%;
+}
+.header-left { display: flex; align-items: center; gap: 16px; z-index: 1; position: relative; }
+.logo {
+  width: 64px; height: 64px;
+  background: var(--beige);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  animation: bobbing 3s ease-in-out infinite;
+}
+@keyframes bobbing {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-5px) rotate(3deg); }
+}
+.header h1 { font-family: 'Fredoka', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.5px; }
+.header p { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+.header-right { display: flex; align-items: center; gap: 14px; z-index: 1; position: relative; }
+.progress-summary {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(10px);
+  padding: 14px 24px;
+  border-radius: 22px;
+  font-weight: 700;
+  font-size: 18px;
+  border: 1px solid rgba(255,255,255,0.25);
+  font-family: 'Fredoka', sans-serif;
+}
+
+.main-wrapper { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+
+.sidebar {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+  border: 2px solid var(--beige);
+}
+.sidebar h2 {
+  font-family: 'Fredoka';
+  color: var(--blue-dark);
+  font-size: 18px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed var(--beige);
+  display: flex; align-items: center; gap: 8px;
+}
+.topics-list { list-style: none; }
+.topic-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  transition: all 0.25s;
+  background: var(--bg-2);
+  border: 2px solid transparent;
+}
+.topic-item:hover {
+  background: var(--blue-soft);
+  transform: translateX(4px);
+  border-color: var(--blue-light);
+}
+.topic-item.active {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: white;
+  border-color: var(--blue-dark);
+  box-shadow: 0 4px 12px rgba(74,144,194,0.4);
+}
+.topic-item.completed { background: var(--beige-light); border-color: var(--success); }
+.topic-emoji { font-size: 22px; width: 30px; text-align: center; }
+.topic-name { flex: 1; font-weight: 600; font-size: 14px; }
+.check-mark {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--beige-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  color: transparent;
+  background: white;
+  transition: all 0.3s;
+  font-weight: 700;
+}
+.topic-item.completed .check-mark { background: var(--success); color: white; border-color: var(--success); }
+.topic-item.active .check-mark { border-color: rgba(255,255,255,0.5); }
+
+.content {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+  min-height: 700px;
+  border: 2px solid var(--beige);
+}
+
+.topic-header { margin-bottom: 22px; padding-bottom: 16px; border-bottom: 2px dashed var(--beige); }
+.topic-header h2 {
+  font-family: 'Fredoka';
+  color: var(--blue-dark);
+  font-size: 28px;
+  display: flex; align-items: center; gap: 10px;
+}
+.topic-header p { color: var(--text-soft); font-size: 15px; margin-top: 4px; }
+
+.tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.tab {
+  background: var(--bg-2);
+  border: 2px solid var(--beige);
+  padding: 12px 22px;
+  font-family: 'Fredoka';
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 14px;
+  color: var(--text-soft);
+  transition: all 0.25s;
+  font-weight: 500;
+}
+.tab:hover { background: var(--blue-soft); border-color: var(--blue-light); }
+.tab.active {
+  background: var(--blue);
+  color: white;
+  border-color: var(--blue-dark);
+  box-shadow: 0 4px 12px rgba(74,144,194,0.3);
+}
+
+.tab-content { display: none; animation: fadeIn 0.4s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.theory-block { font-size: 16px; line-height: 1.6; }
+.theory-block > h3 { font-family: 'Fredoka'; color: var(--blue-dark); font-size: 22px; margin-bottom: 14px; }
+.theory-block > p { margin-bottom: 16px; }
+.rule-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.rule-card {
+  background: linear-gradient(135deg, var(--beige-light), var(--bg-2));
+  padding: 20px;
+  border-radius: 18px;
+  border: 2px solid var(--beige);
+  text-align: center;
+  transition: transform 0.2s;
+}
+.rule-card:hover { transform: translateY(-3px); }
+.rule-icon { font-family: 'Fredoka'; font-weight: 600; color: var(--blue-dark); font-size: 16px; margin-bottom: 10px; }
+.rule-form {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: white;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-family: 'Fredoka';
+  font-size: 22px;
+  display: inline-block;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(74,144,194,0.3);
+}
+.rule-example { font-style: italic; color: var(--text-soft); font-size: 14px; line-height: 1.5; }
+.tip-box {
+  background: linear-gradient(135deg, var(--blue-soft), var(--bg-2));
+  padding: 14px 18px;
+  border-radius: 14px;
+  border-left: 5px solid var(--blue);
+  margin-top: 18px;
+  font-size: 15px;
+}
+.tip-box b { color: var(--blue-dark); }
+
+.vocab-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.vocab-card {
+  background: var(--bg-2);
+  border: 2px solid var(--beige);
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.vocab-card:hover {
+  background: var(--blue-soft);
+  transform: translateY(-3px);
+  border-color: var(--blue);
+  box-shadow: 0 6px 14px rgba(74,144,194,0.2);
+}
+.vocab-word { font-family: 'Fredoka'; font-size: 17px; color: var(--blue-dark); font-weight: 600; }
+.vocab-trans { font-size: 12px; color: var(--text-soft); margin-top: 4px; }
+.vocab-emoji { font-size: 30px; display: block; margin-bottom: 4px; }
+
+.practice-intro {
+  background: var(--blue-soft);
+  padding: 14px 18px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  font-size: 15px;
+  border-left: 4px solid var(--blue);
+}
+.practice-question {
+  background: var(--bg-2);
+  border: 2px solid var(--beige);
+  border-radius: 18px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  transition: all 0.3s;
+}
+.practice-question.correct { background: rgba(111, 174, 92, 0.12); border-color: var(--success); }
+.practice-question.wrong { background: rgba(224, 122, 95, 0.12); border-color: var(--error); }
+.question-text { font-size: 18px; margin-bottom: 14px; font-weight: 600; color: var(--text); line-height: 1.5; }
+.question-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue);
+  color: white;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  font-family: 'Fredoka';
+  font-size: 14px;
+  vertical-align: middle;
+}
+.options { display: flex; gap: 10px; flex-wrap: wrap; }
+.option-btn {
+  background: white;
+  border: 2px solid var(--beige-dark);
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-family: 'Fredoka';
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text);
+  font-weight: 500;
+}
+.option-btn:hover { background: var(--blue-soft); border-color: var(--blue); transform: translateY(-2px); }
+.option-btn.selected { background: var(--blue); color: white; border-color: var(--blue-dark); }
+.option-btn.correct-answer { background: var(--success); color: white; border-color: var(--success); }
+.option-btn.wrong-answer { background: var(--error); color: white; border-color: var(--error); }
+.feedback { margin-top: 12px; font-weight: 600; font-size: 15px; display: none; align-items: center; gap: 6px; }
+.feedback.show { display: flex; }
+.feedback.success { color: var(--success); }
+.feedback.error { color: var(--error); }
+
+.action-btn {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 14px;
+  font-family: 'Fredoka';
+  font-size: 17px;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.25s;
+  box-shadow: 0 4px 12px rgba(74,144,194,0.3);
+}
+.action-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(74,144,194,0.4); }
+.action-btn.secondary { background: var(--beige); color: var(--blue-dark); box-shadow: none; }
+.action-btn.secondary:hover { background: var(--beige-dark); color: white; }
+
+.game-area {
+  background: linear-gradient(180deg, var(--bg-2), var(--beige-light));
+  border-radius: 20px;
+  padding: 24px;
+  border: 2px solid var(--beige);
+}
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.game-title { font-family: 'Fredoka'; font-size: 22px; color: var(--blue-dark); }
+.score-board {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: white;
+  padding: 10px 22px;
+  border-radius: 22px;
+  font-weight: 700;
+  font-family: 'Fredoka';
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(74,144,194,0.3);
+}
+.game-instruction {
+  background: var(--blue-soft);
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 15px;
+  border-left: 4px solid var(--blue);
+}
+
+.quiz-question {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  margin-bottom: 16px;
+  text-align: center;
+  border: 2px solid var(--beige);
+}
+.quiz-question-text { font-family: 'Fredoka'; font-size: 26px; color: var(--blue-dark); margin-bottom: 22px; line-height: 1.4; }
+.quiz-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; max-width: 600px; margin: 0 auto; }
+.quiz-option {
+  background: var(--bg-2);
+  border: 3px solid var(--beige-dark);
+  padding: 16px 12px;
+  border-radius: 14px;
+  font-family: 'Fredoka';
+  font-size: 19px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  font-weight: 500;
+}
+.quiz-option:hover:not(.disabled) { border-color: var(--blue); background: var(--blue-soft); transform: scale(1.05); }
+.quiz-option.correct { background: var(--success); color: white; border-color: var(--success); }
+.quiz-option.incorrect { background: var(--error); color: white; border-color: var(--error); }
+.quiz-option.disabled { pointer-events: none; }
+
+.memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 600px; margin: 0 auto; }
+.memory-card {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: white;
+  font-family: 'Fredoka';
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(74,144,194,0.3);
+  user-select: none;
+}
+.memory-card:hover:not(.flipped):not(.matched) { transform: scale(1.05); }
+.memory-card.flipped { background: var(--beige-light); color: var(--blue-dark); border: 2px solid var(--blue); }
+.memory-card.matched { background: var(--success); color: white; cursor: default; box-shadow: 0 4px 10px rgba(111, 174, 92, 0.4); }
+
+.match-game { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 600px; margin: 0 auto; }
+.match-column { display: flex; flex-direction: column; gap: 10px; }
+.match-item {
+  background: white;
+  border: 2px solid var(--beige-dark);
+  padding: 14px 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: 'Fredoka';
+  font-size: 17px;
+  text-align: center;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.match-item:hover:not(.matched) { border-color: var(--blue); background: var(--blue-soft); }
+.match-item.selected { background: var(--blue); color: white; border-color: var(--blue-dark); transform: scale(1.03); }
+.match-item.matched { background: var(--success); color: white; border-color: var(--success); cursor: default; }
+.match-item.wrong { animation: shake 0.4s; border-color: var(--error); }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.color-target {
+  background: linear-gradient(135deg, var(--blue-soft), white);
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Fredoka';
+  font-size: 24px;
+  color: var(--blue-dark);
+  border: 2px dashed var(--blue);
+}
+.color-target b { background: var(--blue); color: white; padding: 6px 22px; border-radius: 14px; font-size: 28px; margin-left: 8px; }
+.color-game-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 14px; max-width: 700px; margin: 0 auto; }
+.color-swatch {
+  height: 110px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 4px solid transparent;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.color-swatch:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+.color-swatch.correct { box-shadow: 0 0 0 4px var(--success), 0 8px 20px rgba(111,174,92,0.4); transform: scale(1.08); }
+.color-swatch.wrong { box-shadow: 0 0 0 4px var(--error); animation: shake 0.4s; }
+
+.math-question { background: white; padding: 36px; border-radius: 18px; text-align: center; margin-bottom: 16px; border: 2px solid var(--beige); box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+.math-expr { font-family: 'Fredoka'; font-size: 48px; color: var(--blue-dark); margin-bottom: 24px; font-weight: 600; }
+.math-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; max-width: 600px; margin: 0 auto; }
+
+.sort-game { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+.sort-bin {
+  background: var(--bg-2);
+  border: 3px dashed var(--beige-dark);
+  border-radius: 16px;
+  padding: 12px;
+  min-height: 230px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.sort-bin.hover { border-color: var(--blue); background: var(--blue-soft); }
+.sort-bin-title {
+  font-family: 'Fredoka';
+  text-align: center;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+}
+.sort-bin.spring .sort-bin-title { background: #88C270; }
+.sort-bin.summer .sort-bin-title { background: #F4B860; }
+.sort-bin.autumn .sort-bin-title { background: #E8A24A; }
+.sort-bin.winter .sort-bin-title { background: #6FA8DC; }
+.bin-content { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; min-height: 80px; }
+.sort-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 14px 0;
+  padding: 14px;
+  background: white;
+  border-radius: 14px;
+  border: 2px solid var(--beige);
+  min-height: 70px;
+}
+.sort-item {
+  background: var(--bg-2);
+  border: 2px solid var(--beige-dark);
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Fredoka';
+  font-size: 16px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.sort-item:hover { background: var(--blue-soft); border-color: var(--blue); }
+.sort-item.selected { background: var(--blue); color: white; border-color: var(--blue-dark); transform: scale(1.05); }
+.sort-item.placed { background: var(--success); color: white; border-color: var(--success); cursor: default; }
+
+.weather-scene {
+  background: linear-gradient(135deg, var(--blue-soft), var(--beige-light));
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 18px;
+  min-height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 75px;
+  border: 2px solid var(--beige);
+}
+.weather-description { font-family: 'Fredoka'; font-size: 22px; color: var(--blue-dark); margin-bottom: 18px; text-align: center; font-style: italic; }
+
+/* === ИГРА: TrueFalse (Can/Can't) === */
+.tf-scene {
+  background: linear-gradient(135deg, var(--blue-soft), var(--beige-light));
+  border-radius: 20px;
+  padding: 36px 20px;
+  margin-bottom: 18px;
+  text-align: center;
+  border: 2px solid var(--beige);
+}
+.tf-emoji-pair {
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 16px;
+  min-height: 110px;
+}
+.tf-emoji-pair span { animation: bounceIn 0.6s ease; display: inline-block; }
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  60% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.tf-sentence {
+  font-family: 'Fredoka';
+  font-size: 24px;
+  color: var(--blue-dark);
+  font-weight: 600;
+}
+.tf-buttons { display: flex; gap: 16px; justify-content: center; max-width: 500px; margin: 0 auto; }
+.tf-btn {
+  flex: 1;
+  padding: 22px 16px;
+  border-radius: 18px;
+  font-family: 'Fredoka';
+  font-size: 22px;
+  cursor: pointer;
+  border: 4px solid transparent;
+  transition: all 0.25s;
+  font-weight: 600;
+}
+.tf-btn:hover:not(.disabled) { transform: translateY(-4px) scale(1.03); }
+.tf-btn.yes { background: linear-gradient(135deg, #8BC97A, #6FAE5C); color: white; }
+.tf-btn.no { background: linear-gradient(135deg, #F09A82, #E07A5F); color: white; }
+.tf-btn.disabled { pointer-events: none; opacity: 0.5; }
+.tf-btn.correct { box-shadow: 0 0 0 6px var(--success); transform: scale(1.05); }
+.tf-btn.wrong { box-shadow: 0 0 0 6px var(--error); animation: shake 0.4s; }
+.tf-result {
+  text-align: center;
+  margin-top: 18px;
+  font-family: 'Fredoka';
+  font-size: 20px;
+  padding: 14px;
+  border-radius: 14px;
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+.tf-result.show { display: block; }
+.tf-result.ok { background: rgba(111,174,92,0.15); color: var(--success); }
+.tf-result.bad { background: rgba(224,122,95,0.15); color: var(--error); }
+
+/* === ИГРА: LookChoose (Have got/Has got) === */
+.lc-scene {
+  background: linear-gradient(135deg, var(--beige-light), var(--blue-soft));
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 18px;
+  text-align: center;
+  border: 2px solid var(--beige);
+}
+.lc-emoji {
+  font-size: 90px;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  animation: bounceIn 0.6s ease;
+}
+.lc-emoji span { display: inline-block; }
+.lc-prompt {
+  font-family: 'Fredoka';
+  font-size: 20px;
+  color: var(--blue-dark);
+  margin-top: 14px;
+}
+.lc-sentences { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 700px; margin: 0 auto; }
+.lc-sentence-btn {
+  background: white;
+  border: 3px solid var(--beige-dark);
+  padding: 16px 18px;
+  border-radius: 14px;
+  font-family: 'Nunito';
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text);
+  text-align: center;
+}
+.lc-sentence-btn:hover:not(.disabled) { border-color: var(--blue); background: var(--blue-soft); transform: translateY(-3px); }
+.lc-sentence-btn.correct { background: var(--success); color: white; border-color: var(--success); }
+.lc-sentence-btn.incorrect { background: var(--error); color: white; border-color: var(--error); }
+.lc-sentence-btn.disabled { pointer-events: none; }
+
+.completion-screen { text-align: center; padding: 40px 20px; }
+.completion-screen h2 { font-family: 'Fredoka'; color: var(--blue-dark); font-size: 36px; margin-bottom: 14px; }
+.completion-screen p { font-size: 18px; color: var(--text-soft); margin-bottom: 24px; }
+.emoji-big { font-size: 80px; margin-bottom: 20px; animation: bounce 1.5s infinite; display: inline-block; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.topic-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--beige);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.nav-btn {
+  background: var(--beige);
+  border: 2px solid var(--beige-dark);
+  padding: 12px 26px;
+  border-radius: 14px;
+  font-family: 'Fredoka';
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--blue-dark);
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.nav-btn:hover:not(:disabled) { background: var(--blue); color: white; border-color: var(--blue-dark); transform: translateY(-2px); }
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: var(--blue-dark);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-family: 'Fredoka';
+  font-size: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  max-width: 90vw;
+  text-align: center;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.success { background: var(--success); }
+.toast.error { background: var(--error); }
+
+.final-screen {
+  text-align: center;
+  padding: 60px 30px;
+  background: linear-gradient(135deg, var(--blue-soft), var(--beige-light));
+  border-radius: 24px;
+  margin: 20px 0;
+  border: 2px solid var(--beige);
+}
+.final-screen h1 { font-family: 'Fredoka'; color: var(--blue-dark); font-size: 44px; margin-bottom: 20px; }
+.final-screen p { font-size: 20px; color: var(--text-soft); margin-bottom: 26px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.stars { font-size: 60px; margin: 20px 0; animation: bounce 1.5s infinite; display: inline-block; }
+
+@media (max-width: 900px) {
+  .main-wrapper { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .quiz-options { grid-template-columns: 1fr 1fr; }
+  .sort-game { grid-template-columns: 1fr 1fr; }
+  .header { flex-direction: column; gap: 16px; text-align: center; }
+  .header-right { justify-content: center; }
+  .match-game { grid-template-columns: 1fr; }
+  .lc-sentences { grid-template-columns: 1fr; }
+  .tf-buttons { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<svg class="cloud cloud-1" viewBox="0 0 100 60"><path d="M15,45 Q15,32 28,32 Q33,18 50,22 Q67,15 72,32 Q85,33 85,45 Z" fill="white"/></svg>
+<svg class="cloud cloud-2" viewBox="0 0 100 60"><path d="M15,45 Q15,32 28,32 Q33,18 50,22 Q67,15 72,32 Q85,33 85,45 Z" fill="white"/></svg>
+<svg class="cloud cloud-3" viewBox="0 0 100 60"><path d="M15,45 Q15,32 28,32 Q33,18 50,22 Q67,15 72,32 Q85,33 85,45 Z" fill="white"/></svg>
+
+<div class="app">
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">🦊</div>
+      <div>
+        <h1>English Adventure</h1>
+        <p>Повторение для 3 класса • Первый урок в учебном году</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="progress-summary" id="progress-summary">🏆 0 / 10</div>
+    </div>
+  </header>
+  
+  <div class="main-wrapper">
+    <aside class="sidebar">
+      <h2>📚 Темы урока</h2>
+      <ul class="topics-list" id="topics-list"></ul>
+    </aside>
+    
+    <main class="content">
+      <div class="topic-header">
+        <h2 id="topic-title"></h2>
+        <p id="topic-subtitle"></p>
+      </div>
+      <div class="tabs">
+        <button class="tab active" data-tab="theory">📖 Теория</button>
+        <button class="tab" data-tab="practice">✏️ Упражнения</button>
+        <button class="tab" data-tab="game">🎮 Игра</button>
+      </div>
+      <div class="tab-content active" id="theory-content"></div>
+      <div class="tab-content" id="practice-content"></div>
+      <div class="tab-content" id="game-content"></div>
+      <div class="topic-nav">
+        <button class="nav-btn" id="prev-btn">← Предыдущая</button>
+        <button class="nav-btn" id="next-btn">Следующая →</button>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ====== ДАННЫЕ УРОКА ======
+const topics = [
+  {
+    id: 1, title: 'Глагол To Be', emoji: '📘', subtitle: 'am / is / are — основной глагол',
+    theory: `<div class="theory-block">
+      <h3>📘 Глагол To Be — "быть"</h3>
+      <p>В английском нельзя сказать просто "I happy". Нужен глагол-связка <b>to be</b>!</p>
+      <div class="rule-cards">
+        <div class="rule-card"><div class="rule-icon">I (я)</div><div class="rule-form">AM</div><div class="rule-example">I am a pupil.</div></div>
+        <div class="rule-card"><div class="rule-icon">He / She / It</div><div class="rule-form">IS</div><div class="rule-example">She is kind.</div></div>
+        <div class="rule-card"><div class="rule-icon">We / You / They</div><div class="rule-form">ARE</div><div class="rule-example">We are friends.</div></div>
+      </div>
+      <div class="tip-box">💡 <b>I am</b> — всегда пара! <b>He, She, It</b> любят <b>is</b>. А <b>We, You, They</b> — это <b>are</b>!</div>
+    </div>`,
+    practice: [
+      { q: 'I ___ a student.', options: ['am','is','are'], answer: 'am' },
+      { q: 'She ___ my sister.', options: ['am','is','are'], answer: 'is' },
+      { q: 'They ___ friends.', options: ['am','is','are'], answer: 'are' },
+      { q: 'He ___ tall.', options: ['am','is','are'], answer: 'is' },
+      { q: 'We ___ happy.', options: ['am','is','are'], answer: 'are' },
+      { q: 'It ___ a cat.', options: ['am','is','are'], answer: 'is' },
+    ],
+    game: { type: 'quiz', title: '⚡ Quiz: To Be', items: [
+      { q: 'He ... a doctor.', options: ['am','is','are'], correct: 1 },
+      { q: 'You ... funny.', options: ['am','is','are'], correct: 2 },
+      { q: 'My dog ... small.', options: ['am','is','are'], correct: 1 },
+      { q: 'I ... hungry.', options: ['am','is','are'], correct: 0 },
+      { q: 'Children ... loud.', options: ['am','is','are'], correct: 2 },
+      { q: 'She ... beautiful.', options: ['am','is','are'], correct: 1 },
+    ]}
+  },
+  {
+    id: 2, title: 'Местоимения', emoji: '🙋', subtitle: 'I, You, He, She, It, We, They',
+    theory: `<div class="theory-block">
+      <h3>🙋 Subject Pronouns — Местоимения</h3>
+      <p>Местоимения заменяют имена, чтобы не повторяться.</p>
+      <div class="vocab-list">
+        <div class="vocab-card"><span class="vocab-emoji">🙋</span><div class="vocab-word">I</div><div class="vocab-trans">я</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👉</span><div class="vocab-word">You</div><div class="vocab-trans">ты / вы</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👦</span><div class="vocab-word">He</div><div class="vocab-trans">он</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👧</span><div class="vocab-word">She</div><div class="vocab-trans">она</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">🐱</span><div class="vocab-word">It</div><div class="vocab-trans">он/она (не человек)</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👨‍👩‍👧</span><div class="vocab-word">We</div><div class="vocab-trans">мы</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👥</span><div class="vocab-word">They</div><div class="vocab-trans">они</div></div>
+      </div>
+      <div class="tip-box">💡 <b>It</b> — для животных (когда не знаем пол) и предметов: <i>It is a cat. It is a book.</i></div>
+    </div>`,
+    practice: [
+      { q: '"Tom is a boy." → ___ is a boy.', options: ['He','She','It'], answer: 'He' },
+      { q: '"Anna is a girl." → ___ is a girl.', options: ['He','She','It'], answer: 'She' },
+      { q: '"The cat is small." → ___ is small.', options: ['He','She','It'], answer: 'It' },
+      { q: '"Tom and I are friends." → ___ are friends.', options: ['We','They','You'], answer: 'We' },
+      { q: '"Mom and dad are kind." → ___ are kind.', options: ['We','They','He'], answer: 'They' },
+      { q: '"The books are new." → ___ are new.', options: ['It','They','We'], answer: 'They' },
+    ],
+    game: { type: 'match', title: '🔗 Найди пару', pairs: [
+      { left: '🧔 Mr. Smith', right: 'He' },
+      { left: '👩‍🏫 Miss Jane', right: 'She' },
+      { left: '📦 Box', right: 'It' },
+      { left: '🧑‍🤝‍🧑 My friends and I', right: 'We' },
+      { left: '🐱 & 🐶', right: 'They' },
+      { left: '👉 Tom, you', right: 'You' },
+    ]}
+  },
+  {
+    id: 3, title: 'Цвета', emoji: '🎨', subtitle: 'Colours — цвета вокруг нас',
+    theory: `<div class="theory-block">
+      <h3>🎨 Colours — Цвета</h3>
+      <div class="vocab-list">
+        <div class="vocab-card" style="border-top:6px solid #E74C3C;"><span class="vocab-emoji">🔴</span><div class="vocab-word">red</div><div class="vocab-trans">красный</div></div>
+        <div class="vocab-card" style="border-top:6px solid #3498DB;"><span class="vocab-emoji">🔵</span><div class="vocab-word">blue</div><div class="vocab-trans">синий</div></div>
+        <div class="vocab-card" style="border-top:6px solid #2ECC71;"><span class="vocab-emoji">🟢</span><div class="vocab-word">green</div><div class="vocab-trans">зелёный</div></div>
+        <div class="vocab-card" style="border-top:6px solid #F1C40F;"><span class="vocab-emoji">🟡</span><div class="vocab-word">yellow</div><div class="vocab-trans">жёлтый</div></div>
+        <div class="vocab-card" style="border-top:6px solid #E67E22;"><span class="vocab-emoji">🟠</span><div class="vocab-word">orange</div><div class="vocab-trans">оранжевый</div></div>
+        <div class="vocab-card" style="border-top:6px solid #9B59B6;"><span class="vocab-emoji">🟣</span><div class="vocab-word">purple</div><div class="vocab-trans">фиолетовый</div></div>
+        <div class="vocab-card" style="border-top:6px solid #FF8FB1;"><span class="vocab-emoji">🌸</span><div class="vocab-word">pink</div><div class="vocab-trans">розовый</div></div>
+        <div class="vocab-card" style="border-top:6px solid #8B5A2B;"><span class="vocab-emoji">🟤</span><div class="vocab-word">brown</div><div class="vocab-trans">коричневый</div></div>
+        <div class="vocab-card" style="border-top:6px solid #2C3E50;"><span class="vocab-emoji">⚫</span><div class="vocab-word">black</div><div class="vocab-trans">чёрный</div></div>
+        <div class="vocab-card" style="border-top:6px solid #ECF0F1;"><span class="vocab-emoji">⚪</span><div class="vocab-word">white</div><div class="vocab-trans">белый</div></div>
+        <div class="vocab-card" style="border-top:6px solid #95A5A6;"><span class="vocab-emoji">🔘</span><div class="vocab-word">grey</div><div class="vocab-trans">серый</div></div>
+      </div>
+      <div class="tip-box">💡 Спросить о цвете: <b>What colour is it?</b> — Ответ: <b>It is red.</b></div>
+    </div>`,
+    practice: [
+      { q: '🍎 Apple is ...', options: ['red','blue','green','yellow'], answer: 'red' },
+      { q: '🍌 Banana is ...', options: ['red','yellow','green','white'], answer: 'yellow' },
+      { q: '🌳 Grass is ...', options: ['red','green','blue','black'], answer: 'green' },
+      { q: '☁️ Cloud is ...', options: ['green','white','yellow','red'], answer: 'white' },
+      { q: '🌙 Night sky is ...', options: ['white','blue','black','green'], answer: 'black' },
+      { q: '🍊 Orange is ...', options: ['orange','red','pink','blue'], answer: 'orange' },
+    ],
+    game: { type: 'color', title: '🎨 Найди цвет', items: [
+      { color: 'red', hex: '#E74C3C' },
+      { color: 'blue', hex: '#3498DB' },
+      { color: 'green', hex: '#2ECC71' },
+      { color: 'yellow', hex: '#F1C40F' },
+      { color: 'orange', hex: '#E67E22' },
+      { color: 'purple', hex: '#9B59B6' },
+      { color: 'pink', hex: '#FF8FB1' },
+      { color: 'brown', hex: '#8B5A2B' },
+    ]}
+  },
+  {
+    id: 4, title: 'Семья', emoji: '👨‍👩‍👧‍👦', subtitle: 'Family — моя семья',
+    theory: `<div class="theory-block">
+      <h3>👨‍👩‍👧‍👦 Family — Семья</h3>
+      <div class="vocab-list">
+        <div class="vocab-card"><span class="vocab-emoji">👩</span><div class="vocab-word">mother</div><div class="vocab-trans">мама</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👨</span><div class="vocab-word">father</div><div class="vocab-trans">папа</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👧</span><div class="vocab-word">sister</div><div class="vocab-trans">сестра</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👦</span><div class="vocab-word">brother</div><div class="vocab-trans">брат</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👵</span><div class="vocab-word">grandmother</div><div class="vocab-trans">бабушка</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👴</span><div class="vocab-word">grandfather</div><div class="vocab-trans">дедушка</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">👶</span><div class="vocab-word">baby</div><div class="vocab-trans">малыш</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">🧑</span><div class="vocab-word">aunt</div><div class="vocab-trans">тётя</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">🧔</span><div class="vocab-word">uncle</div><div class="vocab-trans">дядя</div></div>
+      </div>
+      <div class="tip-box">💡 Ласково можно сказать: <b>mom</b>, <b>dad</b>, <b>grandma</b>, <b>grandpa</b>.</div>
+    </div>`,
+    practice: [
+      { q: '👩 My ___ is a doctor.', options: ['mother','father','sister'], answer: 'mother' },
+      { q: '👨 My ___ is a teacher.', options: ['mother','father','sister'], answer: 'father' },
+      { q: '👧 My ___ is 5.', options: ['sister','brother','baby'], answer: 'sister' },
+      { q: '👦 My ___ is 10.', options: ['sister','brother','baby'], answer: 'brother' },
+      { q: '👵 My ___ is 60.', options: ['grandmother','grandfather','aunt'], answer: 'grandmother' },
+      { q: '👴 My ___ is 65.', options: ['grandmother','grandfather','uncle'], answer: 'grandfather' },
+    ],
+    game: { type: 'memory', title: '🧠 Memory: Семья', pairs: [
+      { word: 'mother', emoji: '👩' },
+      { word: 'father', emoji: '👨' },
+      { word: 'sister', emoji: '👧' },
+      { word: 'brother', emoji: '👦' },
+      { word: 'grandma', emoji: '👵' },
+      { word: 'grandpa', emoji: '👴' },
+    ]}
+  },
+  {
+    id: 5, title: 'Числительные', emoji: '🔢', subtitle: 'Numbers 1–20 — числа',
+    theory: `<div class="theory-block">
+      <h3>🔢 Numbers — Числительные 1–20</h3>
+      <div class="vocab-list">
+        <div class="vocab-card"><div class="vocab-word">1</div><div class="vocab-trans">one</div></div>
+        <div class="vocab-card"><div class="vocab-word">2</div><div class="vocab-trans">two</div></div>
+        <div class="vocab-card"><div class="vocab-word">3</div><div class="vocab-trans">three</div></div>
+        <div class="vocab-card"><div class="vocab-word">4</div><div class="vocab-trans">four</div></div>
+        <div class="vocab-card"><div class="vocab-word">5</div><div class="vocab-trans">five</div></div>
+        <div class="vocab-card"><div class="vocab-word">6</div><div class="vocab-trans">six</div></div>
+        <div class="vocab-card"><div class="vocab-word">7</div><div class="vocab-trans">seven</div></div>
+        <div class="vocab-card"><div class="vocab-word">8</div><div class="vocab-trans">eight</div></div>
+        <div class="vocab-card"><div class="vocab-word">9</div><div class="vocab-trans">nine</div></div>
+        <div class="vocab-card"><div class="vocab-word">10</div><div class="vocab-trans">ten</div></div>
+        <div class="vocab-card"><div class="vocab-word">11</div><div class="vocab-trans">eleven</div></div>
+        <div class="vocab-card"><div class="vocab-word">12</div><div class="vocab-trans">twelve</div></div>
+        <div class="vocab-card"><div class="vocab-word">13</div><div class="vocab-trans">thirteen</div></div>
+        <div class="vocab-card"><div class="vocab-word">14</div><div class="vocab-trans">fourteen</div></div>
+        <div class="vocab-card"><div class="vocab-word">15</div><div class="vocab-trans">fifteen</div></div>
+        <div class="vocab-card"><div class="vocab-word">16</div><div class="vocab-trans">sixteen</div></div>
+        <div class="vocab-card"><div class="vocab-word">17</div><div class="vocab-trans">seventeen</div></div>
+        <div class="vocab-card"><div class="vocab-word">18</div><div class="vocab-trans">eighteen</div></div>
+        <div class="vocab-card"><div class="vocab-word">19</div><div class="vocab-trans">nineteen</div></div>
+        <div class="vocab-card"><div class="vocab-word">20</div><div class="vocab-trans">twenty</div></div>
+      </div>
+      <div class="tip-box">💡 13–19 оканчиваются на <b>-teen</b>. А 30, 40, 50 — на <b>-ty</b> (thirty, forty).</div>
+    </div>`,
+    practice: [
+      { q: '5 → ___', options: ['four','five','six','seven'], answer: 'five' },
+      { q: '12 → ___', options: ['twelve','twenty','two','ten'], answer: 'twelve' },
+      { q: '10 → ___', options: ['one','ten','eight','twelve'], answer: 'ten' },
+      { q: '15 → ___', options: ['fifteen','fifty','five','fourteen'], answer: 'fifteen' },
+      { q: '20 → ___', options: ['twelve','twenty','two','ten'], answer: 'twenty' },
+      { q: '8 → ___', options: ['eight','nine','seven','eighteen'], answer: 'eight' },
+    ],
+    game: { type: 'math', title: '🧮 Математика по-английски' }
+  },
+  {
+    id: 6, title: 'Времена года', emoji: '🍂', subtitle: 'Seasons — весна, лето, осень, зима',
+    theory: `<div class="theory-block">
+      <h3>🌿 Seasons — Времена года</h3>
+      <div class="rule-cards">
+        <div class="rule-card"><div class="rule-icon">🌷 spring</div><div class="rule-example">March, April, May</div></div>
+        <div class="rule-card"><div class="rule-icon">☀️ summer</div><div class="rule-example">June, July, August</div></div>
+        <div class="rule-card"><div class="rule-icon">🍂 autumn</div><div class="rule-example">September, October, November</div></div>
+        <div class="rule-card"><div class="rule-icon">❄️ winter</div><div class="rule-example">December, January, February</div></div>
+      </div>
+      <div class="tip-box">💡 "Осень" по-американски — <b>fall</b>, по-британски — <b>autumn</b>.</div>
+    </div>`,
+    practice: [
+      { q: 'February is in ...', options: ['spring','summer','autumn','winter'], answer: 'winter' },
+      { q: 'June is in ...', options: ['spring','summer','autumn','winter'], answer: 'summer' },
+      { q: 'September is in ...', options: ['spring','summer','autumn','winter'], answer: 'autumn' },
+      { q: 'May is in ...', options: ['spring','summer','autumn','winter'], answer: 'spring' },
+      { q: 'November is in ...', options: ['spring','summer','autumn','winter'], answer: 'autumn' },
+      { q: 'July is in ...', options: ['spring','summer','autumn','winter'], answer: 'summer' },
+    ],
+    game: { type: 'sort', title: '📌 Распредели по сезонам', items: [
+      { word: '🌷 March', season: 'spring' },
+      { word: '☀️ August', season: 'summer' },
+      { word: '🍂 October', season: 'autumn' },
+      { word: '⛄ January', season: 'winter' },
+      { word: '🌸 April', season: 'spring' },
+      { word: '🍉 July', season: 'summer' },
+      { word: '🍁 November', season: 'autumn' },
+      { word: '❄️ December', season: 'winter' },
+    ]}
+  },
+  {
+    id: 7, title: 'Погода', emoji: '🌤', subtitle: 'Weather — какая сегодня погода?',
+    theory: `<div class="theory-block">
+      <h3>🌤 Weather — Погода</h3>
+      <div class="vocab-list">
+        <div class="vocab-card"><span class="vocab-emoji">☀️</span><div class="vocab-word">sunny</div><div class="vocab-trans">солнечно</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">🌧</span><div class="vocab-word">rainy</div><div class="vocab-trans">дождливо</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">☁️</span><div class="vocab-word">cloudy</div><div class="vocab-trans">облачно</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">❄️</span><div class="vocab-word">snowy</div><div class="vocab-trans">снежно</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">💨</span><div class="vocab-word">windy</div><div class="vocab-trans">ветрено</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">⛈</span><div class="vocab-word">stormy</div><div class="vocab-trans">гроза</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">🔥</span><div class="vocab-word">hot</div><div class="vocab-trans">жарко</div></div>
+        <div class="vocab-card"><span class="vocab-emoji">🥶</span><div class="vocab-word">cold</div><div class="vocab-trans">холодно</div></div>
+      </div>
+      <div class="tip-box">💡 Спросить о погоде: <b>What's the weather like?</b> — Ответ: <b>It is sunny.</b></div>
+    </div>`,
+    practice: [
+      { q: '☀️ The weather is ...', options: ['sunny','rainy','snowy','cloudy'], answer: 'sunny' },
+      { q: '🌧 The weather is ...', options: ['sunny','rainy','windy','hot'], answer: 'rainy' },
+      { q: '❄️ The weather is ...', options: ['hot','sunny','snowy','windy'], answer: 'snowy' },
+      { q: '☁️ The weather is ...', options: ['sunny','rainy','cloudy','stormy'], answer: 'cloudy' },
+      { q: '💨 The weather is ...', options: ['windy','sunny','hot','cold'], answer: 'windy' },
+      { q: '⛈ The weather is ...', options: ['sunny','rainy','stormy','cloudy'], answer: 'stormy' },
+    ],
+    game: { type: 'weather', title: '🌦 Погодный Forecast', items: [
+      { scene: '☀️', description: 'It is hot and bright.', answer: 'sunny', options: ['sunny','rainy','snowy','cloudy'] },
+      { scene: '🌧', description: 'Water is falling from the sky.', answer: 'rainy', options: ['sunny','rainy','windy','hot'] },
+      { scene: '❄️', description: 'White stuff falls. It is very cold.', answer: 'snowy', options: ['hot','sunny','snowy','windy'] },
+      { scene: '☁️', description: 'The sky is grey, but no rain.', answer: 'cloudy', options: ['sunny','rainy','cloudy','stormy'] },
+      { scene: '💨', description: 'The trees are moving a lot!', answer: 'windy', options: ['windy','sunny','hot','cold'] },
+    ]}
+  },
+  {
+    id: 8, title: 'Can / Can\'t', emoji: '💪', subtitle: 'Что мы умеем и не умеем делать',
+    theory: `<div class="theory-block">
+      <h3>💪 Глагол Can / Can't</h3>
+      <p><b>Can</b> = мочь, уметь (я могу). <b>Can't</b> = cannot, не мочь.</p>
+      <div class="rule-cards">
+        <div class="rule-card"><div class="rule-icon">✅ Can</div><div class="rule-example">Birds can fly.<br>Fish can swim.</div></div>
+        <div class="rule-card"><div class="rule-icon">❌ Can't</div><div class="rule-example">Dogs can't fly.<br>Elephants can't jump.</div></div>
+      </div>
+      <div class="tip-box">💡 После can/can't всегда идёт обычный глагол без "to": <b>can swim</b>, <b>can run</b>.</div>
+    </div>`,
+    // ВОЗВРАЩАЕМ СТАРЫЕ УПРАЖНЕНИЯ (Birds, Fish, Dogs, Cats, Elephants, I read)
+    practice: [
+      { q: 'Birds ___ fly.', options: ['can','can\'t'], answer: 'can' },
+      { q: 'Fish ___ walk.', options: ['can','can\'t'], answer: 'can\'t' },
+      { q: 'Dogs ___ run.', options: ['can','can\'t'], answer: 'can' },
+      { q: 'Cats ___ swim.', options: ['can','can\'t'], answer: 'can' },
+      { q: 'Elephants ___ jump.', options: ['can','can\'t'], answer: 'can\'t' },
+      { q: 'I ___ read.', options: ['can','can\'t'], answer: 'can' },
+    ],
+    // ИГРА ОСТАЁТСЯ НОВОЙ (Смешные животные: Cats drive cars, Frogs jump, Monkeys climb, Pigs climb, Snakes walk, Parrots talk, Horses run, Bears fly)
+    game: { type: 'truefalse', title: '🤣 Смешные животные', items: [
+      { scene: ['🐱','🚗'], sentence: 'Cats can drive cars.', answer: false, because: 'No! Cats can\'t drive cars.' },
+      { scene: ['🐸','⬆️'], sentence: 'Frogs can jump high.', answer: true, because: 'Yes! Frogs can jump.' },
+      { scene: ['🐒','🌳'], sentence: 'Monkeys can climb trees.', answer: true, because: 'Yes! Monkeys can climb trees.' },
+      { scene: ['🐷','🌳'], sentence: 'Pigs can climb trees.', answer: false, because: 'No! Pigs can\'t climb trees.' },
+      { scene: ['🐍','🚶'], sentence: 'Snakes can walk.', answer: false, because: 'No! Snakes can\'t walk.' },
+      { scene: ['🦜','🗣️'], sentence: 'Parrots can talk.', answer: true, because: 'Yes! Parrots can talk.' },
+      { scene: ['🐴','🏃'], sentence: 'Horses can run fast.', answer: true, because: 'Yes! Horses can run fast.' },
+      { scene: ['🐻','✈️'], sentence: 'Bears can fly.', answer: false, because: 'No! Bears can\'t fly.' },
+    ]}
+  },
+  {
+    id: 9, title: 'Притяжательные местоимения', emoji: '🔑', subtitle: 'my, your, his, her, our, their',
+    theory: `<div class="theory-block">
+      <h3>🔑 Possessive Pronouns — Притяжательные местоимения</h3>
+      <p>Отвечают на вопрос "чей?".</p>
+      <div class="vocab-list">
+        <div class="vocab-card"><div class="vocab-word">my</div><div class="vocab-trans">мой / моя</div></div>
+        <div class="vocab-card"><div class="vocab-word">your</div><div class="vocab-trans">твой / ваш</div></div>
+        <div class="vocab-card"><div class="vocab-word">his</div><div class="vocab-trans">его</div></div>
+        <div class="vocab-card"><div class="vocab-word">her</div><div class="vocab-trans">её</div></div>
+        <div class="vocab-card"><div class="vocab-word">its</div><div class="vocab-trans">его/её (не человек)</div></div>
+        <div class="vocab-card"><div class="vocab-word">our</div><div class="vocab-trans">наш</div></div>
+        <div class="vocab-card"><div class="vocab-word">their</div><div class="vocab-trans">их</div></div>
+      </div>
+      <div class="tip-box">💡 <b>I → my</b>, <b>He → his</b>, <b>She → her</b>, <b>They → their</b>. Это разные слова!</div>
+    </div>`,
+    practice: [
+      { q: 'This is ___ book. (my / I)', options: ['my','his','her'], answer: 'my' },
+      { q: 'She has ___ doll.', options: ['my','his','her'], answer: 'her' },
+      { q: 'He has ___ car.', options: ['my','his','her'], answer: 'his' },
+      { q: 'We have ___ house.', options: ['our','their','my'], answer: 'our' },
+      { q: 'They have ___ dog.', options: ['our','their','my'], answer: 'their' },
+      { q: 'You have ___ pen.', options: ['your','my','his'], answer: 'your' },
+    ],
+    game: { type: 'match', title: '🔗 Чья это вещь?', pairs: [
+      { left: '🙋 I', right: 'my' },
+      { left: '👧 She', right: 'her' },
+      { left: '👦 He', right: 'his' },
+      { left: '👨‍👩‍👧 We', right: 'our' },
+      { left: '👥 They', right: 'their' },
+      { left: '👉 You', right: 'your' },
+    ]}
+  },
+  {
+    id: 10, title: 'Have got / Has got', emoji: '🐾', subtitle: 'У меня есть / У него есть',
+    theory: `<div class="theory-block">
+      <h3>🐾 Have got / Has got — "иметь"</h3>
+      <p>Означает "имею, у меня есть".</p>
+      <div class="rule-cards">
+        <div class="rule-card"><div class="rule-icon">I / You / We / They</div><div class="rule-form">have got</div><div class="rule-example">I have got a cat.</div></div>
+        <div class="rule-card"><div class="rule-icon">He / She / It</div><div class="rule-form">has got</div><div class="rule-example">She has got a dog.</div></div>
+      </div>
+      <div class="tip-box">💡 Кратко: <b>I've got</b>, <b>She's got</b> (сокращение).</div>
+    </div>`,
+    practice: [
+      { q: 'I ___ a pen.', options: ['have got','has got'], answer: 'have got' },
+      { q: 'She ___ a doll.', options: ['have got','has got'], answer: 'has got' },
+      { q: 'We ___ a ball.', options: ['have got','has got'], answer: 'have got' },
+      { q: 'He ___ a bike.', options: ['have got','has got'], answer: 'has got' },
+      { q: 'They ___ apples.', options: ['have got','has got'], answer: 'have got' },
+      { q: 'It ___ big ears.', options: ['have got','has got'], answer: 'has got' },
+    ],
+    // ИГРА ОСТАЁТСЯ НОВОЙ (Посмотри и выбери: He has got a dog, She has got a kite, They have got a pizza, We have got a car, It has got a fish, She has got a guitar)
+    game: { type: 'lookchoose', title: '👀 Посмотри и выбери', items: [
+      { scene: ['👦','🐶'], options: [
+        'He has got a dog.', 'He have got a dog.', 'He has got a cat.', 'She has got a dog.'
+      ], correct: 0 },
+      { scene: ['👧','🪁'], options: [
+        'She has got a kite.', 'She have got a kite.', 'She has got a ball.', 'He has got a kite.'
+      ], correct: 0 },
+      { scene: ['🧑‍🤝‍🧑','🍕'], options: [
+        'They has got a pizza.', 'They have got a pizza.', 'They has got a burger.', 'We have got a pizza.'
+      ], correct: 1 },
+      { scene: ['👨‍👩‍👧','🚙'], options: [
+        'We has got a car.', 'We have got a car.', 'We has got a bike.', 'They have got a car.'
+      ], correct: 1 },
+      { scene: ['🐱','🐟'], options: [
+        'It have got a fish.', 'It has got a fish.', 'It have got a bone.', 'It has got a bird.'
+      ], correct: 1 },
+      { scene: ['👧','🎸'], options: [
+        'She have got a guitar.', 'She has got a guitar.', 'She have got a piano.', 'He has got a guitar.'
+      ], correct: 1 },
+    ]}
+  }
+];
+
+// ====== СОСТОЯНИЕ ======
+let currentTopicIndex = 0;
+let completedTopics = new Set();
+
+// ====== УТИЛИТЫ ======
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function showToast(message, type = 'info') {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.className = 'toast ' + type + ' show';
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+function markTopicCompleted(topicId) {
+  if (!completedTopics.has(topicId)) {
+    completedTopics.add(topicId);
+    renderTopicsList();
+    updateProgress();
+    if (completedTopics.size === topics.length) {
+      setTimeout(showFinalScreen, 1500);
+    }
+  }
+}
+
+function updateProgress() {
+  document.getElementById('progress-summary').textContent = `🏆 ${completedTopics.size} / 10`;
+}
+
+// ====== РЕНДЕР СПИСКА ТЕМ ======
+function renderTopicsList() {
+  const list = document.getElementById('topics-list');
+  list.innerHTML = topics.map((t, i) => `
+    <li class="topic-item ${i === currentTopicIndex ? 'active' : ''} ${completedTopics.has(t.id) ? 'completed' : ''}" data-index="${i}">
+      <span class="topic-emoji">${t.emoji}</span>
+      <span class="topic-name">${i + 1}. ${t.title}</span>
+      <span class="check-mark">✓</span>
+    </li>
+  `).join('');
+  list.querySelectorAll('.topic-item').forEach(el => {
+    el.addEventListener('click', () => {
+      currentTopicIndex = +el.dataset.index;
+      renderTopic();
+    });
+  });
+}
+
+// ====== РЕНДЕР ТЕМЫ ======
+function renderTopic() {
+  const topic = topics[currentTopicIndex];
+  document.getElementById('topic-title').textContent = `${topic.emoji} ${topic.title}`;
+  document.getElementById('topic-subtitle').textContent = topic.subtitle;
+  
+  document.getElementById('theory-content').innerHTML = topic.theory;
+  renderPractice(topic);
+  renderGame(topic);
+  
+  renderTopicsList();
+  
+  document.getElementById('prev-btn').disabled = currentTopicIndex === 0;
+  document.getElementById('next-btn').disabled = currentTopicIndex === topics.length - 1;
+  
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelector('.tab[data-tab="theory"]').classList.add('active');
+  document.getElementById('theory-content').classList.add('active');
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ====== РЕНДЕР УПРАЖНЕНИЙ ======
+function renderPractice(topic) {
+  const container = document.getElementById('practice-content');
+  let html = '<div class="practice-intro">📝 Выбери правильный ответ в каждом задании и нажми "Проверить".</div>';
+  
+  topic.practice.forEach((q, i) => {
+    const opts = q.options.length > 3 ? shuffle(q.options) : q.options;
+    html += `
+      <div class="practice-question" data-index="${i}">
+        <div class="question-text">
+          <span class="question-number">${i + 1}</span>${q.q}
+        </div>
+        <div class="options">
+          ${opts.map(opt => `<button class="option-btn" data-answer="${opt}">${opt}</button>`).join('')}
+        </div>
+        <div class="feedback"></div>
+      </div>
+    `;
+  });
+  
+  html += `<button class="action-btn" id="check-practice">✓ Проверить ответы</button>`;
+  container.innerHTML = html;
+  
+  container.querySelectorAll('.practice-question').forEach(q => {
+    q.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        q.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+  });
+  
+  document.getElementById('check-practice').addEventListener('click', () => {
+    let allCorrect = true;
+    let answered = 0;
+    container.querySelectorAll('.practice-question').forEach((qEl, i) => {
+      const q = topic.practice[i];
+      const selected = qEl.querySelector('.option-btn.selected');
+      const feedback = qEl.querySelector('.feedback');
+      
+      qEl.querySelectorAll('.option-btn').forEach(b => {
+        b.classList.remove('correct-answer', 'wrong-answer');
+        if (b.dataset.answer === q.answer) b.classList.add('correct-answer');
+      });
+      
+      if (selected) {
+        answered++;
+        if (selected.dataset.answer === q.answer) {
+          qEl.classList.add('correct');
+          qEl.classList.remove('wrong');
+          feedback.textContent = '✓ Правильно!';
+          feedback.className = 'feedback show success';
+        } else {
+          qEl.classList.add('wrong');
+          qEl.classList.remove('correct');
+          selected.classList.add('wrong-answer');
+          feedback.textContent = `✗ Правильный ответ: ${q.answer}`;
+          feedback.className = 'feedback show error';
+          allCorrect = false;
+        }
+      } else {
+        qEl.classList.add('wrong');
+        feedback.textContent = `? Выбери ответ. Правильный: ${q.answer}`;
+        feedback.className = 'feedback show error';
+        allCorrect = false;
+      }
+    });
+    
+    if (answered === 0) {
+      showToast('Сначала ответь на вопросы! ✏️', 'error');
+    } else if (allCorrect) {
+      markTopicCompleted(topic.id);
+      showToast('🎉 Отлично! Тема пройдена!', 'success');
+    } else {
+      showToast('Есть ошибки. Попробуй ещё раз! 🙈', 'error');
+    }
+  });
+}
+
+// ====== РЕНДЕР ИГРЫ ======
+function renderGame(topic) {
+  const container = document.getElementById('game-content');
+  const game = topic.game;
+  container.dataset.gameType = game.type;
+  switch (game.type) {
+    case 'quiz': renderQuizGame(container, game, topic); break;
+    case 'memory': renderMemoryGame(container, game, topic); break;
+    case 'match': renderMatchGame(container, game, topic); break;
+    case 'color': renderColorGame(container, game, topic); break;
+    case 'math': renderMathGame(container, game, topic); break;
+    case 'sort': renderSortGame(container, game, topic); break;
+    case 'weather': renderWeatherGame(container, game, topic); break;
+    case 'truefalse': renderTrueFalseGame(container, game, topic); break;
+    case 'lookchoose': renderLookChooseGame(container, game, topic); break;
+  }
+}
+
+// ====== ИГРА: QUIZ ======
+function renderQuizGame(container, game, topic) {
+  let score = 0;
+  let currentQ = 0;
+  
+  function showQ() {
+    if (currentQ >= game.items.length) {
+      container.innerHTML = `
+        <div class="completion-screen">
+          <div class="emoji-big">${score >= game.items.length * 0.7 ? '🏆' : '💪'}</div>
+          <h2>${score >= game.items.length * 0.7 ? 'Молодец!' : 'Хорошая попытка!'}</h2>
+          <p>Твой счёт: <b>${score}</b> из <b>${game.items.length}</b></p>
+          <button class="action-btn" onclick="renderGame(topics[${currentTopicIndex}])">🔄 Играть снова</button>
+        </div>
+      `;
+      if (score >= Math.ceil(game.items.length * 0.7)) {
+        markTopicCompleted(topic.id);
+      }
+      return;
+    }
+    const item = game.items[currentQ];
+    container.innerHTML = `
+      <div class="game-area">
+        <div class="game-header">
+          <div class="game-title">${game.title}</div>
+          <div class="score-board">⭐ ${score} / ${game.items.length}</div>
+        </div>
+        <div class="game-instruction">Выбери правильный ответ:</div>
+        <div class="quiz-question">
+          <div class="quiz-question-text">${item.q}</div>
+          <div class="quiz-options">
+            ${item.options.map((opt, i) => `<div class="quiz-option" data-i="${i}">${opt}</div>`).join('')}
+          </div>
+        </div>
+        <p style="text-align:center;color:var(--text-soft);font-family:'Fredoka';">Вопрос ${currentQ + 1} из ${game.items.length}</p>
+      </div>
+    `;
+    container.querySelectorAll('.quiz-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const i = +opt.dataset.i;
+        container.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+        if (i === item.correct) {
+          opt.classList.add('correct');
+          score++;
+          showToast('✓ Правильно!', 'success');
+        } else {
+          opt.classList.add('incorrect');
+          container.querySelector(`.quiz-option[data-i="${item.correct}"]`).classList.add('correct');
+          showToast('✗ Неверно', 'error');
+        }
+        setTimeout(() => { currentQ++; showQ(); }, 1100);
+      });
+    });
+  }
+  showQ();
+}
+
+// ====== ИГРА: MEMORY ======
+function renderMemoryGame(container, game, topic) {
+  const cards = [];
+  game.pairs.forEach((p, i) => {
+    cards.push({ id: i * 2, pairId: i, content: p.emoji, type: 'emoji' });
+    cards.push({ id: i * 2 + 1, pairId: i, content: p.word, type: 'word' });
+  });
+  const shuffled = shuffle(cards);
+  let flipped = [];
+  let matched = 0;
+  
+  container.innerHTML = `
+    <div class="game-area">
+      <div class="game-header">
+        <div class="game-title">${game.title}</div>
+        <div class="score-board" id="mem-score">⭐ 0 / ${game.pairs.length}</div>
+      </div>
+      <div class="game-instruction">Найди пары: слово + картинка. Открой две карточки.</div>
+      <div class="memory-grid">
+        ${shuffled.map(c => `<div class="memory-card" data-id="${c.id}" data-pair="${c.pairId}">?</div>`).join('')}
+      </div>
+    </div>
+  `;
+  
+  let lock = false;
+  container.querySelectorAll('.memory-card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (lock || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+      const id = +card.dataset.id;
+      const c = shuffled.find(x => x.id === id);
+      card.classList.add('flipped');
+      card.textContent = c.content;
+      flipped.push({ card, pairId: c.pairId });
+      
+      if (flipped.length === 2) {
+        lock = true;
+        if (flipped[0].pairId === flipped[1].pairId) {
+          setTimeout(() => {
+            flipped.forEach(f => { f.card.classList.add('matched'); f.card.classList.remove('flipped'); });
+            flipped = [];
+            matched++;
+            container.querySelector('#mem-score').textContent = `⭐ ${matched} / ${game.pairs.length}`;
+            lock = false;
+            if (matched === game.pairs.length) {
+              setTimeout(() => {
+                showToast('🎉 Все пары найдены!', 'success');
+                markTopicCompleted(topic.id);
+                container.querySelector('.memory-grid').insertAdjacentHTML('afterend', `
+                  <div class="completion-screen">
+                    <div class="emoji-big">🎉</div>
+                    <h2>Победа!</h2>
+                    <p>Все пары найдены!</p>
+                    <button class="action-btn" onclick="renderGame(topics[${currentTopicIndex}])">🔄 Играть снова</button>
+                  </div>
+                `);
+              }, 400);
+            }
+          }, 500);
+        } else {
+          setTimeout(() => {
+            flipped.forEach(f => { f.card.classList.remove('flipped'); f.card.textContent = '?'; });
+            flipped = [];
+            lock = false;
+          }, 1000);
+        }
+      }
+    });
+  });
+}
+
+// ====== ИГРА: MATCH ======
+function renderMatchGame(container, game, topic) {
+  const leftItems = game.pairs.map((p, i) => ({ ...p, idx: i }));
+  const rightItems = shuffle(game.pairs.map((p, i) => ({ ...p, idx: i })));
+  let selectedLeft = null;
+  let matchedCount = 0;
+  
+  container.innerHTML = `
+    <div class="game-area">
+      <div class="game-header">
+        <div class="game-title">${game.title}</div>
+        <div class="score-board" id="match-score">⭐ 0 / ${game.pairs.length}</div>
+      </div>
+      <div class="game-instruction">Нажми на слово слева, потом на пару справа.</div>
+      <div class="match-game">
+        <div class="match-column" id="left-col">
+          ${leftItems.map(p => `<div class="match-item" data-idx="${p.idx}" data-side="left">${p.left}</div>`).join('')}
+        </div>
+        <div class="match-column" id="right-col">
+          ${rightItems.map(p => `<div class="match-item" data-idx="${p.idx}" data-side="right">${p.right}</div>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+  
+  container.querySelectorAll('.match-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (item.classList.contains('matched')) return;
+      const side = item.dataset.side;
+      if (side === 'left') {
+        container.querySelectorAll('#left-col .match-item').forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        selectedLeft = item;
+      } else {
+        if (!selectedLeft) {
+          showToast('Сначала выбери слева! 👈', 'error');
+          return;
+        }
+        const leftIdx = +selectedLeft.dataset.idx;
+        if (+item.dataset.idx === leftIdx) {
+          selectedLeft.classList.add('matched');
+          selectedLeft.classList.remove('selected');
+          item.classList.add('matched');
+          matchedCount++;
+          container.querySelector('#match-score').textContent = `⭐ ${matchedCount} / ${game.pairs.length}`;
+          selectedLeft = null;
+          if (matchedCount === game.pairs.length) {
+            showToast('🎉 Все пары найдены!', 'success');
+            markTopicCompleted(topic.id);
+            setTimeout(() => {
+              container.querySelector('.match-game').insertAdjacentHTML('beforebegin', `
+                <div class="completion-screen">
+                  <div class="emoji-big">🏆</div>
+                  <h2>Отлично!</h2>
+                  <p>Все пары соединены!</p>
+                  <button class="action-btn" onclick="renderGame(topics[${currentTopicIndex}])">🔄 Играть снова</button>
+                </div>
+              `);
+            }, 300);
+          }
+        } else {
+          item.classList.add('wrong');
+          setTimeout(() => item.classList.remove('wrong'), 400);
+          showToast('✗ Не верно, попробуй ещё!', 'error');
+        }
+      }
+    });
+  });
+}
+
+// ====== ИГРА: COLOR (БЕЗ НАДПИСЕЙ НА КВАДРАТАХ) ======
+function renderColorGame(container, game, topic) {
+  const colors = game.items;
+  let score = 0;
+  let attempts = 0;
+  const maxAttempts = 8;
+  let currentTarget = null;
+  
+  function nextRound() {
+    if (attempts >= maxAttempts) {
+      const success = score >= Math.ceil(maxAttempts * 0.7);
+      container.innerHTML = `
+        <div class="completion-screen">
+          <div class="emoji-big">${success ? '🎨' : '🖌'}</div>
+          <h2>${success ? 'Молодец!' : 'Хорошая попытка!'}</h2>
+          <p>Правильных ответов: <b>${score}</b> из <b>${maxAttempts}</b></p>
+          <button class="action-btn" onclick="renderGame(topics[${currentTopicIndex}])">🔄 Играть снова</button>
+        </div>
+      `;
+      if (success) markTopicCompleted(topic.id);
+      return;
+    }
+    currentTarget = colors[Math.floor(Math.random() * colors.length)];
+    // Показываем 6 случайных цветов, среди которых точно есть нужный
+    const otherColors = shuffle(colors.filter(c => c.color !== currentTarget.color)).slice(0, 5);
+    const boardColors = shuffle([currentTarget, ...otherColors]);
+    
+    container.innerHTML = `
+      <div class="game-area">
+        <div class="game-header">
+          <div class="game-title">${game.title}</div>
+          <div class="score-board">⭐ ${score} / ${maxAttempts}</div>
+        </div>
+        <div class="game-instruction">Найди нужный цвет и нажми на него.</div>
+        <div class="color-target">Найди цвет: <b>${currentTarget.color}</b></div>
+        <div class="color-game-board">
+          ${boardColors.map(c => `<div class="color-swatch" style="background:${c.hex}" data-color="${c.color}" title=""></div>`).join('')}
+        </div>
+      </div>
+    `;
+    container.querySelectorAll('.color-swatch').forEach(sw => {
+      sw.addEventListener('click', () => {
+        attempts++;
+        if (sw.dataset.color === currentTarget.color) {
+          score++;
+          sw.classList.add('correct');
+          showToast('✓ Правильно!', 'success');
+        } else {
+          sw.classList.add('wrong');
+          showToast('✗ Неверно', 'error');
+        }
+        setTimeout(nextRound, 700);
+      });
+    });
+  }
+  nextRound();
+}
+
+// ====== ИГРА: MATH ======
+function renderMathGame(container, game, topic) {
+  const words = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty'];
+  let score = 0;
+  let current = 0;
+  const max = 6;
+  
+  function generateQuestion() {
+    const a = Math.floor(Math.random() * 10) + 1;
+    const b = Math.floor(Math.random() * 10) + 1;
+    const op = Math.random() > 0.5 ? '+' : '-';
+    let result = op === '+' ? a + b : Math.max(a, b) - Math.min(a, b);
+    if (result > 20) return generateQuestion();
+    const answerWord = words[result];
+    const opts = new Set([answerWord]);
+    while (opts.size < 4) {
+      opts.add(words[Math.floor(Math.random() * 21)]);
+    }
+    return { expr: `${op === '-' ? Math.max(a, b) : a} ${op} ${op === '-' ? Math.min(a, b) : b}`, answer: answerWord, options: shuffle([...opts]) };
+  }
+  
+  function showQ() {
+    if (current >= max) {
+      const success = score >= Math.ceil(max * 0.7);
+      container.innerHTML = `
+        <div class="completion-screen">
+          <div class="emoji-big">${success ? '🔢' : '✏️'}</div>
+          <h2>${success ? 'Молодец!' : 'Хорошая попытка!'}</h2>
+          <p>Правильных ответов: <b>${score}</b> из <b>${max}</b></p>
+          <button class="action-btn" onclick="renderGame(topics[${currentTopicIndex}])">🔄 Играть снова</button>
+        </div>
+      `;
+      if (success) markTopicCompleted(topic.id);
+      return;
+    }
+    const q = generateQuestion();
+    container.innerHTML = `
+      <div class="game-area">
+        <div class="game-header">
+          <div class="game-title">${game.title}</div>
+          <div class="score-board">⭐ ${score} / ${max}</div>
+        </div>
+        <div class="game-instruction">Реши пример и выбери ответ словом.</div>
+        <div class="math-question">
+          <div class="math-expr">${q.expr} = ?</div>
+          <div class="math-options">
+            ${q.options.map(opt => `<div class="quiz-option" data-opt="${opt}">${opt}</div>`).join('')}
+          </div>
+        </div>
+        <p style="text-align:center;color:var(--text-soft);font-family:'Fredoka';">Вопрос ${current + 1} из ${max}</p>
+      </div>
+    `;
+    container.querySelectorAll('.quiz-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        current++;
+        container.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+        if (opt.dataset.opt === q.answer) {
+          opt.classList.add('correct');
+          score++;
+          showToast('✓ Верно!', 'success');
+        } else {
+          opt.classList.add('incorrect');
+          container.querySelector(`.quiz-option[data-opt="${q.answer}"]`)?.classList.add('correct');
+          showToast('✗ Неверно', 'error');
+        }
+        setTimeout(showQ, 1100);
+      });
+    });
+  }
+  showQ();
+}
+
+// ====== ИГРА: SORT (Сезоны) ======
+function renderSortGame(container, game, topic) {
+  const items = shuffle(game.items);
+  let selected = null;
+  let placed = 0;
+  
+  container.innerHTML = `
+    <div class="game-area">
+      <div class="game-header">
+        <div class="game-title">${game.title}</div>
+        <div class="score-board" id="sort-score">⭐ 0 / ${items.length}</div>
+      </div>
+      <div class="game-instruction">Нажми на слово, потом на время года, к которому оно относится.</div>
+      <div class="sort-items" id="sort-items">
+        ${items.map((item, i) => `<div class="sort-item" data-idx="${i}" data-season="${item.season}">${item.word}</div>`).join('')}
+      </div>
+      <div class="sort-game">
+        ${['spring','summer','autumn','winter'].map(s => `
+          <div class="sort-bin ${s}" data-season="${s}">
+            <div class="sort-bin-title">${s === 'spring' ? '🌷' : s === 'summer' ? '☀️' : s === 'autumn' ? '🍂' : '❄️'} ${s}</div>
+            <div class="bin-content"></div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  
+  container.querySelectorAll('.sort-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (item.classList.contains('placed')) return;
+      container.querySelectorAll('.sort-item').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selected = item;
+    });
+  });
+  
+  container.querySelectorAll('.sort-bin').forEach(bin => {
+    bin.addEventListener('click', () => {
+      if (!selected) {
+        showToast('Сначала выбери слово! 👆', 'error');
+        return;
+      }
+      if (selected.dataset.season === bin.dataset.season) {
+        bin.querySelector('.bin-content').appendChild(selected);
+        selected.classList.add('placed');
+        selected.classList.remove('selected');
+        placed++;
+        container.querySelector('#sort-score').textContent = `⭐ ${placed} / ${items.length}`;
+        selected = null;
+        if (placed === items.length) {
+          showToast('🎉 Всё правильно!', 'success');
+          markTopicCompleted(topic.id);
+          setTimeout(() => {
+            container.querySelector('.sort-game').insertAdjacentHTML('afterend', `
+              <div class="completion-screen">
+                <div class="emoji-big">🏆</div>
+                <h2>Молодец!</h2>
+                <p>Все слова распределены правильно!</p>
+                <button class="action-btn" onclick="renderGame(topics[${currentTopicIndex}])">🔄 Играть снова</button>
+              </div>
+            `);
+          }, 300);
+        }
+      } else {
+        selected.classList.add('wrong');
+        setTimeout(() => selected.classList.remove('wrong'), 400);
+        showToast('✗ Не то время года', 'error');
+      }
+    });
+  });
+}
+
+// ====== ИГРА: WEATHER ======
+function renderWeatherGame(container, game, topic) {
+  let score = 0;
+  let current = 0;
+  const items = game.items;
+  
+  function showQ() {
+    if (current >= items.length) {
+      const success = score >= Math.ceil(items.length * 0.7);
+      container.innerHTML = `
+        <div class="completion-screen">
+          <div class="emoji-big">${success ? '🌟' : '🌦'}</div>
+          <h2>${success ? 'Молодец!' : 'Хорошая попытка!'}</h2>
+          <p>Правильных ответов: <b>${score}</b> из <b>${items.length}</b></p>
+          <button class="action-btn" onclick="renderGame(topics[${currentTopicIndex}])">🔄 Играть снова</button>
+        </div>
+      `;
+      if (success) markTopicCompleted(topic.id);
+      return;
+    }
+    const item = items[current];
+    container.innerHTML = `
+      <div class="game-area">
+        <div class="game-header">
+          <div class="game-title">${game.title}</div>
+          <div class="score-board">⭐ ${score} / ${items.length}</div>
+        </div>
+        <div class="game-instruction">Прочитай описание и выбери правильную погоду.</div>
+        <div class="weather-scene">${item.scene}</div>
+        <div class="weather-description">"${item.description}"</div>
+        <div class="quiz-options">
+          ${item.options.map(opt => `<div class="quiz-option" data-opt="${opt}">${opt}</div>`).join('')}
+        </div>
+        <p style="text-align:center;color:var(--text-soft);font-family:'Fredoka';margin-top:14px;">Вопрос ${current + 1} из ${items.length}</p>
+      </div>
+    `;
+    container.querySelectorAll('.quiz-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        current++;
+        container.querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+        if (opt.dataset.opt === item.answer) {
+          opt.classList.add('correct');
+          score++;
+          showToast('✓ Верно!', 'success');
+        } else {
+          opt.classList.add('incorrect');
+          container.querySelector(`.quiz-option[data-opt="${item.answer}"]`)?.classList.add('correct');
+          showToast('✗ Неверно', 'error');
+        }
+        setTimeout(showQ, 1100);
+      });
+    });
+  }
+  showQ();
+}
+
+// ====== ИГРА: TRUEFALSE (Can/Can't) ======
+function renderTrueFalseGame(container, game, topic) {
+  let score = 0;
+  let current = 0;
+  const items = game.items;
+  
+  function showQ() {
+    if (current >= items.length) {
+      const success = score >= Math.ceil(items.length * 0.7);
+      container.innerHTML = `
+        <div class="completion-screen">
+          <div class="emoji-big">${success ? '🤣' : '🤔'}</div>
+          <h2>${success ? 'Молодец!' : 'Хорошая попытка!'}</h2>
+          <p>Правильных ответов: <b>${score}</b> из <b>${items.length}</b></p>
+          <button class="action-btn" onclick="renderGame(topics[${currentTopicIndex}])">🔄 Играть снова</button>
+        </div>
+      `;
+      if (success) markTopicCompleted(topic.id);
+      return;
+    }
+    const item = items[current];
+    container.innerHTML = `
+      <div class="game-area">
+        <div class="game-header">
+          <div class="game-title">${game.title}</div>
+          <div class="score-board">⭐ ${score} / ${items.length}</div>
+        </div>
+        <div class="game-instruction">Прочитай предложение. Это правда? Нажми <b>Yes</b> или <b>No</b>.</div>
+        <div class="tf-scene">
+          <div class="tf-emoji-pair">${item.scene.map(e => `<span>${e}</span>`).join('')}</div>
+          <div class="tf-sentence">${item.sentence}</div>
+        </div>
+        <div class="tf-buttons">
+          <button class="tf-btn yes" data-answer="true">✓ Yes, can</button>
+          <button class="tf-btn no" data-answer="false">✗ No, can't</button>
+        </div>
+        <div class="tf-result" id="tf-result"></div>
+        <p style="text-align:center;color:var(--text-soft);font-family:'Fredoka';margin-top:14px;">Вопрос ${current + 1} из ${items.length}</p>
+      </div>
+    `;
+    container.querySelectorAll('.tf-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const userAnswer = btn.dataset.answer === 'true';
+        const result = container.querySelector('#tf-result');
+        container.querySelectorAll('.tf-btn').forEach(b => b.classList.add('disabled'));
+        
+        if (userAnswer === item.answer) {
+          btn.classList.add('correct');
+          score++;
+          result.textContent = '✓ ' + item.because;
+          result.className = 'tf-result show ok';
+          showToast('✓ Верно!', 'success');
+        } else {
+          btn.classList.add('wrong');
+          result.textContent = '✗ ' + item.because;
+          result.className = 'tf-result show bad';
+          showToast('✗ Неверно', 'error');
+        }
+        setTimeout(() => { current++; showQ(); }, 1800);
+      });
+    });
+  }
+  showQ();
+}
+
+// ====== ИГРА: LOOKCHOOSE (Have got/Has got) ======
+function renderLookChooseGame(container, game, topic) {
+  let score = 0;
+  let current = 0;
+  const items = game.items;
+  
+  function showQ() {
+    if (current >= items.length) {
+      const success = score >= Math.ceil(items.length * 0.7);
+      container.innerHTML = `
+        <div class="completion-screen">
+          <div class="emoji-big">${success ? '👀' : '🤓'}</div>
+          <h2>${success ? 'Молодец!' : 'Хорошая попытка!'}</h2>
+          <p>Правильных ответов: <b>${score}</b> из <b>${items.length}</b></p>
+          <button class="action-btn" onclick="renderGame(topics[${currentTopicIndex}])">🔄 Играть снова</button>
+        </div>
+      `;
+      if (success) markTopicCompleted(topic.id);
+      return;
+    }
+    const item = items[current];
+    container.innerHTML = `
+      <div class="game-area">
+        <div class="game-header">
+          <div class="game-title">${game.title}</div>
+          <div class="score-board">⭐ ${score} / ${items.length}</div>
+        </div>
+        <div class="game-instruction">Посмотри на картинку и выбери <b>одно правильное предложение</b>.</div>
+        <div class="lc-scene">
+          <div class="lc-emoji">${item.scene.map(e => `<span>${e}</span>`).join('')}</div>
+          <div class="lc-prompt">What can you say about this?</div>
+        </div>
+        <div class="lc-sentences">
+          ${item.options.map((opt, i) => `<div class="lc-sentence-btn" data-i="${i}">${opt}</div>`).join('')}
+        </div>
+        <p style="text-align:center;color:var(--text-soft);font-family:'Fredoka';margin-top:14px;">Вопрос ${current + 1} из ${items.length}</p>
+      </div>
+    `;
+    container.querySelectorAll('.lc-sentence-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = +btn.dataset.i;
+        container.querySelectorAll('.lc-sentence-btn').forEach(b => b.classList.add('disabled'));
+        if (i === item.correct) {
+          btn.classList.add('correct');
+          score++;
+          showToast('✓ Верно!', 'success');
+        } else {
+          btn.classList.add('incorrect');
+          container.querySelector(`.lc-sentence-btn[data-i="${item.correct}"]`).classList.add('correct');
+          showToast('✗ Неверно', 'error');
+        }
+        setTimeout(() => { current++; showQ(); }, 1300);
+      });
+    });
+  }
+  showQ();
+}
+
+// ====== ФИНАЛЬНЫЙ ЭКРАН ======
+function showFinalScreen() {
+  document.querySelector('.main-wrapper').innerHTML = `
+    <div style="grid-column: 1 / -1;">
+      <div class="final-screen">
+        <div class="stars">⭐⭐⭐</div>
+        <h1>🎉 Урок окончен! 🎉</h1>
+        <p>Ты прошёл все 10 тем! Это большое достижение. Ты повторил глагол to be, местоимения, цвета, семью, числительные, времена года, погоду, can/can't, притяжательные местоимения и have got/has got. Так держать! 🦊</p>
+        <button class="action-btn" onclick="location.reload()">🔄 Начать заново</button>
+      </div>
+    </div>
+  `;
+  showToast('🏆 Урок завершён!', 'success');
+}
+
+// ====== ТАБЫ ======
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab + '-content').classList.add('active');
+  });
+});
+
+// ====== НАВИГАЦИЯ ======
+document.getElementById('prev-btn').addEventListener('click', () => {
+  if (currentTopicIndex > 0) {
+    currentTopicIndex--;
+    renderTopic();
+  }
+});
+document.getElementById('next-btn').addEventListener('click', () => {
+  if (currentTopicIndex < topics.length - 1) {
+    currentTopicIndex++;
+    renderTopic();
+  }
+});
+
+// ====== ИНИЦИАЛИЗАЦИЯ ======
+renderTopicsList();
+renderTopic();
+updateProgress();
+</script>
+</body>
+</html>
