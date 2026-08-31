@@ -380,45 +380,70 @@
     font-weight: 600;
     color: var(--fg);
   }
-  .sort-zone {
-    min-height: 60px;
-    border: 2px dashed var(--border);
-    border-radius: var(--radius-sm);
-    padding: 12px;
-    margin-bottom: 16px;
-    transition: all 0.3s;
+  
+  /* НОВЫЙ СТИЛЬ ДЛЯ ЗАДАНИЯ "РАССТАВЬ ПО ПОРЯДКУ" — ВЫБОР ИЗ СПИСКА */
+  .sort-select-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-content: flex-start;
-    cursor: pointer;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
   }
-  .sort-zone:hover { border-color: var(--accent); background: #FFF8F2; }
-  .sort-zone-title {
-    font-weight: 700;
-    font-size: 0.9rem;
-    margin-bottom: 8px;
+  .sort-select-row {
     display: flex;
     align-items: center;
-    gap: 6px;
-    width: 100%;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
   }
-  .sort-item {
-    padding: 8px 14px;
-    background: var(--card);
+  .sort-select-row .action-label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    min-width: 120px;
+    color: var(--fg);
+  }
+  .sort-select-row select {
+    flex: 1;
+    min-width: 140px;
+    padding: 8px 12px;
     border: 2px solid var(--border);
     border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: var(--card);
+    color: var(--fg);
     cursor: pointer;
-    transition: all 0.2s;
-    user-select: none;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8279' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
   }
-  .sort-item:hover { border-color: var(--accent); transform: scale(1.03); }
-  .sort-item.selected-sort { border-color: var(--blue); background: var(--blue-light); color: var(--blue); transform: scale(1.05); }
-  .sort-item.correct { border-color: var(--green); background: var(--green-light); color: var(--green); }
-  .sort-item.wrong { border-color: #E84040; background: #FEECEC; color: #E84040; }
-  .pool-zone { min-height: 80px; }
+  .sort-select-row select:focus {
+    border-color: var(--accent);
+    outline: none;
+  }
+  .sort-select-row select.correct-select {
+    border-color: var(--green);
+    background-color: var(--green-light);
+    color: var(--green);
+  }
+  .sort-select-row select.wrong-select {
+    border-color: #E84040;
+    background-color: #FEECEC;
+    color: #E84040;
+  }
+  .sort-select-row .zone-hint {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
   .task-block {
     margin-bottom: 24px;
     padding-bottom: 20px;
@@ -698,6 +723,9 @@
     .tab-btn i { display: none; }
     .btn-group { flex-direction: column; }
     .check-btn, .reset-btn { justify-content: center; width: 100%; }
+    .sort-select-row { flex-direction: column; align-items: stretch; }
+    .sort-select-row .action-label { min-width: auto; }
+    .sort-select-row select { min-width: auto; }
   }
 </style>
 </head>
@@ -943,32 +971,26 @@
     </div>
   </section>
 
-  <!-- ========== РАСПОРЯДОК ========== -->
+  <!-- ========== РАСПОРЯДОК (НОВОЕ ЗАДАНИЕ — ВЫБОР ИЗ СПИСКА) ========== -->
   <section class="tab-content" id="tab-routine" role="tabpanel">
     <div class="card">
       <div class="card-title">
         <span class="icon-circle" style="background:var(--green)"><i class="fa-solid fa-arrows-up-down"></i></span>
         Расставь по порядку — Put in order
       </div>
-      <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px;">Нажми на действие, затем на зону, куда его нужно отправить</p>
-      <div class="sort-zone" id="zone-morning" data-zone="morning" onclick="handleZoneClick('morning')">
-        <div class="sort-zone-title"><i class="fa-solid fa-sun" style="color:var(--yellow)"></i> Morning (утро)</div>
+      <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px;">Выбери время суток для каждого действия</p>
+      
+      <div class="sort-select-container" id="sortSelectContainer">
+        <!-- Сюда будут добавлены строки с выбором -->
       </div>
-      <div class="sort-zone" id="zone-afternoon" data-zone="afternoon" onclick="handleZoneClick('afternoon')">
-        <div class="sort-zone-title"><i class="fa-solid fa-cloud-sun" style="color:var(--blue)"></i> Afternoon (день)</div>
-      </div>
-      <div class="sort-zone" id="zone-evening" data-zone="evening" onclick="handleZoneClick('evening')">
-        <div class="sort-zone-title"><i class="fa-solid fa-moon" style="color:#8B5FC7"></i> Evening (вечер)</div>
-      </div>
-      <div class="sort-zone pool-zone" id="zone-pool" data-zone="pool" onclick="handleZoneClick('pool')">
-        <div class="sort-zone-title"><i class="fa-solid fa-hand-pointer"></i> Нажми на слово, затем сюда</div>
-      </div>
+      
       <div class="btn-group">
-        <button class="check-btn green" onclick="checkSort()"><i class="fa-solid fa-check"></i> Проверить</button>
-        <button class="reset-btn" onclick="resetSort()"><i class="fa-solid fa-rotate-right spin-icon"></i> Сбросить</button>
+        <button class="check-btn green" onclick="checkSortSelect()"><i class="fa-solid fa-check"></i> Проверить</button>
+        <button class="reset-btn" onclick="resetSortSelect()"><i class="fa-solid fa-rotate-right spin-icon"></i> Сбросить</button>
       </div>
-      <div class="result-banner" id="sortResult"></div>
+      <div class="result-banner" id="sortSelectResult"></div>
     </div>
+
     <div class="card">
       <div class="card-title">
         <span class="icon-circle" style="background:var(--accent)"><i class="fa-solid fa-puzzle-piece"></i></span>
@@ -1075,7 +1097,6 @@
       <div class="result-banner" id="transResult"></div>
     </div>
 
-    <!-- Общий сброс всего раздела Задания -->
     <div class="card" style="text-align:center; padding:16px 24px;">
       <button class="reset-btn" onclick="resetAllTasks()" style="width:100%; justify-content:center; border-color:var(--accent); color:var(--accent);">
         <i class="fa-solid fa-arrows-rotate spin-icon"></i> Сбросить все задания и начать заново
@@ -1377,68 +1398,68 @@ function resetMeals() {
   updateProgress();
 }
 
-// ==================== РАСПОРЯДОК (КЛИКИ) ====================
-let selectedSortItem = null;
+// ==================== НОВОЕ ЗАДАНИЕ — ВЫБОР ИЗ СПИСКА ====================
+let sortSelectData = [];
 
-function handleSortItemClick(el) {
-  if (el.classList.contains('correct') || el.classList.contains('wrong')) return;
-  if (selectedSortItem === el) {
-    el.classList.remove('selected-sort');
-    selectedSortItem = null;
-  } else {
-    if (selectedSortItem) selectedSortItem.classList.remove('selected-sort');
-    el.classList.add('selected-sort');
-    selectedSortItem = el;
-  }
-}
-
-function handleZoneClick(zoneId) {
-  if (!selectedSortItem) return;
-  const zone = document.getElementById('zone-' + zoneId);
-  if (zone) {
-    zone.appendChild(selectedSortItem);
-    selectedSortItem.classList.remove('selected-sort');
-    selectedSortItem = null;
-  }
-}
-
-function initSort() {
-  const pool = document.getElementById('zone-pool');
+function initSortSelect() {
+  const container = document.getElementById('sortSelectContainer');
+  container.innerHTML = '';
+  
+  // Перемешиваем действия
   const shuffled = [...sortData].sort(() => Math.random() - 0.5);
-  shuffled.forEach(item => {
-    const el = document.createElement('div');
-    el.className = 'sort-item';
-    el.textContent = item.text;
-    el.dataset.zone = item.zone;
-    el.setAttribute('onclick', 'handleSortItemClick(this)');
-    pool.appendChild(el);
+  sortSelectData = shuffled.map(item => ({
+    ...item,
+    selected: ''
+  }));
+  
+  // Создаем строки для каждого действия
+  shuffled.forEach((item, index) => {
+    const row = document.createElement('div');
+    row.className = 'sort-select-row';
+    row.innerHTML = `
+      <span class="action-label">${item.text}</span>
+      <select data-index="${index}" data-correct="${item.zone}">
+        <option value="">— выбери —</option>
+        <option value="morning">Morning (утро)</option>
+        <option value="afternoon">Afternoon (день)</option>
+        <option value="evening">Evening (вечер)</option>
+      </select>
+      <span class="zone-hint">↓ куда?</span>
+    `;
+    
+    const select = row.querySelector('select');
+    select.addEventListener('change', function() {
+      sortSelectData[index].selected = this.value;
+    });
+    
+    container.appendChild(row);
   });
 }
 
-function checkSort() {
-  if (selectedSortItem) {
-    selectedSortItem.classList.remove('selected-sort');
-    selectedSortItem = null;
-  }
+function checkSortSelect() {
   let correct = 0;
-  const total = sortData.length;
+  const total = sortSelectData.length;
   
-  document.querySelectorAll('.sort-item').forEach(item => {
-    const currentZone = item.parentElement.dataset.zone;
-    if (currentZone === item.dataset.zone) {
-      item.classList.add('correct');
-      item.classList.remove('wrong');
+  document.querySelectorAll('#sortSelectContainer select').forEach((select, index) => {
+    const correctZone = sortSelectData[index].zone;
+    const selectedValue = select.value;
+    
+    select.classList.remove('correct-select', 'wrong-select');
+    if (selectedValue === correctZone) {
+      select.classList.add('correct-select');
       correct++;
-    } else {
-      item.classList.add('wrong');
-      item.classList.remove('correct');
+    } else if (selectedValue !== '') {
+      select.classList.add('wrong-select');
     }
   });
-
-  const resultEl = document.getElementById('sortResult');
+  
+  const resultEl = document.getElementById('sortSelectResult');
   if (correct === total) {
     resultEl.className = 'result-banner show success';
     resultEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> Отлично! Все действия распределены верно!';
+  } else if (correct === 0) {
+    resultEl.className = 'result-banner show fail';
+    resultEl.innerHTML = `<i class="fa-solid fa-xmark"></i> Ни одного правильного ответа. Попробуй ещё!`;
   } else {
     resultEl.className = 'result-banner show partial';
     resultEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Верно ${correct} из ${total}. Попробуй ещё!`;
@@ -1446,16 +1467,16 @@ function checkSort() {
   updateProgress();
 }
 
-function resetSort() {
-  const pool = document.getElementById('zone-pool');
-  document.querySelectorAll('.sort-item').forEach(item => {
-    item.classList.remove('correct', 'wrong', 'selected-sort');
-    pool.appendChild(item);
+function resetSortSelect() {
+  document.querySelectorAll('#sortSelectContainer select').forEach((select) => {
+    select.value = '';
+    select.classList.remove('correct-select', 'wrong-select');
   });
-  selectedSortItem = null;
-  document.getElementById('sortResult').className = 'result-banner';
-  const items = Array.from(pool.querySelectorAll('.sort-item'));
-  items.sort(() => Math.random() - 0.5).forEach(item => pool.appendChild(item));
+  sortSelectData.forEach(item => item.selected = '');
+  document.getElementById('sortSelectResult').className = 'result-banner';
+  // Перемешиваем заново
+  initSortSelect();
+  showToast('Список перемешан!');
   updateProgress();
 }
 
@@ -1474,7 +1495,6 @@ function handleSentenceWordClick(el) {
       selectedSentenceWord = null;
       return;
     }
-    // Меняем элементы местами
     const parent = el.parentNode;
     const node1 = selectedSentenceWord;
     const node2 = el;
@@ -1548,6 +1568,7 @@ function resetSentences() {
   });
   selectedSentenceWord = null;
   document.getElementById('sentencesResult').className = 'result-banner';
+  showToast('Предложения перемешаны!');
   updateProgress();
 }
 
@@ -1683,7 +1704,7 @@ function updateProgress() {
   if (document.querySelectorAll('#timeMatchContainer .correct-match').length === timeMatchData.length * 2) score++;
   if (document.getElementById('mealsResult').classList.contains('success')) score++;
   if (document.getElementById('mcResult').classList.contains('success')) score++;
-  if (document.getElementById('sortResult').classList.contains('success')) score++;
+  if (document.getElementById('sortSelectResult').classList.contains('success')) score++;
   if (document.getElementById('sentencesResult').classList.contains('success')) score++;
   if (document.getElementById('fillResult').classList.contains('success')) score++;
   if (document.getElementById('transResult').classList.contains('success')) score++;
@@ -1697,7 +1718,7 @@ function resetAllTasks() {
   resetTimeMatch();
   resetMeals();
   resetMC();
-  resetSort();
+  resetSortSelect();
   resetSentences();
   resetFill();
   resetTranslation();
@@ -1714,7 +1735,7 @@ function showToast(msg) {
 
 // ==================== ИНИЦИАЛИЗАЦИЯ ====================
 buildTimeMatch();
-initSort();
+initSortSelect();
 initSentences();
 </script>
 </body>
