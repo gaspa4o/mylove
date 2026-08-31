@@ -3,9 +3,6 @@
   "2 класс": [],
   "3 класс": [
     {
-      "file": "grade3/english_adventure.html"
-    },
-    {
       "file": "grade3/clothes_detective.html"
     },
     {
@@ -16,6 +13,9 @@
     },
     {
       "file": "grade3/school_supplies.html"
+    },
+    {
+      "file": "grade3/english_adventure.html"
     }
   ],
   "4 класс": [
