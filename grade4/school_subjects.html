@@ -1,428 +1,970 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>School Subjects — Interactive Worksheet</title>
-<style>
-*{box-sizing:border-box}
-:root{--navy:#101936;--blue:#5968c9;--light:#f5f7ff;--yellow:#ffd447;--green:#39c777;--red:#ef5350;--text:#20284a}
-body{margin:0;background:linear-gradient(135deg,#dfe7ff,#f8f5ff);font-family:"Segoe UI",Arial,sans-serif;color:var(--text);padding:20px}
-.worksheet{max-width:900px;margin:auto;background:#fff;border-radius:30px;padding:28px;box-shadow:0 18px 55px #26305a25}
-h1{text-align:center;margin:0;color:var(--navy);font-size:clamp(28px,6vw,44px)}
-.subtitle{text-align:center;color:#68739b;margin:8px 0 20px;font-size:17px}
-.progress{background:#edf0fa;border-radius:20px;padding:12px;margin-bottom:24px;position:sticky;top:8px;z-index:10}
-.progressline{display:flex;justify-content:space-between;font-weight:700;margin-bottom:7px}
-.track{height:10px;background:#d8dded;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#6575d7,#39c777);transition:.3s}
-.card{background:#fafbff;border:1px solid #e1e5f2;border-radius:24px;padding:22px;margin:22px 0}
-.title{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:12px}
-.badge{display:inline-flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;background:var(--yellow);margin-right:8px}
-.info{background:#eef1ff;border-left:4px solid var(--blue);padding:11px 14px;border-radius:12px;margin-bottom:16px;line-height:1.45}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:650px){.grid{grid-template-columns:1fr}.worksheet{padding:16px}}
-.zone{background:#fff;border:3px dashed #cbd2eb;border-radius:20px;padding:15px;min-height:270px;transition:.2s}
-.zone.take{border-color:#75d5a5}.zone.dont{border-color:#f2a2a0}
-.zone.dragover{background:#eef8f2;transform:scale(1.01)}
-.zone h3{text-align:center;margin:0 0 12px}
-.items{display:flex;flex-wrap:wrap;gap:9px}
-.item{padding:10px 14px;touch-action:none;background:#edf0f8;border-radius:14px;border:2px solid transparent;cursor:grab;user-select:none;touch-action:none;font-weight:600}
-.item.selected{border-color:#6575d7;background:#e8ebff}.item.correct{background:#dff8ea;border-color:var(--green)}.item.incorrect{background:#ffe3e2;border-color:var(--red)}
-#wordBank{min-height:65px;background:#f2f4fb;border-radius:18px;padding:12px;margin-bottom:15px}
-input,textarea{width:100%;padding:11px 13px;border:2px solid #d5daea;border-radius:13px;background:white;font:inherit;outline:none}
-input:focus,textarea:focus{border-color:#6575d7}
-.correctInput{border-color:var(--green)!important;background:#edfff5}.wrongInput{border-color:var(--red)!important;background:#fff0ef}
-table{width:100%;border-collapse:collapse;background:white;border-radius:15px;overflow:hidden}
-th,td{border:1px solid #dce1ef;padding:9px;text-align:center}th{background:#26335f;color:white}
-.question{margin-top:12px}
-.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:650px){.match-wrap{grid-template-columns:1fr}}
-.match-col{background:#fff;border-radius:18px;padding:14px;border:1px solid #dfe3ef}
-.match-col h3{text-align:center;color:var(--navy)}
-.match-btn{display:block;width:100%;margin:8px 0;padding:12px;border:2px solid #dfe3ef;border-radius:13px;background:#f8f9fd;cursor:pointer;font:inherit;text-align:left;transition:.2s}
-.match-btn:hover{border-color:#7a87dc}.warm{width:auto;display:inline-block;text-align:center}.warm.matched{border-color:var(--green);background:#dff8ea}.match-btn.selected{border-color:#6575d7;background:#e8ebff}.match-btn.matched{border-color:var(--green);background:#dff8ea}.match-btn.bad{border-color:var(--red);background:#ffe3e2}
-.message{text-align:center;min-height:24px;font-weight:700;margin-top:12px}
-.actions{text-align:center;margin:28px 0}
-button.main{background:var(--navy);color:white;border:0;border-radius:25px;padding:13px 25px;font-size:17px;font-weight:800;cursor:pointer}
-button.secondary{background:#e8ebf3;color:var(--navy);border:0;border-radius:25px;padding:13px 25px;font-size:17px;font-weight:700;cursor:pointer;margin-left:8px}
-.result{display:none;text-align:center;background:#f5f7ff;border:2px solid #6575d7;border-radius:22px;padding:20px}
-.score{font-size:38px;font-weight:900;color:var(--navy)}
-.footer{text-align:center;color:#68739b;border-top:1px solid #e0e4ef;padding-top:20px;margin-top:25px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рабочий лист: Школьные предметы</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #fdf6e4;
+            background-image: radial-gradient(#f0e6c8 2px, transparent 2px);
+            background-size: 20px 20px;
+            color: #4a4a4a;
+            margin: 0;
+            padding: 20px;
+        }
 
-.item.being-dragged{opacity:.35;transform:scale(1.06)}
-.touch-ghost{position:fixed!important;z-index:99999!important;pointer-events:none!important;opacity:.9!important;box-shadow:0 12px 25px #0004;transform:rotate(2deg) scale(1.05)}
-.item.returning{animation:returnBack .35s ease}
-@keyframes returnBack{0%{transform:translateY(-12px) scale(1.08);opacity:.5}100%{transform:translateY(0) scale(1);opacity:1}}
+        h1, h2, h3, button {
+            font-family: 'Fredoka', sans-serif;
+        }
 
-.vocab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
-.vocab-grid div{background:#0f1535;border:1px solid #334155;border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
-.vocab-grid b{color:#fde047;font-size:17px}.vocab-grid span{color:#c7d2fe;font-size:14px}
-.translation-list{display:flex;flex-direction:column;gap:12px;margin-top:10px}
-.translation-list>div{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center}
-.example-en{color:#20284a;font-size:17px;line-height:1.5;font-weight:600;background:#fff;padding:10px 12px;border-radius:12px}
-.interview-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
-.interview-grid>div{display:flex;flex-direction:column;gap:7px}
-.q{color:#c7d2fe;font-size:16px}
-@media(max-width:650px){.translation-list>div,.interview-grid{grid-template-columns:1fr}}
-</style>
+        h1 {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 30px;
+            border: 3px solid #ffcbcb;
+        }
+
+        /* Панель баллов */
+        .scoreboard {
+            background: #e0f7fa;
+            border: 3px solid #4dd0e1;
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 30px;
+            font-weight: 800;
+            font-size: 1.2em;
+            color: #006064;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #4dd0e1;
+            margin-top: 5px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #4dd0e1;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Вкладки */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: #fff;
+            border: 3px solid #ffcbcb;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #ff6b6b;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: #fff5f5;
+        }
+
+        .tab-btn.active {
+            background: #ff6b6b;
+            color: #fff;
+            border-color: #ff6b6b;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Эмодзи вместо картинок */
+        .emoji {
+            font-size: 60px;
+            line-height: 1.2;
+            margin: 10px 0;
+            display: block;
+        }
+
+        /* Словарь */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .vocab-card {
+            background: #f9fbe7;
+            border: 3px solid #dcedc8;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .vocab-card h3 {
+            margin: 10px 0 5px;
+            color: #558b2f;
+            font-size: 1.4em;
+        }
+
+        .vocab-card p {
+            margin: 0 0 10px;
+            color: #7cb342;
+            font-weight: 600;
+        }
+
+        .sound-btn {
+            background: #4dd0e1;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 3px 0 #00acc1;
+            transition: transform 0.1s;
+        }
+
+        .sound-btn:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+
+        /* Теория */
+        .theory-box {
+            background: #fff3e0;
+            border: 3px solid #ffcc80;
+            border-radius: 15px;
+            padding: 20px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        .theory-box p {
+            margin-bottom: 15px;
+        }
+
+        .theory-box b {
+            color: #ef6c00;
+        }
+
+        /* Упражнения */
+        .exercise {
+            background: #f3e5f5;
+            border: 3px solid #ce93d8;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .exercise h2 {
+            color: #8e24aa;
+            margin-top: 0;
+            border-bottom: 2px dashed #ce93d8;
+            padding-bottom: 10px;
+        }
+
+        .task-text {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #6a1b9a;
+            font-size: 1.1em;
+        }
+
+        /* Кнопки ответов */
+        .opt-btn {
+            background: #fff;
+            border: 3px solid #d1c4e9;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 5px 0;
+            display: block;
+            width: 100%;
+            text-align: left;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.2s;
+        }
+
+        .opt-btn:hover {
+            background: #f3e5f5;
+        }
+
+        .opt-btn.selected {
+            border-color: #29b6f6;
+            background: #e1f5fe;
+            box-shadow: 0 0 0 3px rgba(41, 182, 246, 0.3);
+        }
+
+        .opt-btn.correct {
+            border-color: #66bb6a;
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .opt-btn.wrong {
+            border-color: #ef5350;
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* Кнопка проверки */
+        .check-btn {
+            background: #4db6ac;
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 0 #26a69a;
+            transition: transform 0.1s;
+            display: block;
+            width: 100%;
+        }
+
+        .check-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        .check-btn:disabled {
+            background: #cfd8dc;
+            color: #ffffff;
+            box-shadow: 0 4px 0 #b0bec5;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* Текст для чтения */
+        .reading-text {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #8e24aa;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Сопоставление картинка-слово */
+        .match-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .match-item {
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .match-opts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .match-opt {
+            background: #ede7f6;
+            border: 2px solid #d1c4e9;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .match-opt.selected {
+            background: #b3e5fc;
+            border-color: #29b6f6;
+        }
+
+        .match-opt.correct {
+            background: #c8e6c9;
+            border-color: #66bb6a;
+        }
+
+        .match-opt.wrong {
+            background: #ffcdd2;
+            border-color: #ef5350;
+        }
+
+        /* Выбор своих предметов */
+        .my-subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .subject-pick {
+            background: #fff;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s, background 0.2s;
+        }
+
+        .subject-pick:hover {
+            transform: scale(1.05);
+            border-color: #81d4fa;
+        }
+
+        .subject-pick.selected {
+            border-color: #29b6f6;
+            background: #e1f5fe;
+        }
+
+        .subject-pick .emoji {
+            font-size: 40px;
+            margin: 5px 0;
+        }
+
+        /* Игры - анаграммы */
+        .scramble-box {
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #5e35b1;
+            margin: 10px 0;
+            background: #ede7f6;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .text-input {
+            padding: 10px;
+            font-size: 1.2em;
+            border: 3px solid #d1c4e9;
+            border-radius: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .text-input.correct {
+            border-color: #66bb6a;
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 700;
+        }
+
+        .text-input.wrong {
+            border-color: #ef5350;
+            background: #ffebee;
+            color: #c62828;
+            font-weight: 700;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: 800;
+            font-size: 1.2em;
+            min-height: 25px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .match-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8em; }
+        }
+    </style>
 </head>
 <body>
-<div class="worksheet">
-<h1>📚 School Subjects</h1>
-<div class="subtitle">Interactive English Worksheet · Grade 4</div>
 
-<div class="progress">
-<div class="progressline"><span>Progress</span><span id="progressText">0%</span></div>
-<div class="track"><div class="fill" id="progressFill"></div></div>
-</div>
+    <h1>Мой английский: Школьные предметы</h1>
 
-<!-- WARM UP -->
-<section class="card">
-<div class="title">🌟 Warm-up: School Words</div>
-<div class="info">Click the words you know. Which words are <b>school subjects</b> and which are <b>school things</b>?</div>
-<div class="grid">
-<div class="box"><h3>📚 School Subjects</h3><div class="items">
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">Maths</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">Reading</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">Art</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">Music</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">Science</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">PE</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">Russian</button>
-</div></div>
-<div class="box"><h3>🎒 School Things</h3><div class="items">
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">pen</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">pencil</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">book</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">ruler</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">rubber</button>
-<button class="match-btn warm" onclick="this.classList.toggle('matched')">school bag</button>
-</div></div>
-</div></section>
+    <div class="container">
+        <!-- Панель достижений -->
+        <div class="scoreboard">
+            <div>Баллы: <span id="score">0</span></div>
+            <div>Ошибки: <span id="mistakes">0</span></div>
+            <div style="flex-grow: 1; margin-left: 20px;">
+                Прогресс: <span id="percent">0</span>%
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
 
-<!-- 1 -->
-<section class="card">
-<div class="title"><span class="badge">1</span>🎒 Pack Your School Bag</div>
-<div class="info">Drag each item into the correct folder: <b>TAKE TO SCHOOL</b> or <b>DON'T TAKE</b>. Press and hold a word, drag it to a folder, and release.</div>
-<div id="wordBank" class="items"></div>
-<div class="grid">
-<div class="zone take" data-zone="take"><h3>🟢 TAKE TO SCHOOL</h3><div class="items"></div></div>
-<div class="zone dont" data-zone="dont"><h3>🔴 DON'T TAKE</h3><div class="items"></div></div>
-</div>
-<div id="dragMessage" class="message"></div>
-</section>
+        <!-- Вкладки -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'dict')">Словарь</button>
+            <button class="tab-btn" onclick="openTab(event, 'theory')">Теория</button>
+            <button class="tab-btn" onclick="openTab(event, 'ex1')">Упражнение 1</button>
+            <button class="tab-btn" onclick="openTab(event, 'ex2')">Упражнение 2</button>
+            <button class="tab-btn" onclick="openTab(event, 'ex3')">Чтение</button>
+            <button class="tab-btn" onclick="openTab(event, 'ex4')">Мои предметы</button>
+            <button class="tab-btn" onclick="openTab(event, 'game1')">Игра 1</button>
+            <button class="tab-btn" onclick="openTab(event, 'game2')">Игра 2</button>
+        </div>
 
-<!-- 2 -->
-<section class="card">
-<div class="title"><span class="badge">2</span>🔤 Unscramble the Subjects</div>
-<div class="info">Put the letters in the correct order. Then write the Russian translation.</div>
-<table>
-<tr><th>Mixed letters</th><th>Correct word</th><th>Translation</th></tr>
-<tr><td>A T H M S</td><td><input data-answer="MATHS"></td><td><input data-answer="математика"></td></tr>
-<tr><td>G N I S H L E</td><td><input data-answer="ENGLISH"></td><td><input data-answer="английский"></td></tr>
-<tr><td>R A T</td><td><input data-answer="ART"></td><td><input data-answer="рисование"></td></tr>
-<tr><td>U S C M I</td><td><input data-answer="MUSIC"></td><td><input data-answer="музыка"></td></tr>
-<tr><td>P E</td><td><input data-answer="PE"></td><td><input data-answer="физкультура"></td></tr>
-<tr><td>E N I C S C E</td><td><input data-answer="SCIENCE"></td><td><input data-answer="естествознание"></td></tr>
-</table>
-</section>
+        <!-- Словарь -->
+        <div id="dict" class="tab-content active">
+            <h2 style="color:#ff6b6b; text-align:center;">Мои школьные предметы</h2>
+            <p style="text-align:center;">Нажми на синюю кнопку, чтобы услышать слово!</p>
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <span class="emoji">🧮</span>
+                    <h3>Maths</h3>
+                    <p>Математика</p>
+                    <button class="sound-btn" onclick="speak('Maths')">🔊</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="emoji">🎨</span>
+                    <h3>Art</h3>
+                    <p>ИЗО</p>
+                    <button class="sound-btn" onclick="speak('Art')">🔊</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="emoji">🔬</span>
+                    <h3>Science</h3>
+                    <p>Окр. мир</p>
+                    <button class="sound-btn" onclick="speak('Science')">🔊</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="emoji">⚽</span>
+                    <h3>PE</h3>
+                    <p>Физкультура</p>
+                    <button class="sound-btn" onclick="speak('Physical Education')">🔊</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="emoji">🔤</span>
+                    <h3>English</h3>
+                    <p>Английский</p>
+                    <button class="sound-btn" onclick="speak('English')">🔊</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="emoji">🎵</span>
+                    <h3>Music</h3>
+                    <p>Музыка</p>
+                    <button class="sound-btn" onclick="speak('Music')">🔊</button>
+                </div>
+                <div class="vocab-card">
+                    <span class="emoji">📚</span>
+                    <h3>Reading</h3>
+                    <p>Чтение</p>
+                    <button class="sound-btn" onclick="speak('Reading')">🔊</button>
+                </div>
+            </div>
+        </div>
 
-<!-- 3 -->
-<section class="card">
-<div class="title"><span class="badge">3</span>🔗 Match the Subject</div>
-<div class="info">Click one subject and one action. If they match, both turn green. If they don't, they turn red and you can try again.</div>
-<div class="match-wrap">
-<div class="match-col"><h3>📚 Subjects</h3>
-<button class="match-btn subject" data-id="maths">Maths</button>
-<button class="match-btn subject" data-id="reading">Reading</button>
-<button class="match-btn subject" data-id="art">Art</button>
-<button class="match-btn subject" data-id="music">Music</button>
-<button class="match-btn subject" data-id="science">Science</button>
-<button class="match-btn subject" data-id="pe">PE</button>
-<button class="match-btn subject" data-id="russian">Russian</button>
-</div>
-<div class="match-col"><h3>✏️ Actions</h3>
-<button class="match-btn action" data-id="sing">sing songs</button>
-<button class="match-btn action" data-id="count">count</button>
-<button class="match-btn action" data-id="run">run and jump</button>
-<button class="match-btn action" data-id="draw">draw pictures</button>
-<button class="match-btn action" data-id="dictation">write dictations</button>
-<button class="match-btn action" data-id="experiment">do experiments</button>
-<button class="match-btn action" data-id="read">read stories</button>
-</div>
-</div>
-<div id="matchMessage" class="message"></div>
-</section>
+        <!-- Теория -->
+        <div id="theory" class="tab-content">
+            <h2 style="color:#ff6b6b; text-align:center;">Как говорить о предметах?</h2>
+            <div class="theory-box">
+                <p>Чтобы рассказать, какие у тебя есть уроки, мы используем слово <b>have</b> (имею) и <b>have got</b>.</p>
+                <p>👉 <b>I have Maths on Monday.</b> (У меня есть математика в понедельник.)</p>
+                <p>👉 <b>I have got Music today.</b> (У меня сегодня музыка.)</p>
+                
+                <p>Чтобы сказать, что ты делаешь на уроке, используй слово <b>at the</b> (на уроке):</p>
+                <p>🎨 <b>At the Art lesson we draw.</b> (На ИЗО мы рисуем.)</p>
+                <p>⚽ <b>At the PE lesson we run and jump.</b> (На физкультуре мы бегаем и прыгаем.)</p>
+                <p>📖 <b>At the Reading lesson we read books.</b> (На чтении мы читаем книги.)</p>
+                <p>🧮 <b>At the Maths lesson we count.</b> (На математике мы считаем.)</p>
+            </div>
+        </div>
 
-<!-- 4 -->
-<section class="card">
-<div class="title"><span class="badge">4</span>📅 Read the Timetable</div>
-<div class="info">Look at the timetable and answer the questions.</div>
-<table>
-<tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th></tr>
-<tr><td>9:00–9:45</td><td>Maths</td><td>Reading</td><td>Maths</td></tr>
-<tr><td>9:45–10:30</td><td>Russian</td><td>Maths</td><td>Russian</td></tr>
-<tr><td>10:30–10:50</td><td>Break</td><td>Break</td><td>Break</td></tr>
-<tr><td>10:50–11:35</td><td>Reading</td><td>Art</td><td>Music</td></tr>
-<tr><td>11:35–12:20</td><td>PE</td><td>Science</td><td>PE</td></tr>
-</table>
-<div class="question">1. What do you have on Monday at 9:00?<input data-answer="Maths"></div>
-<div class="question">2. What do you have on Tuesday at 10:50?<input data-answer="Art"></div>
-<div class="question">3. What do you have on Wednesday at 11:35?<input data-answer="PE"></div>
-<div class="question">4. How many Maths lessons are there?<input data-answer="3"></div>
-<div class="question">5. What is your favourite subject?<input></div>
-</section>
+        <!-- Упражнение 1: Сопоставление -->
+        <div id="ex1" class="tab-content">
+            <div class="exercise">
+                <h2>Упражнение 1: Сопоставь</h2>
+                <p class="task-text">Посмотри на эмодзи и выбери правильное английское название предмета.</p>
+                
+                <div class="match-grid" id="matchGrid">
+                    <!-- Заполняется JS -->
+                </div>
+                <button class="check-btn" onclick="checkEx1()">Проверить</button>
+                <div class="feedback" id="ex1_feedback"></div>
+            </div>
+        </div>
 
-<!-- 5 -->
-<section class="card">
-<div class="title"><span class="badge">5</span>🎤 Interview: My School Subjects</div>
+        <!-- Упражнение 2: Действия -->
+        <div id="ex2" class="tab-content">
+            <div class="exercise">
+                <h2>Упражнение 2: Угадай предмет</h2>
+                <p class="task-text">Прочитай, что делают на уроке, и выбери правильный предмет.</p>
+                
+                <p>1. We run, jump and play football.</p>
+                <div class="opts" id="q1">
+                    <button class="opt-btn" onclick="selectOption(this, 'q1')">Music</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q1')">PE</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q1')">Art</button>
+                </div>
 
-<div class="info">📌 First, use the words for help. Read the examples, translate them into Russian, and then answer the interview questions about yourself.</div>
+                <p>2. We sing songs and play the guitar.</p>
+                <div class="opts" id="q2">
+                    <button class="opt-btn" onclick="selectOption(this, 'q2')">Maths</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q2')">Music</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q2')">Reading</button>
+                </div>
 
-<div class="box">
-<h3>📖 Words for help</h3>
-<div class="vocab-grid">
-  <div><b>interesting</b><span>интересный</span></div>
-  <div><b>boring</b><span>скучный</span></div>
-  <div><b>fun</b><span>весёлый / интересный</span></div>
-  <div><b>active</b><span>активный</span></div>
-  <div><b>easy</b><span>лёгкий</span></div>
-  <div><b>difficult</b><span>сложный</span></div>
-  <div><b>useful</b><span>полезный</span></div>
-  <div><b>creative</b><span>творческий</span></div>
-  <div><b>exciting</b><span>увлекательный</span></div>
-  <div><b>favourite</b><span>любимый</span></div>
-</div>
-</div>
+                <p>3. We read English texts and learn words.</p>
+                <div class="opts" id="q3">
+                    <button class="opt-btn" onclick="selectOption(this, 'q3')">English</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q3')">Science</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q3')">PE</button>
+                </div>
 
-<div class="box">
-<h3>🔤 Translate the sentences</h3>
-<div class="translation-list">
-  <div><span class="example-en">1. I like Maths because it is interesting.</span><input type="text" placeholder="Перевод..."></div>
-  <div><span class="example-en">2. I don't like Literature because it is boring.</span><input type="text" placeholder="Перевод..."></div>
-  <div><span class="example-en">3. I like PE because it is fun and active.</span><input type="text" placeholder="Перевод..."></div>
-  <div><span class="example-en">4. Science is difficult, but it is exciting.</span><input type="text" placeholder="Перевод..."></div>
-  <div><span class="example-en">5. Art is creative and fun.</span><input type="text" placeholder="Перевод..."></div>
-</div>
-</div>
+                <p>4. We draw and paint pictures.</p>
+                <div class="opts" id="q4">
+                    <button class="opt-btn" onclick="selectOption(this, 'q4')">Art</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q4')">Music</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q4')">Maths</button>
+                </div>
 
-<div class="box">
-<h3>🎤 Now it's your turn!</h3>
-<div class="interview-grid">
-  <div><span class="q">What is your favourite subject?</span><input type="text" placeholder="My favourite subject is ..."></div>
-  <div><span class="q">Why do you like it?</span><input type="text" placeholder="Because it is ..."></div>
-  <div><span class="q">What subject don't you like?</span><input type="text" placeholder="I don't like ..."></div>
-  <div><span class="q">Why don't you like it?</span><input type="text" placeholder="Because it is ..."></div>
-</div>
-</div>
-</section>
+                <button class="check-btn" onclick="checkEx2()">Проверить</button>
+                <div class="feedback" id="ex2_feedback"></div>
+            </div>
+        </div>
 
-<!-- 6 -->
-<section class="card">
-<div class="title"><span class="badge">6</span>🎯 Guess the Subject</div>
-<div class="info">Read the clue and type the school subject.</div>
-<div class="question">1. You solve problems and work with numbers. <input data-answer="Maths"></div>
-<div class="question">2. You read stories and books. <input data-answer="Reading"></div>
-<div class="question">3. You draw and make pictures. <input data-answer="Art"></div>
-<div class="question">4. You sing songs. <input data-answer="Music"></div>
-<div class="question">5. You do experiments. <input data-answer="Science"></div>
-<div class="question">6. You run and jump. <input data-answer="PE"></div>
-<div class="question">7. You write dictations. <input data-answer="Russian"></div>
-</section>
+        <!-- Упражнение 3: Чтение -->
+        <div id="ex3" class="tab-content">
+            <div class="exercise">
+                <h2>Упражнение 3: Чтение</h2>
+                <p class="task-text">Прочитай рассказ про Бена и ответь на вопросы.</p>
+                
+                <div class="reading-text">
+                    <b>Hi! My name is Ben.</b> I am in the 4th grade. Today is Monday. I have four lessons today. 
+                    The first lesson is Maths. We count numbers. The second lesson is English. We read a funny story. 
+                    The third lesson is PE. We run and play football with my friends. The fourth lesson is Art. We draw a cat. 
+                    I like Monday!
+                </div>
 
-<div class="actions">
-<button class="main" onclick="checkAnswers()">✅ Check my answers</button>
-<button class="secondary" onclick="resetWorksheet()">↻ Try again</button>
-</div>
+                <p>1. What does Ben do at the Maths lesson?</p>
+                <div class="opts" id="q5">
+                    <button class="opt-btn" onclick="selectOption(this, 'q5')">He reads a story.</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q5')">He counts numbers.</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q5')">He draws a cat.</button>
+                </div>
 
-<div class="result" id="result">
-<div class="score" id="score"></div>
-<div id="feedback"></div>
-</div>
+                <p>2. Does Ben play football at the PE lesson?</p>
+                <div class="opts" id="q6">
+                    <button class="opt-btn" onclick="selectOption(this, 'q6')">Yes, he does.</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q6')">No, he doesn't.</button>
+                </div>
 
-<div class="footer">🌟 Well done! Keep learning English!</div>
-</div>
+                <p>3. What subject does Ben draw at?</p>
+                <div class="opts" id="q7">
+                    <button class="opt-btn" onclick="selectOption(this, 'q7')">English</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q7')">Art</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q7')">Music</button>
+                </div>
 
-<script>
-const items=[
-["pen","take"],["cat","dont"],["pencil","take"],["book","take"],["ruler","take"],
-["apple","dont"],["rubber","take"],["dog","dont"],["school bag","take"],["car","dont"],
-["doll","dont"],["elephant","dont"],["cake","dont"],["banana","dont"],
-["egg","dont"],["bed","dont"],["spoon","dont"]
-];
+                <p>4. How many lessons does Ben have today?</p>
+                <div class="opts" id="q8">
+                    <button class="opt-btn" onclick="selectOption(this, 'q8')">Three</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q8')">Four</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q8')">Five</button>
+                </div>
 
-const bank=document.getElementById("wordBank");
-let draggedItem=null, pointerDragging=false, ghost=null, dragOrigin=null;
+                <button class="check-btn" onclick="checkEx3()">Проверить</button>
+                <div class="feedback" id="ex3_feedback"></div>
+            </div>
+        </div>
 
-items.forEach(([name,zone],i)=>{
-  const el=document.createElement("div");
-  el.className="item";
-  el.textContent=name;
-  el.draggable=true;
-  el.dataset.correct=zone;
-  el.id="drag"+i;
-  el.setAttribute("role","button");
-  bank.appendChild(el);
+        <!-- Упражнение 4: Мои предметы -->
+        <div id="ex4" class="tab-content">
+            <div class="exercise" style="background: #e8f5e9; border-color: #a5d6a7;">
+                <h2 style="color: #2e7d32;">Упражнение 4: Мои предметы</h2>
+                <p class="task-text" style="color: #1b5e20;">Выбери предметы, которые есть у тебя в школе.</p>
+                
+                <div class="my-subjects-grid" id="mySubjectsGrid">
+                    <!-- Заполняется JS -->
+                </div>
+                <button class="check-btn" onclick="finishEx4()">Готово!</button>
+                <div class="feedback" id="ex4_feedback" style="color: #2e7d32;"></div>
+            </div>
+        </div>
 
-  // Desktop: real HTML5 drag.
-  el.addEventListener("dragstart",e=>{
-    draggedItem=el;
-    dragOrigin=el.parentElement;
-    e.dataTransfer.effectAllowed="move";
-    e.dataTransfer.setData("text/plain",el.id);
-    setTimeout(()=>el.classList.add("being-dragged"),0);
-  });
-  el.addEventListener("dragend",()=>{
-    el.classList.remove("being-dragged");
-    draggedItem=null;
-    document.querySelectorAll(".zone").forEach(z=>z.classList.remove("dragover"));
-  });
+        <!-- Игра 1: Правда/Ложь -->
+        <div id="game1" class="tab-content">
+            <div class="exercise" style="background: #fff8e1; border-color: #ffe082;">
+                <h2 style="color: #ff8f00;">Игра 1: Правда или Ложь?</h2>
+                <p class="task-text" style="color: #ff6f00;">Прочитай предложение. Если это правда, выбирай "True". Если ложь — "False".</p>
 
-  // Touch / tablet: true press-and-drag behaviour.
-  el.addEventListener("pointerdown",e=>{
-    if(e.pointerType==="mouse") return;
-    e.preventDefault();
-    pointerDragging=true;
-    draggedItem=el;
-    dragOrigin=el.parentElement;
-    el.setPointerCapture?.(e.pointerId);
-    ghost=el.cloneNode(true);
-    ghost.className="item touch-ghost";
-    ghost.style.width=el.getBoundingClientRect().width+"px";
-    document.body.appendChild(ghost);
-    moveGhost(e);
-  });
-  el.addEventListener("pointermove",e=>{
-    if(!pointerDragging || draggedItem!==el)return;
-    e.preventDefault();
-    moveGhost(e);
-    const z=getZoneAt(e.clientX,e.clientY);
-    document.querySelectorAll(".zone").forEach(x=>x.classList.remove("dragover"));
-    if(z)z.classList.add("dragover");
-  });
-  el.addEventListener("pointerup",e=>{
-    if(!pointerDragging || draggedItem!==el)return;
-    e.preventDefault();
-    finishPointerDrop(e);
-  });
-  el.addEventListener("pointercancel",()=>{
-    if(pointerDragging && draggedItem===el) cancelPointerDrag();
-  });
-});
+                <p>1. We sing songs at the Maths lesson.</p>
+                <div class="opts" id="q9">
+                    <button class="opt-btn" onclick="selectOption(this, 'q9')">True</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q9')">False</button>
+                </div>
 
-function moveGhost(e){
-  if(ghost){
-    ghost.style.left=(e.clientX+12)+"px";
-    ghost.style.top=(e.clientY+12)+"px";
-  }
-}
-function getZoneAt(x,y){
-  return [...document.querySelectorAll(".zone")].find(z=>{
-    const r=z.getBoundingClientRect();
-    return x>=r.left && x<=r.right && y>=r.top && y<=r.bottom;
-  });
-}
-function finishPointerDrop(e){
-  const el=draggedItem, z=getZoneAt(e.clientX,e.clientY);
-  document.querySelectorAll(".zone").forEach(x=>x.classList.remove("dragover"));
-  if(z) dropItem(el,z); else cancelPointerDrag();
-}
-function cancelPointerDrag(){
-  if(ghost){ghost.remove();ghost=null}
-  if(draggedItem)draggedItem.classList.remove("being-dragged");
-  pointerDragging=false;draggedItem=null;
-}
-function dropItem(el,zone){
-  const correct=zone.dataset.zone===el.dataset.correct;
-  if(correct){
-    zone.querySelector(".items").appendChild(el);
-    el.classList.remove("incorrect","being-dragged");
-    el.classList.add("correct");
-    document.getElementById("dragMessage").textContent="✓ Correct! It stays in the folder.";
-  }else{
-    // Wrong folder: it flies back to the word bank.
-    bank.appendChild(el);
-    el.classList.remove("correct","being-dragged","incorrect");
-    el.classList.add("returning");
-    document.getElementById("dragMessage").textContent="✗ Not this folder — try again!";
-    setTimeout(()=>el.classList.remove("returning"),350);
-  }
-  if(ghost){ghost.remove();ghost=null}
-  pointerDragging=false;draggedItem=null;
-  updateProgress();
-}
+                <p>2. We run and jump at the PE lesson.</p>
+                <div class="opts" id="q10">
+                    <button class="opt-btn" onclick="selectOption(this, 'q10')">True</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q10')">False</button>
+                </div>
 
-document.querySelectorAll(".zone").forEach(zone=>{
-  zone.addEventListener("dragover",e=>{
-    e.preventDefault();
-    zone.classList.add("dragover");
-    if(e.dataTransfer)e.dataTransfer.dropEffect="move";
-  });
-  zone.addEventListener("dragleave",()=>zone.classList.remove("dragover"));
-  zone.addEventListener("drop",e=>{
-    e.preventDefault();
-    zone.classList.remove("dragover");
-    const id=e.dataTransfer.getData("text/plain");
-    const el=document.getElementById(id)||draggedItem;
-    if(el)dropItem(el,zone);
-  });
-});
+                <p>3. We read books at the Reading lesson.</p>
+                <div class="opts" id="q11">
+                    <button class="opt-btn" onclick="selectOption(this, 'q11')">True</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q11')">False</button>
+                </div>
 
-let selectedSubject=null, selectedAction=null, matched=0;
-const pairs={maths:"count",reading:"read",art:"draw",music:"sing",science:"experiment",pe:"run",russian:"dictation"};
-document.querySelectorAll(".subject").forEach(b=>b.onclick=()=>selectMatch(b,"subject"));
-document.querySelectorAll(".action").forEach(b=>b.onclick=()=>selectMatch(b,"action"));
-function selectMatch(b,type){
- if(b.classList.contains("matched"))return;
- document.querySelectorAll("."+type).forEach(x=>x.classList.remove("selected","bad"));
- b.classList.add("selected");
- if(type==="subject")selectedSubject=b;else selectedAction=b;
- if(selectedSubject&&selectedAction){
-  if(pairs[selectedSubject.dataset.id]===selectedAction.dataset.id){
-   selectedSubject.classList.remove("selected");selectedAction.classList.remove("selected");
-   selectedSubject.classList.add("matched");selectedAction.classList.add("matched");matched++;
-   document.getElementById("matchMessage").textContent="✓ Great match!";
-  }else{
-   selectedSubject.classList.add("bad");selectedAction.classList.add("bad");
-   document.getElementById("matchMessage").textContent="✗ These don't match. Try again!";
-   setTimeout(()=>{selectedSubject?.classList.remove("bad","selected");selectedAction?.classList.remove("bad","selected");selectedSubject=null;selectedAction=null},650);
-   return;
-  }
-  selectedSubject=null;selectedAction=null;updateProgress();
- }
-}
+                <p>4. We draw pictures at the Music lesson.</p>
+                <div class="opts" id="q12">
+                    <button class="opt-btn" onclick="selectOption(this, 'q12')">True</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q12')">False</button>
+                </div>
 
-const inputs=[...document.querySelectorAll("input")];
-inputs.forEach(x=>x.addEventListener("input",updateProgress));
-function norm(x){return x.trim().toLowerCase().replace(/[.!?]/g,"").replace(/\s+/g," ")}
-function checkAnswers(){
- let total=0,correct=0;
- document.querySelectorAll("[data-answer]").forEach(x=>{
-  total++;let ok=norm(x.value)===norm(x.dataset.answer);
-  x.classList.toggle("correctInput",ok);x.classList.toggle("wrongInput",!ok);if(ok)correct++;
- });
- items.forEach(([_,zone],i)=>{let el=document.getElementById("drag"+i);if(el.parentElement?.parentElement?.dataset?.zone===zone)correct++;total++});
- const matchTotal=Object.keys(pairs).length;correct+=matched;total+=matchTotal;
- const percent=total?Math.round(correct/total*100):0;
- document.getElementById("result").style.display="block";
- document.getElementById("score").textContent=`${correct} / ${total} · ${percent}%`;
- document.getElementById("feedback").textContent=percent===100?"🏆 Perfect! Excellent work!":percent>=80?"🌟 Great job!":"💪 Good try! Check the red answers and try again.";
- document.getElementById("result").scrollIntoView({behavior:"smooth"});
-}
-function updateProgress(){
- const all=[...document.querySelectorAll("[data-answer]"),...document.querySelectorAll("input:not([data-answer])")];
- const filled=all.filter(x=>x.value.trim()).length;
- const dragDone=items.filter(([_,zone],i)=>document.getElementById("drag"+i).parentElement?.parentElement?.dataset?.zone===zone).length;
- const p=Math.min(100,Math.round(((filled+dragDone+matched)/(all.length+items.length+Object.keys(pairs).length))*100));
- document.getElementById("progressFill").style.width=p+"%";document.getElementById("progressText").textContent=p+"%";
-}
-function resetWorksheet(){
- inputs.forEach(x=>{x.value="";x.classList.remove("correctInput","wrongInput")});
- items.forEach(([_,zone],i)=>{const el=document.getElementById("drag"+i);el.classList.remove("correct","incorrect");bank.appendChild(el)});
- document.querySelectorAll(".match-btn").forEach(x=>x.classList.remove("selected","matched","bad"));
- selectedSubject=null;selectedAction=null;matched=0;
- document.getElementById("result").style.display="none";document.getElementById("dragMessage").textContent="";document.getElementById("matchMessage").textContent="";updateProgress();
-}
-updateProgress();
-</script>
+                <p>5. We speak English at the English lesson.</p>
+                <div class="opts" id="q13">
+                    <button class="opt-btn" onclick="selectOption(this, 'q13')">True</button>
+                    <button class="opt-btn" onclick="selectOption(this, 'q13')">False</button>
+                </div>
+
+                <button class="check-btn" onclick="checkGame1()">Проверить</button>
+                <div class="feedback" id="game1_feedback"></div>
+            </div>
+        </div>
+
+        <!-- Игра 2: Анаграммы -->
+        <div id="game2" class="tab-content">
+            <div class="exercise" style="background: #e1f5fe; border-color: #81d4fa;">
+                <h2 style="color: #0277bd;">Игра 2: Сборка слов</h2>
+                <p class="task-text" style="color: #01579b;">Буквы перепутались! Собери правильное слово и напиши его.</p>
+
+                <p>1. C S I E N C E E</p>
+                <div class="scramble-box">S C E I N C E</div>
+                <input type="text" class="text-input" id="scramble1" placeholder="Напиши слово...">
+
+                <p style="margin-top:20px;">2. A T H M S</p>
+                <div class="scramble-box">A T H M S</div>
+                <input type="text" class="text-input" id="scramble2" placeholder="Напиши слово...">
+
+                <p style="margin-top:20px;">3. I M S C U</p>
+                <div class="scramble-box">I M S C U</div>
+                <input type="text" class="text-input" id="scramble3" placeholder="Напиши слово...">
+
+                <p style="margin-top:20px;">4. S I H G L E N</p>
+                <div class="scramble-box">S I H G L E N</div>
+                <input type="text" class="text-input" id="scramble4" placeholder="Напиши слово...">
+
+                <button class="check-btn" onclick="checkGame2()">Проверить</button>
+                <div class="feedback" id="game2_feedback"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Глобальные переменные
+        let totalScore = 0;
+        let totalMistakes = 0;
+        const totalTasks = 18; // Всего заданий во всех тестах (4+4+4+0+5+4)
+
+        // Озвучка слов
+        function speak(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // Немного медленнее для детей
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Переключение вкладок
+        function openTab(evt, tabName) {
+            let tabContent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+            let tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Выбор варианта ответа (синяя рамка)
+        function selectOption(btn, questionId) {
+            let parent = document.getElementById(questionId);
+            let buttons = parent.getElementsByClassName('opt-btn');
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('selected');
+            }
+            btn.classList.add('selected');
+        }
+
+        // Обновление панели прогресса
+        function updateScoreboard() {
+            document.getElementById('score').innerText = totalScore;
+            document.getElementById('mistakes').innerText = totalMistakes;
+            let percent = Math.round(((totalScore + totalMistakes) / totalTasks) * 100);
+            document.getElementById('percent').innerText = percent;
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+
+        // Генерация Упражнения 1 (Сопоставление)
+        const ex1Data = [
+            { id: 1, emoji: "⚽", correct: "PE" },
+            { id: 2, emoji: "🎨", correct: "Art" },
+            { id: 3, emoji: "🧮", correct: "Maths" },
+            { id: 4, emoji: "🎵", correct: "Music" }
+        ];
+        const words = ["Maths", "Art", "PE", "Music", "English", "Reading"];
+
+        function buildEx1() {
+            const grid = document.getElementById('matchGrid');
+            grid.innerHTML = '';
+            ex1Data.forEach(item => {
+                let div = document.createElement('div');
+                div.className = 'match-item';
+                div.innerHTML = `
+                    <span class="emoji">${item.emoji}</span>
+                    <div class="match-opts">
+                        ${words.map(w => `<div class="match-opt" onclick="selectMatch(this, ${item.id}, '${w}')">${w}</div>`).join('')}
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        let ex1Answers = {};
+        function selectMatch(btn, id, word) {
+            let parent = btn.parentNode;
+            let opts = parent.getElementsByClassName('match-opt');
+            for(let i=0; i<opts.length; i++) opts[i].classList.remove('selected');
+            btn.classList.add('selected');
+            ex1Answers[id] = word;
+        }
+
+        function checkEx1() {
+            let score = 0;
+            let mistakes = 0;
+            ex1Data.forEach(item => {
+                let userAns = ex1Answers[item.id];
+                let opts = document.querySelector(`.match-item:nth-child(${ex1Data.indexOf(item)+1}) .match-opts`).getElementsByClassName('match-opt');
+                for(let i=0; i<opts.length; i++) {
+                    opts[i].classList.remove('selected');
+                    if(opts[i].innerText === item.correct) opts[i].classList.add('correct');
+                    if(opts[i].innerText === userAns && userAns !== item.correct) opts[i].classList.add('wrong');
+                }
+                if(userAns === item.correct) score++;
+                else mistakes++;
+            });
+            totalScore += score;
+            totalMistakes += mistakes;
+            document.getElementById('ex1_feedback').innerHTML = `Правильно: ${score}, Ошибок: ${mistakes}`;
+            document.querySelector('#ex1 .check-btn').disabled = true;
+            updateScoreboard();
+        }
+
+        // Проверка Упражнения 2
+        const ex2Correct = { q1: "PE", q2: "Music", q3: "English", q4: "Art" };
+        function checkEx2() {
+            let score = 0; let mistakes = 0;
+            for(let q in ex2Correct) {
+                let selected = document.querySelector(`#${q} .selected`);
+                let buttons = document.getElementById(q).getElementsByClassName('opt-btn');
+                for(let i=0; i<buttons.length; i++) buttons[i].classList.remove('selected');
+                
+                if(selected) {
+                    if(selected.innerText === ex2Correct[q]) {
+                        selected.classList.add('correct');
+                        score++;
+                    } else {
+                        selected.classList.add('wrong');
+                        for(let i=0; i<buttons.length; i++) {
+                            if(buttons[i].innerText === ex2Correct[q]) buttons[i].classList.add('correct');
+                        }
+                        mistakes++;
+                    }
+                } else {
+                    mistakes++;
+                    for(let i=0; i<buttons.length; i++) {
+                        if(buttons[i].innerText === ex2Correct[q]) buttons[i].classList.add('correct');
+                    }
+                }
+            }
+            totalScore += score;
+            totalMistakes += mistakes;
+            document.getElementById('ex2_feedback').innerHTML = `Правильно: ${score}, Ошибок: ${mistakes}`;
+            document.querySelector('#ex2 .check-btn').disabled = true;
+            updateScoreboard();
+        }
+
+        // Проверка Упражнения 3 (Чтение)
+        const ex3Correct = { q5: "He counts numbers.", q6: "Yes, he does.", q7: "Art", q8: "Four" };
+        function checkEx3() {
+            let score = 0; let mistakes = 0;
+            for(let q in ex3Correct) {
+                let selected = document.querySelector(`#${q} .selected`);
+                let buttons = document.getElementById(q).getElementsByClassName('opt-btn');
+                for(let i=0; i<buttons.length; i++) buttons[i].classList.remove('selected');
+                
+                if(selected) {
+                    if(selected.innerText === ex3Correct[q]) {
+                        selected.classList.add('correct');
+                        score++;
+                    } else {
+                        selected.classList.add('wrong');
+                        for(let i=0; i<buttons.length; i++) {
+                            if(buttons[i].innerText === ex3Correct[q]) buttons[i].classList.add('correct');
+                        }
+                        mistakes++;
+                    }
+                } else {
+                    mistakes++;
+                    for(let i=0; i<buttons.length; i++) {
+                        if(buttons[i].innerText === ex3Correct[q]) buttons[i].classList.add('correct');
+                    }
+                }
+            }
+            totalScore += score;
+            totalMistakes += mistakes;
+            document.getElementById('ex3_feedback').innerHTML = `Правильно: ${score}, Ошибок: ${mistakes}`;
+            document.querySelector('#ex3 .check-btn').disabled = true;
+            updateScoreboard();
+        }
+
+        // Упражнение 4 (Мои предметы)
+        const subjectEmojis = ["🧮", "🎨", "🔬", "⚽", "🔤", "🎵", "📚"];
+        const subjectNames = ["Maths", "Art", "Science", "PE", "English", "Music", "Reading"];
+
+        function buildEx4() {
+            const grid = document.getElementById('mySubjectsGrid');
+            grid.innerHTML = '';
+            subjectEmojis.forEach((emoji, index) => {
+                let div = document.createElement('div');
+                div.className = 'subject-pick';
+                div.onclick = function() { this.classList.toggle('selected'); };
+                div.innerHTML = `
+                    <span class="emoji">${emoji}</span>
+                    <p style="margin:10px 0 0; font-weight:700;">${subjectNames[index]}</p>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        function finishEx4() {
+            let picked = document.querySelectorAll('.subject-pick.selected').length;
+            document.getElementById('ex4_feedback').innerHTML = `Отлично! Ты выбрал ${picked} предмет(ов).`;
+            document.querySelector('#ex4 .check-btn').disabled = true;
+            // Не считаем баллы, так как нет правильных ответов
+        }
+
+        // Игра 1 (True/False)
+        const game1Correct = { q9: "False", q10: "True", q11: "True", q12: "False", q13: "True" };
+        function checkGame1() {
+            let score = 0; let mistakes = 0;
+            for(let q in game1Correct) {
+                let selected = document.querySelector(`#${q} .selected`);
+                let buttons = document.getElementById(q).getElementsByClassName('opt-btn');
+                for(let i=0; i<buttons.length; i++) buttons[i].classList.remove('selected');
+                
+                if(selected) {
+                    if(selected.innerText === game1Correct[q]) {
+                        selected.classList.add('correct');
+                        score++;
+                    } else {
+                        selected.classList.add('wrong');
+                        for(let i=0; i<buttons.length; i++) {
+                            if(buttons[i].innerText === game1Correct[q]) buttons[i].classList.add('correct');
+                        }
+                        mistakes++;
+                    }
+                } else {
+                    mistakes++;
+                    for(let i=0; i<buttons.length; i++) {
+                        if(buttons[i].innerText === game1Correct[q]) buttons[i].classList.add('correct');
+                    }
+                }
+            }
+            totalScore += score;
+            totalMistakes += mistakes;
+            document.getElementById('game1_feedback').innerHTML = `Правильно: ${score}, Ошибок: ${mistakes}`;
+            document.querySelector('#game1 .check-btn').disabled = true;
+            updateScoreboard();
+        }
+
+        // Игра 2 (Анаграммы)
+        function checkGame2() {
+            let score = 0; let mistakes = 0;
+            const answers = { scramble1: "science", scramble2: "maths", scramble3: "music", scramble4: "english" };
+            
+            for(let q in answers) {
+                let input = document.getElementById(q);
+                input.classList.remove('correct', 'wrong');
+                if(input.value.trim().toLowerCase() === answers[q]) {
+                    input.classList.add('correct');
+                    score++;
+                } else {
+                    input.classList.add('wrong');
+                    mistakes++;
+                }
+            }
+            totalScore += score;
+            totalMistakes += mistakes;
+            document.getElementById('game2_feedback').innerHTML = `Правильно: ${score}, Ошибок: ${mistakes}`;
+            document.querySelector('#game2 .check-btn').disabled = true;
+            updateScoreboard();
+        }
+
+        // Инициализация
+        buildEx1();
+        buildEx4();
+    </script>
 </body>
 </html>
