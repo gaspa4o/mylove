@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello! Мой первый урок английского — 1 класс</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF5E4;
+    --fg: #3D2C2E;
+    --muted: #8B6F70;
+    --accent: #FF6B6B;
+    --accent2: #4ECDC4;
+    --accent3: #FFD93D;
+    --accent4: #A8E6CF;
+    --accent5: #C77DFF;
+    --card: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    overflow-x: hidden;
+    margin: 0;
+  }
+  .font-fredoka { font-family: 'Fredoka', sans-serif; }
+
+  /* Декоративные пятна на фоне */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .blob-1 { background: var(--accent); width: 500px; height: 500px; top: -150px; left: -150px; animation: float-blob 20s ease-in-out infinite; }
+  .blob-2 { background: var(--accent2); width: 400px; height: 400px; top: 30%; right: -100px; animation: float-blob 25s ease-in-out infinite reverse; }
+  .blob-3 { background: var(--accent3); width: 350px; height: 350px; bottom: 5%; left: 20%; animation: float-blob 30s ease-in-out infinite; }
+  .blob-4 { background: var(--accent5); width: 300px; height: 300px; top: 60%; left: -100px; animation: float-blob 22s ease-in-out infinite; }
+  @keyframes float-blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(60px, -40px) scale(1.1); }
+    66% { transform: translate(-40px, 60px) scale(0.9); }
+  }
+
+  .card-shadow { box-shadow: 0 10px 40px rgba(255, 107, 107, 0.12); }
+
+  .speak-btn { transition: all 0.2s ease; cursor: pointer; border: none; user-select: none; }
+  .speak-btn:hover { transform: scale(1.15); }
+  .speak-btn:active { transform: scale(0.95); }
+
+  /* Карточки памяти */
+  .memory-card {
+    perspective: 1000px;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+  }
+  .memory-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  .memory-card.flipped .memory-card-inner,
+  .memory-card.matched .memory-card-inner {
+    transform: rotateY(180deg);
+  }
+  .memory-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.25rem;
+    padding: 0.5rem;
+    text-align: center;
+    flex-direction: column;
+  }
+  .memory-front {
+    background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    color: white;
+    font-size: 2.5rem;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+  }
+  .memory-back {
+    transform: rotateY(180deg);
+    background: white;
+    border: 3px solid var(--accent2);
+    color: var(--fg);
+  }
+  .memory-card.matched .memory-back {
+    background: var(--accent4);
+    border-color: #2D6A4F;
+  }
+
+  /* Вкладки */
+  .tab-btn { transition: all 0.2s ease; cursor: pointer; border: none; }
+  .tab-btn.active {
+    background: var(--accent) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  }
+  .game-tab { transition: all 0.2s ease; cursor: pointer; border: none; }
+  .game-tab.active {
+    background: var(--accent) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  }
+
+  /* Конфетти */
+  @keyframes confetti-fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+  .confetti {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    top: -10vh;
+    animation: confetti-fall 3s linear forwards;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(-3deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+  }
+  .floating { animation: float 4s ease-in-out infinite; }
+  .floating-2 { animation: float 5s ease-in-out infinite 0.5s; }
+  .floating-3 { animation: float 6s ease-in-out infinite 1s; }
+
+  @keyframes bounce-in {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .bounce-in { animation: bounce-in 0.4s ease-out; }
+
+  .quiz-option {
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .quiz-option:hover:not(.locked) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+  .quiz-option.correct {
+    background: #A8E6CF !important;
+    border-color: #2D6A4F !important;
+    color: #2D6A4F !important;
+  }
+  .quiz-option.wrong {
+    background: #FFE5E5 !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+  }
+  .quiz-option.locked { pointer-events: none; }
+
+  .dialogue-chip { transition: all 0.2s ease; cursor: pointer; }
+  .dialogue-chip:hover { transform: translateY(-3px); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .word-card { transition: all 0.3s ease; }
+  .word-card:hover {
+    transform: translateY(-5px) rotate(1deg);
+    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.18);
+  }
+
+  .hero-text {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFD93D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+  .mascot { animation: wiggle 2s ease-in-out infinite; display: inline-block; }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.4; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  .sparkle { animation: sparkle 2s ease-in-out infinite; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .game-content { display: none; }
+  .game-content.active { display: block; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; }
+
+  @keyframes pop {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  .pop { animation: pop 0.4s ease-out; }
+
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.5); }
+    100% { box-shadow: 0 0 0 20px rgba(255, 107, 107, 0); }
+  }
+  .pulse-ring { animation: pulse-ring 1.2s ease-out infinite; }
+
+  @media (max-width: 640px) {
+    .memory-front { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Декоративный фон -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="blob blob-4"></div>
+
+<!-- Плавающие декоративные эмодзи -->
+<div class="fixed top-20 left-3 text-4xl floating pointer-events-none opacity-40 z-10">⭐</div>
+<div class="fixed top-40 right-8 text-3xl floating-2 pointer-events-none opacity-40 z-10">🌈</div>
+<div class="fixed bottom-32 right-5 text-4xl floating-3 pointer-events-none opacity-40 z-10">✨</div>
+<div class="fixed top-72 left-5 text-2xl floating-2 pointer-events-none opacity-30 z-10">🎈</div>
+
+<!-- HERO -->
+<header class="relative z-10 px-4 pt-10 pb-12">
+  <div class="max-w-6xl mx-auto text-center">
+    <div class="text-7xl md:text-8xl mascot mb-4">🦉</div>
+    <p class="font-fredoka text-xl md:text-2xl text-orange-500 mb-2 font-semibold">Hello! Welcome to English!</p>
+    <h1 class="font-fredoka text-5xl md:text-7xl font-bold mb-5 hero-text leading-tight">
+      Мой первый урок<br>английского
+    </h1>
+    <p class="text-base md:text-lg text-gray-700 max-w-2xl mx-auto mb-7 leading-relaxed">
+      Привет! Сегодня ты начнёшь большое и весёлое путешествие в мир английского языка.
+      Не волнуйся — мы начнём с самых простых слов. Нажимай на кнопочки <span class="font-bold text-orange-500">🔊</span>,
+      чтобы услышать, как звучат слова!
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <button onclick="speak('Hello! Welcome to English!')" class="speak-btn bg-white text-orange-500 font-bold px-6 py-3 rounded-full card-shadow flex items-center gap-2">
+        <span class="text-xl">🔊</span> Послушать приветствие
+      </button>
+      <button onclick="document.getElementById('mainNav').scrollIntoView({behavior:'smooth'})" class="bg-orange-500 text-white font-bold px-6 py-3 rounded-full card-shadow hover:bg-orange-600 transition">
+        Начать урок →
+      </button>
+    </div>
+
+    <!-- Бейджи с темой урока -->
+    <div class="flex flex-wrap gap-2 justify-center mt-8">
+      <span class="bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm font-bold text-orange-600 card-shadow">👋 Приветствия</span>
+      <span class="bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm font-bold text-teal-600 card-shadow">🤝 Знакомство</span>
+      <span class="bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm font-bold text-purple-600 card-shadow">🎮 4 игры</span>
+    </div>
+  </div>
+</header>
+
+<!-- НАВИГАЦИЯ -->
+<nav id="mainNav" class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-orange-100">
+  <div class="max-w-6xl mx-auto px-3 py-3 flex gap-2 justify-center">
+    <button onclick="switchTab('theory', this)" class="tab-btn active px-4 md:px-6 py-2.5 rounded-full font-bold text-sm md:text-base bg-gray-100">📖 Теория</button>
+    <button onclick="switchTab('vocabulary', this)" class="tab-btn px-4 md:px-6 py-2.5 rounded-full font-bold text-sm md:text-base bg-gray-100">📚 Словарь</button>
+    <button onclick="switchTab('games', this)" class="tab-btn px-4 md:px-6 py-2.5 rounded-full font-bold text-sm md:text-base bg-gray-100">🎮 Игры</button>
+  </div>
+</nav>
+
+<!-- ТЕОРИЯ -->
+<section id="theory" class="tab-content active relative z-10 px-4 py-10">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="font-fredoka text-4xl md:text-5xl font-bold mb-2">📖 Теория</h2>
+      <p class="text-gray-600">Узнай, как здороваться и знакомиться по-английски!</p>
+    </div>
+
+    <!-- Карточка 1: Что такое английский -->
+    <div class="bg-white rounded-3xl p-6 md:p-8 card-shadow mb-6 reveal">
+      <div class="flex items-start gap-4">
+        <div class="text-5xl flex-shrink-0">🌍</div>
+        <div class="flex-1">
+          <h3 class="font-fredoka text-2xl font-bold mb-3">Что такое английский язык?</h3>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Английский язык — это язык, на котором говорят люди в Англии, Америке и многих других странах.
+            Слова в английском звучат и пишутся по-другому. Но учить их — очень интересно!
+          </p>
+          <div class="bg-gradient-to-r from-orange-50 to-pink-50 rounded-2xl p-4 flex flex-wrap items-center gap-3">
+            <div class="flex-1 min-w-[120px]">
+              <p class="text-xs text-gray-500">По-русски:</p>
+              <p class="font-bold text-lg text-gray-700">Привет!</p>
+            </div>
+            <span class="text-2xl">➡</span>
+            <div class="flex-1 min-w-[120px]">
+              <p class="text-xs text-gray-500">По-английски:</p>
+              <p class="font-bold text-lg text-orange-600">Hello!</p>
+            </div>
+            <button onclick="speak('Hello!')" class="speak-btn bg-orange-500 text-white w-12 h-12 rounded-full text-xl flex items-center justify-center">🔊</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка 2: Приветствия -->
+    <div class="bg-white rounded-3xl p-6 md:p-8 card-shadow mb-6 reveal">
+      <h3 class="font-fredoka text-2xl font-bold mb-4 flex items-center gap-2">
+        <span class="text-4xl">👋</span> Как поздороваться
+      </h3>
+      <p class="text-gray-700 mb-4">В английском языке есть разные слова для приветствия:</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div class="bg-orange-50 rounded-xl p-4 flex items-center justify-between">
+          <div>
+            <p class="font-bold text-lg text-orange-600">Hello! / Hi!</p>
+            <p class="text-gray-700 text-sm">Привет!</p>
+          </div>
+          <button onclick="speak('Hello! Hi!')" class="speak-btn bg-orange-500 text-white w-11 h-11 rounded-full text-lg flex items-center justify-center">🔊</button>
+        </div>
+        <div class="bg-yellow-50 rounded-xl p-4 flex items-center justify-between">
+          <div>
+            <p class="font-bold text-lg text-yellow-700">Good morning!</p>
+            <p class="text-gray-700 text-sm">Доброе утро!</p>
+          </div>
+          <button onclick="speak('Good morning!')" class="speak-btn bg-yellow-500 text-white w-11 h-11 rounded-full text-lg flex items-center justify-center">🔊</button>
+        </div>
+        <div class="bg-teal-50 rounded-xl p-4 flex items-center justify-between">
+          <div>
+            <p class="font-bold text-lg text-teal-600">Good afternoon!</p>
+            <p class="text-gray-700 text-sm">Добрый день!</p>
+          </div>
+          <button onclick="speak('Good afternoon!')" class="speak-btn bg-teal-500 text-white w-11 h-11 rounded-full text-lg flex items-center justify-center">🔊</button>
+        </div>
+        <div class="bg-indigo-50 rounded-xl p-4 flex items-center justify-between">
+          <div>
+            <p class="font-bold text-lg text-indigo-600">Good evening!</p>
+            <p class="text-gray-700 text-sm">Добрый вечер!</p>
+          </div>
+          <button onclick="speak('Good evening!')" class="speak-btn bg-indigo-500 text-white w-11 h-11 rounded-full text-lg flex items-center justify-center">🔊</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка 3: Как спросить имя -->
+    <div class="bg-white rounded-3xl p-6 md:p-8 card-shadow mb-6 reveal">
+      <h3 class="font-fredoka text-2xl font-bold mb-4 flex items-center gap-2">
+        <span class="text-4xl">🤔</span> Как спросить имя
+      </h3>
+      <p class="text-gray-700 mb-4">Если хочешь узнать, как зовут нового друга, спроси:</p>
+      <div class="bg-gradient-to-r from-orange-50 to-pink-50 rounded-2xl p-5 mb-4 flex items-center justify-between gap-3">
+        <div class="flex-1">
+          <p class="font-bold text-2xl text-orange-600 mb-1">What's your name?</p>
+          <p class="text-gray-600 text-sm">[вотс ё нэйм?] — Как тебя зовут?</p>
+        </div>
+        <button onclick="speak('What is your name?')" class="speak-btn bg-orange-500 text-white w-14 h-14 rounded-full text-2xl flex items-center justify-center">🔊</button>
+      </div>
+      <p class="text-gray-700 mb-3">А если спрашивают у тебя, отвечай:</p>
+      <div class="bg-gradient-to-r from-teal-50 to-green-50 rounded-2xl p-5 flex items-center justify-between gap-3">
+        <div class="flex-1">
+          <p class="font-bold text-2xl text-teal-600 mb-1">My name is ...</p>
+          <p class="text-gray-600 text-sm">[май нэйм из...] — Меня зовут...</p>
+        </div>
+        <button onclick="speak('My name is Tom.')" class="speak-btn bg-teal-500 text-white w-14 h-14 rounded-full text-2xl flex items-center justify-center">🔊</button>
+      </div>
+    </div>
+
+    <!-- Карточка 4: Сколько лет -->
+    <div class="bg-white rounded-3xl p-6 md:p-8 card-shadow mb-6 reveal">
+      <h3 class="font-fredoka text-2xl font-bold mb-4 flex items-center gap-2">
+        <span class="text-4xl">🎂</span> Сколько тебе лет?
+      </h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-pink-50 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <p class="font-bold text-xl text-pink-600">How old are you?</p>
+            <button onclick="speak('How old are you?')" class="speak-btn bg-pink-500 text-white w-11 h-11 rounded-full flex items-center justify-center">🔊</button>
+          </div>
+          <p class="text-gray-600 text-sm">[хау олд а ю?] — Сколько тебе лет?</p>
+        </div>
+        <div class="bg-yellow-50 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <p class="font-bold text-xl text-yellow-700">I'm 7 years old.</p>
+            <button onclick="speak('I am seven years old.')" class="speak-btn bg-yellow-500 text-white w-11 h-11 rounded-full flex items-center justify-center">🔊</button>
+          </div>
+          <p class="text-gray-600 text-sm">[айм сэвн йирз олд] — Мне 7 лет.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка 5: Прощание -->
+    <div class="bg-white rounded-3xl p-6 md:p-8 card-shadow mb-6 reveal">
+      <h3 class="font-fredoka text-2xl font-bold mb-4 flex items-center gap-2">
+        <span class="text-4xl">👋</span> Как попрощаться
+      </h3>
+      <div class="grid md:grid-cols-3 gap-3">
+        <div class="bg-purple-50 rounded-xl p-4 text-center">
+          <p class="font-bold text-lg text-purple-600 mb-1">Goodbye!</p>
+          <p class="text-gray-700 text-sm mb-3">До свидания!</p>
+          <button onclick="speak('Goodbye!')" class="speak-btn bg-purple-500 text-white w-11 h-11 rounded-full mx-auto flex items-center justify-center">🔊</button>
+        </div>
+        <div class="bg-orange-50 rounded-xl p-4 text-center">
+          <p class="font-bold text-lg text-orange-600 mb-1">Bye!</p>
+          <p class="text-gray-700 text-sm mb-3">Пока!</p>
+          <button onclick="speak('Bye!')" class="speak-btn bg-orange-500 text-white w-11 h-11 rounded-full mx-auto flex items-center justify-center">🔊</button>
+        </div>
+        <div class="bg-teal-50 rounded-xl p-4 text-center">
+          <p class="font-bold text-lg text-teal-600 mb-1">See you!</p>
+          <p class="text-gray-700 text-sm mb-3">Увидимся!</p>
+          <button onclick="speak('See you!')" class="speak-btn bg-teal-500 text-white w-11 h-11 rounded-full mx-auto flex items-center justify-center">🔊</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Итог теории -->
+    <div class="bg-gradient-to-br from-orange-400 to-pink-400 rounded-3xl p-6 md:p-8 text-white text-center reveal">
+      <div class="text-4xl mb-3">🎉</div>
+      <h3 class="font-fredoka text-2xl font-bold mb-2">Молодец! Ты изучил теорию!</h3>
+      <p class="mb-4 opacity-95">А теперь давай закрепим слова в словаре и поиграем!</p>
+      <button onclick="switchTab('vocabulary', document.querySelectorAll('.tab-btn')[1])" class="bg-white text-orange-500 font-bold px-6 py-3 rounded-full hover:bg-orange-50 transition">
+        Перейти к словарю →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- СЛОВАРЬ -->
+<section id="vocabulary" class="tab-content relative z-10 px-4 py-10">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="font-fredoka text-4xl md:text-5xl font-bold mb-2">📚 Словарь</h2>
+      <p class="text-gray-600">Нажми на <span class="font-bold text-orange-500">🔊</span>, чтобы услышать, как произносится слово</p>
+    </div>
+    <div id="vocabGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    
+    <div class="mt-10 text-center">
+      <button onclick="switchTab('games', document.querySelectorAll('.tab-btn')[2])" class="bg-orange-500 text-white font-bold px-8 py-4 rounded-full card-shadow hover:bg-orange-600 transition text-lg">
+        🎮 А теперь поиграем!
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ИГРЫ -->
+<section id="games" class="tab-content relative z-10 px-4 py-10">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-8">
+      <h2 class="font-fredoka text-4xl md:text-5xl font-bold mb-2">🎮 Игры</h2>
+      <p class="text-gray-600">Выбери игру и тренируй английский весело!</p>
+    </div>
+
+    <!-- Под-вкладки игр -->
+    <div class="flex flex-wrap gap-2 justify-center mb-8">
+      <button onclick="switchGame('memory', this)" class="game-tab active px-4 md:px-5 py-2.5 rounded-full font-bold text-sm md:text-base bg-gray-100">🃏 Найди пары</button>
+      <button onclick="switchGame('quiz', this)" class="game-tab px-4 md:px-5 py-2.5 rounded-full font-bold text-sm md:text-base bg-gray-100">📝 Выбери перевод</button>
+      <button onclick="switchGame('listening', this)" class="game-tab px-4 md:px-5 py-2.5 rounded-full font-bold text-sm md:text-base bg-gray-100">🎧 Слушай и выбирай</button>
+      <button onclick="switchGame('dialogue', this)" class="game-tab px-4 md:px-5 py-2.5 rounded-full font-bold text-sm md:text-base bg-gray-100">💬 Собери диалог</button>
+    </div>
+
+    <!-- Игра 1: Memory -->
+    <div id="game-memory" class="game-content active">
+      <div class="bg-white rounded-3xl p-5 md:p-7 card-shadow">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-5">
+          <h3 class="font-fredoka text-xl md:text-2xl font-bold">🃏 Найди пары</h3>
+          <div class="flex gap-2 flex-wrap">
+            <span class="bg-orange-100 text-orange-700 px-3 py-1.5 rounded-full font-bold text-sm">Ходы: <span id="memoryMoves">0</span></span>
+            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full font-bold text-sm">Найдено: <span id="memoryMatched">0</span>/6</span>
+          </div>
+        </div>
+        <p class="text-gray-600 text-sm mb-4">Открой две карточки. Если слово и перевод совпадают — пара найдена! 🎯</p>
+        <div id="memoryGrid" class="grid grid-cols-3 md:grid-cols-4 gap-3"></div>
+        <div class="text-center mt-5">
+          <button onclick="initMemory()" class="bg-orange-500 text-white font-bold px-6 py-3 rounded-full hover:bg-orange-600 transition">🔄 Начать заново</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Игра 2: Выбери перевод -->
+    <div id="game-quiz" class="game-content">
+      <div class="bg-white rounded-3xl p-5 md:p-7 card-shadow">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-5">
+          <h3 class="font-fredoka text-xl md:text-2xl font-bold">📝 Выбери перевод</h3>
+          <div class="flex gap-2 flex-wrap">
+            <span class="bg-orange-100 text-orange-700 px-3 py-1.5 rounded-full font-bold text-sm">Вопрос <span id="quizNum">1</span>/10</span>
+            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full font-bold text-sm">Счёт: <span id="quizScore">0</span></span>
+          </div>
+        </div>
+        <div class="text-center mb-6">
+          <p class="text-gray-600 mb-3">Выбери правильный перевод слова:</p>
+          <div class="bg-gradient-to-r from-orange-50 to-pink-50 rounded-2xl p-6">
+            <p class="font-fredoka font-bold text-3xl md:text-4xl text-orange-600 mb-3" id="quizWord">Hello!</p>
+            <button onclick="speakCurrentQuiz()" class="speak-btn bg-orange-500 text-white px-6 py-2.5 rounded-full font-bold">🔊 Послушать</button>
+          </div>
+        </div>
+        <div id="quizOptions" class="grid grid-cols-2 gap-3"></div>
+      </div>
+    </div>
+
+    <!-- Игра 3: Слушай и выбирай -->
+    <div id="game-listening" class="game-content">
+      <div class="bg-white rounded-3xl p-5 md:p-7 card-shadow">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-5">
+          <h3 class="font-fredoka text-xl md:text-2xl font-bold">🎧 Слушай и выбирай</h3>
+          <div class="flex gap-2 flex-wrap">
+            <span class="bg-purple-100 text-purple-700 px-3 py-1.5 rounded-full font-bold text-sm">Вопрос <span id="listenNum">1</span>/8</span>
+            <span class="bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full font-bold text-sm">Счёт: <span id="listenScore">0</span></span>
+          </div>
+        </div>
+        <p class="text-gray-600 text-sm mb-4">Нажми на динамик, послушай слово и выбери его перевод:</p>
+        <div class="text-center mb-6">
+          <button id="listenBtn" onclick="playListenWord()" class="bg-purple-500 text-white text-2xl font-bold px-8 py-4 rounded-full hover:bg-purple-600 transition pulse-ring">
+            🔊 Слушать слово
+          </button>
+          <p class="text-xs text-gray-500 mt-2">Нажми ещё раз, чтобы послушать снова</p>
+        </div>
+        <div id="listenOptions" class="grid grid-cols-2 gap-3"></div>
+      </div>
+    </div>
+
+    <!-- Игра 4: Собери диалог -->
+    <div id="game-dialogue" class="game-content">
+      <div class="bg-white rounded-3xl p-5 md:p-7 card-shadow">
+        <h3 class="font-fredoka text-xl md:text-2xl font-bold mb-3">💬 Собери диалог</h3>
+        <p class="text-gray-600 text-sm mb-4">Два друга встретились. Расставь фразы в правильном порядке, чтобы получился диалог знакомства!</p>
+        
+        <div class="mb-4">
+          <p class="text-sm font-bold text-gray-700 mb-2">👇 Твой диалог:</p>
+          <div id="dialogueTarget" class="space-y-2 min-h-[180px] bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-4 border-2 border-dashed border-orange-200">
+            <p class="text-gray-400 text-center text-sm mt-12" id="dialogueEmpty">Кликай на фразы ниже, чтобы добавить их сюда 👇</p>
+          </div>
+        </div>
+
+        <p class="text-sm font-bold text-gray-700 mb-2">Доступные фразы:</p>
+        <div id="dialogueChips" class="flex flex-wrap gap-2"></div>
+
+        <div class="text-center mt-6 flex gap-2 justify-center flex-wrap">
+          <button onclick="checkDialogue()" class="bg-orange-500 text-white font-bold px-6 py-3 rounded-full hover:bg-orange-600 transition">✓ Проверить</button>
+          <button onclick="initDialogue()" class="bg-gray-200 text-gray-700 font-bold px-6 py-3 rounded-full hover:bg-gray-300 transition">🔄 Заново</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative z-10 px-4 py-10 mt-10">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="bg-white rounded-3xl p-6 md:p-8 card-shadow">
+      <div class="text-4xl mb-3">🌟</div>
+      <h3 class="font-fredoka text-2xl font-bold mb-2">Ты молодец!</h3>
+      <p class="text-gray-600 mb-4">Сегодня ты сделал первый шаг в изучении английского языка. Возвращайся завтра, чтобы узнать ещё больше слов!</p>
+      <div class="flex justify-center gap-2 flex-wrap">
+        <span class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full font-bold text-sm">Hello! 👋</span>
+        <span class="bg-teal-100 text-teal-700 px-4 py-2 rounded-full font-bold text-sm">Goodbye! 👋</span>
+      </div>
+      <p class="text-xs text-gray-400 mt-4">Урок английского для 1 класса • Первый урок</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================
+   ДАННЫЕ
+============================================ */
+const vocabulary = [
+  { en: 'Hello!', ru: 'Привет!', emoji: '👋', trans: '[хэло́]', color: 'orange' },
+  { en: 'Hi!', ru: 'Привет!', emoji: '👋', trans: '[хай]', color: 'orange' },
+  { en: 'Goodbye!', ru: 'До свидания!', emoji: '👋', trans: '[гуд-ба́й]', color: 'purple' },
+  { en: 'Bye!', ru: 'Пока!', emoji: '✋', trans: '[бай]', color: 'pink' },
+  { en: 'Good morning!', ru: 'Доброе утро!', emoji: '☀️', trans: '[гуд мо́рнинг]', color: 'yellow' },
+  { en: 'Good afternoon!', ru: 'Добрый день!', emoji: '🌤️', trans: '[гуд афтэну́н]', color: 'teal' },
+  { en: 'Good evening!', ru: 'Добрый вечер!', emoji: '🌆', trans: '[гуд и́внинг]', color: 'indigo' },
+  { en: 'Good night!', ru: 'Спокойной ночи!', emoji: '🌙', trans: '[гуд найт]', color: 'purple' },
+  { en: "What's your name?", ru: 'Как тебя зовут?', emoji: '🤔', trans: '[вотс ё нэйм]', color: 'orange' },
+  { en: 'My name is Tom.', ru: 'Меня зовут Том.', emoji: '📛', trans: '[май нэйм из том]', color: 'teal' },
+  { en: 'How old are you?', ru: 'Сколько тебе лет?', emoji: '🎂', trans: '[хау олд а ю]', color: 'pink' },
+  { en: "I'm 7 years old.", ru: 'Мне 7 лет.', emoji: '🎉', trans: '[айм сэвн йирз олд]', color: 'yellow' },
+  { en: 'Nice to meet you!', ru: 'Приятно познакомиться!', emoji: '🤝', trans: '[найс ту мит ю]', color: 'green' },
+  { en: 'See you!', ru: 'Увидимся!', emoji: '👀', trans: '[си ю]', color: 'teal' }
+];
+
+const colorMap = {
+  orange: { bg: 'bg-orange-50', text: 'text-orange-600', btn: 'bg-orange-500', border: 'border-orange-200' },
+  purple: { bg: 'bg-purple-50', text: 'text-purple-600', btn: 'bg-purple-500', border: 'border-purple-200' },
+  pink:   { bg: 'bg-pink-50',   text: 'text-pink-600',   btn: 'bg-pink-500',   border: 'border-pink-200' },
+  yellow: { bg: 'bg-yellow-50', text: 'text-yellow-700', btn: 'bg-yellow-500', border: 'border-yellow-200' },
+  teal:   { bg: 'bg-teal-50',   text: 'text-teal-600',   btn: 'bg-teal-500',   border: 'border-teal-200' },
+  indigo: { bg: 'bg-indigo-50', text: 'text-indigo-600', btn: 'bg-indigo-500', border: 'border-indigo-200' },
+  green:  { bg: 'bg-green-50',  text: 'text-green-600',  btn: 'bg-green-500',  border: 'border-green-200' }
+};
+
+/* ============================================
+   ПРОИЗНОШЕНИЕ
+============================================ */
+let enVoice = null;
+
+function loadVoices() {
+  if (!window.speechSynthesis) return;
+  const voices = window.speechSynthesis.getVoices();
+  // Ищем лучший английский голос
+  enVoice = voices.find(v => v.lang === 'en-US') ||
+            voices.find(v => v.lang === 'en-GB') ||
+            voices.find(v => v.lang.startsWith('en')) ||
+            null;
+}
+
+if (window.speechSynthesis) {
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function speak(text) {
+  if (!window.speechSynthesis) {
+    console.warn('Speech synthesis не поддерживается');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.8;    // медленнее для детей
+  utterance.pitch = 1.15;  // чуть выше, добрее
+  utterance.volume = 1;
+  if (enVoice) utterance.voice = enVoice;
+  
+  window.speechSynthesis.speak(utterance);
+}
+
+/* ============================================
+   НАВИГАЦИЯ
+============================================ */
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-content').forEach(s => s.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.classList.add('bg-gray-100');
+  });
+  if (btn) {
+    btn.classList.add('active');
+    btn.classList.remove('bg-gray-100');
+  }
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  // Инициализация при первом открытии
+  if (tab === 'games') {
+    // Memory уже инициализирована при загрузке, но перепроверим
+    if (!document.querySelector('#memoryGrid').children.length) initMemory();
+  }
+}
+
+function switchGame(game, btn) {
+  document.querySelectorAll('.game-content').forEach(s => s.classList.remove('active'));
+  document.getElementById('game-' + game).classList.add('active');
+  
+  document.querySelectorAll('.game-tab').forEach(b => {
+    b.classList.remove('active');
+    b.classList.add('bg-gray-100');
+  });
+  if (btn) {
+    btn.classList.add('active');
+    btn.classList.remove('bg-gray-100');
+  }
+  
+  // Инициализация нужной игры
+  if (game === 'memory') initMemory();
+  if (game === 'quiz') initQuiz();
+  if (game === 'listening') initListening();
+  if (game === 'dialogue') initDialogue();
+}
+
+/* ============================================
+   СЛОВАРЬ
+============================================ */
+function renderVocabulary() {
+  const grid = document.getElementById('vocabGrid');
+  grid.innerHTML = vocabulary.map((word, i) => {
+    const c = colorMap[word.color];
+    return `
+      <div class="word-card bg-white rounded-2xl p-4 card-shadow border-2 border-white hover:border-orange-200">
+        <div class="text-5xl mb-2 text-center">${word.emoji}</div>
+        <p class="font-fredoka font-bold text-base ${c.text} text-center mb-1">${word.en}</p>
+        <p class="text-xs text-gray-400 text-center mb-1">${word.trans}</p>
+        <p class="text-sm text-gray-700 text-center mb-3">${word.ru}</p>
+        <button onclick="speakVocab(${i})" class="speak-btn ${c.btn} text-white w-full py-2 rounded-full font-bold text-sm">
+          🔊 Слушать
+        </button>
+      </div>
+    `;
+  }).join('');
+}
+
+function speakVocab(idx) {
+  speak(vocabulary[idx].en);
+}
+
+/* ============================================
+   ИГРА 1: MEMORY (Найди пары)
+============================================ */
+const memoryPairs = [
+  { en: 'Hello!', ru: 'Привет!', emoji: '👋' },
+  { en: 'Goodbye!', ru: 'До свидания!', emoji: '👋' },
+  { en: 'Good morning!', ru: 'Доброе утро!', emoji: '☀️' },
+  { en: 'Good night!', ru: 'Спокойной ночи!', emoji: '🌙' },
+  { en: 'My name is Tom.', ru: 'Меня зовут Том.', emoji: '📛' },
+  { en: 'How old are you?', ru: 'Сколько тебе лет?', emoji: '🎂' }
+];
+
+let memoryCards = [];
+let memoryFlipped = [];
+let memoryMatched = 0;
+let memoryMoves = 0;
+let memoryLock = false;
+
+function initMemory() {
+  const cards = [];
+  memoryPairs.forEach((pair, i) => {
+    cards.push({ pairId: i, type: 'en', text: pair.en, emoji: pair.emoji });
+    cards.push({ pairId: i, type: 'ru', text: pair.ru, emoji: pair.emoji });
+  });
+  
+  // Перемешивание
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  
+  memoryCards = cards;
+  memoryFlipped = [];
+  memoryMatched = 0;
+  memoryMoves = 0;
+  memoryLock = false;
+  
+  document.getElementById('memoryMoves').textContent = '0';
+  document.getElementById('memoryMatched').textContent = '0';
+  
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = cards.map((card, i) => `
+    <div class="memory-card" data-index="${i}" onclick="flipMemory(${i})">
+      <div class="memory-card-inner">
+        <div class="memory-face memory-front">❓</div>
+        <div class="memory-face memory-back">
+          <div class="text-3xl mb-1">${card.emoji}</div>
+          <p class="font-bold text-xs md:text-sm ${card.type === 'en' ? 'text-orange-600' : 'text-teal-600'}">${card.text}</p>
+          ${card.type === 'en' ? `<button onclick="event.stopPropagation(); speakMemoryCard(${i})" class="mt-2 bg-orange-100 text-orange-600 px-2 py-1 rounded-full text-xs font-bold">🔊</button>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function speakMemoryCard(i) {
+  speak(memoryCards[i].text);
+}
+
+function flipMemory(i) {
+  if (memoryLock) return;
+  const cardEls = document.querySelectorAll('.memory-card');
+  const card = cardEls[i];
+  if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  
+  card.classList.add('flipped', 'bounce-in');
+  memoryFlipped.push(i);
+  
+  // Если открыли английскую карточку — произносим
+  if (memoryCards[i].type === 'en') {
+    speak(memoryCards[i].text);
+  }
+  
+  if (memoryFlipped.length === 2) {
+    memoryMoves++;
+    document.getElementById('memoryMoves').textContent = memoryMoves;
+    memoryLock = true;
+    
+    const [a, b] = memoryFlipped;
+    if (memoryCards[a].pairId === memoryCards[b].pairId) {
+      // Совпадение!
+      setTimeout(() => {
+        cardEls[a].classList.add('matched');
+        cardEls[b].classList.add('matched');
+        memoryFlipped = [];
+        memoryMatched++;
+        document.getElementById('memoryMatched').textContent = memoryMatched;
+        memoryLock = false;
+        
+        if (memoryMatched === memoryPairs.length) {
+          setTimeout(() => {
+            showConfetti();
+            speak('Well done!');
+          }, 400);
+        }
+      }, 700);
+    } else {
+      // Не совпало — закрыть
+      setTimeout(() => {
+        cardEls[a].classList.remove('flipped', 'bounce-in');
+        cardEls[b].classList.remove('flipped', 'bounce-in');
+        memoryFlipped = [];
+        memoryLock = false;
+      }, 1300);
+    }
+  }
+}
+
+/* ============================================
+   ИГРА 2: ВЫБЕРИ ПЕРЕВОД
+============================================ */
+let quizQuestions = [];
+let quizCurrent = 0;
+let quizScore = 0;
+let quizCurrentWord = null;
+
+function initQuiz() {
+  const shuffled = [...vocabulary].sort(() => Math.random() - 0.5);
+  quizQuestions = shuffled.slice(0, 10).map(word => {
+    const others = vocabulary.filter(w => w.ru !== word.ru).sort(() => Math.random() - 0.5).slice(0, 3);
+    const options = [word, ...others].sort(() => Math.random() - 0.5);
+    return { word, options };
+  });
+  
+  quizCurrent = 0;
+  quizScore = 0;
+  document.getElementById('quizScore').textContent = '0';
+  showQuizQuestion();
+}
+
+function showQuizQuestion() {
+  if (quizCurrent >= quizQuestions.length) {
+    // Игра окончена
+    document.getElementById('quizWord').textContent = '🎉';
+    document.getElementById('quizNum').textContent = quizQuestions.length;
+    const opts = document.getElementById('quizOptions');
+    opts.innerHTML = `
+      <div class="col-span-2 text-center py-8">
+        <div class="text-6xl mb-3">🎉</div>
+        <p class="font-fredoka text-3xl font-bold mb-2 text-orange-600">Молодец!</p>
+        <p class="text-gray-700 mb-1">Твой счёт:</p>
+        <p class="font-fredoka text-4xl font-bold text-orange-500 mb-4">${quizScore} / ${quizQuestions.length}</p>
+        <button onclick="initQuiz()" class="bg-orange-500 text-white font-bold px-6 py-3 rounded-full hover:bg-orange-600 transition">🔄 Играть снова</button>
+      </div>
+    `;
+    showConfetti();
+    return;
+  }
+  
+  document.getElementById('quizNum').textContent = quizCurrent + 1;
+  const q = quizQuestions[quizCurrent];
+  quizCurrentWord = q.word;
+  
+  document.getElementById('quizWord').textContent = q.word.en;
+  
+  const opts = document.getElementById('quizOptions');
+  opts.innerHTML = q.options.map((opt, i) => `
+    <div class="quiz-option bg-white border-2 border-gray-200 rounded-xl p-4 text-center font-bold hover:border-orange-300" onclick="answerQuiz(${i})">
+      <div class="text-3xl mb-1">${opt.emoji}</div>
+      <div class="text-gray-700">${opt.ru}</div>
+    </div>
+  `).join('');
+}
+
+function answerQuiz(idx) {
+  const q = quizQuestions[quizCurrent];
+  const selected = q.options[idx];
+  const options = document.querySelectorAll('#quizOptions .quiz-option');
+  
+  options.forEach(o => o.classList.add('locked'));
+  
+  if (selected.ru === q.word.ru) {
+    options[idx].classList.add('correct');
+    quizScore++;
+    document.getElementById('quizScore').textContent = quizScore;
+    setTimeout(() => {
+      quizCurrent++;
+      showQuizQuestion();
+    }, 1000);
+  } else {
+    options[idx].classList.add('wrong');
+    const correctIdx = q.options.findIndex(o => o.ru === q.word.ru);
+    options[correctIdx].classList.add('correct');
+    setTimeout(() => {
+      quizCurrent++;
+      showQuizQuestion();
+    }, 1600);
+  }
+}
+
+function speakCurrentQuiz() {
+  if (quizCurrentWord) speak(quizCurrentWord.en);
+}
+
+/* ============================================
+   ИГРА 3: СЛУШАЙ И ВЫБИРАЙ
+============================================ */
+let listenQuestions = [];
+let listenCurrent = 0;
+let listenScore = 0;
+let listenCurrentWord = null;
+
+function initListening() {
+  const shuffled = [...vocabulary].sort(() => Math.random() - 0.5);
+  listenQuestions = shuffled.slice(0, 8).map(word => {
+    const others = vocabulary.filter(w => w.ru !== word.ru).sort(() => Math.random() - 0.5).slice(0, 3);
+    const options = [word, ...others].sort(() => Math.random() - 0.5);
+    return { word, options };
+  });
+  
+  listenCurrent = 0;
+  listenScore = 0;
+  document.getElementById('listenScore').textContent = '0';
+  showListenQuestion();
+}
+
+function showListenQuestion() {
+  if (listenCurrent >= listenQuestions.length) {
+    document.getElementById('listenNum').textContent = listenQuestions.length;
+    document.getElementById('listenBtn').textContent = '✓ Готово!';
+    document.getElementById('listenBtn').classList.remove('pulse-ring');
+    const opts = document.getElementById('listenOptions');
+    opts.innerHTML = `
+      <div class="col-span-2 text-center py-8">
+        <div class="text-6xl mb-3">🎧🎉</div>
+        <p class="font-fredoka text-3xl font-bold mb-2 text-purple-600">Отлично!</p>
+        <p class="text-gray-700 mb-1">Твой счёт:</p>
+        <p class="font-fredoka text-4xl font-bold text-purple-500 mb-4">${listenScore} / ${listenQuestions.length}</p>
+        <button onclick="initListening()" class="bg-purple-500 text-white font-bold px-6 py-3 rounded-full hover:bg-purple-600 transition">🔄 Играть снова</button>
+      </div>
+    `;
+    showConfetti();
+    return;
+  }
+  
+  document.getElementById('listenNum').textContent = listenCurrent + 1;
+  const q = listenQuestions[listenCurrent];
+  listenCurrentWord = q.word;
+  
+  const opts = document.getElementById('listenOptions');
+  opts.innerHTML = q.options.map((opt, i) => `
+    <div class="quiz-option bg-white border-2 border-gray-200 rounded-xl p-4 text-center font-bold hover:border-purple-300" onclick="answerListen(${i})">
+      <div class="text-3xl mb-1">${opt.emoji}</div>
+      <div class="text-gray-700">${opt.ru}</div>
+    </div>
+  `).join('');
+  
+  // Автоматически проигрываем слово
+  setTimeout(() => speak(q.word.en), 400);
+}
+
+function playListenWord() {
+  if (listenCurrentWord) speak(listenCurrentWord.en);
+}
+
+function answerListen(idx) {
+  const q = listenQuestions[listenCurrent];
+  const selected = q.options[idx];
+  const options = document.querySelectorAll('#listenOptions .quiz-option');
+  
+  options.forEach(o => o.classList.add('locked'));
+  
+  if (selected.ru === q.word.ru) {
+    options[idx].classList.add('correct');
+    listenScore++;
+    document.getElementById('listenScore').textContent = listenScore;
+  } else {
+    options[idx].classList.add('wrong');
+    const correctIdx = q.options.findIndex(o => o.ru === q.word.ru);
+    options[correctIdx].classList.add('correct');
+  }
+  
+  setTimeout(() => {
+    listenCurrent++;
+    showListenQuestion();
+  }, 1600);
+}
+
+/* ============================================
+   ИГРА 4: СОБЕРИ ДИАЛОГ
+============================================ */
+const dialogueCorrect = [
+  { en: 'Hello!', ru: 'Привет!', emoji: '👋' },
+  { en: "What's your name?", ru: 'Как тебя зовут?', emoji: '🤔' },
+  { en: 'My name is Tom.', ru: 'Меня зовут Том.', emoji: '📛' },
+  { en: 'How old are you?', ru: 'Сколько тебе лет?', emoji: '🎂' },
+  { en: "I'm 7 years old.", ru: 'Мне 7 лет.', emoji: '🎉' },
+  { en: 'Goodbye!', ru: 'До свидания!', emoji: '👋' }
+];
+
+let dialogueSelected = [];
+let dialogueShuffled = [];
+
+function initDialogue() {
+  dialogueSelected = [];
+  dialogueShuffled = [...dialogueCorrect].sort(() => Math.random() - 0.5);
+  renderDialogue();
+}
+
+function renderDialogue() {
+  const target = document.getElementById('dialogueTarget');
+  if (dialogueSelected.length === 0) {
+    target.innerHTML = '<p class="text-gray-400 text-center text-sm mt-12" id="dialogueEmpty">Кликай на фразы ниже, чтобы добавить их сюда 👇</p>';
+  } else {
+    target.innerHTML = dialogueSelected.map((item, i) => `
+      <div class="bg-white border-2 border-orange-300 rounded-xl p-3 flex items-center justify-between gap-2 bounce-in">
+        <div class="flex items-center gap-3 flex-1 min-w-0">
+          <span class="bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">${i+1}</span>
+          <span class="text-2xl flex-shrink-0">${item.emoji}</span>
+          <div class="min-w-0">
+            <p class="font-bold text-orange-600 text-sm md:text-base">${item.en}</p>
+            <p class="text-xs text-gray-500">${item.ru}</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 flex-shrink-0">
+          <button onclick="speakDialogue(${i})" class="speak-btn bg-orange-100 text-orange-600 w-8 h-8 rounded-full text-sm flex items-center justify-center">🔊</button>
+          <button onclick="removeDialogue(${i})" class="speak-btn bg-red-100 text-red-500 w-8 h-8 rounded-full text-sm flex items-center justify-center">✕</button>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  const chips = document.getElementById('dialogueChips');
+  const remaining = dialogueShuffled.filter(item => !dialogueSelected.includes(item));
+  if (remaining.length === 0) {
+    chips.innerHTML = '<p class="text-gray-400 text-sm italic">Все фразы добавлены! Проверь свой диалог 👆</p>';
+  } else {
+    chips.innerHTML = remaining.map((item) => {
+      const idx = dialogueShuffled.indexOf(item);
+      return `
+        <div class="dialogue-chip bg-purple-100 border-2 border-purple-200 rounded-xl px-3 py-2 flex items-center gap-2" onclick="addDialogue(${idx})">
+          <span class="text-xl">${item.emoji}</span>
+          <div>
+            <p class="font-bold text-purple-700 text-sm">${item.en}</p>
+            <p class="text-xs text-gray-500">${item.ru}</p>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
+function addDialogue(idx) {
+  const item = dialogueShuffled[idx];
+  dialogueSelected.push(item);
+  renderDialogue();
+  speak(item.en);
+}
+
+function removeDialogue(i) {
+  dialogueSelected.splice(i, 1);
+  renderDialogue();
+}
+
+function speakDialogue(i) {
+  speak(dialogueSelected[i].en);
+}
+
+function checkDialogue() {
+  if (dialogueSelected.length === 0) {
+    alert('Добавь фразы в диалог! Кликай на карточки внизу 👇');
+    return;
+  }
+  if (dialogueSelected.length < dialogueCorrect.length) {
+    alert(`Добавь все фразы! Осталось: ${dialogueCorrect.length - dialogueSelected.length}`);
+    return;
+  }
+  
+  const isCorrect = dialogueCorrect.every((item, i) => dialogueSelected[i] === item);
+  
+  if (isCorrect) {
+    showConfetti();
+    setTimeout(() => {
+      const target = document.getElementById('dialogueTarget');
+      target.innerHTML = `
+        <div class="text-center py-6">
+          <div class="text-5xl mb-2">🎉🦉🎉</div>
+          <p class="font-fredoka text-2xl font-bold text-orange-600 mb-2">Отлично!</p>
+          <p class="text-gray-700">Диалог составлен правильно!</p>
+        </div>
+      `;
+      speak('Well done! Goodbye!');
+    }, 300);
+  } else {
+    // Подсветим ошибки
+    const target = document.getElementById('dialogueTarget');
+    const items = target.querySelectorAll('.bounce-in, [class*="border-orange-300"]');
+    // Покажем, какие позиции неверные
+    dialogueSelected.forEach((item, i) => {
+      if (dialogueCorrect[i] !== item) {
+        const el = target.children[i];
+        if (el) {
+          el.classList.remove('border-orange-300');
+          el.classList.add('border-red-400', 'bg-red-50');
+        }
+      }
+    });
+    setTimeout(() => {
+      alert('Почти получилось! Красные карточки стоят не на своём месте. Попробуй ещё раз!');
+    }, 100);
+  }
+}
+
+/* ============================================
+   КОНФЕТТИ
+============================================ */
+function showConfetti() {
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFD93D', '#A8E6CF', '#C77DFF', '#FF8E53', '#FFB6C1'];
+  const shapes = ['🎉', '⭐', '🌟', '✨', '🎊'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      // Чередуем: половина — цветные квадратики, половина — эмодзи
+      if (Math.random() > 0.5) {
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      } else {
+        confetti.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+        confetti.style.background = 'transparent';
+        confetti.style.fontSize = (16 + Math.random() * 12) + 'px';
+        confetti.style.width = 'auto';
+        confetti.style.height = 'auto';
+      }
+      confetti.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 4500);
+    }, i * 25);
+  }
+}
+
+/* ============================================
+   ИНИЦИАЛИЗАЦИЯ
+============================================ */
+window.addEventListener('load', () => {
+  renderVocabulary();
+  initMemory();
+  initDialogue();
+  
+  // Анимация появления карточек
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  
+  // Приветствие через секунду
+  setTimeout(() => {
+    if (window.speechSynthesis) speak('Hello!');
+  }, 800);
+});
+</script>
+
+</body>
+</html>
