@@ -94,6 +94,9 @@
   "6 класс": [
     {
       "file": "grade6/grade_5_review.html"
-    } 
+    },
+    {
+      "file": "grade6/appearance.html"
+    }
   ]
 }
