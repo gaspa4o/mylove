@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABC Английский — Мой первый урок</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFF8E7;
+  --bg-soft: #FFE9C5;
+  --primary: #FF6B35;
+  --primary-dark: #E04E1B;
+  --secondary: #FFD23F;
+  --mint: #06D6A0;
+  --mint-dark: #04A77D;
+  --pink: #EF476F;
+  --sky: #4CC9F0;
+  --grape: #B388EB;
+  --dark: #2D1B26;
+  --muted: #6B5C66;
+  --card: #FFFFFF;
+  --border: rgba(45, 27, 38, 0.12);
+  --shadow-sm: 0 4px 0 var(--dark), 0 8px 18px rgba(45, 27, 38, 0.12);
+  --shadow-md: 0 6px 0 var(--dark), 0 12px 24px rgba(45, 27, 38, 0.16);
+  --shadow-lg: 0 8px 0 var(--dark), 0 16px 40px rgba(45, 27, 38, 0.2);
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 32px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, .logo, .section-title, .modal-letter, .memory-back, .choice, .trace-letter-btn, .game-title, .progress-value, .achievement-title, .modal-word {
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Декоративный фон */
+.bg-decoration {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(255, 210, 63, 0.35) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(6, 214, 160, 0.25) 0%, transparent 45%),
+    radial-gradient(circle at 75% 25%, rgba(239, 71, 111, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 25% 80%, rgba(76, 201, 240, 0.22) 0%, transparent 45%),
+    linear-gradient(180deg, #FFF8E7 0%, #FFEFD1 100%);
+}
+
+.shapes {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.5;
+  animation: floatShape 18s infinite ease-in-out;
+}
+.shape:nth-child(1) { top: 8%; left: 6%; animation-delay: 0s; }
+.shape:nth-child(2) { top: 22%; right: 8%; animation-delay: 2.5s; }
+.shape:nth-child(3) { bottom: 12%; left: 10%; animation-delay: 5s; }
+.shape:nth-child(4) { bottom: 28%; right: 6%; animation-delay: 7.5s; }
+.shape:nth-child(5) { top: 55%; left: 48%; animation-delay: 3s; }
+.shape:nth-child(6) { top: 70%; right: 25%; animation-delay: 9s; }
+
+@keyframes floatShape {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(25px, -35px) rotate(15deg); }
+  50% { transform: translate(-20px, -60px) rotate(-10deg); }
+  75% { transform: translate(-35px, -25px) rotate(8deg); }
+}
+
+/* Шапка */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 248, 231, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 2px dashed var(--border);
+  padding: 1rem 1.5rem;
+}
+
+.header-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--dark);
+}
+
+.logo-icon { width: 50px; height: 50px; }
+
+nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.65rem 1.1rem;
+  border: 2.5px solid var(--dark);
+  background: var(--card);
+  color: var(--dark);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 3px 3px 0 var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tab-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--dark);
+}
+
+.tab-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--dark);
+}
+
+.tab-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+.tab-btn i { font-size: 1rem; }
+
+/* Главная */
+main { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+.section { display: none; animation: fadeIn 0.5s ease; }
+.section.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero {
+  text-align: center;
+  padding: 2.5rem 1rem 3rem;
+  position: relative;
+}
+
+.hero-mascot {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1rem;
+  animation: bob 3.5s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+  font-weight: 900;
+}
+
+.hero h1 .accent {
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+}
+
+.hero h1 .accent::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: -4px;
+  right: -4px;
+  height: 14px;
+  background: var(--secondary);
+  z-index: -1;
+  border-radius: 999px;
+  transform: rotate(-1.5deg);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto 2rem;
+  font-weight: 600;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  padding: 1rem 1.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 3px solid var(--dark);
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 4px 4px 0 var(--dark);
+}
+
+.btn-primary { background: var(--primary); color: white; }
+.btn-secondary { background: var(--secondary); color: var(--dark); }
+
+.btn-primary:hover, .btn-secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--dark);
+}
+
+.btn-primary:active, .btn-secondary:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--dark);
+}
+
+.info-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--card);
+  border: 3px solid var(--dark);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 2.5rem;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.info-banner i {
+  font-size: 2rem;
+  color: var(--mint);
+  flex-shrink: 0;
+}
+
+.info-banner h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+  font-weight: 800;
+}
+
+.info-banner p { font-size: 1rem; color: var(--muted); }
+
+/* Заголовок секции */
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-weight: 900;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+/* Алфавит */
+.alphabet-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.song-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.5rem;
+  background: var(--mint);
+  color: white;
+  border: 3px solid var(--dark);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 1.05rem;
+  box-shadow: 4px 4px 0 var(--dark);
+  transition: all 0.15s;
+}
+
+.song-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--dark); }
+.song-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--dark); }
+
+.alphabet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 1.25rem;
+}
+
+.letter-card {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 0.75rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 3px solid transparent;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.letter-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: var(--card-color, var(--primary));
+  transform: scaleX(0);
+  transition: transform 0.3s;
+  transform-origin: left;
+}
+
+.letter-card:hover::before { transform: scaleX(1); }
+
+.letter-card:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  border-color: var(--card-color, var(--primary));
+}
+
+.letter-card.learned {
+  background: linear-gradient(135deg, var(--mint) 0%, var(--mint-dark) 100%);
+  color: white;
+}
+
+.letter-card.learned::after {
+  content: '\f005';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  color: var(--secondary);
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.2));
+}
+
+.letter-big {
+  font-size: 3.8rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  color: var(--card-color, var(--primary));
+  font-weight: 900;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+}
+
+.letter-card.learned .letter-big { color: white; }
+
+.letter-name {
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.letter-card.learned .letter-name { color: rgba(255,255,255,0.9); }
+
+.letter-example { font-size: 2.3rem; line-height: 1; margin-bottom: 0.15rem; }
+
+.letter-example-word {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.letter-card.learned .letter-example-word { color: white; }
+
+/* Модальное окно */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 27, 38, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.3s;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  text-align: center;
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 3px solid var(--dark);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.5) rotate(-5deg); opacity: 0; }
+  to { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 2.5px solid var(--dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--dark);
+  transition: all 0.25s;
+}
+
+.modal-close:hover { transform: rotate(90deg); background: var(--pink); color: white; }
+
+.modal-letter {
+  font-size: 6.5rem;
+  color: var(--modal-color, var(--primary));
+  line-height: 1;
+  margin: 0.25rem 0 0.75rem;
+  font-weight: 900;
+}
+
+.modal-pronunciation {
+  background: var(--bg-soft);
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  border: 2px solid var(--dark);
+  font-size: 1.1rem;
+}
+
+.modal-pronunciation .ipa {
+  color: var(--primary);
+}
+
+.modal-example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.modal-emoji { font-size: 4.5rem; animation: wiggle 2.5s ease-in-out infinite; }
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.modal-word {
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.modal-word .first-letter {
+  color: var(--modal-color, var(--primary));
+  font-size: 2.25rem;
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-decoration-thickness: 4px;
+}
+
+.modal-translation {
+  color: var(--muted);
+  font-size: 1.15rem;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+}
+
+.audio-buttons {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.audio-btn {
+  background: var(--primary);
+  color: white;
+  border: 2.5px solid var(--dark);
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 800;
+  font-family: inherit;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 3px 3px 0 var(--dark);
+  transition: all 0.15s;
+}
+
+.audio-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--dark); }
+.audio-btn:active { transform: translate(2px, 2px); box-shadow: 0 0  0 var(--dark); }
+.audio-btn.secondary { background: var(--sky); }
+.audio-btn.tertiary { background: var(--grape); }
+
+.modal-tip {
+  background: var(--bg-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  color: var(--dark);
+  border-left: 4px solid var(--secondary);
+  text-align: left;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+.modal-tip strong { color: var(--primary); font-size: 1.05rem; }
+
+/* Сочетания букв */
+.combos-section {
+  margin-top: 3rem;
+}
+
+.combos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.combo-card {
+  background: var(--card);
+  border: 3px solid var(--dark);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s;
+}
+
+.combo-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.combo-letters {
+  font-size: 2.2rem;
+  color: var(--grape);
+  line-height: 1;
+  font-weight: 900;
+}
+
+.combo-sound {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--muted);
+  margin: 0.4rem 0;
+}
+
+.combo-example { font-size: 1.5rem; }
+
+.combo-word {
+  font-size: 1rem;
+  color: var(--dark);
+  font-weight: 800;
+  margin-top: 0.25rem;
+}
+
+/* Игры */
+.game-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+  border: 3px solid var(--dark);
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.game-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: white;
+  border: 2.5px solid var(--dark);
+  flex-shrink: 0;
+  box-shadow: 3px 3px 0 var(--dark);
+}
+
+.game-icon.orange { background: var(--primary); }
+.game-icon.mint { background: var(--mint); }
+.game-icon.pink { background: var(--pink); }
+.game-icon.sky { background: var(--sky); }
+
+.game-title-block { flex: 1; min-width: 200px; }
+
+.game-title {
+  font-size: 1.7rem;
+  line-height: 1.1;
+  font-weight: 900;
+}
+
+.game-description {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-top: 0.25rem;
+  font-weight: 600;
+}
+
+.game-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.level-btn {
+  font-family: inherit;
+  font-weight: 800;
+  padding: 0.55rem 1rem;
+  border: 2.5px solid var(--dark);
+  background: var(--card);
+  color: var(--dark);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1rem;
+  box-shadow: 2px 2px 0 var(--dark);
+}
+
+.level-btn:hover { background: var(--secondary); }
+.level-btn.active { background: var(--primary); color: white; }
+
+.game-stats {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.stat-pill {
+  background: var(--bg-soft);
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 2px solid var(--dark);
+  font-size: 1rem;
+}
+
+.stat-pill i { color: var(--primary); }
+.stat-pill.stars i { color: var(--secondary); }
+
+/* Memory */
+.memory-grid {
+  display: grid;
+  gap: 0.6rem;
+  perspective: 1000px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.memory-grid.easy { grid-template-columns: repeat(3, 1fr); max-width: 420px; }
+.memory-grid.medium { grid-template-columns: repeat(4, 1fr); max-width: 540px; }
+.memory-grid.hard { grid-template-columns: repeat(4, 1fr); max-width: 580px; }
+
+.memory-card {
+  aspect-ratio: 1;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.memory-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.memory-card.flipped .memory-card-inner,
+.memory-card.matched .memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid var(--dark);
+  font-weight: 900;
+}
+
+.memory-front {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--pink) 100%);
+  color: white;
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,0.2);
+}
+
+.memory-front i { font-size: 1.6rem; opacity: 0.85; }
+
+.memory-back {
+  background: var(--card);
+  transform: rotateY(180deg);
+}
+
+.memory-back.letter {
+  font-size: 2.6rem;
+  color: var(--primary);
+  font-weight: 900;
+}
+
+.memory-back.emoji { font-size: 2.6rem; }
+
+.memory-card.matched .memory-face {
+  background: linear-gradient(135deg, var(--mint) 0%, var(--mint-dark) 100%);
+  border-color: var(--mint-dark);
+  animation: matched 0.5s ease;
+}
+
+.memory-card.matched .memory-back { color: white; }
+.memory-card.matched .memory-back.letter { color: white; }
+
+@keyframes matched {
+  0%, 100% { transform: rotateY(180deg) scale(1); }
+  50% { transform: rotateY(180deg) scale(1.15); }
+}
+
+.memory-card.shake .memory-card-inner {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotateY(180deg) translateX(0); }
+  25% { transform: rotateY(180deg) translateX(-6px); }
+  75% { transform: rotateY(180deg) translateX(6px); }
+}
+
+/* Звуковая игра */
+.sound-game-area {
+  text-align: center;
+  padding: 1rem 0.5rem 0.5rem;
+}
+
+.play-sound-btn {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--pink) 100%);
+  color: white;
+  border: 4px solid var(--dark);
+  font-size: 2.5rem;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 var(--dark);
+  transition: all 0.15s;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.play-sound-btn::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 3px solid var(--primary);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.play-sound-btn.playing::after {
+  animation: ripple 1.2s ease-out infinite;
+}
+
+@keyframes ripple {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+.play-sound-btn:hover { transform: scale(1.05); }
+.play-sound-btn:active { transform: translate(3px, 3px); box-shadow: 3px 3px 0 var(--dark); }
+
+.sound-prompt {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--dark);
+  font-weight: 800;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.85rem;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.choice {
+  background: var(--card);
+  border: 3px solid var(--dark);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 0.5rem;
+  cursor: pointer;
+  font-size: 2.6rem;
+  color: var(--primary);
+  transition: all 0.15s;
+  box-shadow: 4px 4px 0 var(--dark);
+  font-weight: 900;
+}
+
+.choice:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--dark);
+  background: var(--secondary);
+}
+
+.choice:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--dark);
+}
+
+.choice.correct {
+  background: var(--mint);
+  color: white;
+  animation: correct 0.6s ease;
+}
+
+.choice.wrong {
+  background: var(--pink);
+  color: white;
+  animation: shake-choice 0.4s ease;
+}
+
+@keyframes correct {
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(1.18) rotate(-3deg); }
+  70% { transform: scale(1.05) rotate(3deg); }
+}
+
+@keyframes shake-choice {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.next-btn {
+  margin-top: 1.5rem;
+  background: var(--secondary);
+  color: var(--dark);
+  border: 3px solid var(--dark);
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 4px 4px 0 var(--dark);
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.next-btn.show { display: inline-flex; animation: fadeIn 0.4s; }
+.next-btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--dark); }
+
+/* Письмо */
+.trace-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .trace-area { grid-template-columns: 1fr; }
+}
+
+.trace-canvas-wrapper {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  border: 3px solid var(--dark);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+#traceCanvas {
+  width: 100%;
+  aspect-ratio: 1;
+  background: 
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(45,27,38,0.06) 39px, rgba(45,27,38,0.06) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(45,27,38,0.06) 39px, rgba(45,27,38,0.06) 40px);
+  background-color: #FFFEF7;
+  border-radius: var(--radius-sm);
+  cursor: crosshair;
+  touch-action: none;
+  display: block;
+}
+
+.trace-controls { display: flex; flex-direction: column; gap: 1rem; }
+
+.trace-letters {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+}
+
+.trace-letter-btn {
+  aspect-ratio: 1;
+  background: var(--card);
+  border: 2.5px solid var(--dark);
+  border-radius: var(--radius-sm);
+  font-size: 1.7rem;
+  cursor: pointer;
+  color: var(--primary);
+  transition: all 0.15s;
+  box-shadow: 2px 2px 0 var(--dark);
+  font-weight: 900;
+}
+
+.trace-letter-btn:hover { background: var(--secondary); transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--dark); }
+.trace-letter-btn.active { background: var(--primary); color: white; }
+
+.trace-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+.trace-action-btn {
+  flex: 1;
+  min-width: 130px;
+  background: var(--card);
+  border: 2.5px solid var(--dark);
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 800;
+  box-shadow: 3px 3px 0 var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all 0.15s;
+  font-size: 1.05rem;
+}
+
+.trace-action-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--dark); }
+.trace-action-btn.listen { background: var(--sky); color: white; }
+.trace-action-btn.clear { background: var(--pink); color: white; }
+
+.trace-info {
+  background: var(--bg-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.95rem 1rem;
+  font-size: 1.05rem;
+  border-left: 4px solid var(--secondary);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.trace-info strong { color: var(--primary); font-weight: 800; }
+
+/* Прогресс */
+.progress-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.progress-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  border: 3px solid var(--dark);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.progress-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.progress-value {
+  font-size: 2.5rem;
+  color: var(--primary);
+  line-height: 1;
+  font-weight: 900;
+}
+
+.progress-label {
+  color: var(--muted);
+  font-weight: 800;
+  margin-top: 0.25rem;
+  font-size: 1.1rem;
+}
+
+.progress-bar {
+  height: 24px;
+  background: var(--bg-soft);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0.75rem;
+  border: 2.5px solid var(--dark);
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--pink) 100%);
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  min-width: 0;
+}
+
+.stars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.star-slot {
+  aspect-ratio: 1;
+  background: var(--bg-soft);
+  border: 2.5px dashed var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--muted);
+  transition: all 0.3s;
+  font-weight: 900;
+}
+
+.star-slot.earned {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  border: 2.5px solid var(--dark);
+  color: white;
+  box-shadow: var(--shadow-sm);
+  animation: starPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes starPop {
+  0% { transform: scale(0) rotate(-180deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+.achievements {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.achievement {
+  background: var(--card);
+  border: 3px solid var(--dark);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s;
+  opacity: 0.45;
+}
+
+.achievement.unlocked {
+  opacity: 1;
+  background: linear-gradient(135deg, var(--bg-soft) 0%, var(--card) 100%);
+}
+
+.achievement-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  filter: grayscale(1);
+}
+
+.achievement.unlocked .achievement-icon { filter: none; }
+
+.achievement-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+  font-weight: 900;
+}
+
+.achievement-desc { font-size: 1rem; color: var(--muted); font-weight: 600; }
+
+/* Конфетти */
+.confetti {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  z-index: 1000;
+  pointer-events: none;
+  animation: confettiFall 3s ease-out forwards;
+  border-radius: 2px;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* Тост */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(150px);
+  background: var(--dark);
+  color: white;
+  padding: 0.95rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 800;
+  z-index: 300;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: var(--shadow-lg);
+  font-size: 1.1rem;
+  max-width: 90vw;
+  text-align: center;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.success { background: var(--mint); }
+.toast.error { background: var(--pink); }
+
+/* Адаптив */
+@media (max-width: 600px) {
+  header { padding: 0.85rem 1rem; }
+  .logo { font-size: 1.3rem; }
+  .logo-icon { width: 42px; height: 42px; }
+  main { padding: 1.5rem 1rem 3rem; }
+  .alphabet-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.85rem; }
+  .tab-btn { padding: 0.5rem 0.85rem; font-size: 0.9rem; }
+  .tab-btn span { display: none; }
+  .memory-grid.easy { max-width: 100%; }
+  .memory-grid.medium, .memory-grid.hard { grid-template-columns: repeat(3, 1fr); }
+  .game-card { padding: 1.25rem; }
+  .modal { padding: 1.25rem; }
+  .modal-letter { font-size: 5rem; }
+  .modal-emoji { font-size: 3.5rem; }
+  .hero-mascot { width: 160px; height: 160px; }
+}
+
+@media (max-width: 400px) {
+  .alphabet-grid { grid-template-columns: repeat(2, 1fr); }
+  .trace-letters { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-decoration"></div>
+<div class="shapes">
+  <svg class="shape" width="60" height="60" viewBox="0 0 60 60"><path d="M30 5 L36 22 L54 22 L40 33 L46 50 L30 40 L14 50 L20 33 L6 22 L24 22 Z" fill="#FFD23F" stroke="#2D1B26" stroke-width="2"/></svg>
+  <svg class="shape" width="70" height="70" viewBox="0 0 70 70"><circle cx="20" cy="20" r="15" fill="white" stroke="#2D1B26" stroke-width="2"/><circle cx="45" cy="20" r="15" fill="white" stroke="#2D1B26" stroke-width="2"/><rect x="10" y="22" width="50" height="35" rx="10" fill="white" stroke="#2D1B26" stroke-width="2"/></svg>
+  <svg class="shape" width="55" height="55" viewBox="0 0 55 55"><path d="M27 50 C10 35, 5 22, 15 15 C22 10, 27 18, 27 22 C27 18, 32 10, 39 15 C49 22, 44 35, 27 50 Z" fill="#EF476F" stroke="#2D1B26" stroke-width="2"/></svg>
+  <svg class="shape" width="65" height="65" viewBox="0 0 65 65"><path d="M32 8 L20 25 L8 25 L18 35 L14 55 L32 45 L50 55 L46 35 L56 25 L44 25 Z" fill="#06D6A0" stroke="#2D1B26" stroke-width="2"/></svg>
+  <svg class="shape" width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="#4CC9F0" stroke="#2D1B26" stroke-width="2"/><circle cx="25" cy="25" r="8" fill="white" stroke="#2D1B26" stroke-width="2"/></svg>
+  <svg class="shape" width="60" height="60" viewBox="0 0 60 60"><path d="M30 5 L35 18 L48 18 L38 28 L42 42 L30 34 L18 42 L22 28 L12 18 L25 18 Z" fill="#B388EB" stroke="#2D1B26" stroke-width="2"/></svg>
+</div>
+
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 100 100">
+        <ellipse cx="50" cy="55" rx="35" ry="38" fill="#FF6B35" stroke="#2D1B26" stroke-width="3"/>
+        <ellipse cx="50" cy="62" rx="20" ry="22" fill="#FFD23F" stroke="#2D1B26" stroke-width="2.5"/>
+        <circle cx="38" cy="42" r="13" fill="white" stroke="#2D1B26" stroke-width="3"/>
+        <circle cx="62" cy="42" r="13" fill="white" stroke="#2D1B26" stroke-width="3"/>
+        <circle cx="40" cy="44" r="6" fill="#2D1B26"/>
+        <circle cx="64" cy="44" r="6" fill="#2D1B26"/>
+        <circle cx="42" cy="42" r="2" fill="white"/>
+        <circle cx="66" cy="42" r="2" fill="white"/>
+        <path d="M45 53 L50 60 L55 53 Z" fill="#FF6B35" stroke="#2D1B26" stroke-width="2"/>
+        <path d="M25 22 L33 35 L40 25 Z" fill="#FF6B35" stroke="#2D1B26" stroke-width="2.5"/>
+        <path d="M75 22 L67 35 L60 25 Z" fill="#FF6B35" stroke="#2D1B26" stroke-width="2.5"/>
+      </svg>
+      <span>ABC с совёнком</span>
+    </div>
+    <nav>
+      <button class="tab-btn active" data-tab="home"><i class="fas fa-house"></i><span>Главная</span></button>
+      <button class="tab-btn" data-tab="theory"><i class="fas fa-book-open"></i><span>Буквы</span></button>
+      <button class="tab-btn" data-tab="memory"><i class="fas fa-puzzle-piece"></i><span>Память</span></button>
+      <button class="tab-btn" data-tab="sound"><i class="fas fa-music"></i><span>Звуки</span></button>
+      <button class="tab-btn" data-tab="trace"><i class="fas fa-pencil"></i><span>Письмо</span></button>
+      <button class="tab-btn" data-tab="progress"><i class="fas fa-trophy"></i><span>Звёзды</span></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Главная -->
+  <section class="section active" id="home">
+    <div class="hero">
+      <svg class="hero-mascot" viewBox="0 0 200 200">
+        <ellipse cx="100" cy="115" rx="65" ry="68" fill="#FF6B35" stroke="#2D1B26" stroke-width="4"/>
+        <ellipse cx="100" cy="128" rx="38" ry="42" fill="#FFD23F" stroke="#2D1B26" stroke-width="3"/>
+        <circle cx="78" cy="85" r="25" fill="white" stroke="#2D1B26" stroke-width="4"/>
+        <circle cx="122" cy="85" r="25" fill="white" stroke="#2D1B26" stroke-width="4"/>
+        <circle cx="80" cy="88" r="11" fill="#2D1B26"/>
+        <circle cx="124" cy="88" r="11" fill="#2D1B26"/>
+        <circle cx="83" cy="84" r="4" fill="white"/>
+        <circle cx="127" cy="84" r="4" fill="white"/>
+        <path d="M92 105 L100 115 L108 105 Z" fill="#FF6B35" stroke="#2D1B26" stroke-width="3"/>
+        <path d="M55 45 L70 70 L85 50 Z" fill="#FF6B35" stroke="#2D1B26" stroke-width="3"/>
+        <path d="M145 45 L130 70 L115 50 Z" fill="#FF6B35" stroke="#2D1B26" stroke-width="3"/>
+        <path d="M80 150 Q100 165 120 150" stroke="#2D1B26" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <rect x="35" y="180" width="130" height="8" rx="4" fill="#6B4226" stroke="#2D1B26" stroke-width="2"/>
+      </svg>
+      <h1>Привет! Я — <span class="accent">совёнок Буки</span></h1>
+      <p>Я научу тебя английскому алфавиту! Мы будем играть, слушать звуки, собирать пары и зарабатывать звёздочки. Готов приключению?</p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="switchTab('theory')">
+          <i class="fas fa-play"></i> Начать учить буквы
+        </button>
+        <button class="btn-secondary" onclick="switchTab('memory')">
+          <i class="fas fa-gamepad"></i> Сразу в игры
+        </button>
+      </div>
+      <div class="info-banner">
+        <i class="fas fa-lightbulb"></i>
+        <div>
+          <h3>Совет для родителей</h3>
+          <p>Занимайтесь по 15–20 минут за раз. Сначала покажите букву и послушайте её вместе, потом играйте. Хвалите за каждую попытку!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Теория: Буквы -->
+  <section class="section" id="theory">
+    <h2 class="section-title">Английский алфавит</h2>
+    <p class="section-subtitle">Нажми на любую букву — совёнок Буки покажет картинку и произнесёт звук</p>
+    
+    <div class="alphabet-controls">
+      <button class="song-btn" onclick="playAlphabetSong()">
+        <i class="fas fa-music"></i> Послушать весь алфавит
+      </button>
+    </div>
+
+    <div class="alphabet-grid" id="alphabetGrid"></div>
+
+    <div class="combos-section">
+      <h2 class="section-title" style="font-size: 1.8rem; margin-top: 2rem;">Буквы-друзья</h2>
+      <p class="section-subtitle">Когда две буквы стоят рядом, они могут звучать по-особенному!</p>
+      <div class="combos-grid" id="combosGrid"></div>
+    </div>
+  </section>
+
+  <!-- Memory -->
+  <section class="section" id="memory">
+    <h2 class="section-title">Игра Memory Cards</h2>
+    <p class="section-subtitle">Найди пары: буква + картинка. Когда найдёшь пару — Буки произнесёт слово!</p>
+
+    <div class="game-card">
+      <div class="game-header">
+        <div class="game-icon orange"><i class="fas fa-puzzle-piece"></i></div>
+        <div class="game-title-block">
+          <div class="game-title">Найди пары</div>
+          <div class="game-description">Переворачивай карточки и ищи парные. Чем меньше ходов — тем лучше!</div>
+        </div>
+        <div class="game-controls">
+          <button class="level-btn active" data-level="easy">Лёгкий (3 пары)</button>
+          <button class="level-btn" data-level="medium">Средний (6 пар)</button>
+          <button class="level-btn" data-level="hard">Сложный (8 пар)</button>
+        </div>
+      </div>
+
+      <div class="game-stats">
+        <div class="stat-pill"><i class="fas fa-hand-pointer"></i> Ходы: <span id="memoryMoves">0</span></div>
+        <div class="stat-pill"><i class="fas fa-check-circle"></i> Пары: <span id="memoryPairs">0</span>/<span id="memoryTotal">3</span></div>
+        <div class="stat-pill stars"><i class="fas fa-star"></i> Звёзды: <span id="memoryStars">0</span></div>
+      </div>
+
+      <div class="memory-grid easy" id="memoryGrid"></div>
+    </div>
+  </section>
+
+  <!-- Звуки -->
+  <section class="section" id="sound">
+    <h2 class="section-title">Угадай звук</h2>
+    <p class="section-subtitle">Послушай букву и выбери её из вариантов ниже</p>
+
+    <div class="game-card">
+      <div class="game-header">
+        <div class="game-icon pink"><i class="fas fa-music"></i></div>
+        <div class="game-title-block">
+          <div class="game-title">Угадай букву по звуку</div>
+          <div class="game-description">Нажми на динамик, прислушайся и выбери правильную букву</div>
+        </div>
+        <div class="game-controls">
+          <button class="level-btn active" data-slevel="name">По названию</button>
+          <button class="level-btn" data-slevel="word">По слову</button>
+        </div>
+      </div>
+
+      <div class="sound-game-area">
+        <button class="play-sound-btn" id="playSoundBtn" onclick="playSoundQuestion()">
+          <i class="fas fa-volume-high"></i>
+        </button>
+        <div class="sound-prompt" id="soundPrompt">Нажми на динамик и послушай букву!</div>
+        <div class="choices" id="choices"></div>
+        <button class="next-btn" id="nextBtn" onclick="nextSoundQuestion()">
+          Следующая буква <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <div class="game-stats" style="margin-top: 1.5rem;">
+        <div class="stat-pill"><i class="fas fa-check-circle"></i> Правильно: <span id="soundCorrect">0</span></div>
+        <div class="stat-pill"><i class="fas fa-xmark"></i> Ошибки: <span id="soundWrong">0</span></div>
+        <div class="stat-pill stars"><i class="fas fa-star"></i> Звёзды: <span id="soundStars">0</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Письмо -->
+  <section class="section" id="trace">
+    <h2 class="section-title">Обведи букву</h2>
+    <p class="section-subtitle">Выбери букву и обведи её пальцем или мышкой. Не торопись!</p>
+
+    <div class="game-card">
+      <div class="game-header">
+        <div class="game-icon sky"><i class="fas fa-pencil"></i></div>
+        <div class="game-title-block">
+          <div class="game-title">Письмо букв</div>
+          <div class="game-description">Обведи букву по точкам. Это помогает запомнить форму!</div>
+        </div>
+      </div>
+
+      <div class="trace-area">
+        <div class="trace-canvas-wrapper">
+          <canvas id="traceCanvas" width="500" height="500"></canvas>
+        </div>
+        <div class="trace-controls">
+          <div class="trace-letters" id="traceLetters"></div>
+          <div class="trace-actions">
+            <button class="trace-action-btn listen" onclick="speakLetter(currentTraceLetter)">
+              <i class="fas fa-volume-high"></i> Слушать
+            </button>
+            <button class="trace-action-btn clear" onclick="clearTrace()">
+              <i class="fas fa-eraser"></i> Очистить
+            </button>
+          </div>
+          <div class="trace-info">
+            <strong>Совет:</strong> Обводи букву сверху вниз. Если что-то не получилось — нажми «Очистить» и попробуй снова. Ты молодец!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Прогресс -->
+  <section class="section" id="progress">
+    <h2 class="section-title">Мои звёздочки</h2>
+    <p class="section-subtitle">Здесь живут все твои награды. Собери их все!</p>
+
+    <div class="progress-overview">
+      <div class="progress-card">
+        <div class="progress-icon">📚</div>
+        <div class="progress-value" id="lettersLearnedCount">0</div>
+        <div class="progress-label">Букв выучено</div>
+        <div class="progress-bar"><div class="progress-fill" id="lettersBar" style="width: 0%"></div></div>
+      </div>
+      <div class="progress-card">
+        <div class="progress-icon">⭐</div>
+        <div class="progress-value" id="totalStars">0</div>
+        <div class="progress-label">Всего звёзд</div>
+      </div>
+      <div class="progress-card">
+        <div class="progress-icon">🎮</div>
+        <div class="progress-value" id="gamesPlayed">0</div>
+        <div class="progress-label">Игр сыграно</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 900;">Звёздочки за буквы</h3>
+      <p style="color: var(--muted); margin-bottom: 1rem; font-size: 1.05rem; font-weight: 600;">Получи звёздочку за каждую букву — открой её в разделе «Буквы».</p>
+      <div class="stars-grid" id="starsGrid"></div>
+    </div>
+
+    <div class="game-card">
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 900;">Достижения</h3>
+      <p style="color: var(--muted); margin-bottom: 1rem; font-size: 1.05rem; font-weight: 600;">Особые награды за твои успехи!</p>
+      <div class="achievements" id="achievements"></div>
+    </div>
+  </section>
+</main>
+
+<!-- Модальное окно буквы -->
+<div class="modal-overlay" id="letterModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-xmark"></i></button>
+    <div class="modal-letter" id="modalLetter">A</div>
+    <div class="modal-pronunciation">
+      Читается как: <span class="ipa" id="modalName">эй</span>
+    </div>
+    <div class="modal-example">
+      <div class="modal-emoji" id="modalEmoji">🍎</div>
+      <div>
+        <div class="modal-word"><span class="first-letter" id="modalFirstLetter">A</span><span id="modalRest">pple</span></div>
+        <div class="modal-translation" id="modalTranslation">— яблоко</div>
+      </div>
+    </div>
+    <div class="audio-buttons">
+      <button class="audio-btn" onclick="speakLetterName(currentModalLetter)"><i class="fas fa-volume-high"></i> Название</button>
+      <button class="audio-btn secondary" onclick="speakWord(currentModalLetter)"><i class="fas fa-volume-high"></i> Слово</button>
+      <button class="audio-btn tertiary" onclick="speakLetterSound(currentModalLetter)"><i class="fas fa-volume-high"></i> Звук</button>
+    </div>
+    <div class="modal-tip" id="modalTip"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ====== Данные ====== */
+const alphabet = [
+  {upper:'A',lower:'a',name:'эй',sound:'э',ipa:'æ',word:'Apple',emoji:'🍎',ru:'яблоко',color:'#FF6B35',tip:'Звук [æ] похож на что-то между «э» и «а». Широко открой рот!'},
+  {upper:'B',lower:'b',name:'би',sound:'б',ipa:'b',word:'Ball',emoji:'⚽',ru:'мяч',color:'#EF476F',tip:'Звук [b] — это просто «б», как в русском языке.'},
+  {upper:'C',lower:'c',name:'си',sound:'к/с',ipa:'k',word:'Cat',emoji:'🐱',ru:'кот',color:'#FFD23F',tip:'Буква C читается как «к» перед a, o, u и как «с» перед e, i, y.'},
+  {upper:'D',lower:'d',name:'ди',sound:'д',ipa:'d',word:'Dog',emoji:'🐶',ru:'собака',color:'#06D6A0',tip:'Звук [d] — это «д». Произносится коротко и звонко.'},
+  {upper:'E',lower:'e',name:'и',sound:'э',ipa:'e',word:'Egg',emoji:'🥚',ru:'яйцо',color:'#4CC9F0',tip:'Название буквы — «и», но чаще всего звук [e] как в слове «egg».'},
+  {upper:'F',lower:'f',name:'эф',sound:'ф',ipa:'f',word:'Fish',emoji:'🐟',ru:'рыба',color:'#B388EB',tip:'Звук [f] — это «ф». При произношении верхние зубы касаются нижней губы.'},
+  {upper:'G',lower:'g',name:'джи',sound:'г/дж',ipa:'g',word:'Goat',emoji:'🐐',ru:'коза',color:'#FF6B35',tip:'G читается как «г» перед a, o, u и как «дж» перед e, i, y.'},
+  {upper:'H',lower:'h',name:'эйч',sound:'х',ipa:'h',word:'Hat',emoji:'🎩',ru:'шляпа',color:'#EF476F',tip:'Звук [h] — лёгкий выдох, как будто согреваешь руки.'},
+  {upper:'I',lower:'i',name:'ай',sound:'и',ipa:'ɪ',word:'Ice cream',emoji:'🍦',ru:'мороженое',color:'#FFD23F',tip:'Название буквы — «ай». Краткий звук [ɪ] как в «sit».'},
+  {upper:'J',lower:'j',name:'джей',sound:'дж',ipa:'dʒ',word:'Juice',emoji:'🧃',ru:'сок',color:'#06D6A0',tip:'Звук [dʒ] — это «дж» как в слове «джем».'},
+  {upper:'K',lower:'k',name:'кей',sound:'к',ipa:'k',word:'Kite',emoji:'🪁',ru:'воздушный змей',color:'#4CC9F0',tip:'Звук [k] — это «к». Буква K обычно не читается после C (ck).'},
+  {upper:'L',lower:'l',name:'эл',sound:'л',ipa:'l',word:'Lion',emoji:'🦁',ru:'лев',color:'#B388EB',tip:'Звук [l] — это «л». Кончик языка у верхних зубов.'},
+  {upper:'M',lower:'m',name:'эм',sound:'м',ipa:'m',word:'Monkey',emoji:'🐵',ru:'обезьяна',color:'#FF6B35',tip:'Звук [m] — это «м». Губы сомкнуты, звук идёт через нос.'},
+  {upper:'N',lower:'n',name:'эн',sound:'н',ipa:'n',word:'Nose',emoji:'👃',ru:'нос',color:'#EF476F',tip:'Звук [n] — это «н». Кончик языка у верхних зубов.'},
+  {upper:'O',lower:'o',name:'оу',sound:'о',ipa:'ɒ',word:'Orange',emoji:'🍊',ru:'апельсин',color:'#FFD23F',tip:'Звук [ɒ] — это короткое круглое «о».'},
+  {upper:'P',lower:'p',name:'пи',sound:'п',ipa:'p',word:'Penguin',emoji:'🐧',ru:'пингвин',color:'#06D6A0',tip:'Звук [p] — это «п». Произносится с лёгким выдохом.'},
+  {upper:'Q',lower:'q',name:'кью',sound:'к',ipa:'kw',word:'Queen',emoji:'👑',ru:'королева',color:'#4CC9F0',tip:'Q почти всегда стоит вместе с U и читается как «кв».'},
+  {upper:'R',lower:'r',name:'ар',sound:'р',ipa:'r',word:'Rabbit',emoji:'🐰',ru:'кролик',color:'#B388EB',tip:'Звук [r] — это «р», но более мягкое, без сильного вибрирования.'},
+  {upper:'S',lower:'s',name:'эс',sound:'с',ipa:'s',word:'Sun',emoji:'☀️',ru:'солнце',color:'#FF6B35',tip:'Звук [s] — это «с». Как змея шипит: сссс-с-с-с...'},
+  {upper:'T',lower:'t',name:'ти',sound:'т',ipa:'t',word:'Tiger',emoji:'🐯',ru:'тигр',color:'#EF476F',tip:'Звук [t] — это «т». Кончик языка за верхними зубами.'},
+  {upper:'U',lower:'u',name:'ю',sound:'а',ipa:'ʌ',word:'Umbrella',emoji:'☂️',ru:'зонт',color:'#FFD23F',tip:'Название буквы — «ю». Краткий звук [ʌ] как в «cup».'},
+  {upper:'V',lower:'v',name:'ви',sound:'в',ipa:'v',word:'Van',emoji:'🚐',ru:'фургон',color:'#06D6A0',tip:'Звук [v] — это «в». Верхние зубы касаются нижней губы.'},
+  {upper:'W',lower:'w',name:'дабл-ю',sound:'в/у',ipa:'w',word:'Wolf',emoji:'🐺',ru:'волк',color:'#4CC9F0',tip:'Звук [w] — губы сложены трубочкой, как для «у», но слышится «в».'},
+  {upper:'X',lower:'x',name:'экс',sound:'кс',ipa:'ks',word:'Xylophone',emoji:'🎹',ru:'ксилофон',color:'#B388EB',tip:'Звук [ks] — это «кс». Двойной звук: «к» + «с».'},
+  {upper:'Y',lower:'y',name:'уай',sound:'й',ipa:'j',word:'Yacht',emoji:'⛵',ru:'яхта',color:'#FF6B35',tip:'Y в начале слова читается как «й», в конце — как «ай».'},
+  {upper:'Z',lower:'z',name:'зед',sound:'з',ipa:'z',word:'Zebra',emoji:'🦓',ru:'зебра',color:'#EF476F',tip:'Звук [z] — это «з». Жужжит как пчела: ззз-з-з...'}
+];
+
+const combos = [
+  {letters:'sh',sound:'ш',word:'Sheep',emoji:'🐑',ru:'овца'},
+  {letters:'ch',sound:'ч',word:'Chair',emoji:'🪑',ru:'стул'},
+  {letters:'th',sound:'с/з',word:'Thumb',emoji:'👍',ru:'палец'},
+  {letters:'ph',sound:'ф',word:'Phone',emoji:'📞',ru:'телефон'},
+  {letters:'ck',sound:'к',word:'Duck',emoji:'🦆',ru:'утка'},
+  {letters:'oo',sound:'у',word:'Moon',emoji:'🌙',ru:'луна'},
+  {letters:'ee',sound:'и',word:'Bee',emoji:'🐝',ru:'пчела'},
+  {letters:'ng',sound:'нг',word:'King',emoji:'🤴',ru:'король'}
+];
+
+/* ====== Состояние ====== */
+const state = {
+  learned: new Set(),
+  stars: 0,
+  games: 0,
+  memory: {level: 'easy', moves: 0, pairs: 0, total: 3, locked: false, first: null, second: null},
+  sound: {mode: 'name', current: null, options: [], correct: 0, wrong: 0, answered: false},
+  achievements: new Set()
+};
+
+let currentModalLetter = null;
+let currentTraceLetter = 'A';
+
+/* ====== Озвучка ====== */
+let enVoice = null;
+function loadVoices() {
+  const voices = speechSynthesis.getVoices();
+  enVoice = voices.find(v => v.lang === 'en-US') || voices.find(v => v.lang.startsWith('en')) || voices[0] || null;
+}
+if ('speechSynthesis' in window) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function speak(text, rate = 0.85) {
+  if (!('speechSynthesis' in window)) {
+    showToast('Звук недоступен в этом браузере', 'error');
+    return;
+  }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = rate;
+  if (enVoice) u.voice = enVoice;
+  speechSynthesis.speak(u);
+}
+
+function speakLetter(letter) {
+  const data = alphabet.find(l => l.upper === letter);
+  if (data) speak(data.word, 0.85);
+}
+
+function speakLetterName(letter) {
+  speak(letter.toLowerCase(), 0.7);
+}
+
+function speakLetterSound(letter) {
+  const data = alphabet.find(l => l.upper === letter);
+  if (data) speak(data.sound.startsWith('[') ? data.word : data.word, 0.6);
+}
+
+function speakWord(letter) {
+  speakLetter(letter);
+}
+
+/* ====== Навигация ====== */
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === tab));
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  
+  if (tab === 'progress') renderProgress();
+  if (tab === 'trace' && !traceInitialized) initTrace();
+  if (tab === 'sound' && !state.sound.current) generateSoundQuestion();
+}
+
+document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => switchTab(b.dataset.tab)));
+
+/* ====== Алфавит ====== */
+function renderAlphabet() {
+  const grid = document.getElementById('alphabetGrid');
+  grid.innerHTML = alphabet.map(l => `
+    <div class="letter-card ${state.learned.has(l.upper) ? 'learned' : ''}" 
+         style="--card-color: ${l.color}" 
+         data-letter="${l.upper}" onclick="openLetter('${l.upper}')">
+      <div class="letter-big">${l.upper}${l.lower}</div>
+      <div class="letter-name">читается: ${l.name}</div>
+      <div class="letter-example">${l.emoji}</div>
+      <div class="letter-example-word">${l.word}</div>
+    </div>
+  `).join('');
+}
+
+function openLetter(letter) {
+  const data = alphabet.find(l => l.upper === letter);
+  if (!data) return;
+  currentModalLetter = letter;
+  
+  document.querySelector('.modal').style.setProperty('--modal-color', data.color);
+  document.getElementById('modalLetter').textContent = data.upper + data.lower;
+  document.getElementById('modalLetter').style.color = data.color;
+  document.getElementById('modalName').textContent = data.name;
+  document.getElementById('modalEmoji').textContent = data.emoji;
+  document.getElementById('modalFirstLetter').textContent = data.word.charAt(0);
+  document.getElementById('modalRest').textContent = data.word.slice(1);
+  document.getElementById('modalTranslation').textContent = '— ' + data.ru;
+  document.getElementById('modalTip').innerHTML = `<strong>Звук [${data.ipa}]:</strong> ${data.tip}`;
+  
+  document.getElementById('letterModal').classList.add('active');
+  
+  if (!state.learned.has(letter)) {
+    state.learned.add(letter);
+    state.stars += 1;
+    renderAlphabet();
+    showToast('Звёздочка за букву ' + letter + '!', 'success');
+    setTimeout(() => speakLetterName(letter), 300);
+    checkAchievements();
+  } else {
+    setTimeout(() => speakLetterName(letter), 200);
+  }
+}
+
+function closeModal() {
+  document.getElementById('letterModal').classList.remove('active');
+  speechSynthesis.cancel();
+}
+
+document.getElementById('letterModal').addEventListener('click', (e) => {
+  if (e.target.id === 'letterModal') closeModal();
+});
+
+/* ====== Сочетания букв ====== */
+function renderCombos() {
+  const grid = document.getElementById('combosGrid');
+  grid.innerHTML = combos.map(c => `
+    <div class="combo-card" onclick="speakCombo('${c.letters}')">
+      <div class="combo-letters">${c.letters}</div>
+      <div class="combo-sound">звук: ${c.sound}</div>
+      <div class="combo-example">${c.emoji}</div>
+      <div class="combo-word">${c.word}</div>
+    </div>
+  `).join('');
+}
+
+function speakCombo(letters) {
+  const c = combos.find(x => x.letters === letters);
+  if (c) speak(c.word, 0.8);
+}
+
+/* ====== Песенка алфавита ====== */
+function playAlphabetSong() {
+  let i = 0;
+  const playNext = () => {
+    if (i >= alphabet.length) return;
+    const l = alphabet[i];
+    highlightLetter(l.upper);
+    speakLetterName(l.upper);
+    i++;
+    setTimeout(playNext, 700);
+  };
+  playNext();
+}
+
+function highlightLetter(letter) {
+  const card = document.querySelector(`.letter-card[data-letter="${letter}"]`);
+  if (!card) return;
+  card.style.transform = 'scale(1.15) rotate(-3deg)';
+  card.style.boxShadow = '0 6px 0 var(--dark), 0 12px 30px rgba(255,107,53,0.4)';
+  setTimeout(() => {
+    card.style.transform = '';
+    card.style.boxShadow = '';
+  }, 600);
+}
+
+/* ====== Memory Game ====== */
+const memoryLevels = {
+  easy: {pairs: 3, letters: ['A','B','C']},
+  medium: {pairs: 6, letters: ['A','B','C','D','E','F']},
+  hard: {pairs: 8, letters: ['A','B','C','D','E','F','G','H']}
+};
+
+function renderMemory() {
+  const lvl = state.memory.level;
+  const config = memoryLevels[lvl];
+  state.memory.total = config.pairs;
+  state.memory.moves = 0;
+  state.memory.pairs = 0;
+  state.memory.locked = false;
+  
+  const cards = [];
+  config.letters.forEach(letter => {
+    const data = alphabet.find(l => l.upper === letter);
+    cards.push({type: 'letter', letter, key: letter, display: letter, class: 'letter'});
+    cards.push({type: 'emoji', letter, key: letter, display: data.emoji, class: 'emoji'});
+  });
+  cards.sort(() => Math.random() - 0.5);
+  
+  const grid = document.getElementById('memoryGrid');
+  grid.className = 'memory-grid ' + lvl;
+  grid.innerHTML = cards.map((c, i) => `
+    <div class="memory-card" data-index="${i}" data-letter="${c.letter}" data-key="${c.key}" onclick="flipMemoryCard(this)">
+      <div class="memory-card-inner">
+        <div class="memory-face memory-front"><i class="fas fa-question"></i></div>
+        <div class="memory-face memory-back ${c.class}">${c.display}</div>
+      </div>
+    </div>
+  `).join('');
+  
+  updateMemoryStats();
+}
+
+function flipMemoryCard(card) {
+  if (state.memory.locked) return;
+  if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  
+  card.classList.add('flipped');
+  const letter = card.dataset.letter;
+  const type = card.querySelector('.memory-back').classList.contains('letter') ? 'letter' : 'emoji';
+  
+  if (type === 'letter') {
+    speakLetterName(letter);
+  } else {
+    speakLetter(letter);
+  }
+  
+  if (!state.memory.first) {
+    state.memory.first = card;
+  } else {
+    state.memory.second = card;
+    state.memory.moves++;
+    state.memory.locked = true;
+    
+    if (state.memory.first.dataset.letter === state.memory.second.dataset.letter && 
+        state.memory.first.dataset.index !== state.memory.second.dataset.index) {
+      // Совпадение!
+      setTimeout(() => {
+        state.memory.first.classList.add('matched');
+        state.memory.second.classList.add('matched');
+        state.memory.pairs++;
+        state.stars += 2;
+        const data = alphabet.find(l => l.upper === letter);
+        showToast(`${letter} — это ${data.word}! ${data.emoji}`, 'success');
+        confetti();
+        speak(`${letter}. ${data.word}`, 0.8);
+        resetMemoryTurn();
+        updateMemoryStats();
+        if (state.memory.pairs === state.memory.total) {
+          setTimeout(() => {
+            confetti(60);
+            showToast('Ура! Все пары найдены! +2 звезды!', 'success');
+            state.stars += 3;
+            state.games++;
+            state.learned.add(letter); // последний тоже добавляем
+            checkAchievements();
+            renderAlphabet();
+            updateMemoryStats();
+          }, 800);
+        }
+      }, 500);
+    } else {
+      // Не совпало
+      setTimeout(() => {
+        state.memory.first.classList.add('shake');
+        state.memory.second.classList.add('shake');
+        setTimeout(() => {
+          state.memory.first.classList.remove('flipped', 'shake');
+          state.memory.second.classList.remove('flipped', 'shake');
+          resetMemoryTurn();
+        }, 400);
+      }, 700);
+    }
+  }
+  updateMemoryStats();
+}
+
+function resetMemoryTurn() {
+  state.memory.first = null;
+  state.memory.second = null;
+  state.memory.locked = false;
+}
+
+function updateMemoryStats() {
+  document.getElementById('memoryMoves').textContent = state.memory.moves;
+  document.getElementById('memoryPairs').textContent = state.memory.pairs;
+  document.getElementById('memoryTotal').textContent = state.memory.total;
+  document.getElementById('memoryStars').textContent = state.stars;
+}
+
+document.querySelectorAll('.level-btn[data-level]').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.level-btn[data-level]').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    state.memory.level = b.dataset.level;
+    renderMemory();
+  });
+});
+
+/* ====== Sound Game ====== */
+function generateSoundQuestion() {
+  const correct = alphabet[Math.floor(Math.random() * alphabet.length)];
+  state.sound.current = correct;
+  state.sound.answered = false;
+  
+  // 3 варианта
+  const options = new Set([correct.upper]);
+  while (options.size < 3) {
+    options.add(alphabet[Math.floor(Math.random() * alphabet.length)].upper);
+  }
+  state.sound.options = [...options].sort(() => Math.random() - 0.5);
+  
+  renderChoices();
+  document.getElementById('nextBtn').classList.remove('show');
+  document.getElementById('soundPrompt').textContent = 'Нажми на динамик и послушай!';
+}
+
+function renderChoices() {
+  document.getElementById('choices').innerHTML = state.sound.options.map(letter => {
+    const data = alphabet.find(l => l.upper === letter);
+    return `<div class="choice" data-letter="${letter}" onclick="checkSoundAnswer('${letter}', this)">${letter}</div>`;
+  }).join('');
+}
+
+function playSoundQuestion() {
+  if (!state.sound.current) return;
+  const btn = document.getElementById('playSoundBtn');
+  btn.classList.add('playing');
+  setTimeout(() => btn.classList.remove('playing'), 1500);
+  
+  if (state.sound.mode === 'name') {
+    speakLetterName(state.sound.current.upper);
+    document.getElementById('soundPrompt').textContent = 'Какую букву ты услышал?';
+  } else {
+    speakWord(state.sound.current.upper);
+    document.getElementById('soundPrompt').textContent = 'С какой буквы начинается слово?';
+  }
+}
+
+function checkSoundAnswer(letter, el) {
+  if (state.sound.answered) return;
+  state.sound.answered = true;
+  
+  const correct = state.sound.current.upper;
+  if (letter === correct) {
+    el.classList.add('correct');
+    state.sound.correct++;
+    state.stars += 1;
+    confetti(20);
+    showToast('Молодец! Правильно!', 'success');
+    setTimeout(() => speak(`${correct}. ${state.sound.current.word}`, 0.8), 400);
+  } else {
+    el.classList.add('wrong');
+    state.sound.wrong++;
+    // показать правильную
+    document.querySelectorAll('.choice').forEach(c => {
+      if (c.dataset.letter === correct) c.classList.add('correct');
+    });
+    showToast('Ой! Правильный ответ подсвечен', 'error');
+  }
+  
+  document.getElementById('soundCorrect').textContent = state.sound.correct;
+  document.getElementById('soundWrong').textContent = state.sound.wrong;
+  document.getElementById('soundStars').textContent = state.stars;
+  document.getElementById('nextBtn').classList.add('show');
+  checkAchievements();
+}
+
+function nextSoundQuestion() {
+  generateSoundQuestion();
+}
+
+document.querySelectorAll('.level-btn[data-slevel]').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.level-btn[data-slevel]').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    state.sound.mode = b.dataset.slevel;
+    generateSoundQuestion();
+  });
+});
+
+/* ====== Письмо ====== */
+let traceInitialized = false;
+let traceCtx = null;
+let traceCanvas = null;
+let isDrawing = false;
+
+function initTrace() {
+  traceInitialized = true;
+  traceCanvas = document.getElementById('traceCanvas');
+  traceCtx = traceCanvas.getContext('2d');
+  
+  // Сделать canvas responsive
+  resizeTraceCanvas();
+  window.addEventListener('resize', resizeTraceCanvas);
+  
+  // Кнопки букв
+  document.getElementById('traceLetters').innerHTML = alphabet.map(l => 
+    `<button class="trace-letter-btn ${l.upper === currentTraceLetter ? 'active' : ''}" data-letter="${l.upper}" onclick="setTraceLetter('${l.upper}')">${l.upper}</button>`
+  ).join('');
+  
+  drawTraceGuide();
+  
+  // События рисования
+  traceCanvas.addEventListener('pointerdown', startDraw);
+  traceCanvas.addEventListener('pointermove', draw);
+  traceCanvas.addEventListener('pointerup', stopDraw);
+  traceCanvas.addEventListener('pointerleave', stopDraw);
+}
+
+function resizeTraceCanvas() {
+  if (!traceCanvas) return;
+  const rect = traceCanvas.getBoundingClientRect();
+  const size = Math.min(rect.width, 500);
+  traceCanvas.width = size;
+  traceCanvas.height = size;
+  drawTraceGuide();
+}
+
+function setTraceLetter(letter) {
+  currentTraceLetter = letter;
+  document.querySelectorAll('.trace-letter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.letter === letter);
+  });
+  clearTrace();
+  speakLetterName(letter);
+}
+
+function drawTraceGuide() {
+  if (!traceCtx) return;
+  const size = traceCanvas.width;
+  traceCtx.clearRect(0, 0, size, size);
+  
+  // Контур буквы
+  traceCtx.save();
+  traceCtx.font = `bold ${size * 0.75}px "Nunito", sans-serif`;
+  traceCtx.textAlign = 'center';
+  traceCtx.textBaseline = 'middle';
+  traceCtx.fillStyle = 'rgba(255, 107, 53, 0.15)';
+  traceCtx.fillText(currentTraceLetter, size / 2, size / 2);
+  
+  // Контур
+  traceCtx.strokeStyle = 'rgba(255, 107, 53, 0.35)';
+  traceCtx.lineWidth = 3;
+  traceCtx.strokeText(currentTraceLetter, size / 2, size / 2);
+  traceCtx.restore();
+}
+
+function getPos(e) {
+  const rect = traceCanvas.getBoundingClientRect();
+  const x = (e.clientX - rect.left) * (traceCanvas.width / rect.width);
+  const y = (e.clientY - rect.top) * (traceCanvas.height / rect.height);
+  return {x, y};
+}
+
+let lastPos = null;
+function startDraw(e) {
+  e.preventDefault();
+  isDrawing = true;
+  lastPos = getPos(e);
+  drawDot(lastPos);
+}
+
+function draw(e) {
+  if (!isDrawing) return;
+  e.preventDefault();
+  const pos = getPos(e);
+  traceCtx.strokeStyle = '#2D1B26';
+  traceCtx.lineWidth = 14;
+  traceCtx.lineCap = 'round';
+  traceCtx.lineJoin = 'round';
+  traceCtx.beginPath();
+  traceCtx.moveTo(lastPos.x, lastPos.y);
+  traceCtx.lineTo(pos.x, pos.y);
+  traceCtx.stroke();
+  lastPos = pos;
+}
+
+function drawDot(pos) {
+  traceCtx.fillStyle = '#2D1B26';
+  traceCtx.beginPath();
+  traceCtx.arc(pos.x, pos.y, 7, 0, Math.PI * 2);
+  traceCtx.fill();
+}
+
+function stopDraw() {
+  isDrawing = false;
+  lastPos = null;
+}
+
+function clearTrace() {
+  drawTraceGuide();
+}
+
+/* ====== Прогресс ====== */
+function renderProgress() {
+  document.getElementById('lettersLearnedCount').textContent = state.learned.size;
+  document.getElementById('totalStars').textContent = state.stars;
+  document.getElementById('gamesPlayed').textContent = state.games;
+  document.getElementById('lettersBar').style.width = (state.learned.size / 26 * 100) + '%';
+  
+  // Звёзды за буквы
+  document.getElementById('starsGrid').innerHTML = alphabet.map(l => 
+    `<div class="star-slot ${state.learned.has(l.upper) ? 'earned' : ''}" title="${l.upper} — ${l.word}">
+      ${state.learned.has(l.upper) ? '⭐' : l.upper}
+    </div>`
+  ).join('');
+  
+  // Достижения
+  const achievements = [
+    {id: 'first_letter', icon: '🌱', title: 'Первая буква', desc: 'Открой первую букву'},
+    {id: 'five_letters', icon: '📚', title: 'Пять букв', desc: 'Выучи 5 букв'},
+    {id: 'ten_letters', icon: '🎓', title: 'Десять букв', desc: 'Выучи 10 букв'},
+    {id: 'first_match', icon: '🎯', title: 'Первая пара', desc: 'Найди пару в Memory'},
+    {id: 'sound_master', icon: '👂', title: 'Слухач', desc: '5 правильных в игре звуков'},
+    {id: 'memory_easy', icon: '🧩', title: 'Лёгкий Memory', desc: 'Пройди лёгкий уровень'},
+    {id: 'memory_hard', icon: '🏆', title: 'Чемпион Memory', desc: 'Пройди сложный уровень'},
+    {id: 'all_letters', icon: '👑', title: 'Король алфавита', desc: 'Выучи все 26 букв'}
+  ];
+  
+  document.getElementById('achievements').innerHTML = achievements.map(a => 
+    `<div class="achievement ${state.achievements.has(a.id) ? 'unlocked' : ''}">
+      <div class="achievement-icon">${a.icon}</div>
+      <div class="achievement-title">${a.title}</div>
+      <div class="achievement-desc">${a.desc}</div>
+    </div>`
+  ).join('');
+}
+
+function checkAchievements() {
+  const check = (id, cond) => {
+    if (cond && !state.achievements.has(id)) {
+      state.achievements.add(id);
+      showToast('Достижение разблокировано!', 'success');
+      confetti(30);
+    }
+  };
+  check('first_letter', state.learned.size >= 1);
+  check('five_letters', state.learned.size >= 5);
+  check('ten_letters', state.learned.size >= 10);
+  check('first_match', state.memory.pairs >= 1);
+  check('sound_master', state.sound.correct >= 5);
+  check('memory_easy', state.memory.pairs === state.memory.total && state.memory.level === 'easy');
+  check('memory_hard', state.memory.pairs === state.memory.total && state.memory.level === 'hard');
+  check('all_letters', state.learned.size === 26);
+}
+
+/* ====== Toast ====== */
+let toastTimer;
+function showToast(msg, type = '') {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+/* ====== Конфетти ====== */
+function confetti(amount = 30) {
+  const colors = ['#FF6B35', '#EF476F', '#FFD23F', '#06D6A0', '#4CC9F0', '#B388EB'];
+  for (let i = 0; i < amount; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDelay = Math.random() * 0.4 + 's';
+    c.style.animationDuration = (2 + Math.random() * 2) + 's';
+    c.style.width = (8 + Math.random() * 8) + 'px';
+    c.style.height = c.style.width;
+    if (Math.random() > 0.5) c.style.borderRadius = '50%';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4500);
+  }
+}
+
+/* ====== Старт ====== */
+renderAlphabet();
+renderCombos();
+renderMemory();
+generateSoundQuestion();
+
+// Если tab query в URL
+const urlTab = new URLSearchParams(location.search).get('tab');
+if (urlTab) switchTab(urlTab);
+</script>
+</body>
+</html>
