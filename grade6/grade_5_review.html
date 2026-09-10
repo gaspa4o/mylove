@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Английский с удовольствием — Рабочий лист</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f3ea;
+    --paper: #fffdf7;
+    --ink: #2d3142;
+    --muted: #6b6f7b;
+    --line: #e6dfd0;
+    --accent: #ff7a59;
+    --accent-soft: #ffe4dc;
+    --teal: #4ecdc4;
+    --teal-soft: #d8f4f1;
+    --good: #6bbf59;
+    --good-soft: #e1f0d8;
+    --bad: #e85d75;
+    --gold: #f4b942;
+    --purple: #9b7ede;
+    --purple-soft: #ece4f8;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    background-image: 
+      linear-gradient(rgba(214, 207, 188, 0.35) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(214, 207, 188, 0.35) 1px, transparent 1px);
+    background-size: 26px 26px;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 20px 16px 60px;
+  }
+  
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  
+  header { text-align: center; margin-bottom: 28px; padding: 24px 16px; }
+  
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--paper); border: 2px solid var(--line);
+    border-radius: 999px; padding: 6px 14px;
+    font-size: 13px; font-weight: 700; color: var(--muted);
+    margin-bottom: 14px;
+  }
+  
+  .badge .dot { width: 8px; height: 8px; background: var(--good); border-radius: 50%; }
+  
+  h1 {
+    font-family: 'Fredoka', sans-serif; font-weight: 700;
+    font-size: clamp(28px, 5vw, 44px); line-height: 1.1;
+    color: var(--ink); letter-spacing: -0.5px;
+  }
+  h1 .accent { color: var(--accent); }
+  
+  .subtitle {
+    margin-top: 10px; color: var(--muted); font-size: 15px;
+    max-width: 580px; margin-left: auto; margin-right: auto;
+  }
+  
+  .stars-bar {
+    margin-top: 18px; display: inline-flex; align-items: center; gap: 10px;
+    background: var(--paper); border: 2px solid var(--line);
+    border-radius: 14px; padding: 8px 16px; box-shadow: 0 2px 0 var(--line);
+  }
+  
+  .stars-bar .star-count {
+    font-family: 'Fredoka', sans-serif; font-weight: 700;
+    font-size: 22px; color: var(--gold); transition: transform 0.2s;
+  }
+  
+  .stars-bar .label { font-size: 13px; color: var(--muted); font-weight: 700; }
+  
+  .folders {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px; margin-bottom: 24px;
+  }
+  
+  .folder {
+    background: var(--paper); border: 2px solid var(--line);
+    border-radius: 14px; padding: 14px 12px; cursor: pointer;
+    transition: all 0.18s ease; position: relative; text-align: left;
+    font-family: inherit; box-shadow: 0 2px 0 var(--line);
+    display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  }
+  
+  .folder:hover { transform: translateY(-2px); box-shadow: 0 4px 0 var(--line); }
+  
+  .folder.active {
+    background: var(--c-soft, var(--accent-soft));
+    border-color: var(--c, var(--accent));
+    box-shadow: 0 4px 0 var(--c, var(--accent));
+  }
+  
+  .folder.done::after {
+    content: '✓'; position: absolute; top: 8px; right: 10px;
+    background: var(--good); color: white; width: 22px; height: 22px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+  }
+  
+  .folder .icon { font-size: 26px; line-height: 1; }
+  .folder .name { font-weight: 800; font-size: 15px; color: var(--ink); }
+  .folder .name-en { font-size: 12px; color: var(--muted); font-weight: 600; }
+  
+  .section-card {
+    background: var(--paper); border: 2px solid var(--line);
+    border-radius: 18px; padding: 24px 22px; box-shadow: 0 3px 0 var(--line);
+    margin-bottom: 20px;
+  }
+  
+  .section-head {
+    display: flex; align-items: center; gap: 14px;
+    padding-bottom: 16px; margin-bottom: 20px; border-bottom: 2px dashed var(--line);
+  }
+  
+  .section-head .big-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--c-soft, var(--accent-soft));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; flex-shrink: 0;
+  }
+  
+  .section-head h2 { font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+  .section-head h2 small { display: block; font-family: 'Nunito', sans-serif; font-size: 13px; color: var(--muted); font-weight: 700; margin-top: 2px; }
+  
+  .section-intro {
+    background: var(--c-soft, var(--accent-soft));
+    border-left: 4px solid var(--c, var(--accent));
+    padding: 12px 16px; border-radius: 0 10px 10px 0;
+    margin-bottom: 22px; font-size: 14px; color: var(--ink); font-weight: 600;
+  }
+  
+  .exercise { margin-bottom: 28px; }
+  .exercise:last-child { margin-bottom: 0; }
+  
+  .ex-title { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  
+  .ex-num {
+    width: 28px; height: 28px; background: var(--c, var(--accent));
+    color: white; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0;
+  }
+  
+  .ex-title h3 { font-size: 16px; font-weight: 800; color: var(--ink); }
+  
+  .ex-instruction {
+    font-size: 13px; color: var(--muted); font-weight: 600;
+    margin-bottom: 14px; margin-left: 38px;
+  }
+  
+  /* Match grids */
+  .match-grid, .num-match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-left: 38px; }
+  .match-col { display: flex; flex-direction: column; gap: 8px; }
+  
+  .match-card {
+    background: white; border: 2px solid var(--line); border-radius: 10px;
+    padding: 12px 14px; cursor: pointer; transition: all 0.15s;
+    font-weight: 700; font-size: 15px; text-align: center; user-select: none;
+  }
+  
+  .match-card:hover:not(.matched):not(.locked) { border-color: var(--c, var(--accent)); transform: translateY(-1px); }
+  .match-card.selected { background: var(--c-soft, var(--accent-soft)); border-color: var(--c, var(--accent)); transform: scale(0.98); }
+  .match-card.matched { background: var(--good-soft); border-color: var(--good); color: var(--good); cursor: default; pointer-events: none; }
+  .match-card.wrong { background: #fce7eb; border-color: var(--bad); animation: shake 0.4s; }
+  
+  /* Choice */
+  .choice-question {
+    margin-left: 38px; margin-bottom: 16px; padding: 14px 16px;
+    background: #faf8f1; border-radius: 10px; border: 2px solid var(--line);
+  }
+  
+  .choice-q-text { font-weight: 700; margin-bottom: 10px; font-size: 15px; }
+  .choice-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  
+  .choice-btn {
+    background: white; border: 2px solid var(--line); border-radius: 10px;
+    padding: 8px 14px; cursor: pointer; font-family: inherit; font-weight: 700;
+    font-size: 14px; color: var(--ink); transition: all 0.15s;
+  }
+  
+  .choice-btn:hover:not(.correct):not(.wrong) { border-color: var(--c, var(--accent)); background: var(--c-soft, var(--accent-soft)); }
+  .choice-btn.correct { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+  .choice-btn.wrong { background: #fce7eb; border-color: var(--bad); color: var(--bad); }
+  
+  /* Fill */
+  .fill-sentence {
+    margin-left: 38px; margin-bottom: 12px; padding: 12px 14px;
+    background: #faf8f1; border-radius: 10px; border: 2px solid var(--line);
+    font-size: 16px; line-height: 1.8;
+  }
+  
+  .fill-input {
+    display: inline-block; min-width: 90px; padding: 4px 10px;
+    border: none; border-bottom: 2px solid var(--c, var(--accent));
+    background: transparent; font-family: inherit; font-size: 16px;
+    font-weight: 700; color: var(--ink); outline: none; margin: 0 4px;
+  }
+  
+  .fill-input:focus { background: var(--c-soft, var(--accent-soft)); border-radius: 4px; }
+  .fill-input.correct { color: var(--good); border-bottom-color: var(--good); }
+  .fill-input.wrong { color: var(--bad); border-bottom-color: var(--bad); text-decoration: line-through; }
+  
+  .check-btn {
+    margin-left: 38px; margin-top: 6px; background: var(--c, var(--accent));
+    color: white; border: none; border-radius: 10px; padding: 10px 18px;
+    font-family: inherit; font-weight: 800; font-size: 14px; cursor: pointer;
+    transition: transform 0.15s; box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+  }
+  
+  .check-btn:hover { transform: translateY(-1px); }
+  .check-btn:active { transform: translateY(1px); box-shadow: none; }
+  
+  /* Order */
+  .order-target {
+    margin-left: 38px; min-height: 50px; padding: 12px;
+    background: #faf8f1; border: 2px dashed var(--line);
+    border-radius: 10px; margin-bottom: 10px;
+    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  }
+  
+  .order-target:empty::before { content: 'Нажимай на слова ниже, чтобы составить предложение'; color: var(--muted); font-size: 13px; font-weight: 600; }
+  
+  .word-chip {
+    background: var(--c-soft, var(--accent-soft)); border: 2px solid var(--c, var(--accent));
+    border-radius: 8px; padding: 6px 12px; cursor: pointer;
+    font-weight: 700; font-size: 14px; user-select: none; transition: transform 0.1s;
+  }
+  
+  .word-chip:hover { transform: translateY(-2px); }
+  .word-chip.used { opacity: 0.35; pointer-events: none; }
+  
+  .word-bank { margin-left: 38px; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  
+  /* Feedback */
+  .feedback {
+    margin-left: 38px; margin-top: 10px; padding: 10px 14px;
+    border-radius: 10px; font-size: 13px; font-weight: 700; display: none;
+  }
+  
+  .feedback.show { display: block; animation: pop 0.3s; }
+  .feedback.good { background: var(--good-soft); color: var(--good); }
+  .feedback.try { background: #fff4d6; color: #b8860b; }
+  
+  .section-complete {
+    display: none; margin-top: 18px; padding: 16px; background: var(--good-soft);
+    border: 2px solid var(--good); border-radius: 12px; text-align: center;
+    font-weight: 800; color: var(--good); font-size: 16px;
+  }
+  .section-complete.show { display: block; animation: pop 0.4s; }
+  
+  /* Color circles */
+  .color-grid {
+    margin-left: 38px; display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 12px;
+  }
+  
+  .color-circle {
+    aspect-ratio: 1; border-radius: 50%; border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--line); cursor: pointer; transition: transform 0.15s;
+  }
+  .color-circle:hover { transform: scale(1.08); }
+  .color-circle.correct { box-shadow: 0 0 0 3px var(--good); animation: pop 0.3s; pointer-events: none; }
+  .color-circle.wrong { animation: shake 0.4s; }
+  
+  .color-prompt {
+    margin-left: 38px; margin-bottom: 14px; padding: 12px 16px;
+    background: var(--c-soft, var(--accent-soft)); border-radius: 10px;
+    font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  
+  /* Memory Game */
+  .memory-grid {
+    margin-left: 38px; display: grid;
+    grid-template-columns: repeat(4, 1fr); gap: 10px;
+  }
+  
+  .mem-card {
+    aspect-ratio: 3/4; position: relative; cursor: pointer;
+    transform-style: preserve-3d; transition: transform 0.4s;
+  }
+  
+  .mem-card.flipped { transform: rotateY(180deg); }
+  
+  .mem-face {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; text-align: center; padding: 4px;
+  }
+  
+  .mem-front {
+    background: var(--c, var(--accent)); color: white;
+    font-size: 24px;
+  }
+  
+  .mem-back {
+    background: white; border: 2px solid var(--line); color: var(--ink);
+    transform: rotateY(180deg);
+  }
+  
+  .mem-card.matched .mem-back {
+    background: var(--good-soft); border-color: var(--good); color: var(--good);
+    pointer-events: none;
+  }
+  
+  /* Open Question (Checkboxes) */
+  .select-grid {
+    margin-left: 38px; display: grid; gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  
+  .select-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px; background: white;
+    border: 2px solid var(--line); border-radius: 10px; cursor: pointer;
+    font-weight: 700; transition: all 0.15s;
+  }
+  
+  .select-item:hover { border-color: var(--c, var(--accent)); }
+  
+  .select-item.checked {
+    background: var(--c-soft, var(--accent-soft));
+    border-color: var(--c, var(--accent));
+  }
+  
+  .select-item .checkbox {
+    width: 22px; height: 22px; border: 2px solid var(--line);
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    color: var(--c, var(--accent)); font-weight: 800; font-size: 14px; flex-shrink: 0;
+  }
+  
+  .select-item.checked .checkbox { background: var(--c, var(--accent)); border-color: var(--c, var(--accent)); color: white; }
+  
+  @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+  @keyframes pop { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  
+  footer { text-align: center; margin-top: 40px; padding: 20px; color: var(--muted); font-size: 13px; }
+  
+  @media (max-width: 600px) {
+    .match-grid, .num-match-grid, .memory-grid { grid-template-columns: 1fr 1fr; }
+    .ex-instruction, .feedback, .check-btn, .match-grid, .num-match-grid, .choice-question, .fill-sentence, .order-target, .word-bank, .color-prompt, .color-grid, .memory-grid, .select-grid { margin-left: 0; }
+    .ex-instruction { margin-left: 38px; }
+    .section-card { padding: 18px 14px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="badge"><span class="dot"></span> 1-е занятие · Повторение 5 класса</div>
+      <h1>Английский <span class="accent">с удовольствием</span></h1>
+      <p class="subtitle">Интерактивный рабочий лист. Открывай папки по очереди, выполняй задания и собирай звёздочки. Удачи!</p>
+      <div class="stars-bar">
+        <span style="font-size:22px">⭐</span>
+        <span class="star-count" id="starCount">0</span>
+        <span class="label">звёздочек собрано</span>
+      </div>
+    </header>
+    
+    <nav class="folders" id="folders"></nav>
+    <main id="content"></main>
+    
+    <footer>Сделано с заботой о шестикласснике 🌱 · Занимайся в своём темпе</footer>
+  </div>
+
+<script>
+const sectionsData = [
+  {
+    id: "greetings", title: "Приветствия", titleEn: "Greetings", icon: "👋",
+    color: "#ff7a59", colorSoft: "#ffe4dc",
+    intro: "Повторим, как здороваться, прощаться и вежливо общаться.",
+    exercises: [
+      {
+        type: "match",
+        instruction: "Соедини английскую фразу с её переводом на русский.",
+        pairs: [
+          { en: "Hello!", ru: "Привет!" },
+          { en: "Good morning", ru: "Доброе утро" },
+          { en: "Good afternoon", ru: "Добрый день" },
+          { en: "Good evening", ru: "Добрый вечер" },
+          { en: "Goodbye", ru: "До свидания" },
+          { en: "How are you?", ru: "Как дела?" },
+          { en: "Thank you", ru: "Спасибо" },
+          { en: "Nice to meet you", ru: "Приятно познакомиться" }
+        ]
+      },
+      {
+        type: "choice",
+        instruction: "Choose the right phrase for the situation. (Выбери подходящую фразу)",
+        questions: [
+          { q: "You meet your teacher in the morning. What do you say?", options: ["Good night", "Good morning", "Goodbye"], correct: 1 },
+          { q: "You meet a new classmate. What do you say?", options: ["Nice to meet you", "Thank you", "How are you?"], correct: 0 },
+          { q: "Your friend helps you. What do you say?", options: ["Goodbye", "Thank you", "Hello"], correct: 1 }
+        ]
+      }
+    ]
+  },
+  {
+    id: "colors", title: "Цвета", titleEn: "Colours", icon: "🎨",
+    color: "#9b7ede", colorSoft: "#ece4f8",
+    intro: "Вспомним основные цвета на английском. А потом сыграем в Memory!",
+    exercises: [
+      {
+        type: "colorPick",
+        instruction: "Нажми на кружок нужного цвета.",
+        prompts: [
+          { word: "red", hex: "#e74c3c" },
+          { word: "blue", hex: "#3498db" },
+          { word: "green", hex: "#2ecc71" },
+          { word: "yellow", hex: "#f1c40f" },
+          { word: "purple", hex: "#9b59b6" },
+          { word: "orange", hex: "#e67e22" }
+        ]
+      },
+      {
+        type: "memory",
+        instruction: "Игра Memory! Найди пары: английское слово и перевод. Кликай по карточкам.",
+        pairs: [
+          { en: "black", ru: "чёрный" },
+          { en: "white", ru: "белый" },
+          { en: "pink", ru: "розовый" },
+          { en: "brown", ru: "коричневый" },
+          { en: "green", ru: "зелёный" },
+          { en: "yellow", ru: "жёлтый" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "numbers", title: "Цифры 1–20", titleEn: "Numbers", icon: "🔢",
+    color: "#4ecdc4", colorSoft: "#d8f4f1",
+    intro: "Повторим числа от 1 до 20 — слово и цифра.",
+    exercises: [
+      {
+        type: "matchNum",
+        instruction: "Соедини цифру (слева) с правильным словом (справа).",
+        pairs: [
+          { num: 1, word: "one" }, { num: 5, word: "five" }, { num: 9, word: "nine" },
+          { num: 12, word: "twelve" }, { num: 15, word: "fifteen" }, { num: 20, word: "twenty" }
+        ]
+      },
+      {
+        type: "choice",
+        instruction: "Solve the math problems in English. (Реши задачки)",
+        questions: [
+          { q: "five + three = ?", options: ["seven", "eight", "nine"], correct: 1 },
+          { q: "ten + six = ?", options: ["sixteen", "fourteen", "fifteen"], correct: 0 },
+          { q: "Which number is 'twelve'?", options: ["20", "12", "2"], correct: 1 }
+        ]
+      }
+    ]
+  },
+  {
+    id: "subjects", title: "Школьные предметы", titleEn: "School subjects", icon: "📚",
+    color: "#f4b942", colorSoft: "#fdf0d4",
+    intro: "Вспомним названия школьных предметов.",
+    exercises: [
+      {
+        type: "match",
+        instruction: "Соедини предмет с переводом.",
+        pairs: [
+          { en: "Maths", ru: "Математика" },
+          { en: "English", ru: "Английский язык" },
+          { en: "History", ru: "История" },
+          { en: "Geography", ru: "География" },
+          { en: "Science", ru: "Окружающий мир" },
+          { en: "Art", ru: "ИЗО" },
+          { en: "Music", ru: "Музыка" },
+          { en: "PE", ru: "Физкультура" }
+        ]
+      },
+      {
+        type: "choice",
+        instruction: "Answer the questions. (Ответь на вопросы по-английски)",
+        questions: [
+          { q: "Where do you draw?", options: ["Art", "Maths", "PE"], correct: 0 },
+          { q: "Where do you sing?", options: ["History", "Music", "English"], correct: 1 },
+          { q: "Where do you study countries?", options: ["Geography", "Art", "Music"], correct: 0 }
+        ]
+      }
+    ]
+  },
+  {
+    id: "family", title: "Члены семьи", titleEn: "Family", icon: "👨‍👩‍👧‍👦",
+    color: "#ff7a59", colorSoft: "#ffe4dc",
+    intro: "Повторим названия членов семьи. А потом поиграем в Memory!",
+    exercises: [
+      {
+        type: "choice",
+        instruction: "Read and choose the correct word. (Прочитай и выбери правильное слово)",
+        questions: [
+          { q: "Your father's mother is your...", options: ["sister", "grandmother", "aunt"], correct: 1 },
+          { q: "Your parents' son is your...", options: ["brother", "uncle", "father"], correct: 0 },
+          { q: "Your mother's sister is your...", options: ["cousin", "aunt", "grandmother"], correct: 1 }
+        ]
+      },
+      {
+        type: "memory",
+        instruction: "Игра Memory! Найди пары: английское слово и перевод.",
+        pairs: [
+          { en: "mother", ru: "мама" },
+          { en: "father", ru: "папа" },
+          { en: "sister", ru: "сестра" },
+          { en: "brother", ru: "брат" },
+          { en: "grandma", ru: "бабушка" },
+          { en: "grandpa", ru: "дедушка" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "tobe", title: "Глагол to be", titleEn: "Verb to be", icon: "✏️",
+    color: "#9b7ede", colorSoft: "#ece4f8",
+    intro: "Глагол to be — это am / is / are. Вспомним, когда какой ставить.",
+    exercises: [
+      {
+        type: "fill",
+        instruction: "Вставь am, is или are.",
+        sentences: [
+          { text: "I ___ a student.", answer: "am" },
+          { text: "She ___ my friend.", answer: "is" },
+          { text: "We ___ happy.", answer: "are" },
+          { text: "He ___ ten years old.", answer: "is" },
+          { text: "They ___ in the park.", answer: "are" },
+          { text: "It ___ a cat.", answer: "is" }
+        ]
+      },
+      {
+        type: "choice",
+        instruction: "Choose the correct option. (Выбери правильный вариант)",
+        questions: [
+          { q: "My name ___ Kate.", options: ["am", "is", "are"], correct: 1 },
+          { q: "You ___ very kind.", options: ["am", "is", "are"], correct: 2 },
+          { q: "The books ___ on the table.", options: ["is", "are", "am"], correct: 1 }
+        ]
+      }
+    ]
+  },
+  {
+    id: "havegot", title: "have got / has got", titleEn: "have got / has got", icon: "🎒",
+    color: "#4ecdc4", colorSoft: "#d8f4f1",
+    intro: "I, you, we, they → have got. He, she, it → has got.",
+    exercises: [
+      {
+        type: "fill",
+        instruction: "Вставь have got или has got.",
+        sentences: [
+          { text: "I ___ a pen.", answer: "have got" },
+          { text: "She ___ a cat.", answer: "has got" },
+          { text: "We ___ a big house.", answer: "have got" },
+          { text: "He ___ a new bike.", answer: "has got" },
+          { text: "They ___ two children.", answer: "have got" },
+          { text: "My sister ___ long hair.", answer: "has got" }
+        ]
+      },
+      {
+        type: "choice",
+        instruction: "Choose the correct option. (Выбери правильный вариант)",
+        questions: [
+          { q: "My brother ___ a blue car.", options: ["have got", "has got", "is got"], correct: 1 },
+          { q: "We ___ a lot of friends.", options: ["has got", "have got", "are got"], correct: 1 },
+          { q: "The dog ___ a long tail.", options: ["have got", "has got", "is got"], correct: 1 }
+        ]
+      }
+    ]
+  },
+  {
+    id: "can", title: "Глагол can", titleEn: "can / can't", icon: "⭐",
+    color: "#f4b942", colorSoft: "#fdf0d4",
+    intro: "Can — уметь, мочь. После can глагол всегда в начальной форме: I can swim.",
+    exercises: [
+      {
+        type: "order",
+        instruction: "Составь предложения из слов.",
+        sentences: [
+          { words: ["I", "can", "swim", "well"], correct: "I can swim well" },
+          { words: ["She", "can", "sing", "songs"], correct: "She can sing songs" },
+          { words: ["We", "can't", "fly"], correct: "We can't fly" },
+          { words: ["He", "can", "play", "football"], correct: "He can play football" }
+        ]
+      },
+      {
+        type: "choice",
+        instruction: "Answer the questions. (Ответь на вопросы)",
+        questions: [
+          { q: "Can a fish swim?", options: ["Yes, it can.", "No, it can't."], correct: 0 },
+          { q: "Can a cat fly?", options: ["Yes, it can.", "No, it can't."], correct: 1 },
+          { q: "Can you ride a bike?", options: ["Yes, I can.", "No, I can't."], correct: 0 }
+        ]
+      }
+    ]
+  },
+  {
+    id: "supplies", title: "Школьные принадлежности", titleEn: "School supplies", icon: "📏",
+    color: "#9b7ede", colorSoft: "#ece4f8",
+    intro: "Бонусный раздел — повторим, что у нас в портфеле.",
+    exercises: [
+      {
+        type: "match",
+        instruction: "Соедини слово с переводом.",
+        pairs: [
+          { en: "pen", ru: "ручка" },
+          { en: "pencil", ru: "карандаш" },
+          { en: "rubber", ru: "ластик" },
+          { en: "ruler", ru: "линейка" },
+          { en: "book", ru: "книга" },
+          { en: "notebook", ru: "тетрадь" },
+          { en: "school bag", ru: "рюкзак" },
+          { en: "pencil case", ru: "пенал" }
+        ]
+      },
+      {
+        type: "choice",
+        instruction: "Choose the correct answer. (Выбери правильный ответ)",
+        questions: [
+          { q: "What do you use to write?", options: ["a rubber", "a pen", "a ruler"], correct: 1 },
+          { q: "What do you use to draw and erase?", options: ["a pen", "a pencil", "a book"], correct: 1 },
+          { q: "Where do you keep your pens and pencils?", options: ["in a pencil case", "in a rubber", "in a ruler"], correct: 0 }
+        ]
+      },
+      {
+        type: "selectDone",
+        instruction: "What do you have in your school bag? Tick the items. (Отметь, что у тебя есть в рюкзаке)",
+        items: ["a pen", "a pencil", "a ruler", "a rubber", "a book", "a notebook", "a pencil case"]
+      }
+    ]
+  },
+  {
+    id: "rooms", title: "Комнаты и мебель", titleEn: "Rooms & furniture", icon: "🏠",
+    color: "#ff7a59", colorSoft: "#ffe4dc",
+    intro: "Бонусный раздел — комнаты в доме и мебель. И немного Memory!",
+    exercises: [
+      {
+        type: "choice",
+        instruction: "Choose the correct answer. (Выбери правильный ответ)",
+        questions: [
+          { q: "Where do you cook?", options: ["in the bedroom", "in the kitchen", "in the bathroom"], correct: 1 },
+          { q: "Where do you sleep?", options: ["on the bed", "on the table", "on the sofa"], correct: 0 },
+          { q: "Where do you take a shower?", options: ["in the living room", "in the bathroom", "in the kitchen"], correct: 1 }
+        ]
+      },
+      {
+        type: "memory",
+        instruction: "Игра Memory! Найди пары: английское слово и перевод.",
+        pairs: [
+          { en: "kitchen", ru: "кухня" },
+          { en: "bedroom", ru: "спальня" },
+          { en: "bathroom", ru: "ванная" },
+          { en: "living room", ru: "гостиная" },
+          { en: "sofa", ru: "диван" },
+          { en: "table", ru: "стол" }
+        ]
+      }
+    ]
+  }
+];
+
+let activeId = sectionsData[0].id;
+const sectionDone = {};
+let totalStars = 0;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function updateStars() { document.getElementById('starCount').textContent = totalStars; }
+function addStars(n) {
+  totalStars += n; updateStars();
+  const el = document.getElementById('starCount');
+  el.style.transform = 'scale(1.3)';
+  setTimeout(() => el.style.transform = 'scale(1)', 200);
+}
+
+function renderFolders() {
+  const nav = document.getElementById('folders');
+  nav.innerHTML = '';
+  sectionsData.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'folder' + (s.id === activeId ? ' active' : '') + (sectionDone[s.id] ? ' done' : '');
+    btn.style.setProperty('--c', s.color);
+    btn.style.setProperty('--c-soft', s.colorSoft);
+    btn.innerHTML = `<span class="icon">${s.icon}</span><span class="name">${s.title}</span><span class="name-en">${s.titleEn}</span>`;
+    btn.onclick = () => {
+      activeId = s.id;
+      renderFolders(); renderSection();
+      window.scrollTo({ top: document.getElementById('content').offsetTop - 20, behavior: 'smooth' });
+    };
+    nav.appendChild(btn);
+  });
+}
+
+function renderSection() {
+  const s = sectionsData.find(x => x.id === activeId);
+  const content = document.getElementById('content');
+  
+  let html = `
+    <div class="section-card" style="--c:${s.color};--c-soft:${s.colorSoft}">
+      <div class="section-head">
+        <div class="big-icon">${s.icon}</div>
+        <h2>${s.title}<small>${s.titleEn}</small></h2>
+      </div>
+      <div class="section-intro">${s.intro}</div>
+      <div id="exercises"></div>
+      <div class="section-complete" id="sectionComplete">🎉 Отличная работа! Раздел пройден. +3 ⭐</div>
+    </div>`;
+  content.innerHTML = html;
+  
+  const exContainer = document.getElementById('exercises');
+  s.exercises.forEach((ex, idx) => {
+    const block = document.createElement('div');
+    block.className = 'exercise';
+    block.dataset.idx = idx;
+    block.style.setProperty('--c', s.color);
+    block.style.setProperty('--c-soft', s.colorSoft);
+    
+    const title = document.createElement('div');
+    title.className = 'ex-title';
+    title.innerHTML = `<div class="ex-num">${idx + 1}</div><h3>${getExTitle(ex.type)}</h3>`;
+    block.appendChild(title);
+    
+    const instr = document.createElement('div');
+    instr.className = 'ex-instruction';
+    instr.textContent = ex.instruction;
+    block.appendChild(instr);
+    
+    renderExercise(ex, block, s);
+    exContainer.appendChild(block);
+  });
+  
+  checkSectionComplete(undefined, s, false); // reset state
+}
+
+function getExTitle(type) {
+  const titles = { match: "Найди пары", matchNum: "Цифра и слово", choice: "Выбери правильный ответ", fill: "Заполни пропуски", order: "Составь предложения", colorPick: "Найди нужный цвет", memory: "Игра Memory", selectDone: "Отметь слова" };
+  return titles[type] || "Задание";
+}
+
+function renderExercise(ex, block, section) {
+  switch (ex.type) {
+    case 'match': renderMatch(ex, block, section); break;
+    case 'matchNum': renderMatchNum(ex, block, section); break;
+    case 'choice': renderChoice(ex, block, section); break;
+    case 'fill': renderFill(ex, block, section); break;
+    case 'order': renderOrder(ex, block, section); break;
+    case 'colorPick': renderColorPick(ex, block, section); break;
+    case 'memory': renderMemory(ex, block, section); break;
+    case 'selectDone': renderSelectDone(ex, block, section); break;
+  }
+}
+
+// 1. MATCH (EN-RU)
+function renderMatch(ex, block) {
+  const grid = document.createElement('div'); grid.className = 'match-grid';
+  const leftCol = document.createElement('div'); leftCol.className = 'match-col';
+  const rightCol = document.createElement('div'); rightCol.className = 'match-col';
+  
+  let selectedLeft = null;
+  let matchedCount = 0;
+  const total = ex.pairs.length;
+  
+  shuffle(ex.pairs).forEach(p => {
+    const card = document.createElement('div'); card.className = 'match-card';
+    card.textContent = p.en; card.dataset.en = p.en;
+    card.onclick = () => {
+      if (card.classList.contains('matched')) return;
+      leftCol.querySelectorAll('.selected').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected'); selectedLeft = card;
+    };
+    leftCol.appendChild(card);
+  });
+  
+  shuffle(ex.pairs).forEach(p => {
+    const card = document.createElement('div'); card.className = 'match-card';
+    card.textContent = p.ru; card.dataset.en = p.en;
+    card.onclick = () => {
+      if (card.classList.contains('matched') || !selectedLeft) return;
+      if (selectedLeft.dataset.en === card.dataset.en) {
+        selectedLeft.classList.add('matched'); card.classList.add('matched');
+        selectedLeft.classList.remove('selected'); selectedLeft = null;
+        matchedCount++;
+        if (matchedCount === total) checkSectionComplete(block, null, true);
+      } else {
+        card.classList.add('wrong'); selectedLeft.classList.add('wrong');
+        setTimeout(() => { card.classList.remove('wrong'); selectedLeft && selectedLeft.classList.remove('wrong', 'selected'); selectedLeft = null; }, 500);
+      }
+    };
+    rightCol.appendChild(card);
+  });
+  
+  grid.appendChild(leftCol); grid.appendChild(rightCol); block.appendChild(grid);
+}
+
+// 2. MATCH NUMBERS (Digit-Word) - FIXED LOGIC
+function renderMatchNum(ex, block) {
+  const grid = document.createElement('div'); grid.className = 'match-grid';
+  const leftCol = document.createElement('div'); leftCol.className = 'match-col';
+  const rightCol = document.createElement('div'); rightCol.className = 'match-col';
+  
+  let selectedLeft = null;
+  let matchedCount = 0;
+  const total = ex.pairs.length;
+  
+  shuffle(ex.pairs).forEach(p => {
+    const card = document.createElement('div'); card.className = 'match-card';
+    card.innerHTML = `<span style="font-family:'Fredoka';font-size:18px;">${p.num}</span>`;
+    card.dataset.word = p.word;
+    card.onclick = () => {
+      if (card.classList.contains('matched')) return;
+      leftCol.querySelectorAll('.selected').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected'); selectedLeft = card;
+    };
+    leftCol.appendChild(card);
+  });
+  
+  shuffle(ex.pairs).forEach(p => {
+    const card = document.createElement('div'); card.className = 'match-card';
+    card.textContent = p.word; card.dataset.word = p.word;
+    card.onclick = () => {
+      if (card.classList.contains('matched') || !selectedLeft) return;
+      if (selectedLeft.dataset.word === card.dataset.word) {
+        selectedLeft.classList.add('matched'); card.classList.add('matched');
+        selectedLeft.classList.remove('selected'); selectedLeft = null;
+        matchedCount++;
+        if (matchedCount === total) checkSectionComplete(block, null, true);
+      } else {
+        card.classList.add('wrong'); selectedLeft.classList.add('wrong');
+        setTimeout(() => { card.classList.remove('wrong'); selectedLeft && selectedLeft.classList.remove('wrong', 'selected'); selectedLeft = null; }, 500);
+      }
+    };
+    rightCol.appendChild(card);
+  });
+  
+  grid.appendChild(leftCol); grid.appendChild(rightCol); block.appendChild(grid);
+}
+
+// 3. CHOICE
+function renderChoice(ex, block) {
+  let answered = 0; const total = ex.questions.length;
+  
+  ex.questions.forEach((q, qi) => {
+    const qEl = document.createElement('div'); qEl.className = 'choice-question';
+    qEl.innerHTML = `<div class="choice-q-text">${qi + 1}. ${q.q}</div>`;
+    const opts = document.createElement('div'); opts.className = 'choice-options';
+    
+    q.options.forEach((opt, oi) => {
+      const btn = document.createElement('button'); btn.className = 'choice-btn';
+      btn.textContent = opt;
+      btn.onclick = () => {
+        if (btn.classList.contains('correct') || btn.classList.contains('wrong')) return;
+        const allBtns = opts.querySelectorAll('.choice-btn');
+        if (oi === q.correct) {
+          btn.classList.add('correct'); answered++;
+          if (answered === total) checkSectionComplete(block, null, true);
+        } else {
+          btn.classList.add('wrong');
+          allBtns[q.correct].classList.add('correct');
+          setTimeout(() => { btn.classList.remove('wrong'); allBtns[q.correct].classList.remove('correct'); }, 1200);
+        }
+      };
+      opts.appendChild(btn);
+    });
+    qEl.appendChild(opts); block.appendChild(qEl);
+  });
+}
+
+// 4. FILL
+function renderFill(ex, block) {
+  ex.sentences.forEach((s, i) => {
+    const el = document.createElement('div'); el.className = 'fill-sentence';
+    const parts = s.text.split('___');
+    el.innerHTML = `<span>${i + 1}.</span> `;
+    parts.forEach((part, idx) => {
+      el.innerHTML += part;
+      if (idx < parts.length - 1) {
+        el.innerHTML += `<input class="fill-input" data-answer="${s.answer.toLowerCase()}" placeholder="..." />`;
+      }
+    });
+    block.appendChild(el);
+  });
+  
+  const btn = document.createElement('button'); btn.className = 'check-btn'; btn.textContent = 'Проверить';
+  btn.onclick = () => {
+    const inputs = block.querySelectorAll('.fill-input'); let correct = 0;
+    inputs.forEach(inp => {
+      const val = inp.value.trim().toLowerCase();
+      inp.classList.remove('correct', 'wrong');
+      if (val === inp.dataset.answer) { inp.classList.add('correct'); correct++; }
+      else { inp.classList.add('wrong'); inp.title = `Правильный ответ: ${inp.dataset.answer}`; }
+    });
+    
+    let fb = block.querySelector('.feedback');
+    if (!fb) { fb = document.createElement('div'); fb.className = 'feedback'; block.appendChild(fb); }
+    fb.classList.remove('good', 'try');
+    if (correct === inputs.length) {
+      fb.className = 'feedback good show'; fb.textContent = `✓ Все верно! ${correct}/${inputs.length}`;
+      checkSectionComplete(block, null, true);
+    } else {
+      fb.className = 'feedback try show'; fb.textContent = `Правильно ${correct} из ${inputs.length}. Попробуй еще раз — посмотри подсказку при наведении.`;
+    }
+  };
+  block.appendChild(btn);
+}
+
+// 5. ORDER
+function renderOrder(ex, block) {
+  let doneCount = 0; const total = ex.sentences.length;
+  
+  ex.sentences.forEach((s, si) => {
+    const target = document.createElement('div'); target.className = 'order-target'; target.dataset.correct = s.correct.toLowerCase();
+    const label = document.createElement('div'); label.className = 'ex-instruction'; label.style.marginLeft = '38px'; label.style.marginBottom = '6px'; label.textContent = `Предложение ${si + 1}:`;
+    const bank = document.createElement('div'); bank.className = 'word-bank';
+    
+    shuffle(s.words).forEach(w => {
+      const chip = document.createElement('div'); chip.className = 'word-chip'; chip.textContent = w;
+      chip.onclick = () => {
+        if (chip.classList.contains('used')) return;
+        const placed = document.createElement('div'); placed.className = 'word-chip'; placed.textContent = w; placed.style.background = 'white';
+        placed.onclick = () => { chip.classList.remove('used'); placed.remove(); };
+        target.appendChild(placed); chip.classList.add('used');
+      };
+      bank.appendChild(chip);
+    });
+    
+    const checkBtn = document.createElement('button'); checkBtn.className = 'check-btn'; checkBtn.style.marginTop = '0'; checkBtn.textContent = 'Проверить';
+    checkBtn.onclick = () => {
+      const placed = target.querySelectorAll('.word-chip');
+      const sentence = [...placed].map(p => p.textContent).join(' ').toLowerCase();
+      let fb = block.querySelector(`.feedback[data-si="${si}"]`);
+      if (!fb) { fb = document.createElement('div'); fb.className = 'feedback'; fb.dataset.si = si; checkBtn.parentNode.insertBefore(fb, checkBtn.nextSibling); }
+      fb.classList.remove('good', 'try');
+      
+      if (sentence === s.correct.toLowerCase()) {
+        fb.className = 'feedback good show'; fb.textContent = '✓ Верно!';
+        placed.forEach(p => p.style.pointerEvents = 'none');
+        bank.querySelectorAll('.word-chip').forEach(c => c.style.pointerEvents = 'none');
+        checkBtn.disabled = true; checkBtn.style.opacity = '0.5';
+        doneCount++;
+        if (doneCount === total) checkSectionComplete(block, null, true);
+      } else {
+        fb.className = 'feedback try show'; fb.textContent = 'Не совсем так. Помни про порядок слов. Нажми на слово в строке, чтобы вернуть его.';
+      }
+    };
+    
+    block.appendChild(label); block.appendChild(target); block.appendChild(bank); block.appendChild(checkBtn);
+  });
+}
+
+// 6. COLOR PICK
+function renderColorPick(ex, block) {
+  let current = 0; const prompts = ex.prompts;
+  const promptEl = document.createElement('div'); promptEl.className = 'color-prompt'; block.appendChild(promptEl);
+  const grid = document.createElement('div'); grid.className = 'color-grid';
+  
+  function showPrompt() {
+    if (current >= prompts.length) { promptEl.innerHTML = '🎉 Все цвета найдены!'; checkSectionComplete(block, null, true); return; }
+    promptEl.innerHTML = `<span style="font-size:22px">🔎</span> Найди цвет: <strong>${prompts[current].word}</strong>`;
+  }
+  
+  shuffle(prompts).forEach(c => {
+    const circle = document.createElement('div'); circle.className = 'color-circle'; circle.style.background = c.hex; circle.dataset.word = c.word;
+    circle.onclick = () => {
+      if (current >= prompts.length) return;
+      if (c.word === prompts[current].word) { circle.classList.add('correct'); current++; showPrompt(); }
+      else { circle.classList.add('wrong'); setTimeout(() => circle.classList.remove('wrong'), 500); }
+    };
+    grid.appendChild(circle);
+  });
+  
+  block.appendChild(grid); showPrompt();
+}
+
+// 7. MEMORY GAME
+function renderMemory(ex, block) {
+  const cards = [];
+  ex.pairs.forEach((p, i) => {
+    cards.push({ id: i, text: p.en, type: 'en' });
+    cards.push({ id: i, text: p.ru, type: 'ru' });
+  });
+  
+  const shuffled = shuffle(cards);
+  const grid = document.createElement('div'); grid.className = 'memory-grid';
+  
+  let flippedCards = []; let matchedCount = 0; const total = ex.pairs.length;
+  
+  shuffled.forEach(c => {
+    const card = document.createElement('div'); card.className = 'mem-card'; card.dataset.id = c.id;
+    card.innerHTML = `<div class="mem-face mem-front">?</div><div class="mem-face mem-back">${c.text}</div>`;
+    card.onclick = () => {
+      if (card.classList.contains('flipped') || card.classList.contains('matched') || flippedCards.length === 2) return;
+      card.classList.add('flipped'); flippedCards.push(card);
+      
+      if (flippedCards.length === 2) {
+        setTimeout(() => {
+          if (flippedCards[0].dataset.id === flippedCards[1].dataset.id) {
+            flippedCards[0].classList.add('matched'); flippedCards[1].classList.add('matched');
+            matchedCount++;
+            if (matchedCount === total) checkSectionComplete(block, null, true);
+          } else {
+            flippedCards[0].classList.remove('flipped'); flippedCards[1].classList.remove('flipped');
+          }
+          flippedCards = [];
+        }, 800);
+      }
+    };
+    grid.appendChild(card);
+  });
+  
+  block.appendChild(grid);
+}
+
+// 8. SELECT DONE (Open question with checkboxes)
+function renderSelectDone(ex, block) {
+  const grid = document.createElement('div'); grid.className = 'select-grid';
+  
+  ex.items.forEach(item => {
+    const div = document.createElement('div'); div.className = 'select-item';
+    div.innerHTML = `<div class="checkbox"></div><span>${item}</span>`;
+    div.onclick = () => { div.classList.toggle('checked'); div.querySelector('.checkbox').textContent = div.classList.contains('checked') ? '✓' : ''; };
+    grid.appendChild(div);
+  });
+  
+  block.appendChild(grid);
+  
+  const btn = document.createElement('button'); btn.className = 'check-btn'; btn.textContent = 'Готово';
+  btn.onclick = () => {
+    btn.disabled = true; btn.style.opacity = '0.5'; btn.textContent = 'Сохранено!';
+    checkSectionComplete(block, null, true);
+  };
+  block.appendChild(btn);
+}
+
+// CHECK SECTION COMPLETE
+function checkSectionComplete(block, section, isIncrement) {
+  setTimeout(() => {
+    const activeSec = sectionsData.find(x => x.id === activeId);
+    const exercises = activeSec.exercises;
+    let completedCount = 0;
+    
+    const allBlocks = document.querySelectorAll('.exercise');
+    
+    exercises.forEach((ex, idx) => {
+      const exBlock = allBlocks[idx];
+      if (!exBlock) return;
+      
+      if (ex.type === 'match' || ex.type === 'matchNum') {
+        const total = ex.pairs.length;
+        const matched = exBlock.querySelectorAll('.match-card.matched').length / 2;
+        if (matched >= total) completedCount++;
+      } else if (ex.type === 'choice') {
+        const correct = exBlock.querySelectorAll('.choice-btn.correct').length;
+        if (correct >= ex.questions.length) completedCount++;
+      } else if (ex.type === 'fill') {
+        const inputs = exBlock.querySelectorAll('.fill-input.correct').length;
+        const fb = exBlock.querySelector('.feedback.good');
+        if (inputs >= ex.sentences.length && fb) completedCount++;
+      } else if (ex.type === 'order') {
+        const disabled = exBlock.querySelectorAll('.check-btn:disabled').length;
+        if (disabled >= ex.sentences.length) completedCount++;
+      } else if (ex.type === 'colorPick') {
+        const text = exBlock.querySelector('.color-prompt').textContent;
+        if (text.includes('Все цвета найдены')) completedCount++;
+      } else if (ex.type === 'memory') {
+        const matched = exBlock.querySelectorAll('.mem-card.matched').length / 2;
+        if (matched >= ex.pairs.length) completedCount++;
+      } else if (ex.type === 'selectDone') {
+        const disabled = exBlock.querySelector('.check-btn:disabled');
+        if (disabled) completedCount++;
+      }
+    });
+    
+    if (completedCount === exercises.length && !sectionDone[activeSec.id]) {
+      sectionDone[activeSec.id] = true;
+      addStars(3);
+      const msg = document.getElementById('sectionComplete');
+      if (msg) msg.classList.add('show');
+      renderFolders();
+    }
+  }, 100);
+}
+
+// INIT
+renderFolders();
+renderSection();
+updateStars();
+</script>
+</body>
+</html>
