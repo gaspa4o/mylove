@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numbers 1-5</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          coral: '#FF6B6B',
+          mint: '#4ECDC4',
+          gold: '#FFD93D',
+          pink: '#FF8FAB',
+          teal: '#06D6A0',
+          orange: '#FFA94D',
+        },
+        fontFamily: {
+          display: ['Fredoka', 'sans-serif'],
+          body: ['Nunito', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #FFF8E7 0%, #FFE5D9 50%, #FFD3B6 100%);
+    color: #2D3047;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  h1, h2, h3, .font-display { font-family: 'Fredoka', sans-serif; }
+
+  .bg-decor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+    filter: blur(20px);
+  }
+  @keyframes float-bg {
+    0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+    33% { transform: translateY(-30px) translateX(15px) rotate(8deg); }
+    66% { transform: translateY(15px) translateX(-15px) rotate(-5deg); }
+  }
+
+  .flip-card { perspective: 1200px; cursor: pointer; aspect-ratio: 3/4; }
+  .flip-card-inner {
+    position: relative; width: 100%; height: 100%;
+    transition: transform 0.6s; transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+  .flip-card-front, .flip-card-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    border-radius: 28px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; padding: 1rem;
+    box-shadow: 0 10px 30px rgba(45, 48, 71, 0.12);
+  }
+  .flip-card-back { transform: rotateY(180deg); }
+
+  .memory-card { perspective: 1000px; cursor: pointer; aspect-ratio: 1; }
+  .memory-card-inner {
+    position: relative; width: 100%; height: 100%;
+    transition: transform 0.5s; transform-style: preserve-3d;
+  }
+  .memory-card.flipped .memory-card-inner,
+  .memory-card.matched .memory-card-inner { transform: rotateY(180deg); }
+  .memory-card-front, .memory-card-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    border-radius: 20px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka', sans-serif; font-weight: 700;
+    box-shadow: 0 6px 16px rgba(45, 48, 71, 0.12);
+  }
+  .memory-card-back { transform: rotateY(180deg); }
+  .memory-card.matched { pointer-events: none; }
+  .memory-card.matched .memory-card-front,
+  .memory-card.matched .memory-card-back {
+    box-shadow: 0 0 0 4px #06D6A0 inset, 0 8px 24px rgba(6, 214, 160, 0.5);
+    animation: matchPulse 0.6s ease;
+  }
+  @keyframes matchPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+
+  .letter-tile {
+    cursor: grab; user-select: none; touch-action: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka', sans-serif; font-weight: 700;
+  }
+  .letter-tile:hover { transform: translateY(-4px) rotate(-3deg); }
+  .letter-tile.dragging { opacity: 0.5; }
+  .letter-tile:active { cursor: grabbing; }
+
+  .drop-slot {
+    transition: all 0.2s; min-width: 56px; min-height: 70px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .drop-slot.over {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 4px #FFD93D inset, 0 8px 20px rgba(255, 217, 61, 0.5);
+  }
+  .drop-slot.correct {
+    background: #06D6A0 !important; color: white !important;
+    border-color: #06D6A0 !important;
+    animation: bounce 0.5s ease;
+  }
+  .drop-slot.incorrect {
+    background: #FF6B6B !important; color: white !important;
+    border-color: #FF6B6B !important;
+    animation: shake 0.5s ease;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+
+  .quiz-option, .match-item {
+    transition: all 0.2s; cursor: pointer;
+  }
+  .quiz-option:hover:not(.answered) { transform: translateY(-4px) scale(1.03); }
+  .match-item:hover:not(.matched) { transform: scale(1.05); }
+  .quiz-option.correct, .match-item.matched, .match-item.correct {
+    background: #06D6A0 !important; color: white !important;
+    border-color: #06D6A0 !important;
+    animation: bounce 0.5s ease;
+  }
+  .quiz-option.incorrect, .match-item.incorrect {
+    background: #FF6B6B !important; color: white !important;
+    border-color: #FF6B6B !important;
+    animation: shake 0.5s ease;
+  }
+  .match-item.selected {
+    box-shadow: 0 0 0 4px #FFD93D inset, 0 8px 24px rgba(255, 217, 61, 0.6);
+    transform: scale(1.05);
+  }
+  .match-item.matched { pointer-events: none; opacity: 0.7; }
+
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  .wobble { animation: wobble 2.5s ease-in-out infinite; }
+
+  @keyframes confetti-fall {
+    0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+  .confetti {
+    position: fixed; width: 14px; height: 14px;
+    pointer-events: none; z-index: 9999;
+    animation: confetti-fall 3s linear forwards;
+  }
+
+  @keyframes star-pop {
+    0% { transform: scale(0) rotate(0deg); }
+    50% { transform: scale(1.4) rotate(180deg); }
+    100% { transform: scale(1) rotate(360deg); }
+  }
+  .star-pop { animation: star-pop 0.7s ease-out; }
+
+  .tab-btn { transition: all 0.3s; }
+  .tab-btn.active {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(45, 48, 71, 0.2);
+  }
+
+  .tab-content { display: none; animation: fadeIn 0.5s ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .big-number {
+    font-family: 'Fredoka', sans-serif; font-weight: 700;
+    font-size: 5rem; line-height: 1;
+  }
+  .word-display {
+    font-family: 'Fredoka', sans-serif; font-weight: 600;
+    font-size: 2.2rem; line-height: 1;
+  }
+
+  .sound-btn { transition: all 0.2s; }
+  .sound-btn:hover { transform: scale(1.15) rotate(10deg); }
+  .sound-btn:active { transform: scale(0.92); }
+
+  @keyframes pulse-hint {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(8px); opacity: 1; }
+  }
+  .hint-arrow { animation: pulse-hint 1.5s ease-in-out infinite; }
+
+  .progress-track {
+    height: 8px; background: rgba(255, 255, 255, 0.6);
+    border-radius: 999px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, #06D6A0, #4ECDC4);
+    transition: width 0.5s ease; border-radius: 999px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Декоративные пятна на фоне -->
+<div class="bg-decor" style="top: 5%; left: 3%; width: 180px; height: 180px; background: rgba(255, 107, 107, 0.35); animation: float-bg 12s ease-in-out infinite;"></div>
+<div class="bg-decor" style="top: 50%; right: 5%; width: 220px; height: 220px; background: rgba(78, 205, 196, 0.35); animation: float-bg 16s ease-in-out infinite reverse;"></div>
+<div class="bg-decor" style="top: 25%; right: 30%; width: 120px; height: 120px; background: rgba(255, 217, 61, 0.45); animation: float-bg 10s ease-in-out infinite;"></div>
+<div class="bg-decor" style="bottom: 10%; left: 20%; width: 160px; height: 160px; background: rgba(255, 143, 171, 0.4); animation: float-bg 14s ease-in-out infinite;"></div>
+<div class="bg-decor" style="bottom: 30%; right: 25%; width: 140px; height: 140px; background: rgba(255, 169, 77, 0.4); animation: float-bg 18s ease-in-out infinite;"></div>
+
+<div class="relative z-10 max-w-6xl mx-auto p-4 md:p-8">
+
+  <!-- Заголовок -->
+  <header class="text-center mb-8">
+    <div class="inline-flex items-center justify-center bg-white rounded-full px-6 py-3 shadow-xl mb-4 wobble">
+      <span class="text-4xl md:text-5xl mr-3">🎈</span>
+      <h1 class="text-3xl md:text-5xl font-bold text-gray-800">Numbers 1 — 5</h1>
+      <span class="text-4xl md:text-5xl ml-3">🎨</span>
+    </div>
+    <p class="text-xl md:text-2xl text-gray-700 font-bold">Учим цифры от <span class="text-coral">1</span> до <span class="text-teal">5</span>!</p>
+    
+    <div class="mt-5 bg-white/70 rounded-2xl px-4 py-3 inline-block shadow-md">
+      <div class="text-sm font-bold text-gray-600 mb-1">Твои звёзды:</div>
+      <div id="starsContainer" class="flex justify-center gap-1.5">
+        <span class="star text-3xl md:text-4xl opacity-30" data-star="1">⭐</span>
+        <span class="star text-3xl md:text-4xl opacity-30" data-star="2">⭐</span>
+        <span class="star text-3xl md:text-4xl opacity-30" data-star="3">⭐</span>
+        <span class="star text-3xl md:text-4xl opacity-30" data-star="4">⭐</span>
+        <span class="star text-3xl md:text-4xl opacity-30" data-star="5">⭐</span>
+        <span class="star text-3xl md:text-4xl opacity-30" data-star="6">⭐</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Навигация по разделам -->
+  <nav class="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 sticky top-2 z-40">
+    <button class="tab-btn active bg-white text-gray-800 px-4 md:px-5 py-3 rounded-2xl font-bold text-sm md:text-base shadow-md" data-tab="dictionary">
+      📖 Dictionary
+    </button>
+    <button class="tab-btn bg-white/80 text-gray-700 px-4 md:px-5 py-3 rounded-2xl font-bold text-sm md:text-base shadow-md" data-tab="memory">
+      🃏 Memory
+    </button>
+    <button class="tab-btn bg-white/80 text-gray-700 px-4 md:px-5 py-3 rounded-2xl font-bold text-sm md:text-base shadow-md" data-tab="builder">
+      🔤 Build Word
+    </button>
+    <button class="tab-btn bg-white/80 text-gray-700 px-4 md:px-5 py-3 rounded-2xl font-bold text-sm md:text-base shadow-md" data-tab="quiz">
+      🎯 Quiz
+    </button>
+    <button class="tab-btn bg-white/80 text-gray-700 px-4 md:px-5 py-3 rounded-2xl font-bold text-sm md:text-base shadow-md" data-tab="counting">
+      🔢 Count
+    </button>
+    <button class="tab-btn bg-white/80 text-gray-700 px-4 md:px-5 py-3 rounded-2xl font-bold text-sm md:text-base shadow-md" data-tab="matching">
+      🔗 Match
+    </button>
+  </nav>
+
+  <!-- СЛОВАРИК -->
+  <section id="dictionary" class="tab-content active">
+    <div class="bg-white rounded-3xl p-5 md:p-8 shadow-xl">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">📖 Dictionary</h2>
+        <p class="text-gray-600 text-base md:text-lg font-semibold">Нажми на карточку, чтобы перевернуть её. Кнопка 🔊 произнесёт слово!</p>
+      </div>
+      <div id="dictionaryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5"></div>
+    </div>
+  </section>
+
+  <!-- MEMORY -->
+  <section id="memory" class="tab-content">
+    <div class="bg-white rounded-3xl p-5 md:p-8 shadow-xl">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">🃏 Memory Game</h2>
+        <p class="text-gray-600 text-base md:text-lg font-semibold">Открой две карточки. Если цифра и слово совпадают — пара найдена!</p>
+        <div class="flex flex-wrap justify-center gap-4 mt-4 text-base md:text-lg font-bold text-gray-700">
+          <div>Ходы: <span id="memoryMoves" class="text-coral">0</span></div>
+          <div>Пары: <span id="memoryMatches" class="text-teal">0</span>/5</div>
+          <button id="memoryReset" class="bg-coral text-white px-4 py-2 rounded-xl font-bold hover:scale-105 transition shadow-md">🔄 Заново</button>
+        </div>
+      </div>
+      <div id="memoryGrid" class="grid grid-cols-5 gap-2 md:gap-4 max-w-3xl mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- СОБЕРИ СЛОВО -->
+  <section id="builder" class="tab-content">
+    <div class="bg-white rounded-3xl p-5 md:p-8 shadow-xl">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">🔤 Build Word</h2>
+        <p class="text-gray-600 text-base md:text-lg font-semibold">Перетащи буквы в клеточки, чтобы получилось слово!</p>
+      </div>
+      <div id="builderArea"></div>
+    </div>
+  </section>
+
+  <!-- ТЕСТ -->
+  <section id="quiz" class="tab-content">
+    <div class="bg-white rounded-3xl p-5 md:p-8 shadow-xl">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">🎯 Quiz</h2>
+        <p class="text-gray-600 text-base md:text-lg font-semibold">Прочитай слово и выбери правильную цифру!</p>
+        <div class="text-base md:text-lg font-bold text-gray-700 mt-3">
+          Вопрос <span id="quizCurrent" class="text-coral">1</span> из 5
+        </div>
+        <div class="progress-track mt-2 max-w-xs mx-auto">
+          <div id="quizProgress" class="progress-fill" style="width: 20%;"></div>
+        </div>
+      </div>
+      <div id="quizArea"></div>
+    </div>
+  </section>
+
+  <!-- ПОСЧИТАЙ -->
+  <section id="counting" class="tab-content">
+    <div class="bg-white rounded-3xl p-5 md:p-8 shadow-xl">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">🔢 Count</h2>
+        <p class="text-gray-600 text-base md:text-lg font-semibold">Посчитай, сколько предметов на картинке, и выбери правильное слово!</p>
+        <div class="text-base md:text-lg font-bold text-gray-700 mt-3">
+          Вопрос <span id="countingCurrent" class="text-coral">1</span> из 5
+        </div>
+        <div class="progress-track mt-2 max-w-xs mx-auto">
+          <div id="countingProgress" class="progress-fill" style="width: 20%;"></div>
+        </div>
+      </div>
+      <div id="countingArea"></div>
+    </div>
+  </section>
+
+  <!-- СОЕДИНИ -->
+  <section id="matching" class="tab-content">
+    <div class="bg-white rounded-3xl p-5 md:p-8 shadow-xl">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">🔗 Match Pairs</h2>
+        <p class="text-gray-600 text-base md:text-lg font-semibold">Нажми на цифру, потом на слово — если пара верная, они загорятся зелёным!</p>
+        <div class="mt-3 font-bold text-gray-700">
+          Найдено пар: <span id="matchCount" class="text-teal">0</span>/5
+        </div>
+      </div>
+      <div id="matchingArea" class="grid grid-cols-2 gap-6 md:gap-16 max-w-3xl mx-auto"></div>
+      <div class="text-center mt-6">
+        <button id="matchingReset" class="bg-coral text-white px-6 py-3 rounded-xl font-bold hover:scale-105 transition shadow-md">🔄 Заново</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center mt-8 pb-8">
+    <p class="text-gray-600 font-bold text-lg">Молодец! Продолжай учиться! 🌈</p>
+  </footer>
+</div>
+
+<script>
+// === Данные ===
+const numbers = [
+  { num: 1, word: 'one',   ru: 'один',   items: '🍎' },
+  { num: 2, word: 'two',   ru: 'два',    items: '🍓🍓' },
+  { num: 3, word: 'three', ru: 'три',    items: '🐱🐱🐱' },
+  { num: 4, word: 'four',  ru: 'четыре', items: '⭐⭐⭐⭐' },
+  { num: 5, word: 'five',  ru: 'пять',   items: '🌸🌸🌸🌸🌸' }
+];
+
+const colorPalette = ['#FF6B6B', '#4ECDC4', '#FFD93D', '#FF8FAB', '#06D6A0', '#FFA94D'];
+let earnedStars = 0;
+
+// === Утилиты ===
+// Правильное перемешивание (Fisher-Yates)
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getRandomColor() {
+  return colorPalette[Math.floor(Math.random() * colorPalette.length)];
+}
+
+// Перемешать буквы слова так, чтобы они НЕ были в исходном порядке
+function shuffleLetters(word) {
+  if (word.length < 2) return word.split('');
+  let arr;
+  let tries = 0;
+  do {
+    arr = word.split('');
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    tries++;
+  } while (arr.join('') === word && tries < 20);
+  return arr;
+}
+
+// === Озвучка ===
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = 0.7;
+    u.pitch = 1.15;
+    speechSynthesis.speak(u);
+  }
+}
+
+// === Конфетти ===
+function showConfetti() {
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFD93D', '#FF8FAB', '#06D6A0', '#FFA94D'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '4px';
+    c.style.animationDelay = Math.random() * 0.5 + 's';
+    c.style.animationDuration = (2 + Math.random() * 2) + 's';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4500);
+  }
+}
+
+// === Получить звезду ===
+function earnStar(num) {
+  const star = document.querySelector(`.star[data-star="${num}"]`);
+  if (star && !star.classList.contains('star-pop')) {
+    star.classList.remove('opacity-30');
+    star.classList.add('star-pop');
+    star.style.opacity = '1';
+    earnedStars++;
+    if (earnedStars === 6) {
+      setTimeout(() => { showConfetti(); showFinalCelebration(); }, 600);
+    }
+  }
+}
+
+function showFinalCelebration() {
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,0.55);';
+  modal.innerHTML = `
+    <div class="bg-white rounded-3xl p-8 max-w-md text-center shadow-2xl mx-auto" style="animation: bounce 0.6s ease;">
+      <div class="text-7xl mb-3">🏆</div>
+      <h2 class="text-3xl font-bold text-gray-800 mb-2" style="font-family: 'Fredoka', sans-serif;">Ты молодец!</h2>
+      <p class="text-lg text-gray-600 mb-4 font-semibold">Ты собрал все 6 звёзд и выучил цифры от 1 до 5 на английском!</p>
+      <div class="text-5xl mb-5">⭐⭐⭐⭐⭐⭐</div>
+      <button id="closeCeleb" class="bg-teal text-white px-8 py-3 rounded-xl font-bold text-lg hover:scale-105 transition shadow-lg">Продолжить</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  document.getElementById('closeCeleb').addEventListener('click', () => modal.remove());
+}
+
+// === СЛОВАРИК ===
+function buildDictionary() {
+  const grid = document.getElementById('dictionaryGrid');
+  grid.innerHTML = '';
+
+  numbers.forEach((item) => {
+    const card = document.createElement('div');
+    card.className = 'flip-card';
+    const cardColor = getRandomColor();
+    card.innerHTML = `
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background: white; border: 5px solid ${cardColor};">
+          <div class="big-number" style="color: ${cardColor};">${item.num}</div>
+          <div class="text-xs text-gray-500 mt-3 font-bold">Нажми, чтобы перевернуть ↻</div>
+        </div>
+        <div class="flip-card-back" style="background: ${cardColor}; color: white;">
+          <div class="word-display">${item.word}</div>
+          <div class="text-xl mt-2 font-bold opacity-95">«${item.ru}»</div>
+          <button class="sound-btn bg-white text-gray-800 w-12 h-12 rounded-full text-2xl mt-3 shadow-md" onclick="event.stopPropagation(); speak('${item.word}');">🔊</button>
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    grid.appendChild(card);
+  });
+}
+
+// === MEMORY ===
+let memoryFlipped = [];
+let memoryMatched = 0;
+let memoryMoves = 0;
+let memoryLock = false;
+
+function buildMemory() {
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = '';
+  memoryFlipped = []; memoryMatched = 0; memoryMoves = 0; memoryLock = false;
+  document.getElementById('memoryMoves').textContent = '0';
+  document.getElementById('memoryMatches').textContent = '0';
+
+  let cards = [];
+  numbers.forEach((item, idx) => {
+    // Абсолютно разные случайные цвета для каждой карточки, чтобы нельзя было сопоставить по цвету
+    cards.push({ type: 'number', value: item.num, pairId: idx, bg: getRandomColor() });
+    cards.push({ type: 'word',   value: item.word, pairId: idx, bg: getRandomColor() });
+  });
+  cards = shuffleArray(cards);
+
+  cards.forEach((card) => {
+    const el = document.createElement('div');
+    el.className = 'memory-card';
+    el.dataset.pairId = card.pairId;
+    el.innerHTML = `
+      <div class="memory-card-inner">
+        <div class="memory-card-front" style="background: ${card.bg}; color: white; font-size: 3rem;">?</div>
+        <div class="memory-card-back" style="background: white; color: #2D3047; border: 4px solid ${card.bg};">
+          ${card.type === 'number'
+            ? `<span style="font-size: 3rem; font-weight: 700;">${card.value}</span>`
+            : `<span style="font-size: 1.4rem; font-weight: 700;">${card.value}</span>`}
+        </div>
+      </div>
+    `;
+    el.addEventListener('click', () => flipMemoryCard(el, card));
+    grid.appendChild(el);
+  });
+}
+
+function flipMemoryCard(el, card) {
+  if (memoryLock) return;
+  if (el.classList.contains('flipped') || el.classList.contains('matched')) return;
+  el.classList.add('flipped');
+  memoryFlipped.push({ el, card });
+  if (card.type === 'word') speak(card.value);
+
+  if (memoryFlipped.length === 2) {
+    memoryMoves++;
+    document.getElementById('memoryMoves').textContent = memoryMoves;
+    memoryLock = true;
+    const [a, b] = memoryFlipped;
+    if (a.card.pairId === b.card.pairId) {
+      setTimeout(() => {
+        a.el.classList.add('matched');
+        b.el.classList.add('matched');
+        memoryMatched++;
+        document.getElementById('memoryMatches').textContent = memoryMatched;
+        memoryFlipped = []; memoryLock = false;
+        if (memoryMatched === 5) {
+          setTimeout(() => { showConfetti(); earnStar(2); }, 500);
+        }
+      }, 600);
+    } else {
+      setTimeout(() => {
+        a.el.classList.remove('flipped');
+        b.el.classList.remove('flipped');
+        memoryFlipped = []; memoryLock = false;
+      }, 1200);
+    }
+  }
+}
+
+// === СОБЕРИ СЛОВО ===
+let builderIdx = 0;
+let builderQueue = [];
+
+function buildBuilder() {
+  builderIdx = 0;
+  builderQueue = shuffleArray(numbers); // Вопросы в случайном порядке
+  showBuilderQuestion();
+}
+
+function showBuilderQuestion() {
+  const area = document.getElementById('builderArea');
+  if (builderIdx >= builderQueue.length) {
+    area.innerHTML = `
+      <div class="text-center py-10">
+        <div class="text-7xl mb-3">🎉</div>
+        <h3 class="text-3xl font-bold text-gray-800 mb-2" style="font-family: 'Fredoka', sans-serif;">Все слова собраны!</h3>
+        <p class="text-lg text-gray-600 mb-5 font-semibold">Ты отлично справился!</p>
+        <button onclick="buildBuilder()" class="bg-coral text-white px-6 py-3 rounded-xl font-bold text-lg hover:scale-105 transition shadow-md">🔄 Играть ещё</button>
+      </div>
+    `;
+    earnStar(3);
+    showConfetti();
+    return;
+  }
+  const item = builderQueue[builderIdx];
+  const letters = item.word.split('');
+  const shuffled = shuffleLetters(item.word);
+  const taskColor = getRandomColor();
+
+  area.innerHTML = `
+    <div class="text-center mb-4">
+      <div class="text-base md:text-lg text-gray-600 font-bold">Собери слово № ${builderIdx + 1} из ${builderQueue.length}</div>
+    </div>
+    <div class="flex flex-col items-center gap-5">
+      <div class="bg-white rounded-3xl p-5 md:p-6 shadow-lg" style="border: 5px solid ${taskColor};">
+        <div class="text-4xl md:text-5xl mb-2 tracking-wider">${item.items}</div>
+        <div class="text-sm md:text-base text-gray-500 font-bold">Сколько здесь? Посчитай и собери слово!</div>
+      </div>
+      <div class="flex gap-2 md:gap-3 flex-wrap justify-center">
+        ${letters.map((_, i) => `
+          <div class="drop-slot border-4 border-dashed rounded-2xl text-2xl md:text-3xl font-bold"
+               style="border-color: ${taskColor}; background: white; color: ${taskColor};"
+               data-slot="${i}"></div>
+        `).join('')}
+      </div>
+      <div class="text-2xl text-gray-400 hint-arrow">⬇ Перетащи буквы сюда ⬇</div>
+      <div class="flex gap-2 md:gap-3 flex-wrap justify-center" id="letterPool"></div>
+      <div class="flex gap-3 flex-wrap justify-center">
+        <button id="checkBuilder" class="bg-teal text-white px-8 py-3 rounded-xl font-bold text-lg hover:scale-105 transition shadow-md mt-2">
+          ✓ Проверить
+        </button>
+        <button id="sayBuilder" class="bg-mint text-white px-5 py-2 rounded-xl font-bold hover:scale-105 transition shadow-md mt-2">
+          🔊 Послушать слово
+        </button>
+      </div>
+    </div>
+  `;
+
+  const pool = document.getElementById('letterPool');
+  shuffled.forEach((letter, i) => {
+    const tile = document.createElement('div');
+    tile.className = 'letter-tile bg-white rounded-2xl shadow-md';
+    const lc = getRandomColor();
+    tile.style.cssText = `width: 60px; height: 70px; color: ${lc}; border: 3px solid ${lc}; font-size: 1.75rem;`;
+    tile.textContent = letter;
+    tile.dataset.letter = letter;
+    tile.dataset.id = i;
+    pool.appendChild(tile);
+  });
+
+  setupBuilderDragDrop(item.word);
+  document.getElementById('checkBuilder').addEventListener('click', () => checkBuilderAnswer(item.word));
+  document.getElementById('sayBuilder').addEventListener('click', () => speak(item.word));
+}
+
+function setupBuilderDragDrop(word) {
+  const tiles = document.querySelectorAll('.letter-tile');
+  const slots = document.querySelectorAll('.drop-slot');
+  const pool = document.getElementById('letterPool');
+
+  let active = null, offsetX = 0, offsetY = 0, placeholder = null, originalParent = null;
+
+  tiles.forEach(tile => tile.addEventListener('pointerdown', startDrag));
+
+  function startDrag(e) {
+    e.preventDefault();
+    active = e.currentTarget;
+    originalParent = active.parentElement;
+    const rect = active.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+
+    placeholder = document.createElement('div');
+    placeholder.style.cssText = `width:${rect.width}px;height:${rect.height}px;`;
+    originalParent.insertBefore(placeholder, active);
+
+    active.style.position = 'fixed';
+    active.style.zIndex = '10000';
+    active.style.left = (e.clientX - offsetX) + 'px';
+    active.style.top = (e.clientY - offsetY) + 'px';
+    active.style.pointerEvents = 'none';
+    active.classList.add('dragging');
+    document.body.appendChild(active);
+
+    document.addEventListener('pointermove', moveDrag);
+    document.addEventListener('pointerup', endDrag);
+  }
+
+  function moveDrag(e) {
+    if (!active) return;
+    e.preventDefault();
+    active.style.left = (e.clientX - offsetX) + 'px';
+    active.style.top = (e.clientY - offsetY) + 'px';
+    slots.forEach(s => {
+      const r = s.getBoundingClientRect();
+      const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      s.classList.toggle('over', inside);
+    });
+  }
+
+  function endDrag(e) {
+    if (!active) return;
+    let placed = false;
+
+    for (const slot of slots) {
+      const r = slot.getBoundingClientRect();
+      if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) {
+        const existing = slot.querySelector('.letter-tile');
+        if (existing && existing !== active) pool.appendChild(existing);
+        resetTile(active);
+        slot.appendChild(active);
+        placed = true;
+        break;
+      }
+    }
+    if (!placed) {
+      const pr = pool.getBoundingClientRect();
+      if (e.clientX >= pr.left && e.clientX <= pr.right && e.clientY >= pr.top && e.clientY <= pr.bottom) {
+        resetTile(active);
+        pool.appendChild(active);
+        placed = true;
+      }
+    }
+    if (!placed) {
+      resetTile(active);
+      if (placeholder && placeholder.parentElement) {
+        placeholder.parentElement.insertBefore(active, placeholder);
+      } else {
+        pool.appendChild(active);
+      }
+    }
+
+    if (placeholder && placeholder.parentElement) placeholder.parentElement.removeChild(placeholder);
+    placeholder = null; active = null; originalParent = null;
+    slots.forEach(s => s.classList.remove('over'));
+    document.removeEventListener('pointermove', moveDrag);
+    document.removeEventListener('pointerup', endDrag);
+  }
+
+  function resetTile(t) {
+    t.style.position = '';
+    t.style.zIndex = '';
+    t.style.left = '';
+    t.style.top = '';
+    t.style.pointerEvents = '';
+    t.classList.remove('dragging');
+  }
+}
+
+function checkBuilderAnswer(word) {
+  const slots = document.querySelectorAll('.drop-slot');
+  let assembled = '', filled = true;
+  slots.forEach(s => {
+    const t = s.querySelector('.letter-tile');
+    if (t) assembled += t.dataset.letter; else filled = false;
+  });
+  if (!filled) {
+    slots.forEach(s => {
+      if (!s.querySelector('.letter-tile')) {
+        s.classList.add('incorrect');
+        setTimeout(() => s.classList.remove('incorrect'), 500);
+      }
+    });
+    return;
+  }
+  if (assembled === word) {
+    slots.forEach(s => s.classList.add('correct'));
+    speak(word);
+    setTimeout(() => { showConfetti(); builderIdx++; showBuilderQuestion(); }, 1500);
+  } else {
+    slots.forEach(s => s.classList.add('incorrect'));
+    speak(word);
+    setTimeout(() => {
+      slots.forEach(s => {
+        s.classList.remove('incorrect');
+        const t = s.querySelector('.letter-tile');
+        if (t) document.getElementById('letterPool').appendChild(t);
+      });
+    }, 1200);
+  }
+}
+
+// === ТЕСТ ===
+let quizIdx = 0, quizQuestions = [];
+
+function buildQuiz() {
+  quizIdx = 0;
+  // Вопросы и варианты ответов перемешиваются
+  quizQuestions = shuffleArray(numbers).map(item => ({
+    word: item.word, answer: item.num,
+    options: shuffleArray([...numbers])
+  }));
+  showQuizQuestion();
+}
+
+function showQuizQuestion() {
+  const area = document.getElementById('quizArea');
+  if (quizIdx >= quizQuestions.length) {
+    area.innerHTML = `
+      <div class="text-center py-10">
+        <div class="text-7xl mb-3">🎉</div>
+        <h3 class="text-3xl font-bold text-gray-800 mb-2" style="font-family: 'Fredoka', sans-serif;">Тест пройден!</h3>
+        <p class="text-lg text-gray-600 mb-5 font-semibold">Ты знаешь все переводы!</p>
+        <button onclick="buildQuiz()" class="bg-coral text-white px-6 py-3 rounded-xl font-bold text-lg hover:scale-105 transition shadow-md">🔄 Пройти ещё</button>
+      </div>
+    `;
+    earnStar(4);
+    showConfetti();
+    return;
+  }
+  const q = quizQuestions[quizIdx];
+  document.getElementById('quizCurrent').textContent = quizIdx + 1;
+  document.getElementById('quizProgress').style.width = ((quizIdx + 1) / 5 * 100) + '%';
+
+  // Случайные цвета для кнопок, без привязки к цифре
+  const optionColors = shuffleArray(colorPalette).slice(0, 5);
+  const questionColor = getRandomColor();
+
+  area.innerHTML = `
+    <div class="flex flex-col items-center gap-6">
+      <div class="text-center">
+        <div class="text-base md:text-lg text-gray-600 font-bold mb-2">Какая это цифра?</div>
+        <div class="bg-white rounded-3xl px-8 py-6 shadow-lg" style="border: 5px solid ${questionColor};">
+          <div class="word-display" style="color: #2D3047; font-size: 3rem;">${q.word}</div>
+          <button class="sound-btn bg-white text-gray-700 w-12 h-12 rounded-full text-2xl shadow mt-3" style="border: 2px solid ${questionColor};" onclick="speak('${q.word}')">🔊</button>
+        </div>
+      </div>
+      <div class="grid grid-cols-5 gap-2 md:gap-4 w-full max-w-xl">
+        ${q.options.map((opt, i) => `
+          <button class="quiz-option bg-white rounded-2xl shadow-md font-bold text-2xl md:text-4xl py-6"
+                  style="color: ${optionColors[i]}; border: 4px solid ${optionColors[i]};"
+                  data-num="${opt.num}">
+            ${opt.num}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  document.querySelectorAll('.quiz-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('correct') || btn.classList.contains('incorrect')) return;
+      const chosen = parseInt(btn.dataset.num);
+      document.querySelectorAll('.quiz-option').forEach(b => b.classList.add('answered'));
+      if (chosen === q.answer) {
+        btn.classList.add('correct');
+        speak(q.word);
+        setTimeout(() => { quizIdx++; showQuizQuestion(); }, 1200);
+      } else {
+        btn.classList.add('incorrect');
+        const correctBtn = document.querySelector(`.quiz-option[data-num="${q.answer}"]`);
+        correctBtn.classList.add('correct');
+        speak(q.word);
+        setTimeout(() => { quizIdx++; showQuizQuestion(); }, 1800);
+      }
+    });
+  });
+}
+
+// === ПОСЧИТАЙ ===
+let countIdx = 0, countQuestions = [];
+
+function buildCounting() {
+  countIdx = 0;
+  // Вопросы и варианты ответов перемешиваются
+  countQuestions = shuffleArray(numbers).map(item => ({
+    items: item.items, answer: item.word,
+    options: shuffleArray([...numbers])
+  }));
+  showCountingQuestion();
+}
+
+function showCountingQuestion() {
+  const area = document.getElementById('countingArea');
+  if (countIdx >= countQuestions.length) {
+    area.innerHTML = `
+      <div class="text-center py-10">
+        <div class="text-7xl mb-3">🎉</div>
+        <h3 class="text-3xl font-bold text-gray-800 mb-2" style="font-family: 'Fredoka', sans-serif;">Молодец!</h3>
+        <p class="text-lg text-gray-600 mb-5 font-semibold">Ты умеешь считать по-английски!</p>
+        <button onclick="buildCounting()" class="bg-coral text-white px-6 py-3 rounded-xl font-bold text-lg hover:scale-105 transition shadow-md">🔄 Играть ещё</button>
+      </div>
+    `;
+    earnStar(5);
+    showConfetti();
+    return;
+  }
+  const q = countQuestions[countIdx];
+  document.getElementById('countingCurrent').textContent = countIdx + 1;
+  document.getElementById('countingProgress').style.width = ((countIdx + 1) / 5 * 100) + '%';
+
+  const optionColors = shuffleArray(colorPalette).slice(0, 5);
+  const questionColor = getRandomColor();
+
+  area.innerHTML = `
+    <div class="flex flex-col items-center gap-6">
+      <div class="text-center">
+        <div class="text-base md:text-lg text-gray-600 font-bold mb-2">Посчитай, сколько предметов на картинке:</div>
+        <div class="bg-white rounded-3xl px-12 py-8 shadow-lg" style="border: 5px solid ${questionColor};">
+          <div class="text-5xl md:text-6xl tracking-wider">${q.items}</div>
+        </div>
+      </div>
+      <div class="text-base md:text-lg text-gray-600 font-bold">Выбери правильное слово:</div>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 w-full max-w-2xl">
+        ${q.options.map((opt, i) => `
+          <button class="quiz-option bg-white rounded-2xl shadow-md font-bold text-xl md:text-2xl py-5 px-2"
+                  style="color: ${optionColors[i]}; border: 4px solid ${optionColors[i]};"
+                  data-word="${opt.word}">
+            ${opt.word}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  document.querySelectorAll('.quiz-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('correct') || btn.classList.contains('incorrect')) return;
+      const chosen = btn.dataset.word;
+      document.querySelectorAll('.quiz-option').forEach(b => b.classList.add('answered'));
+      if (chosen === q.answer) {
+        btn.classList.add('correct');
+        speak(q.answer);
+        setTimeout(() => { countIdx++; showCountingQuestion(); }, 1200);
+      } else {
+        btn.classList.add('incorrect');
+        document.querySelector(`.quiz-option[data-word="${q.answer}"]`).classList.add('correct');
+        speak(q.answer);
+        setTimeout(() => { countIdx++; showCountingQuestion(); }, 1800);
+      }
+    });
+  });
+}
+
+// === СОЕДИНИ ПАРЫ ===
+let matchSelected = null, matchCount = 0, matchLock = false;
+
+function buildMatching() {
+  const area = document.getElementById('matchingArea');
+  area.innerHTML = '';
+  matchCount = 0; matchSelected = null; matchLock = false;
+  document.getElementById('matchCount').textContent = '0';
+
+  // Левая колонка — цифры
+  const numsCol = document.createElement('div');
+  numsCol.className = 'flex flex-col gap-3 md:gap-4';
+  numsCol.innerHTML = '<div class="text-center text-base md:text-xl font-bold text-gray-700 mb-1">ЦИФРЫ</div>';
+  shuffleArray(numbers).forEach((item, i) => {
+    const c = getRandomColor();
+    const btn = document.createElement('div');
+    btn.className = 'match-item bg-white rounded-2xl shadow-md text-4xl md:text-5xl font-bold text-center py-6';
+    btn.style.cssText += `color:${c};border:4px solid ${c};`;
+    btn.dataset.type = 'number';
+    btn.dataset.num = item.num;
+    btn.textContent = item.num;
+    btn.addEventListener('click', () => handleMatchClick(btn));
+    numsCol.appendChild(btn);
+  });
+
+  // Правая колонка — слова (каждой карточке свой случайный цвет, не совпадающий по логике с левой)
+  const wordsCol = document.createElement('div');
+  wordsCol.className = 'flex flex-col gap-3 md:gap-4';
+  wordsCol.innerHTML = '<div class="text-center text-base md:text-xl font-bold text-gray-700 mb-1">СЛОВА</div>';
+  shuffleArray(numbers).forEach((item, i) => {
+    const c = getRandomColor();
+    const btn = document.createElement('div');
+    btn.className = 'match-item bg-white rounded-2xl shadow-md text-xl md:text-2xl font-bold text-center py-6';
+    btn.style.cssText += `color:${c};border:4px solid ${c};`;
+    btn.dataset.type = 'word';
+    btn.dataset.word = item.word;
+    btn.dataset.num = item.num;
+    btn.textContent = item.word;
+    btn.addEventListener('click', () => handleMatchClick(btn));
+    wordsCol.appendChild(btn);
+  });
+
+  area.appendChild(numsCol);
+  area.appendChild(wordsCol);
+}
+
+function handleMatchClick(btn) {
+  if (matchLock || btn.classList.contains('matched')) return;
+  if (!matchSelected) {
+    matchSelected = btn;
+    btn.classList.add('selected');
+    if (btn.dataset.type === 'word') speak(btn.dataset.word);
+  } else {
+    if (matchSelected === btn) {
+      btn.classList.remove('selected');
+      matchSelected = null;
+      return;
+    }
+    if (matchSelected.dataset.type === btn.dataset.type) {
+      matchSelected.classList.remove('selected');
+      matchSelected = btn;
+      btn.classList.add('selected');
+      if (btn.dataset.type === 'word') speak(btn.dataset.word);
+      return;
+    }
+    matchLock = true;
+    const first = matchSelected, second = btn;
+    first.classList.remove('selected');
+    const numMatch = first.dataset.type === 'number' ? first.dataset.num : second.dataset.num;
+    const wordNum = first.dataset.type === 'word' ? first.dataset.num : second.dataset.num;
+    if (numMatch === wordNum) {
+      first.classList.add('matched');
+      second.classList.add('matched');
+      const word = first.dataset.type === 'word' ? first.dataset.word : second.dataset.word;
+      speak(word);
+      matchCount++;
+      document.getElementById('matchCount').textContent = matchCount;
+      matchSelected = null;
+      matchLock = false;
+      if (matchCount === 5) {
+        setTimeout(() => { showConfetti(); earnStar(6); }, 500);
+      }
+    } else {
+      first.classList.add('incorrect');
+      second.classList.add('incorrect');
+      setTimeout(() => {
+        first.classList.remove('incorrect');
+        second.classList.remove('incorrect');
+        matchSelected = null;
+        matchLock = false;
+      }, 1000);
+    }
+  }
+}
+
+// === ТАБЫ ===
+function setupTabs() {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+}
+
+// === ИНИЦИАЛИЗАЦИЯ ===
+document.addEventListener('DOMContentLoaded', () => {
+  buildDictionary();
+  buildMemory();
+  buildBuilder();
+  buildQuiz();
+  buildCounting();
+  buildMatching();
+  setupTabs();
+
+  document.getElementById('memoryReset').addEventListener('click', buildMemory);
+  document.getElementById('matchingReset').addEventListener('click', buildMatching);
+
+  let dictStarEarned = false;
+  document.getElementById('dictionaryGrid').addEventListener('click', () => {
+    if (!dictStarEarned) {
+      dictStarEarned = true;
+      setTimeout(() => earnStar(1), 500);
+    }
+  }, { once: false });
+});
+</script>
+
+</body>
+</html>
