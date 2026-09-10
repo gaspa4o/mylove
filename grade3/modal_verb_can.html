@@ -1,0 +1,2336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Worksheet — Глагол CAN</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF8F0;
+    --bg-warm: #FBE9DC;
+    --bg-mint: #E8F0E3;
+    --sidebar-1: #F0E8D9;
+    --sidebar-2: #E8F0E3;
+    --accent: #D97757;
+    --accent-dark: #B85A3E;
+    --accent-soft: #F4C3A5;
+    --mint: #6B9080;
+    --mint-soft: #A4C3B2;
+    --yellow: #E8B96B;
+    --yellow-soft: #F5DCA0;
+    --card: #FFFFFF;
+    --text: #3D3027;
+    --text-light: #6B5D52;
+    --border: #E8DDD0;
+    --success: #6B9080;
+    --success-dark: #4F7264;
+    --error: #C75B5B;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    background-image: 
+      radial-gradient(circle at 15% 20%, rgba(217, 119, 87, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 85% 70%, rgba(107, 144, 128, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(232, 185, 107, 0.04) 0%, transparent 60%);
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  .font-display { font-family: 'Fredoka', sans-serif; }
+  
+  /* Layout */
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    background: linear-gradient(180deg, var(--sidebar-1) 0%, var(--sidebar-2) 100%);
+    border-right: 2px solid var(--border);
+    padding: 24px 18px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .sidebar-header {
+    text-align: center;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px dashed var(--border);
+  }
+  
+  .logo-circle {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    box-shadow: 0 6px 20px rgba(217, 119, 87, 0.3);
+    color: white;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: var(--text-light);
+    position: relative;
+    border: 2px solid transparent;
+  }
+  
+  .nav-item:hover {
+    background: rgba(217, 119, 87, 0.1);
+    color: var(--accent-dark);
+    transform: translateX(4px);
+  }
+  
+  .nav-item.active {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 4px 14px rgba(217, 119, 87, 0.35);
+  }
+  
+  .nav-item.completed::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-left: auto;
+    color: var(--success);
+    background: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+  }
+  
+  .nav-item.active.completed::after {
+    background: white;
+    color: var(--accent);
+  }
+  
+  .nav-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+  
+  .nav-item.active .nav-icon {
+    background: rgba(255,255,255,0.25);
+  }
+  
+  /* Main */
+  .main {
+    padding: 32px 40px 80px;
+    max-width: 1100px;
+  }
+  
+  .section-header {
+    margin-bottom: 28px;
+  }
+  
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-warm);
+    color: var(--accent-dark);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  
+  .section-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 8px;
+    line-height: 1.1;
+  }
+  
+  .section-subtitle {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  
+  /* Card */
+  .card {
+    background: var(--card);
+    border-radius: 24px;
+    border: 2px solid var(--border);
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(61, 48, 39, 0.04);
+    margin-bottom: 20px;
+  }
+  
+  .card-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  /* Theory cards */
+  .theory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+  }
+  
+  .theory-card {
+    border-radius: 18px;
+    padding: 22px;
+    border: 2px solid;
+    transition: all 0.3s ease;
+  }
+  
+  .theory-card:hover { transform: translateY(-4px); }
+  
+  .theory-card.affirmative {
+    background: linear-gradient(135deg, rgba(107, 144, 128, 0.1) 0%, rgba(164, 195, 178, 0.15) 100%);
+    border-color: var(--mint);
+  }
+  
+  .theory-card.negative {
+    background: linear-gradient(135deg, rgba(199, 91, 91, 0.08) 0%, rgba(199, 91, 91, 0.15) 100%);
+    border-color: var(--error);
+  }
+  
+  .theory-card.question {
+    background: linear-gradient(135deg, rgba(232, 185, 107, 0.12) 0%, rgba(232, 185, 107, 0.2) 100%);
+    border-color: var(--yellow);
+  }
+  
+  .theory-label {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .theory-card.affirmative .theory-label { background: var(--mint); }
+  .theory-card.negative .theory-label { background: var(--error); }
+  .theory-card.question .theory-label { background: var(--yellow); }
+  
+  .theory-example {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 8px 0;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .theory-translation {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+  
+  .speak-btn {
+    background: rgba(217, 119, 87, 0.15);
+    color: var(--accent-dark);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  
+  .speak-btn:hover {
+    background: var(--accent);
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .formula-box {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+    color: var(--text);
+    border: 1px dashed var(--border);
+  }
+  
+  .formula-box b { color: var(--accent-dark); }
+  
+  /* Vocabulary */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  
+  .vocab-card {
+    background: var(--card);
+    border-radius: 18px;
+    border: 2px solid var(--border);
+    padding: 18px 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .vocab-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+  
+  .vocab-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px rgba(217, 119, 87, 0.15);
+  }
+  
+  .vocab-card:hover::before { transform: scaleX(1); }
+  
+  .vocab-emoji {
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .vocab-word {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 4px 0;
+  }
+  
+  .vocab-transcription {
+    color: var(--mint);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  
+  .vocab-translation {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  
+  .vocab-card.speaking {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent-dark);
+    transform: scale(1.05);
+  }
+  
+  .vocab-card.speaking .vocab-word,
+  .vocab-card.speaking .vocab-translation,
+  .vocab-card.speaking .vocab-transcription {
+    color: white;
+  }
+  
+  /* Reading */
+  .reading-text {
+    background: linear-gradient(135deg, var(--bg-warm) 0%, var(--bg) 100%);
+    border-radius: 18px;
+    padding: 24px 28px;
+    border-left: 5px solid var(--accent);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+  
+  .reading-text .can-highlight {
+    background: rgba(232, 185, 107, 0.3);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--accent-dark);
+  }
+  
+  .reading-text .cant-highlight {
+    background: rgba(199, 91, 91, 0.15);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--error);
+  }
+  
+  .question-block {
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    border: 2px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  
+  .question-block.correct {
+    border-color: var(--success);
+    background: rgba(107, 144, 128, 0.08);
+  }
+  
+  .question-block.incorrect {
+    border-color: var(--error);
+    background: rgba(199, 91, 91, 0.06);
+  }
+  
+  .question-text {
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+  }
+  
+  .q-number {
+    background: var(--accent);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  
+  .option-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .option-btn {
+    padding: 8px 18px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+  }
+  
+  .option-btn:hover:not(.disabled) {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(217, 119, 87, 0.15);
+  }
+  
+  .option-btn.selected {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .option-btn.correct {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+  }
+  
+  .option-btn.incorrect {
+    background: var(--error);
+    color: white;
+    border-color: var(--error);
+  }
+  
+  .option-btn.disabled { cursor: not-allowed; }
+  
+  .answer-input {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 16px;
+    transition: all 0.3s ease;
+    background: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 100%;
+    color: var(--text);
+  }
+  
+  .answer-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(217, 119, 87, 0.12);
+  }
+  
+  .answer-input.correct {
+    border-color: var(--success);
+    background: rgba(107, 144, 128, 0.08);
+  }
+  
+  .answer-input.incorrect {
+    border-color: var(--error);
+    background: rgba(199, 91, 91, 0.06);
+  }
+  
+  /* Table */
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: 18px;
+    border: 2px solid var(--border);
+    background: white;
+  }
+  
+  .ability-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 560px;
+  }
+  
+  .ability-table th,
+  .ability-table td {
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .ability-table th {
+    background: linear-gradient(135deg, var(--mint) 0%, var(--mint-soft) 100%);
+    color: white;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  .ability-table th:first-child {
+    text-align: left;
+    padding-left: 20px;
+    border-top-left-radius: 14px;
+  }
+  
+  .ability-table th:last-child {
+    border-top-right-radius: 14px;
+  }
+  
+  .ability-table td:first-child {
+    text-align: left;
+    padding-left: 20px;
+    font-weight: 700;
+    color: var(--text);
+    background: var(--bg);
+  }
+  
+  .ability-table tr:last-child td { border-bottom: none; }
+  
+  .ability-table tr:nth-child(even) td:not(:first-child) {
+    background: rgba(232, 221, 208, 0.2);
+  }
+  
+  .ability-table td .check {
+    color: var(--success);
+    font-size: 1.3rem;
+    font-weight: 900;
+  }
+  
+  .ability-table td .cross {
+    color: var(--error);
+    font-size: 1.3rem;
+    font-weight: 900;
+  }
+  
+  .ability-table td .icon {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 2px;
+  }
+  
+  /* Fill in */
+  .fill-sentence {
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .fill-blank {
+    display: inline-flex;
+    gap: 6px;
+    margin: 0 4px;
+  }
+  
+  .fill-option {
+    padding: 6px 14px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.95rem;
+  }
+  
+  .fill-option:hover:not(.disabled) {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  
+  .fill-option.selected {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .fill-option.correct {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+  }
+  
+  .fill-option.incorrect {
+    background: var(--error);
+    color: white;
+    border-color: var(--error);
+  }
+  
+  .fill-option.disabled { cursor: not-allowed; }
+  
+  /* Buttons */
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 14px;
+    font-weight: 800;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(217, 119, 87, 0.3);
+    border: none;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .btn-primary:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(217, 119, 87, 0.4);
+  }
+  
+  .btn-primary:active { transform: translateY(0); }
+  
+  .btn-secondary {
+    background: white;
+    color: var(--text);
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: 700;
+    border: 2px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Nunito', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent-dark);
+  }
+  
+  /* Result box */
+  .result-box {
+    margin-top: 18px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    font-weight: 700;
+    display: none;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .result-box.show { display: flex; animation: pop 0.4s ease; }
+  
+  .result-box.success {
+    background: rgba(107, 144, 128, 0.15);
+    color: var(--success-dark);
+    border: 2px solid var(--success);
+  }
+  
+  .result-box.partial {
+    background: rgba(232, 185, 107, 0.15);
+    color: #8B6914;
+    border: 2px solid var(--yellow);
+  }
+  
+  @keyframes pop {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  /* Memory game */
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  
+  .memory-card {
+    perspective: 1000px;
+    cursor: pointer;
+    aspect-ratio: 1;
+  }
+  
+  .memory-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  
+  .memory-card.flipped .memory-card-inner,
+  .memory-card.matched .memory-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .memory-card-front,
+  .memory-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .memory-card-front {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: white;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 14px rgba(217, 119, 87, 0.25);
+  }
+  
+  .memory-card-front::after {
+    content: '\f005';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    opacity: 0.4;
+  }
+  
+  .memory-card-back {
+    background: white;
+    border: 2px solid var(--border);
+    color: var(--text);
+    transform: rotateY(180deg);
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .memory-card.matched .memory-card-back {
+    background: linear-gradient(135deg, rgba(107, 144, 128, 0.15) 0%, rgba(164, 195, 178, 0.25) 100%);
+    border-color: var(--success);
+    box-shadow: 0 4px 14px rgba(107, 144, 128, 0.25);
+  }
+  
+  .memory-emoji { font-size: 1.8rem; }
+  .memory-word {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  
+  .memory-stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .stat-pill {
+    background: white;
+    border: 2px solid var(--border);
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .stat-pill i { color: var(--accent); }
+  
+  /* Quiz */
+  .quiz-container {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  
+  .quiz-card {
+    background: white;
+    border-radius: 24px;
+    border: 2px solid var(--border);
+    padding: 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .quiz-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(232, 185, 107, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .quiz-emoji-big {
+    font-size: 5rem;
+    margin-bottom: 16px;
+    display: block;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .quiz-question {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 12px 0 24px;
+    color: var(--text);
+  }
+  
+  .quiz-options {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .quiz-option {
+    flex: 1;
+    max-width: 200px;
+    padding: 18px 24px;
+    border-radius: 16px;
+    border: 3px solid var(--border);
+    background: var(--bg);
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Fredoka', sans-serif;
+  }
+  
+  .quiz-option:hover:not(.disabled) {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(217, 119, 87, 0.15);
+  }
+  
+  .quiz-option.correct {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+  }
+  
+  .quiz-option.incorrect {
+    background: var(--error);
+    color: white;
+    border-color: var(--error);
+  }
+  
+  .quiz-option.disabled { cursor: not-allowed; }
+  
+  .quiz-progress {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .quiz-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.3s ease;
+  }
+  
+  .quiz-dot.active {
+    background: var(--accent);
+    transform: scale(1.3);
+  }
+  
+  .quiz-dot.correct { background: var(--success); }
+  .quiz-dot.incorrect { background: var(--error); }
+  
+  .timer-bar {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  
+  .timer-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success) 0%, var(--yellow) 60%, var(--error) 100%);
+    transition: width 1s linear;
+    border-radius: 4px;
+  }
+  
+  /* Confetti */
+  .confetti {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: confetti-fall 3s linear forwards;
+  }
+  
+  @keyframes confetti-fall {
+    0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+  
+  /* Section transitions */
+  .section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .section.active { display: block; }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Hint */
+  .hint-box {
+    background: rgba(232, 185, 107, 0.12);
+    border-left: 4px solid var(--yellow);
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    color: var(--text);
+    font-weight: 600;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .hint-box i {
+    color: var(--yellow);
+    margin-top: 2px;
+    font-size: 1.1rem;
+  }
+  
+  /* Bottom nav */
+  .bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    gap: 12px;
+  }
+  
+  /* Mobile */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar {
+      position: relative;
+      height: auto;
+      padding: 16px;
+    }
+    .sidebar-header { margin-bottom: 16px; padding-bottom: 12px; }
+    .logo-circle { width: 50px; height: 50px; font-size: 1.2rem; }
+    .main { padding: 20px; }
+    .section-title { font-size: 1.8rem; }
+    .memory-grid { grid-template-columns: repeat(3, 1fr); }
+    .quiz-options { flex-direction: column; }
+    .quiz-option { max-width: 100%; }
+  }
+  
+  /* Scrollbar */
+  .sidebar::-webkit-scrollbar { width: 6px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--accent-soft); border-radius: 3px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-circle">CAN</div>
+      <div class="font-display" style="font-size: 1.2rem; font-weight: 600; color: var(--text);">English Worksheet</div>
+      <div style="font-size: 0.85rem; color: var(--text-light); margin-top: 4px;">Modal verb CAN • Grade 3</div>
+    </div>
+    
+    <nav id="nav">
+      <div class="nav-item active" data-section="theory">
+        <div class="nav-icon"><i class="fa-solid fa-book-open"></i></div>
+        <span>Теория</span>
+      </div>
+      <div class="nav-item" data-section="vocabulary">
+        <div class="nav-icon"><i class="fa-solid fa-spell-check"></i></div>
+        <span>Словарь</span>
+      </div>
+      <div class="nav-item" data-section="reading">
+        <div class="nav-icon"><i class="fa-solid fa-book"></i></div>
+        <span>Чтение</span>
+      </div>
+      <div class="nav-item" data-section="table">
+        <div class="nav-icon"><i class="fa-solid fa-table-cells"></i></div>
+        <span>Таблица умений</span>
+      </div>
+      <div class="nav-item" data-section="fill">
+        <div class="nav-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+        <span>Вставь can / can't</span>
+      </div>
+      <div class="nav-item" data-section="memory">
+        <div class="nav-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+        <span>Игра: Память</span>
+      </div>
+      <div class="nav-item" data-section="quiz">
+        <div class="nav-icon"><i class="fa-solid fa-bolt"></i></div>
+        <span>Игра: Быстрый квиз</span>
+      </div>
+    </nav>
+    
+    <div style="margin-top: 24px; padding: 16px; background: rgba(217, 119, 87, 0.08); border-radius: 14px; text-align: center;">
+      <div style="font-size: 0.75rem; color: var(--text-light); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Прогресс</div>
+      <div style="font-family: 'Fredoka', sans-serif; font-size: 1.6rem; font-weight: 600; color: var(--accent-dark);" id="progressText">0 / 7</div>
+      <div style="height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-top: 8px;">
+        <div id="progressBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent) 0%, var(--yellow) 100%); transition: width 0.5s ease;"></div>
+      </div>
+    </div>
+  </aside>
+  
+  <!-- Main content -->
+  <main class="main">
+    
+    <!-- THEORY SECTION -->
+    <section class="section active" id="section-theory">
+      <div class="section-header">
+        <div class="section-badge"><i class="fa-solid fa-book-open"></i> Раздел 1</div>
+        <h1 class="section-title">Глагол CAN — умение что-то делать</h1>
+        <p class="section-subtitle">Узнаем, как сказать «я умею» и «я не умею» по-английски</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">
+          <span style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;"><i class="fa-solid fa-lightbulb"></i></span>
+          Что такое CAN?
+        </div>
+        <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text); margin: 0 0 8px;">
+          Слово <b style="color: var(--accent-dark);">can</b> [kæn] — это модальный глагол. Он помогает рассказать о том, что мы <b>умеем</b> или <b>не умеем</b> делать. После <b>can</b> всегда идёт обычный глагол без частицы <b>to</b>.
+        </p>
+        <div class="formula-box">
+          Подлежащее + <b>can</b> + глагол + остальные слова
+        </div>
+      </div>
+      
+      <div class="theory-grid">
+        <div class="theory-card affirmative">
+          <span class="theory-label">+ Утверждение</span>
+          <div class="theory-example">
+            I <b>can</b> swim.
+            <button class="speak-btn" data-speak="I can swim"><i class="fa-solid fa-volume-high"></i></button>
+          </div>
+          <div class="theory-translation">Я умею плавать.</div>
+          <div class="theory-example" style="font-size: 1.1rem;">
+            She <b>can</b> sing.
+            <button class="speak-btn" data-speak="She can sing"><i class="fa-solid fa-volume-high"></i></button>
+          </div>
+          <div class="theory-translation">Она умеет петь.</div>
+        </div>
+        
+        <div class="theory-card negative">
+          <span class="theory-label">− Отрицание</span>
+          <div class="theory-example">
+            I <b>cannot</b> cook.
+            <button class="speak-btn" data-speak="I cannot cook"><i class="fa-solid fa-volume-high"></i></button>
+          </div>
+          <div class="theory-translation">Я не умею готовить.</div>
+          <div class="theory-example" style="font-size: 1.1rem;">
+            He <b>can't</b> fly.
+            <button class="speak-btn" data-speak="He can't fly"><i class="fa-solid fa-volume-high"></i></button>
+          </div>
+          <div class="theory-translation">Он не умеет летать.</div>
+          <div class="formula-box" style="margin-top: 12px;">
+            <b>cannot</b> = полная форма<br>
+            <b>can't</b> [kɑːnt] = сокращённая
+          </div>
+        </div>
+        
+        <div class="theory-card question">
+          <span class="theory-label">? Вопрос</span>
+          <div class="theory-example">
+            <b>Can</b> you dance?
+            <button class="speak-btn" data-speak="Can you dance"><i class="fa-solid fa-volume-high"></i></button>
+          </div>
+          <div class="theory-translation">Ты умеешь танцевать?</div>
+          <div class="formula-box" style="margin-top: 12px;">
+            <b>Yes, I can.</b> — Да, умею.<br>
+            <b>No, I can't.</b> — Нет, не умею.
+          </div>
+          <div class="theory-example" style="font-size: 1.05rem; margin-top: 10px;">
+            <b>Can</b> she run?
+            <button class="speak-btn" data-speak="Can she run"><i class="fa-solid fa-volume-high"></i></button>
+          </div>
+          <div class="theory-translation">Она умеет бегать?</div>
+        </div>
+      </div>
+      
+      <div class="hint-box">
+        <i class="fa-solid fa-circle-info"></i>
+        <div>Запомни: <b>can</b> не меняется по лицам и числам. <b>I can</b>, <b>he can</b>, <b>they can</b> — одинаково! Никакого <b>-s</b> на конце.</div>
+      </div>
+      
+      <div class="card" style="background: linear-gradient(135deg, var(--bg-mint) 0%, var(--bg) 100%);">
+        <div class="card-title">
+          <span style="background: var(--mint); color: white; width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;"><i class="fa-solid fa-star"></i></span>
+          Бонус: специальные значения CAN
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+          <div style="background: white; padding: 14px; border-radius: 12px; border: 2px solid var(--border);">
+            <b style="color: var(--accent-dark);">Can I come in?</b><br>
+            <span style="color: var(--text-light);">Можно я войду? (просьба)</span>
+          </div>
+          <div style="background: white; padding: 14px; border-radius: 12px; border: 2px solid var(--border);">
+            <b style="color: var(--accent-dark);">Can you help me?</b><br>
+            <span style="color: var(--text-light);">Можешь помочь? (просьба)</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bottom-nav">
+        <button class="btn-secondary" disabled style="opacity: 0.4;"><i class="fa-solid fa-arrow-left"></i> Назад</button>
+        <button class="btn-primary" data-next="vocabulary">Вперёд: Словарь <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+    
+    <!-- VOCABULARY SECTION -->
+    <section class="section" id="section-vocabulary">
+      <div class="section-header">
+        <div class="section-badge"><i class="fa-solid fa-spell-check"></i> Раздел 2</div>
+        <h1 class="section-title">Словарь глаголов</h1>
+        <p class="section-subtitle">Нажми на карточку, чтобы услышать произношение</p>
+      </div>
+      
+      <div class="hint-box">
+        <i class="fa-solid fa-headphones"></i>
+        <div>Кликай по карточкам и повторяй слова вслух. Так ты быстрее их запомнишь!</div>
+      </div>
+      
+      <div class="card">
+        <div class="vocab-grid" id="vocabGrid"></div>
+      </div>
+      
+      <div class="card" style="background: linear-gradient(135deg, var(--bg-warm) 0%, var(--bg) 100%);">
+        <div class="card-title">
+          <span style="background: var(--yellow); color: white; width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;"><i class="fa-solid fa-gamepad"></i></span>
+          Мини-игра: «Найди перевод»
+        </div>
+        <p style="color: var(--text-light); margin-bottom: 16px;">Нажми на английское слово, потом на его перевод на русском.</p>
+        <div id="matchGame" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;"></div>
+        <div id="matchResult" class="result-box success" style="margin-top: 16px;">
+          <i class="fa-solid fa-trophy" style="font-size: 1.5rem;"></i>
+          <div>Отлично! Ты знаешь все слова! <span id="matchTime"></span></div>
+        </div>
+      </div>
+      
+      <div class="bottom-nav">
+        <button class="btn-secondary" data-next="theory"><i class="fa-solid fa-arrow-left"></i> Теория</button>
+        <button class="btn-primary" data-next="reading">Вперёд: Чтение <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+    
+    <!-- READING SECTION -->
+    <section class="section" id="section-reading">
+      <div class="section-header">
+        <div class="section-badge"><i class="fa-solid fa-book"></i> Раздел 3</div>
+        <h1 class="section-title">Чтение: «My friends and I»</h1>
+        <p class="section-subtitle">Прочитай текст и ответь на вопросы</p>
+      </div>
+      
+      <div class="hint-box">
+        <i class="fa-solid fa-glasses"></i>
+        <div>Обрати внимание на выделенные слова <span class="can-highlight">can</span> и <span class="cant-highlight">can't</span> — они помогут найти ответы!</div>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">
+          <span style="background: var(--mint); color: white; width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;"><i class="fa-solid fa-book-open-reader"></i></span>
+          Текст
+        </div>
+        <div class="reading-text">
+          <p style="margin: 0 0 12px;">Hi! My name is <b>Tom</b>. I am 9 years old. I <span class="can-highlight">can</span> swim and play football. But I <span class="cant-highlight">can't</span> dance.</p>
+          <p style="margin: 0 0 12px;">My sister's name is <b>Lily</b>. She is 7. She <span class="can-highlight">can</span> sing and draw beautiful pictures. She <span class="cant-highlight">can't</span> play football.</p>
+          <p style="margin: 0 0 12px;">My best friend is <b>Max</b>. He is 10. Max <span class="can-highlight">can</span> ride a bike and run very fast. But Max <span class="cant-highlight">can't</span> swim.</p>
+          <p style="margin: 0;">We all <span class="can-highlight">can</span> speak English! We are happy friends.</p>
+        </div>
+        <button class="btn-secondary" onclick="speakText('Hi! My name is Tom. I am 9 years old. I can swim and play football. But I can\'t dance. My sister\'s name is Lily. She is 7. She can sing and draw beautiful pictures. She can\'t play football. My best friend is Max. He is 10. Max can ride a bike and run very fast. But Max can\'t swim. We all can speak English! We are happy friends.')">
+          <i class="fa-solid fa-volume-high"></i> Слушать текст
+        </button>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">
+          <span style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;"><i class="fa-solid fa-question"></i></span>
+          Ответь на вопросы
+        </div>
+        
+        <div class="question-block" data-correct="yes" data-q="1">
+          <div class="question-text"><span class="q-number">1</span> Can Tom swim?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, he can.</button>
+            <button class="option-btn" data-value="no">No, he can't.</button>
+          </div>
+        </div>
+        
+        <div class="question-block" data-correct="no" data-q="2">
+          <div class="question-text"><span class="q-number">2</span> Can Tom dance?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, he can.</button>
+            <button class="option-btn" data-value="no">No, he can't.</button>
+          </div>
+        </div>
+        
+        <div class="question-block" data-correct="lily" data-q="3">
+          <div class="question-text"><span class="q-number">3</span> Who can sing? (напиши имя)</div>
+          <input type="text" class="answer-input" placeholder="Введи имя на английском..." data-answer="lily">
+        </div>
+        
+        <div class="question-block" data-correct="no" data-q="4">
+          <div class="question-text"><span class="q-number">4</span> Can Lily play football?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, she can.</button>
+            <button class="option-btn" data-value="no">No, she can't.</button>
+          </div>
+        </div>
+        
+        <div class="question-block" data-correct="yes" data-q="5">
+          <div class="question-text"><span class="q-number">5</span> Can Max ride a bike?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, he can.</button>
+            <button class="option-btn" data-value="no">No, he can't.</button>
+          </div>
+        </div>
+        
+        <div class="question-block" data-correct="no" data-q="6">
+          <div class="question-text"><span class="q-number">6</span> Can Max swim?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, he can.</button>
+            <button class="option-btn" data-value="no">No, he can't.</button>
+          </div>
+        </div>
+        
+        <div class="question-block" data-correct="tom" data-q="7">
+          <div class="question-text"><span class="q-number">7</span> Who can swim and play football? (напиши имя)</div>
+          <input type="text" class="answer-input" placeholder="Введи имя на английском..." data-answer="tom">
+        </div>
+        
+        <div style="display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap;">
+          <button class="btn-primary" onclick="checkReading()"><i class="fa-solid fa-check"></i> Проверить</button>
+          <button class="btn-secondary" onclick="resetReading()"><i class="fa-solid fa-rotate-left"></i> Сбросить</button>
+        </div>
+        
+        <div id="readingResult" class="result-box"></div>
+      </div>
+      
+      <div class="bottom-nav">
+        <button class="btn-secondary" data-next="vocabulary"><i class="fa-solid fa-arrow-left"></i> Словарь</button>
+        <button class="btn-primary" data-next="table">Вперёд: Таблица <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+    
+    <!-- TABLE SECTION -->
+    <section class="section" id="section-table">
+      <div class="section-header">
+        <div class="section-badge"><i class="fa-solid fa-table-cells"></i> Раздел 4</div>
+        <h1 class="section-title">Таблица умений</h1>
+        <p class="section-subtitle">Посмотри на таблицу и ответь на вопросы про друзей</p>
+      </div>
+      
+      <div class="hint-box">
+        <i class="fa-solid fa-eye"></i>
+        <div>✓ <b style="color: var(--success);">зелёная галочка</b> — умеет делать, ✗ <b style="color: var(--error);">красный крестик</b> — не умеет делать.</div>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">
+          <span style="background: var(--mint); color: white; width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;"><i class="fa-solid fa-users"></i></span>
+          Что умеют делать дети?
+        </div>
+        
+        <div class="table-wrapper">
+          <table class="ability-table">
+            <thead>
+              <tr>
+                <th>Имя</th>
+                <th><span class="icon">🏊</span>swim</th>
+                <th><span class="icon">🎤</span>sing</th>
+                <th><span class="icon">⚽</span>play football</th>
+                <th><span class="icon">👨‍🍳</span>cook</th>
+                <th><span class="icon">💃</span>dance</th>
+                <th><span class="icon">🎨</span>draw</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🧒 Masha</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td>👦 Sasha</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>👧 Kate</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>👶 Dasha</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">
+          <span style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;"><i class="fa-solid fa-question"></i></span>
+          Вопросы по таблице
+        </div>
+        
+        <div class="question-block" data-correct="yes">
+          <div class="question-text"><span class="q-number">1</span> Can Masha swim?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, she can.</button>
+            <button class="option-btn" data-value="no">No, she can't.</button>
+          </div>
+        </div>
+        
+        <div class="question-block" data-correct="yes">
+          <div class="question-text"><span class="q-number">2</span> Can Sasha cook?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, he can.</button>
+            <button class="option-btn" data-value="no">No, he can't.</button>
+          </div>
+        </div>
+        
+        <div class="question-block" data-correct="no">
+          <div class="question-text"><span class="q-number">3</span> Can Dasha swim?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, she can.</button>
+            <button class="option-btn" data-value="no">No, she can't.</button>
+          </div>
+        </div>
+        
+        <div class="question-block" data-correct="no">
+          <div class="question-text"><span class="q-number">4</span> Can Kate sing?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, she can.</button>
+            <button class="option-btn" data-value="no">No, she can't.</button>
+          </div>
+        </div>
+        
+        <div class="question-block" data-correct="masha">
+          <div class="question-text"><span class="q-number">5</span> Who can sing and dance? (напиши имя)</div>
+          <input type="text" class="answer-input" placeholder="Введи имя..." data-answer="masha">
+        </div>
+        
+        <div class="question-block" data-correct="kate">
+          <div class="question-text"><span class="q-number">6</span> Who can swim, cook, dance and draw? (напиши имя)</div>
+          <input type="text" class="answer-input" placeholder="Введи имя..." data-answer="kate">
+        </div>
+        
+        <div class="question-block" data-correct="sasha">
+          <div class="question-text"><span class="q-number">7</span> Who can play football and cook? (напиши имя)</div>
+          <input type="text" class="answer-input" placeholder="Введи имя..." data-answer="sasha">
+        </div>
+        
+        <div class="question-block" data-correct="no">
+          <div class="question-text"><span class="q-number">8</span> Can Dasha cook and dance?</div>
+          <div class="option-group">
+            <button class="option-btn" data-value="yes">Yes, she can.</button>
+            <button class="option-btn" data-value="no">No, she can't.</button>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap;">
+          <button class="btn-primary" onclick="checkTable()"><i class="fa-solid fa-check"></i> Проверить</button>
+          <button class="btn-secondary" onclick="resetTable()"><i class="fa-solid fa-rotate-left"></i> Сбросить</button>
+        </div>
+        
+        <div id="tableResult" class="result-box"></div>
+      </div>
+      
+      <div class="bottom-nav">
+        <button class="btn-secondary" data-next="reading"><i class="fa-solid fa-arrow-left"></i> Чтение</button>
+        <button class="btn-primary" data-next="fill">Вперёд: Упражнение <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+    
+    <!-- FILL IN SECTION -->
+    <section class="section" id="section-fill">
+      <div class="section-header">
+        <div class="section-badge"><i class="fa-solid fa-pen-to-square"></i> Раздел 5</div>
+        <h1 class="section-title">Вставь can или can't</h1>
+        <p class="section-subtitle">Прочитай предложение и выбери правильный вариант</p>
+      </div>
+      
+      <div class="hint-box">
+        <i class="fa-solid fa-lightbulb"></i>
+        <div>Подумай: это про животное или человека? Что они точно умеют или не умеют делать?</div>
+      </div>
+      
+      <div class="card">
+        <div id="fillContainer"></div>
+        
+        <div style="display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap;">
+          <button class="btn-primary" onclick="checkFill()"><i class="fa-solid fa-check"></i> Проверить</button>
+          <button class="btn-secondary" onclick="resetFill()"><i class="fa-solid fa-rotate-left"></i> Сбросить</button>
+        </div>
+        
+        <div id="fillResult" class="result-box"></div>
+      </div>
+      
+      <div class="bottom-nav">
+        <button class="btn-secondary" data-next="table"><i class="fa-solid fa-arrow-left"></i> Таблица</button>
+        <button class="btn-primary" data-next="memory">Вперёд: Игра <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+    
+    <!-- MEMORY GAME SECTION -->
+    <section class="section" id="section-memory">
+      <div class="section-header">
+        <div class="section-badge"><i class="fa-solid fa-puzzle-piece"></i> Игра 1</div>
+        <h1 class="section-title">Игра «Память»</h1>
+        <p class="section-subtitle">Найди пары: картинка + английское слово</p>
+      </div>
+      
+      <div class="card">
+        <div class="memory-stats">
+          <div class="stat-pill"><i class="fa-solid fa-hand-pointer"></i> Ходы: <span id="memoryMoves">0</span></div>
+          <div class="stat-pill"><i class="fa-solid fa-heart"></i> Найдено: <span id="memoryMatched">0</span> / 8</div>
+          <div class="stat-pill"><i class="fa-solid fa-clock"></i> Время: <span id="memoryTime">0</span> сек</div>
+        </div>
+        
+        <div class="memory-grid" id="memoryGrid"></div>
+        
+        <div id="memoryWin" class="result-box success" style="margin-top: 24px; justify-content: center;">
+          <i class="fa-solid fa-trophy" style="font-size: 1.8rem;"></i>
+          <div style="font-size: 1.2rem;">Ты выиграл! Все пары найдены за <span id="memoryFinalMoves"></span> ходов и <span id="memoryFinalTime"></span> секунд!</div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+          <button class="btn-primary" onclick="initMemory()"><i class="fa-solid fa-rotate"></i> Новая игра</button>
+        </div>
+      </div>
+      
+      <div class="bottom-nav">
+        <button class="btn-secondary" data-next="fill"><i class="fa-solid fa-arrow-left"></i> Назад</button>
+        <button class="btn-primary" data-next="quiz">Вперёд: Квиз <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+    
+    <!-- QUIZ GAME SECTION -->
+    <section class="section" id="section-quiz">
+      <div class="section-header">
+        <div class="section-badge"><i class="fa-solid fa-bolt"></i> Игра 2</div>
+        <h1 class="section-title">Быстрый квиз: Can animals do it?</h1>
+        <p class="section-subtitle">Успей ответить до конца таймера!</p>
+      </div>
+      
+      <div class="card">
+        <div class="quiz-container">
+          <div class="quiz-progress" id="quizProgress"></div>
+          
+          <div class="timer-bar">
+            <div class="timer-fill" id="timerFill" style="width: 100%;"></div>
+          </div>
+          
+          <div class="quiz-card" id="quizCard">
+            <span class="quiz-emoji-big" id="quizEmoji">🐟</span>
+            <div class="quiz-question" id="quizQuestion">Can a fish swim?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-answer="yes" onclick="answerQuiz(true)">Yes, it can.</button>
+              <button class="quiz-option" data-answer="no" onclick="answerQuiz(false)">No, it can't.</button>
+            </div>
+          </div>
+          
+          <div style="display: flex; justify-content: space-around; margin-top: 24px;">
+            <div class="stat-pill"><i class="fa-solid fa-check-circle"></i> Правильно: <span id="quizCorrect">0</span></div>
+            <div class="stat-pill"><i class="fa-solid fa-xmark-circle"></i> Неправильно: <span id="quizWrong">0</span></div>
+          </div>
+          
+          <div id="quizEnd" class="result-box success" style="margin-top: 24px; justify-content: center; flex-direction: column; text-align: center;">
+            <i class="fa-solid fa-trophy" style="font-size: 2.5rem; margin-bottom: 8px;"></i>
+            <div style="font-size: 1.4rem;">Игра окончена!</div>
+            <div style="margin-top: 8px;">Твой результат: <span id="quizFinalScore"></span> из <span id="quizTotal"></span></div>
+            <div id="quizRating" style="margin-top: 8px; font-weight: 800; font-size: 1.1rem;"></div>
+            <button class="btn-primary" style="margin-top: 16px;" onclick="initQuiz()"><i class="fa-solid fa-rotate"></i> Играть снова</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bottom-nav">
+        <button class="btn-secondary" data-next="memory"><i class="fa-solid fa-arrow-left"></i> Назад</button>
+        <button class="btn-primary" onclick="finishAll()"><i class="fa-solid fa-flag-checkered"></i> Завершить урок</button>
+      </div>
+    </section>
+    
+  </main>
+</div>
+
+<script>
+  // ============= НАВИГАЦИЯ =============
+  const navItems = document.querySelectorAll('.nav-item');
+  const sections = document.querySelectorAll('.section');
+  const completed = new Set();
+  
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.dataset.section;
+      switchSection(target);
+    });
+  });
+  
+  document.querySelectorAll('[data-next]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.next;
+      const current = document.querySelector('.section.active').id.replace('section-', '');
+      completed.add(current);
+      updateProgress();
+      switchSection(target);
+    });
+  });
+  
+  function switchSection(target) {
+    sections.forEach(s => s.classList.remove('active'));
+    document.getElementById('section-' + target).classList.add('active');
+    navItems.forEach(n => n.classList.remove('active'));
+    document.querySelector(`.nav-item[data-section="${target}"]`).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    if (target === 'memory' && !memoryInited) initMemory();
+    if (target === 'quiz' && !quizInited) initQuiz();
+  }
+  
+  function updateProgress() {
+    navItems.forEach(n => {
+      const sec = n.dataset.section;
+      if (completed.has(sec)) n.classList.add('completed');
+      else n.classList.remove('completed');
+    });
+    document.getElementById('progressText').textContent = `${completed.size} / 7`;
+    document.getElementById('progressBar').style.width = (completed.size / 7 * 100) + '%';
+  }
+  
+  function finishAll() {
+    completed.add('quiz');
+    completed.add('memory');
+    completed.add('fill');
+    updateProgress();
+    
+    // Конфетти!
+    for (let i = 0; i < 80; i++) {
+      setTimeout(() => createConfetti(), i * 30);
+    }
+    
+    setTimeout(() => {
+      alert('🎉 Молодец! Ты прошёл весь рабочий лист! Ты узнал, как использовать глагол CAN в английском языке!');
+    }, 500);
+  }
+  
+  function createConfetti() {
+    const colors = ['#D97757', '#6B9080', '#E8B96B', '#A4C3B2', '#F4C3A5'];
+    const conf = document.createElement('div');
+    conf.className = 'confetti';
+    conf.style.left = Math.random() * 100 + 'vw';
+    conf.style.background = colors[Math.floor(Math.random() * colors.length)];
+    conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    conf.style.animationDuration = (2 + Math.random() * 2) + 's';
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 4000);
+  }
+  
+  // ============= ОЗВУЧКА =============
+  function speakText(text, rate = 0.9) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    utter.rate = rate;
+    utter.pitch = 1.1;
+    window.speechSynthesis.speak(utter);
+  }
+  
+  document.querySelectorAll('.speak-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      speakText(btn.dataset.speak);
+    });
+  });
+  
+  // ============= СЛОВАРЬ =============
+  const vocabulary = [
+    { word: 'swim', emoji: '🏊', transcription: '[swɪm]', translation: 'плавать' },
+    { word: 'sing', emoji: '🎤', transcription: '[sɪŋ]', translation: 'петь' },
+    { word: 'dance', emoji: '💃', transcription: '[dɑːns]', translation: 'танцевать' },
+    { word: 'run', emoji: '🏃', transcription: '[rʌn]', translation: 'бегать' },
+    { word: 'jump', emoji: '🦘', transcription: '[dʒʌmp]', translation: 'прыгать' },
+    { word: 'draw', emoji: '🎨', transcription: '[drɔː]', translation: 'рисовать' },
+    { word: 'cook', emoji: '👨‍🍳', transcription: '[kʊk]', translation: 'готовить' },
+    { word: 'play football', emoji: '⚽', transcription: '[pleɪ ˈfʊtbɔːl]', translation: 'играть в футбол' },
+    { word: 'play piano', emoji: '🎹', transcription: '[pleɪ pɪˈænəʊ]', translation: 'играть на пианино' },
+    { word: 'ride a bike', emoji: '🚲', transcription: '[raɪd ə baɪk]', translation: 'кататься на велосипеде' },
+    { word: 'fly', emoji: '✈️', transcription: '[flaɪ]', translation: 'летать' },
+    { word: 'read', emoji: '📖', transcription: '[riːd]', translation: 'читать' },
+    { word: 'write', emoji: '✍️', transcription: '[raɪt]', translation: 'писать' },
+    { word: 'climb', emoji: '🧗', transcription: '[klaɪm]', translation: 'лазить' },
+    { word: 'speak English', emoji: '🗣️', transcription: '[spiːk ˈɪŋɡlɪʃ]', translation: 'говорить по-английски' }
+  ];
+  
+  function renderVocab() {
+    const grid = document.getElementById('vocabGrid');
+    grid.innerHTML = '';
+    vocabulary.forEach(v => {
+      const card = document.createElement('div');
+      card.className = 'vocab-card';
+      card.innerHTML = `
+        <span class="vocab-emoji">${v.emoji}</span>
+        <div class="vocab-word">${v.word}</div>
+        <div class="vocab-transcription">${v.transcription}</div>
+        <div class="vocab-translation">${v.translation}</div>
+      `;
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.vocab-card').forEach(c => c.classList.remove('speaking'));
+        card.classList.add('speaking');
+        speakText(v.word);
+        setTimeout(() => card.classList.remove('speaking'), 1200);
+      });
+      grid.appendChild(card);
+    });
+  }
+  renderVocab();
+  
+  // ============= МИНИ-ИГРА: СОПОСТАВЛЕНИЕ =============
+  let matchSelected = null;
+  let matchedPairs = 0;
+  let matchStartTime = null;
+  
+  function initMatchGame() {
+    const container = document.getElementById('matchGame');
+    container.innerHTML = '';
+    matchedPairs = 0;
+    matchSelected = null;
+    document.getElementById('matchResult').classList.remove('show');
+    
+    const pairs = [
+      { en: 'swim', ru: 'плавать' },
+      { en: 'sing', ru: 'петь' },
+      { en: 'cook', ru: 'готовить' },
+      { en: 'draw', ru: 'рисовать' },
+      { en: 'fly', ru: 'летать' },
+      { en: 'jump', ru: 'прыгать' }
+    ];
+    
+    const col1 = [...pairs].sort(() => Math.random() - 0.5);
+    const col2 = [...pairs].sort(() => Math.random() - 0.5);
+    
+    const leftCol = document.createElement('div');
+    leftCol.style.display = 'flex';
+    leftCol.style.flexDirection = 'column';
+    leftCol.style.gap = '8px';
+    
+    const rightCol = document.createElement('div');
+    rightCol.style.display = 'flex';
+    rightCol.style.flexDirection = 'column';
+    rightCol.style.gap = '8px';
+    
+    col1.forEach(p => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn match-btn';
+      btn.dataset.type = 'en';
+      btn.dataset.value = p.en;
+      btn.textContent = p.en;
+      btn.style.width = '100%';
+      btn.addEventListener('click', () => handleMatchClick(btn, p));
+      leftCol.appendChild(btn);
+    });
+    
+    col2.forEach(p => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn match-btn';
+      btn.dataset.type = 'ru';
+      btn.dataset.value = p.en;
+      btn.textContent = p.ru;
+      btn.style.width = '100%';
+      btn.addEventListener('click', () => handleMatchClick(btn, p));
+      rightCol.appendChild(btn);
+    });
+    
+    container.appendChild(leftCol);
+    container.appendChild(rightCol);
+    
+    if (!matchStartTime) matchStartTime = Date.now();
+  }
+  
+  function handleMatchClick(btn, pair) {
+    if (btn.classList.contains('disabled') || btn.classList.contains('correct')) return;
+    
+    if (!matchSelected) {
+      matchSelected = btn;
+      btn.classList.add('selected');
+      return;
+    }
+    
+    if (matchSelected === btn) {
+      btn.classList.remove('selected');
+      matchSelected = null;
+      return;
+    }
+    
+    if (matchSelected.dataset.value === btn.dataset.value && matchSelected.dataset.type !== btn.dataset.type) {
+      matchSelected.classList.remove('selected');
+      matchSelected.classList.add('correct');
+      matchSelected.classList.add('disabled');
+      btn.classList.add('correct');
+      btn.classList.add('disabled');
+      matchSelected = null;
+      matchedPairs++;
+      speakText(pair.en);
+      
+      if (matchedPairs === 6) {
+        const time = Math.floor((Date.now() - matchStartTime) / 1000);
+        document.getElementById('matchTime').textContent = `Время: ${time} сек`;
+        document.getElementById('matchResult').classList.add('show');
+        completed.add('vocabulary');
+        updateProgress();
+        for (let i = 0; i < 30; i++) setTimeout(() => createConfetti(), i * 50);
+      }
+    } else {
+      const wrong = matchSelected;
+      wrong.classList.remove('selected');
+      wrong.classList.add('incorrect');
+      btn.classList.add('incorrect');
+      setTimeout(() => {
+        wrong.classList.remove('incorrect');
+        btn.classList.remove('incorrect');
+      }, 600);
+      matchSelected = null;
+    }
+  }
+  
+  initMatchGame();
+  
+  // ============= ЧТЕНИЕ: ПРОВЕРКА =============
+  document.querySelectorAll('.question-block .option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const block = btn.closest('.question-block');
+      block.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      block.dataset.userAnswer = btn.dataset.value;
+    });
+  });
+  
+  function checkReading() {
+    let correct = 0;
+    const total = 7;
+    const blocks = document.querySelectorAll('#section-reading .question-block');
+    blocks.forEach(block => {
+      const correctAnswer = block.dataset.correct;
+      const input = block.querySelector('.answer-input');
+      let userAnswer;
+      let isCorrect = false;
+      
+      if (input) {
+        userAnswer = (input.value || '').trim().toLowerCase();
+        input.classList.remove('correct', 'incorrect');
+        if (userAnswer === correctAnswer) {
+          input.classList.add('correct');
+          isCorrect = true;
+        } else {
+          input.classList.add('incorrect');
+        }
+      } else {
+        const selected = block.querySelector('.option-btn.selected');
+        block.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct', 'incorrect'));
+        if (selected) {
+          if (selected.dataset.value === correctAnswer) {
+            selected.classList.add('correct');
+            isCorrect = true;
+          } else {
+            selected.classList.add('incorrect');
+            // показать правильный
+            block.querySelector(`.option-btn[data-value="${correctAnswer}"]`).classList.add('correct');
+          }
+        }
+        block.querySelectorAll('.option-btn').forEach(b => b.classList.add('disabled'));
+      }
+      
+      block.classList.remove('correct', 'incorrect');
+      block.classList.add(isCorrect ? 'correct' : 'incorrect');
+      if (isCorrect) correct++;
+    });
+    
+    showResult('readingResult', correct, total);
+    if (correct >= 5) {
+      completed.add('reading');
+      updateProgress();
+      for (let i = 0; i < 20; i++) setTimeout(() => createConfetti(), i * 50);
+    }
+  }
+  
+  function resetReading() {
+    const blocks = document.querySelectorAll('#section-reading .question-block');
+    blocks.forEach(block => {
+      block.classList.remove('correct', 'incorrect');
+      block.querySelectorAll('.option-btn').forEach(b => {
+        b.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+      });
+      const input = block.querySelector('.answer-input');
+      if (input) {
+        input.value = '';
+        input.classList.remove('correct', 'incorrect');
+      }
+    });
+    document.getElementById('readingResult').classList.remove('show');
+  }
+  
+  // ============= ТАБЛИЦА: ПРОВЕРКА =============
+  function checkTable() {
+    let correct = 0;
+    const total = 8;
+    const blocks = document.querySelectorAll('#section-table .question-block');
+    blocks.forEach(block => {
+      const correctAnswer = block.dataset.correct;
+      const input = block.querySelector('.answer-input');
+      let isCorrect = false;
+      
+      if (input) {
+        const userAnswer = (input.value || '').trim().toLowerCase();
+        input.classList.remove('correct', 'incorrect');
+        if (userAnswer === correctAnswer) {
+          input.classList.add('correct');
+          isCorrect = true;
+        } else {
+          input.classList.add('incorrect');
+        }
+      } else {
+        const selected = block.querySelector('.option-btn.selected');
+        block.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct', 'incorrect'));
+        if (selected) {
+          if (selected.dataset.value === correctAnswer) {
+            selected.classList.add('correct');
+            isCorrect = true;
+          } else {
+            selected.classList.add('incorrect');
+            block.querySelector(`.option-btn[data-value="${correctAnswer}"]`).classList.add('correct');
+          }
+        }
+        block.querySelectorAll('.option-btn').forEach(b => b.classList.add('disabled'));
+      }
+      
+      block.classList.remove('correct', 'incorrect');
+      block.classList.add(isCorrect ? 'correct' : 'incorrect');
+      if (isCorrect) correct++;
+    });
+    
+    showResult('tableResult', correct, total);
+    if (correct >= 6) {
+      completed.add('table');
+      updateProgress();
+      for (let i = 0; i < 20; i++) setTimeout(() => createConfetti(), i * 50);
+    }
+  }
+  
+  function resetTable() {
+    const blocks = document.querySelectorAll('#section-table .question-block');
+    blocks.forEach(block => {
+      block.classList.remove('correct', 'incorrect');
+      block.querySelectorAll('.option-btn').forEach(b => {
+        b.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+      });
+      const input = block.querySelector('.answer-input');
+      if (input) {
+        input.value = '';
+        input.classList.remove('correct', 'incorrect');
+      }
+    });
+    document.getElementById('tableResult').classList.remove('show');
+  }
+  
+  // ============= ОБЩАЯ ФУНКЦИЯ РЕЗУЛЬТАТА =============
+  function showResult(id, correct, total) {
+    const box = document.getElementById(id);
+    const percent = (correct / total) * 100;
+    box.className = 'result-box show ' + (percent >= 70 ? 'success' : 'partial');
+    
+    let icon, message;
+    if (percent === 100) {
+      icon = 'fa-trophy';
+      message = `Идеально! Все ${total} ответов правильные! Ты супергерой! 🌟`;
+    } else if (percent >= 70) {
+      icon = 'fa-star';
+      message = `Отлично! Правильно ${correct} из ${total}. Так держать!`;
+    } else if (percent >= 50) {
+      icon = 'fa-thumbs-up';
+      message = `Хорошо! Правильно ${correct} из ${total}. Попробуй ещё раз!`;
+    } else {
+      icon = 'fa-heart';
+      message = `Правильно ${correct} из ${total}. Не расстраивайся, попробуй ещё разок!`;
+    }
+    
+    box.innerHTML = `<i class="fa-solid ${icon}" style="font-size: 1.5rem;"></i><div>${message}</div>`;
+  }
+  
+  // ============= ЗАПОЛНИ CAN / CAN'T =============
+  const fillSentences = [
+    { text: 'A fish', emoji: '🐟', answer: 'can', end: 'swim.' },
+    { text: 'A bird', emoji: '🐦', answer: 'can', end: 'fly.' },
+    { text: 'A cat', emoji: '🐱', answer: "can't", end: 'sing.' },
+    { text: 'A dog', emoji: '🐶', answer: 'can', end: 'run.' },
+    { text: 'A penguin', emoji: '🐧', answer: "can't", end: 'fly.' },
+    { text: 'A frog', emoji: '🐸', answer: 'can', end: 'jump.' },
+    { text: 'A snake', emoji: '🐍', answer: "can't", end: 'walk.' },
+    { text: 'A rabbit', emoji: '🐰', answer: 'can', end: 'run fast.' }
+  ];
+  
+  function renderFill() {
+    const container = document.getElementById('fillContainer');
+    container.innerHTML = '';
+    fillSentences.forEach((s, i) => {
+      const div = document.createElement('div');
+      div.className = 'fill-sentence';
+      div.dataset.correct = s.answer;
+      div.innerHTML = `
+        <span style="font-size: 1.8rem;">${s.emoji}</span>
+        <span>${s.text}</span>
+        <div class="fill-blank">
+          <button class="fill-option" data-value="can">can</button>
+          <button class="fill-option" data-value="can't">can't</button>
+        </div>
+        <span>${s.end}</span>
+      `;
+      div.querySelectorAll('.fill-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          div.querySelectorAll('.fill-option').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          div.dataset.userAnswer = btn.dataset.value;
+        });
+      });
+      container.appendChild(div);
+    });
+  }
+  renderFill();
+  
+  function checkFill() {
+    let correct = 0;
+    const blocks = document.querySelectorAll('#fillContainer .fill-sentence');
+    blocks.forEach(block => {
+      const correctAnswer = block.dataset.correct;
+      const selected = block.querySelector('.fill-option.selected');
+      block.querySelectorAll('.fill-option').forEach(b => b.classList.remove('correct', 'incorrect'));
+      let isCorrect = false;
+      if (selected) {
+        if (selected.dataset.value === correctAnswer) {
+          selected.classList.add('correct');
+          isCorrect = true;
+        } else {
+          selected.classList.add('incorrect');
+          block.querySelector(`.fill-option[data-value="${correctAnswer}"]`).classList.add('correct');
+        }
+        block.querySelectorAll('.fill-option').forEach(b => b.classList.add('disabled'));
+      }
+      if (isCorrect) correct++;
+    });
+    
+    showResult('fillResult', correct, fillSentences.length);
+    if (correct >= 6) {
+      completed.add('fill');
+      updateProgress();
+      for (let i = 0; i < 20; i++) setTimeout(() => createConfetti(), i * 50);
+    }
+  }
+  
+  function resetFill() {
+    document.querySelectorAll('#fillContainer .fill-sentence').forEach(block => {
+      block.querySelectorAll('.fill-option').forEach(b => {
+        b.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+      });
+    });
+    document.getElementById('fillResult').classList.remove('show');
+  }
+  
+  // ============= ИГРА ПАМЯТЬ =============
+  let memoryInited = false;
+  let memoryCards = [];
+  let memoryFlipped = [];
+  let memoryMoves = 0;
+  let memoryMatchedCount = 0;
+  let memoryTimer = null;
+  let memorySeconds = 0;
+  let memoryLock = false;
+  
+  function initMemory() {
+    memoryInited = true;
+    memoryMoves = 0;
+    memoryMatchedCount = 0;
+    memorySeconds = 0;
+    memoryFlipped = [];
+    memoryLock = false;
+    
+    document.getElementById('memoryMoves').textContent = '0';
+    document.getElementById('memoryMatched').textContent = '0';
+    document.getElementById('memoryTime').textContent = '0';
+    document.getElementById('memoryWin').classList.remove('show');
+    
+    if (memoryTimer) clearInterval(memoryTimer);
+    memoryTimer = setInterval(() => {
+      memorySeconds++;
+      document.getElementById('memoryTime').textContent = memorySeconds;
+    }, 1000);
+    
+    const memoryPairs = [
+      { emoji: '🏊', word: 'swim' },
+      { emoji: '🎤', word: 'sing' },
+      { emoji: '💃', word: 'dance' },
+      { emoji: '🎨', word: 'draw' },
+      { emoji: '👨‍🍳', word: 'cook' },
+      { emoji: '⚽', word: 'play football' },
+      { emoji: '🚲', word: 'ride a bike' },
+      { emoji: '✈️', word: 'fly' }
+    ];
+    
+    memoryCards = [];
+    memoryPairs.forEach((p, i) => {
+      memoryCards.push({ ...p, pairId: i, type: 'emoji' });
+      memoryCards.push({ ...p, pairId: i, type: 'word' });
+    });
+    memoryCards.sort(() => Math.random() - 0.5);
+    
+    const grid = document.getElementById('memoryGrid');
+    grid.innerHTML = '';
+    memoryCards.forEach((card, idx) => {
+      const div = document.createElement('div');
+      div.className = 'memory-card';
+      div.dataset.idx = idx;
+      div.innerHTML = `
+        <div class="memory-card-inner">
+          <div class="memory-card-front"></div>
+          <div class="memory-card-back">
+            ${card.type === 'emoji' 
+              ? `<span class="memory-emoji">${card.emoji}</span>`
+              : `<span class="memory-word">${card.word}</span>`
+            }
+          </div>
+        </div>
+      `;
+      div.addEventListener('click', () => flipMemoryCard(idx, div));
+      grid.appendChild(div);
+    });
+  }
+  
+  function flipMemoryCard(idx, el) {
+    if (memoryLock) return;
+    if (el.classList.contains('flipped') || el.classList.contains('matched')) return;
+    
+    el.classList.add('flipped');
+    memoryFlipped.push({ idx, el, card: memoryCards[idx] });
+    
+    if (memoryFlipped.length === 2) {
+      memoryMoves++;
+      document.getElementById('memoryMoves').textContent = memoryMoves;
+      memoryLock = true;
+      
+      const [a, b] = memoryFlipped;
+      if (a.card.pairId === b.card.pairId && a.card.type !== b.card.type) {
+        setTimeout(() => {
+          a.el.classList.add('matched');
+          b.el.classList.add('matched');
+          memoryFlipped = [];
+          memoryLock = false;
+          memoryMatchedCount++;
+          document.getElementById('memoryMatched').textContent = memoryMatchedCount;
+          speakText(a.card.word);
+          
+          if (memoryMatchedCount === 8) {
+            clearInterval(memoryTimer);
+            document.getElementById('memoryFinalMoves').textContent = memoryMoves;
+            document.getElementById('memoryFinalTime').textContent = memorySeconds;
+            document.getElementById('memoryWin').classList.add('show');
+            completed.add('memory');
+            updateProgress();
+            for (let i = 0; i < 60; i++) setTimeout(() => createConfetti(), i * 40);
+          }
+        }, 600);
+      } else {
+        setTimeout(() => {
+          a.el.classList.remove('flipped');
+          b.el.classList.remove('flipped');
+          memoryFlipped = [];
+          memoryLock = false;
+        }, 900);
+      }
+    }
+  }
+  
+  // ============= БЫСТРЫЙ КВИЗ =============
+  let quizInited = false;
+  let quizQuestions = [];
+  let quizCurrent = 0;
+  let quizCorrectCount = 0;
+  let quizWrongCount = 0;
+  let quizTimer = null;
+  let quizTimeLeft = 10;
+  
+  function initQuiz() {
+    quizInited = true;
+    quizQuestions = [
+      { emoji: '🐟', question: 'Can a fish swim?', answer: true },
+      { emoji: '🐦', question: 'Can a bird fly?', answer: true },
+      { emoji: '🐱', question: 'Can a cat sing?', answer: false },
+      { emoji: '🐶', question: 'Can a dog run?', answer: true },
+      { emoji: '🐧', question: 'Can a penguin fly?', answer: false },
+      { emoji: '🐸', question: 'Can a frog jump?', answer: true },
+      { emoji: '🐘', question: 'Can an elephant climb trees?', answer: false },
+      { emoji: '🐰', question: 'Can a rabbit jump?', answer: true },
+      { emoji: '🦆', question: 'Can a duck swim?', answer: true },
+      { emoji: '🐍', question: 'Can a snake walk?', answer: false }
+    ].sort(() => Math.random() - 0.5).slice(0, 8);
+    
+    quizCurrent = 0;
+    quizCorrectCount = 0;
+    quizWrongCount = 0;
+    
+    document.getElementById('quizCorrect').textContent = '0';
+    document.getElementById('quizWrong').textContent = '0';
+    document.getElementById('quizEnd').classList.remove('show');
+    document.getElementById('quizCard').style.display = 'block';
+    
+    // Прогресс точки
+    const progress = document.getElementById('quizProgress');
+    progress.innerHTML = '';
+    for (let i = 0; i < quizQuestions.length; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'quiz-dot';
+      progress.appendChild(dot);
+    }
+    
+    showQuizQuestion();
+  }
+  
+  function showQuizQuestion() {
+    if (quizCurrent >= quizQuestions.length) {
+      endQuiz();
+      return;
+    }
+    
+    const q = quizQuestions[quizCurrent];
+    document.getElementById('quizEmoji').textContent = q.emoji;
+    document.getElementById('quizQuestion').textContent = q.question;
+    
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+      opt.classList.remove('correct', 'incorrect', 'disabled');
+    });
+    
+    // Обновляем точки
+    document.querySelectorAll('.quiz-dot').forEach((d, i) => {
+      d.classList.remove('active', 'correct', 'incorrect');
+      if (i === quizCurrent) d.classList.add('active');
+    });
+    
+    speakText(q.question);
+    
+    // Таймер
+    quizTimeLeft = 10;
+    document.getElementById('timerFill').style.width = '100%';
+    document.getElementById('timerFill').style.transition = 'width 1s linear';
+    
+    if (quizTimer) clearInterval(quizTimer);
+    quizTimer = setInterval(() => {
+      quizTimeLeft--;
+      document.getElementById('timerFill').style.width = (quizTimeLeft * 10) + '%';
+      if (quizTimeLeft <= 0) {
+        clearInterval(quizTimer);
+        answerQuiz(null); // время вышло
+      }
+    }, 1000);
+  }
+  
+  function answerQuiz(userAnswer) {
+    if (quizTimer) clearInterval(quizTimer);
+    
+    const q = quizQuestions[quizCurrent];
+    const isCorrect = userAnswer === q.answer;
+    
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+      opt.classList.add('disabled');
+      const optValue = opt.dataset.answer === 'yes';
+      if (optValue === q.answer) {
+        opt.classList.add('correct');
+      } else if (optValue === userAnswer && !isCorrect) {
+        opt.classList.add('incorrect');
+      }
+    });
+    
+    const dots = document.querySelectorAll('.quiz-dot');
+    dots[quizCurrent].classList.remove('active');
+    dots[quizCurrent].classList.add(isCorrect ? 'correct' : 'incorrect');
+    
+    if (isCorrect) {
+      quizCorrectCount++;
+      document.getElementById('quizCorrect').textContent = quizCorrectCount;
+    } else {
+      quizWrongCount++;
+      document.getElementById('quizWrong').textContent = quizWrongCount;
+    }
+    
+    setTimeout(() => {
+      quizCurrent++;
+      showQuizQuestion();
+    }, 1300);
+  }
+  
+  function endQuiz() {
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('quizEnd').classList.add('show');
+    document.getElementById('quizFinalScore').textContent = quizCorrectCount;
+    document.getElementById('quizTotal').textContent = quizQuestions.length;
+    
+    let rating;
+    const percent = (quizCorrectCount / quizQuestions.length) * 100;
+    if (percent === 100) rating = '🏆 Идеально! Ты знаешь CAN на 100%!';
+    else if (percent >= 75) rating = '🌟 Отлично! Ты молодец!';
+    else if (percent >= 50) rating = '👍 Хорошо! Ещё немного практики!';
+    else rating = '💪 Попробуй сыграть ещё раз!';
+    
+    document.getElementById('quizRating').textContent = rating;
+    
+    if (percent >= 60) {
+      completed.add('quiz');
+      updateProgress();
+      for (let i = 0; i < 40; i++) setTimeout(() => createConfetti(), i * 50);
+    }
+  }
+  
+  // Предзагрузка игр при первом клике на sidebar
+  // (инициализируются при переключении секции)
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Have Got / Has Got — Рабочий лист для 3 класса</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF8EC;
+    --bg-2: #FFE8D6;
+    --primary: #FF6B9D;
+    --primary-dark: #E0487E;
+    --secondary: #4DD9B8;
+    --secondary-dark: #2BB897;
+    --accent: #FFC93C;
+    --accent-2: #FF8C42;
+    --dark: #3A2E39;
+    --muted: #8B7E80;
+    --error: #FF5757;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .font-display { font-family: 'Fredoka', sans-serif; }
+
+  /* Decorative background blobs */
+  .bg-blobs {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.35;
+  }
+  .blob-1 { width: 400px; height: 400px; background: #FF6B9D; top: -100px; left: -100px; animation: drift1 20s ease-in-out infinite; }
+  .blob-2 { width: 350px; height: 350px; background: #4DD9B8; top: 30%; right: -100px; animation: drift2 25s ease-in-out infinite; }
+  .blob-3 { width: 300px; height: 300px; background: #FFC93C; bottom: 10%; left: 20%; animation: drift3 22s ease-in-out infinite; }
+
+  @keyframes drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(50px, 30px); } }
+  @keyframes drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-40px, 50px); } }
+  @keyframes drift3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(30px, -40px); } }
+
+  /* Sticker cards */
+  .sticker {
+    background: white;
+    border-radius: 28px;
+    border: 4px solid var(--dark);
+    box-shadow: 8px 8px 0 var(--dark);
+    transition: all 0.25s;
+  }
+  .sticker:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0 var(--dark);
+  }
+  .sticker-pink { background: #FFE4EC; border-color: var(--primary-dark); box-shadow: 8px 8px 0 var(--primary-dark); }
+  .sticker-pink:hover { box-shadow: 10px 10px 0 var(--primary-dark); }
+  .sticker-mint { background: #DFF7EE; border-color: var(--secondary-dark); box-shadow: 8px 8px 0 var(--secondary-dark); }
+  .sticker-mint:hover { box-shadow: 10px 10px 0 var(--secondary-dark); }
+  .sticker-yellow { background: #FFF3C7; border-color: #D4A647; box-shadow: 8px 8px 0 #D4A647; }
+  .sticker-yellow:hover { box-shadow: 10px 10px 0 #D4A647; }
+  .sticker-orange { background: #FFE0CC; border-color: var(--accent-2); box-shadow: 8px 8px 0 var(--accent-2); }
+  .sticker-orange:hover { box-shadow: 10px 10px 0 var(--accent-2); }
+
+  /* Buttons */
+  .btn-kid {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 999px;
+    border: 4px solid var(--dark);
+    background: var(--accent);
+    color: var(--dark);
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 5px 5px 0 var(--dark);
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-kid:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--dark); }
+  .btn-kid:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--dark); }
+  .btn-pink { background: var(--primary); color: white; }
+  .btn-mint { background: var(--secondary); color: white; }
+  .btn-orange { background: var(--accent-2); color: white; }
+
+  /* Option button (for exercises) */
+  .opt-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 14px;
+    border: 3px solid var(--dark);
+    background: white;
+    color: var(--dark);
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 3px 3px 0 var(--dark);
+    font-size: 1rem;
+  }
+  .opt-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--dark); background: #FFF3C7; }
+  .opt-btn.selected { background: var(--accent); transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--dark); }
+  .opt-btn.correct { background: var(--secondary); color: white; }
+  .opt-btn.wrong { background: var(--error); color: white; animation: shake 0.4s; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+
+  /* Animations */
+  @keyframes pop {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .pop-in { animation: pop 0.4s ease-out; }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-4deg); }
+    75% { transform: rotate(4deg); }
+  }
+  .wiggle { animation: wiggle 0.5s ease-in-out; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .float-anim { animation: float 3.5s ease-in-out infinite; }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0); }
+    to { transform: rotate(360deg); }
+  }
+  .spin-slow { animation: spin-slow 20s linear infinite; }
+
+  /* Section badge */
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 4px solid var(--dark);
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    box-shadow: 4px 4px 0 var(--dark);
+    flex-shrink: 0;
+  }
+
+  /* Vocabulary card */
+  .vocab-card {
+    background: white;
+    border: 4px solid var(--dark);
+    border-radius: 24px;
+    padding: 16px;
+    text-align: center;
+    transition: all 0.2s;
+    box-shadow: 5px 5px 0 var(--dark);
+    cursor: pointer;
+    position: relative;
+  }
+  .vocab-card:hover {
+    transform: translate(-2px, -2px) rotate(-2deg);
+    box-shadow: 7px 7px 0 var(--dark);
+  }
+  .vocab-emoji { font-size: 3rem; line-height: 1; margin-bottom: 8px; display: block; }
+  .vocab-word { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.1rem; color: var(--dark); }
+  .vocab-ru { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+  .speak-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--secondary);
+    border: 2px solid var(--dark);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  /* Memory game */
+  .memory-card {
+    perspective: 1000px;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+  }
+  .memory-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+  }
+  .memory-card.flipped .memory-card-inner { transform: rotateY(180deg); }
+  .memory-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    border: 3px solid var(--dark);
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    padding: 4px;
+  }
+  .memory-back {
+    background: linear-gradient(135deg, var(--primary), var(--accent-2));
+    color: white;
+    font-size: 1.8rem;
+  }
+  .memory-front {
+    background: white;
+    transform: rotateY(180deg);
+    font-size: 2rem;
+  }
+  .memory-card.matched .memory-face { background: #DFF7EE; border-color: var(--secondary-dark); }
+  .memory-card.matched { animation: pop 0.4s; }
+
+  /* Word builder */
+  .word-token {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--accent);
+    border: 3px solid var(--dark);
+    border-radius: 14px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--dark);
+    transition: all 0.15s;
+    margin: 4px;
+    user-select: none;
+  }
+  .word-token:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--dark); }
+  .word-token.used { opacity: 0.3; pointer-events: none; }
+  .word-slot {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(0,0,0,0.05);
+    border: 3px dashed var(--dark);
+    border-radius: 14px;
+    margin: 4px;
+    min-width: 60px;
+    min-height: 44px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+  }
+  .word-slot.filled { background: var(--accent); border-style: solid; cursor: pointer; }
+
+  /* Progress bar */
+  .progress-track {
+    height: 20px;
+    background: white;
+    border: 3px solid var(--dark);
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: 3px 3px 0 var(--dark);
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary), var(--accent), var(--primary));
+    transition: width 0.6s ease;
+    border-radius: 999px;
+  }
+
+  /* True/False buttons */
+  .tf-btn {
+    font-family: 'Fredoka', sans-serif;
+    padding: 8px 20px;
+    border-radius: 14px;
+    border: 3px solid var(--dark);
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 3px 3px 0 var(--dark);
+    font-weight: 600;
+  }
+  .tf-true { background: var(--secondary); color: white; }
+  .tf-false { background: var(--primary); color: white; }
+  .tf-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--dark); }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(150px);
+    background: var(--secondary);
+    color: white;
+    padding: 16px 28px;
+    border-radius: 999px;
+    border: 4px solid var(--dark);
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 5px 5px 0 var(--dark);
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast.error { background: var(--error); }
+  .toast.warn { background: var(--accent-2); }
+
+  /* Star counter */
+  .star-counter {
+    background: white;
+    border: 3px solid var(--dark);
+    border-radius: 999px;
+    padding: 6px 18px;
+    box-shadow: 3px 3px 0 var(--dark);
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Fill input */
+  .fill-input {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    padding: 6px 14px;
+    border-radius: 10px;
+    border: 3px solid var(--dark);
+    background: white;
+    min-width: 90px;
+    text-align: center;
+    margin: 0 4px;
+    transition: all 0.2s;
+  }
+  .fill-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(255,107,157,0.2); }
+  .fill-input.correct { background: #DFF7EE; border-color: var(--secondary-dark); }
+  .fill-input.wrong { background: #FFE4E4; border-color: var(--error); animation: shake 0.4s; }
+
+  /* Reading text */
+  .reading-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    font-family: 'Nunito', sans-serif;
+  }
+  .reading-text .hl-have { background: #FFE4EC; padding: 2px 6px; border-radius: 6px; font-weight: 700; color: var(--primary-dark); }
+  .reading-text .hl-has { background: #DFF7EE; padding: 2px 6px; border-radius: 6px; font-weight: 700; color: var(--secondary-dark); }
+  .reading-text .hl-neg { background: #FFE0CC; padding: 2px 6px; border-radius: 6px; font-weight: 700; color: var(--accent-2); }
+
+  /* Confetti */
+  .confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Tabs */
+  .tab-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 3px solid var(--dark);
+    background: white;
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 2px 2px 0 var(--dark);
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--dark); }
+  .tab-btn.active { background: var(--primary); color: white; }
+
+  /* Sticky header */
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 248, 236, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid var(--dark);
+  }
+
+  /* Highlight box */
+  .hl-box {
+    border-radius: 18px;
+    padding: 16px 20px;
+    border: 3px solid var(--dark);
+    box-shadow: 4px 4px 0 var(--dark);
+  }
+
+  /* Hero title */
+  .hero-title {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .title-have { color: var(--primary); -webkit-text-stroke: 3px var(--dark); }
+  .title-has { color: var(--secondary); -webkit-text-stroke: 3px var(--dark); }
+  .title-got { color: var(--accent); -webkit-text-stroke: 3px var(--dark); }
+
+  /* Mascot SVG */
+  .mascot { filter: drop-shadow(6px 6px 0 rgba(58,46,57,0.2)); }
+
+  /* Picture choice for matching */
+  .pic-choice {
+    background: white;
+    border: 4px solid var(--dark);
+    border-radius: 20px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 5px 5px 0 var(--dark);
+  }
+  .pic-choice:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--dark); }
+  .pic-choice.selected { background: var(--accent); }
+  .pic-choice.matched { background: #DFF7EE; border-color: var(--secondary-dark); box-shadow: 5px 5px 0 var(--secondary-dark); pointer-events: none; opacity: 0.6; }
+  .pic-choice.wrong-flash { animation: shake 0.4s; background: #FFE4E4; }
+
+  .sentence-card {
+    background: white;
+    border: 4px solid var(--dark);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: 4px 4px 0 var(--dark);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+  }
+  .sentence-card:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--dark); }
+  .sentence-card.selected { background: var(--accent); }
+  .sentence-card.matched { background: #DFF7EE; border-color: var(--secondary-dark); box-shadow: 4px 4px 0 var(--secondary-dark); pointer-events: none; opacity: 0.6; }
+  .sentence-card.wrong-flash { animation: shake 0.4s; background: #FFE4E4; }
+
+  /* Decoration star */
+  .deco-star {
+    position: absolute;
+    color: var(--accent);
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @media (max-width: 640px) {
+    .sticker { padding: 16px; }
+    .section-badge { width: 48px; height: 48px; font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Decorative background -->
+<div class="bg-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<!-- HERO -->
+<header class="relative z-10 pt-8 pb-12 px-4">
+  <div class="max-w-6xl mx-auto">
+    <!-- Top badges -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-10">
+      <div class="flex items-center gap-3">
+        <span class="bg-pink-100 text-pink-700 font-bold px-4 py-2 rounded-full border-2 border-pink-700" style="background:#FFE4EC;color:var(--primary-dark);border-color:var(--primary-dark)">3 класс</span>
+        <span class="hl-box" style="background:#FFF3C7">English Worksheet</span>
+      </div>
+      <div class="star-counter">
+        <span style="color:var(--accent)">⭐</span>
+        <span id="starCount">0</span>
+        <span style="color:var(--muted);font-size:0.9rem">звёзд</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <p class="font-display text-xl mb-2" style="color:var(--accent-2)">Привет, друг!</p>
+        <h1 class="hero-title mb-6">
+          <span class="title-have">Have</span> <span class="title-got">got</span><br>
+          / <span class="title-has">Has</span> <span class="title-got">got</span>
+        </h1>
+        <p class="text-lg md:text-xl mb-6 font-semibold" style="color:var(--dark)">
+          Учимся говорить о том, что у нас есть — и что у нас <span style="color:var(--accent-2)">нет</span>! 
+          Играй, решай и собирай звёзды 🌟
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#theory" class="btn-kid btn-pink">📚 Начать урок</a>
+          <a href="#games" class="btn-kid btn-mint">🎮 К играм</a>
+        </div>
+      </div>
+
+      <!-- Mascot -->
+      <div class="flex justify-center">
+        <div class="relative float-anim">
+          <!-- Owl mascot SVG -->
+          <svg class="mascot" width="280" height="280" viewBox="0 0 200 200">
+            <!-- Body -->
+            <ellipse cx="100" cy="120" rx="65" ry="70" fill="#FF6B9D" stroke="#3A2E39" stroke-width="4"/>
+            <!-- Belly -->
+            <ellipse cx="100" cy="135" rx="42" ry="50" fill="#FFE4EC" stroke="#3A2E39" stroke-width="3"/>
+            <!-- Eyes outer -->
+            <circle cx="78" cy="85" r="24" fill="white" stroke="#3A2E39" stroke-width="4"/>
+            <circle cx="122" cy="85" r="24" fill="white" stroke="#3A2E39" stroke-width="4"/>
+            <!-- Eyes inner -->
+            <circle cx="80" cy="87" r="11" fill="#3A2E39"/>
+            <circle cx="120" cy="87" r="11" fill="#3A2E39"/>
+            <circle cx="83" cy="84" r="3.5" fill="white"/>
+            <circle cx="123" cy="84" r="3.5" fill="white"/>
+            <!-- Beak -->
+            <path d="M 100 100 L 90 113 Q 100 120 110 113 Z" fill="#FFC93C" stroke="#3A2E39" stroke-width="3"/>
+            <!-- Wings -->
+            <ellipse cx="45" cy="130" rx="22" ry="40" fill="#E0487E" stroke="#3A2E39" stroke-width="4" transform="rotate(-15 45 130)"/>
+            <ellipse cx="155" cy="130" rx="22" ry="40" fill="#E0487E" stroke="#3A2E39" stroke-width="4" transform="rotate(15 155 130)"/>
+            <!-- Feet -->
+            <ellipse cx="82" cy="188" rx="14" ry="6" fill="#FFC93C" stroke="#3A2E39" stroke-width="3"/>
+            <ellipse cx="118" cy="188" rx="14" ry="6" fill="#FFC93C" stroke="#3A2E39" stroke-width="3"/>
+            <!-- Ear tufts -->
+            <path d="M 60 45 L 75 75 L 85 50 Z" fill="#FF6B9D" stroke="#3A2E39" stroke-width="4"/>
+            <path d="M 115 50 L 125 75 L 140 45 Z" fill="#FF6B9D" stroke="#3A2E39" stroke-width="4"/>
+            <!-- Blush -->
+            <circle cx="62" cy="110" r="8" fill="#FFC93C" opacity="0.6"/>
+            <circle cx="138" cy="110" r="8" fill="#FFC93C" opacity="0.6"/>
+            <!-- Book in wings -->
+            <rect x="85" y="155" width="30" height="22" rx="2" fill="#4DD9B8" stroke="#3A2E39" stroke-width="3"/>
+            <line x1="100" y1="155" x2="100" y2="177" stroke="#3A2E39" stroke-width="2"/>
+            <line x1="92" y1="163" x2="108" y2="163" stroke="white" stroke-width="1.5"/>
+            <line x1="92" y1="168" x2="108" y2="168" stroke="white" stroke-width="1.5"/>
+          </svg>
+          <!-- Floating stars around mascot -->
+          <div class="deco-star" style="top:-10px;right:0;font-size:2rem;animation-delay:0s">⭐</div>
+          <div class="deco-star" style="bottom:20px;left:-20px;font-size:1.5rem;animation-delay:1s">✨</div>
+          <div class="deco-star" style="top:40%;right:-20px;font-size:1.3rem;animation-delay:2s">🌟</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY PROGRESS -->
+<div class="sticky-header py-3 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="font-display font-bold text-lg">Мой прогресс</span>
+      <span class="text-sm font-semibold" style="color:var(--muted)" id="progressText">0 / 6 заданий</span>
+      <span class="ml-auto text-sm font-bold" id="progressPct" style="color:var(--primary-dark)">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+  </div>
+</div>
+
+<!-- THEORY SECTION -->
+<section id="theory" class="relative z-10 py-16 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="section-badge" style="background:var(--primary);color:white">1</div>
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl">Теория: глагол "иметь"</h2>
+        <p class="font-semibold" style="color:var(--muted)">Учимся рассказывать о своих вещах и питомцах</p>
+      </div>
+    </div>
+
+    <!-- Theory cards -->
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+      <!-- What is have got -->
+      <div class="sticker sticker-pink p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl">🤔</span>
+          <h3 class="font-display font-bold text-2xl">Что это значит?</h3>
+        </div>
+        <p class="font-semibold mb-3">
+          В английском языке, когда мы хотим сказать «у меня есть», 
+          мы используем <b>have got</b> или <b>has got</b>.
+        </p>
+        <div class="hl-box" style="background:white">
+          <p class="font-display text-lg mb-1">I <span style="color:var(--primary-dark)">have got</span> a cat.</p>
+          <p style="color:var(--muted)">У меня есть кошка. 🐱</p>
+        </div>
+      </div>
+
+      <!-- When to use have vs has -->
+      <div class="sticker sticker-mint p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl">🎯</span>
+          <h3 class="font-display font-bold text-2xl">Have или Has?</h3>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="hl-box" style="background:white">
+            <p class="font-display font-bold text-lg mb-1" style="color:var(--primary-dark)">have got</p>
+            <p class="text-sm">I, You, We, They</p>
+            <p class="text-xs mt-1" style="color:var(--muted)">я, ты, мы, они</p>
+          </div>
+          <div class="hl-box" style="background:white">
+            <p class="font-display font-bold text-lg mb-1" style="color:var(--secondary-dark)">has got</p>
+            <p class="text-sm">He, She, It</p>
+            <p class="text-xs mt-1" style="color:var(--muted)">он, она, оно</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Affirmative examples -->
+      <div class="sticker sticker-yellow p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl">✅</span>
+          <h3 class="font-display font-bold text-2xl">Утверждение (+)</h3>
+        </div>
+        <ul class="space-y-2 font-display font-medium">
+          <li>🐱 I <b style="color:var(--primary-dark)">have got</b> a cat.</li>
+          <li>🐶 He <b style="color:var(--secondary-dark)">has got</b> a dog.</li>
+          <li>🚗 We <b style="color:var(--primary-dark)">have got</b> a car.</li>
+          <li>🪀 She <b style="color:var(--secondary-dark)">has got</b> a toy.</li>
+        </ul>
+      </div>
+
+      <!-- Negative -->
+      <div class="sticker sticker-orange p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl">🚫</span>
+          <h3 class="font-display font-bold text-2xl">Отрицание (−)</h3>
+        </div>
+        <p class="font-semibold mb-3 text-sm">
+          Чтобы сказать «у меня <b>нет</b>», добавляем <b>not</b>:
+        </p>
+        <div class="space-y-2">
+          <div class="hl-box" style="background:white">
+            <p class="font-display font-medium">I <b style="color:var(--accent-2)">haven't got</b> a dog.</p>
+            <p class="text-xs mt-1" style="color:var(--muted)">У меня нет собаки.</p>
+          </div>
+          <div class="hl-box" style="background:white">
+            <p class="font-display font-medium">She <b style="color:var(--accent-2)">hasn't got</b> a car.</p>
+            <p class="text-xs mt-1" style="color:var(--muted)">У неё нет машины.</p>
+          </div>
+        </div>
+        <p class="text-xs mt-3 font-semibold" style="color:var(--accent-2)">
+          have not = haven't · have not got = haven't got<br>
+          has not = hasn't · has not got = hasn't got
+        </p>
+      </div>
+    </div>
+
+    <!-- Question form -->
+    <div class="sticker p-6 mb-6" style="background:#FFF3C7">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-3xl">❓</span>
+        <h3 class="font-display font-bold text-2xl">Вопрос (?)</h3>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="hl-box" style="background:white">
+          <p class="font-display text-lg mb-1"><b style="color:var(--primary-dark)">Have</b> you got a pet?</p>
+          <p class="text-sm mb-2" style="color:var(--muted)">У тебя есть питомец?</p>
+          <p class="text-sm">— Yes, I <b>have</b>. / No, I <b>haven't</b>.</p>
+        </div>
+        <div class="hl-box" style="background:white">
+          <p class="font-display text-lg mb-1"><b style="color:var(--secondary-dark)">Has</b> she got a doll?</p>
+          <p class="text-sm mb-2" style="color:var(--muted)">У неё есть кукла?</p>
+          <p class="text-sm">— Yes, she <b>has</b>. / No, she <b>hasn't</b>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tip box -->
+    <div class="hl-box" style="background:#FFE4EC">
+      <div class="flex items-start gap-3">
+        <span class="text-3xl">💡</span>
+        <div>
+          <p class="font-display font-bold text-lg mb-1" style="color:var(--primary-dark)">Подсказка!</p>
+          <p class="font-semibold">
+            Если подлежащее — это <b>he, she, it</b> (он, она, оно) или имя 
+            (Tom, sister, cat), используем <b style="color:var(--secondary-dark)">has got</b>. 
+            Во всех остальных случаях — <b style="color:var(--primary-dark)">have got</b>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOCABULARY -->
+<section id="vocab" class="relative z-10 py-16 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="section-badge" style="background:var(--secondary);color:white">2</div>
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl">Словарик</h2>
+        <p class="font-semibold" style="color:var(--muted)">Нажми на 🔊 чтобы услышать слово</p>
+      </div>
+    </div>
+
+    <!-- Family -->
+    <div class="mb-8">
+      <h3 class="font-display font-bold text-2xl mb-4 flex items-center gap-2">
+        <span>👨‍👩‍👧‍👦</span> Семья
+      </h3>
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('mother')">🔊</button><span class="vocab-emoji">👩</span><div class="vocab-word">mother</div><div class="vocab-ru">мама</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('father')">🔊</button><span class="vocab-emoji">👨</span><div class="vocab-word">father</div><div class="vocab-ru">папа</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('sister')">🔊</button><span class="vocab-emoji">👧</span><div class="vocab-word">sister</div><div class="vocab-ru">сестра</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('brother')">🔊</button><span class="vocab-emoji">👦</span><div class="vocab-word">brother</div><div class="vocab-ru">брат</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('grandmother')">🔊</button><span class="vocab-emoji">👵</span><div class="vocab-word">grandmother</div><div class="vocab-ru">бабушка</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('grandfather')">🔊</button><span class="vocab-emoji">👴</span><div class="vocab-word">grandfather</div><div class="vocab-ru">дедушка</div></div>
+      </div>
+    </div>
+
+    <!-- Animals -->
+    <div class="mb-8">
+      <h3 class="font-display font-bold text-2xl mb-4 flex items-center gap-2">
+        <span>🐾</span> Животные
+      </h3>
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('cat')">🔊</button><span class="vocab-emoji">🐱</span><div class="vocab-word">cat</div><div class="vocab-ru">кошка</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('dog')">🔊</button><span class="vocab-emoji">🐶</span><div class="vocab-word">dog</div><div class="vocab-ru">собака</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('rabbit')">🔊</button><span class="vocab-emoji">🐰</span><div class="vocab-word">rabbit</div><div class="vocab-ru">кролик</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('hamster')">🔊</button><span class="vocab-emoji">🐹</span><div class="vocab-word">hamster</div><div class="vocab-ru">хомяк</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('parrot')">🔊</button><span class="vocab-emoji">🦜</span><div class="vocab-word">parrot</div><div class="vocab-ru">попугай</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('fish')">🔊</button><span class="vocab-emoji">🐟</span><div class="vocab-word">fish</div><div class="vocab-ru">рыбка</div></div>
+      </div>
+    </div>
+
+    <!-- Toys -->
+    <div class="mb-8">
+      <h3 class="font-display font-bold text-2xl mb-4 flex items-center gap-2">
+        <span>🧸</span> Игрушки
+      </h3>
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('ball')">🔊</button><span class="vocab-emoji">⚽</span><div class="vocab-word">ball</div><div class="vocab-ru">мяч</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('doll')">🔊</button><span class="vocab-emoji">🪆</span><div class="vocab-word">doll</div><div class="vocab-ru">кукла</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('car')">🔊</button><span class="vocab-emoji">🚗</span><div class="vocab-word">car</div><div class="vocab-ru">машина</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('teddy bear')">🔊</button><span class="vocab-emoji">🧸</span><div class="vocab-word">teddy bear</div><div class="vocab-ru">мишка</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('robot')">🔊</button><span class="vocab-emoji">🤖</span><div class="vocab-word">robot</div><div class="vocab-ru">робот</div></div>
+        <div class="vocab-card"><button class="speak-btn" onclick="speak('kite')">🔊</button><span class="vocab-emoji">🪁</span><div class="vocab-word">kite</div><div class="vocab-ru">воздушный змей</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXERCISE 1: have or has -->
+<section id="ex1" class="relative z-10 py-16 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="section-badge" style="background:var(--accent);color:var(--dark)">3</div>
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl">Упражнение 1: Have или Has?</h2>
+        <p class="font-semibold" style="color:var(--muted)">Выбери правильный глагол. За каждый правильный ответ — звезда! ⭐</p>
+      </div>
+    </div>
+
+    <div class="sticker sticker-yellow p-6 md:p-8" id="ex1Container">
+      <!-- Questions will be inserted here -->
+    </div>
+  </div>
+</section>
+
+<!-- EXERCISE 2: Make negative -->
+<section id="ex2" class="relative z-10 py-16 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="section-badge" style="background:var(--accent-2);color:white">4</div>
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl">Упражнение 2: Сделай отрицание!</h2>
+        <p class="font-semibold" style="color:var(--muted)">Преврати утверждение в отрицание. Используй haven't / hasn't.</p>
+      </div>
+    </div>
+
+    <div class="sticker sticker-orange p-6 md:p-8" id="ex2Container">
+      <!-- Questions will be inserted here -->
+    </div>
+  </div>
+</section>
+
+<!-- EXERCISE 3: Match picture and sentence -->
+<section id="ex3" class="relative z-10 py-16 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="section-badge" style="background:var(--primary);color:white">5</div>
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl">Упражнение 3: Соедини!</h2>
+        <p class="font-semibold" style="color:var(--muted)">Нажми на картинку, потом на подходящее предложение.</p>
+      </div>
+    </div>
+
+    <div class="sticker sticker-pink p-6 md:p-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="font-display font-bold text-xl mb-4">Картинки:</h3>
+          <div class="grid grid-cols-2 gap-3" id="ex3Pics"></div>
+        </div>
+        <div>
+          <h3 class="font-display font-bold text-xl mb-4">Предложения:</h3>
+          <div class="space-y-3" id="ex3Sentences"></div>
+        </div>
+      </div>
+      <div class="mt-6 text-center">
+        <span class="font-display font-bold text-lg" id="ex3Matched" style="color:var(--secondary-dark)">Найдено пар: 0 / 4</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMES SECTION -->
+<section id="games" class="relative z-10 py-16 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="section-badge" style="background:var(--secondary);color:white">6</div>
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl">Игровая зона 🎮</h2>
+        <p class="font-semibold" style="color:var(--muted)">Поиграем и закрепим то, что выучили!</p>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button class="tab-btn active" onclick="switchTab('memory')">🃏 Memory</button>
+      <button class="tab-btn" onclick="switchTab('builder')">✨ Построй предложение</button>
+      <button class="tab-btn" onclick="switchTab('quiz')">🏆 Викторина</button>
+    </div>
+
+    <!-- MEMORY GAME -->
+    <div id="tab-memory" class="tab-content">
+      <div class="sticker sticker-mint p-6 md:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <h3 class="font-display font-bold text-2xl">🃏 Найди пары!</h3>
+          <div class="flex gap-4 items-center">
+            <span class="font-display font-bold">Ходов: <span id="memoryMoves">0</span></span>
+            <span class="font-display font-bold" style="color:var(--secondary-dark)">Найдено: <span id="memoryMatched">0</span>/6</span>
+            <button class="btn-kid btn-mint" style="padding:8px 18px;font-size:0.9rem" onclick="resetMemory()">🔄 Заново</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4" id="memoryGrid"></div>
+        <p class="text-center mt-4 font-semibold" style="color:var(--muted)">
+          Найди пару: картинка 🐱 + слово "cat". Открывай по две карточки!
+        </p>
+      </div>
+    </div>
+
+    <!-- SENTENCE BUILDER -->
+    <div id="tab-builder" class="tab-content hidden">
+      <div class="sticker sticker-yellow p-6 md:p-8">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="font-display font-bold text-2xl">✨ Построй предложение!</h3>
+          <button class="btn-kid" style="padding:8px 18px;font-size:0.9rem" onclick="nextBuilder()">Следующее →</button>
+        </div>
+        <div class="text-center mb-6">
+          <p class="font-display text-lg mb-2" style="color:var(--muted)">Перевод:</p>
+          <p class="font-display font-bold text-2xl" id="builderTranslate" style="color:var(--primary-dark)"></p>
+        </div>
+        <div class="hl-box mb-6 text-center" style="background:white;min-height:80px">
+          <p class="font-display font-bold text-xl md:text-2xl" id="builderSentence" style="min-height:44px"></p>
+        </div>
+        <div class="text-center">
+          <p class="font-display font-semibold mb-3">Слова:</p>
+          <div id="builderWords" class="flex flex-wrap justify-center"></div>
+        </div>
+        <div class="text-center mt-6">
+          <button class="btn-kid btn-mint" onclick="checkBuilder()">Проверить ✓</button>
+          <button class="btn-kid" style="margin-left:8px;background:white" onclick="clearBuilder()">Очистить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="tab-quiz" class="tab-content hidden">
+      <div class="sticker sticker-pink p-6 md:p-8">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="font-display font-bold text-2xl">🏆 Викторина</h3>
+          <div class="flex gap-4">
+            <span class="font-display font-bold">Вопрос: <span id="quizNum">1</span>/5</span>
+            <span class="font-display font-bold" style="color:var(--primary-dark)">Очки: <span id="quizScore">0</span></span>
+          </div>
+        </div>
+        <div id="quizContent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- READING -->
+<section id="reading" class="relative z-10 py-16 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="section-badge" style="background:var(--primary);color:white">7</div>
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl">Чтение 📖</h2>
+        <p class="font-semibold" style="color:var(--muted)">Прочитай текст и ответь на вопросы</p>
+      </div>
+    </div>
+
+    <div class="sticker sticker-pink p-6 md:p-10 mb-6">
+      <h3 class="font-display font-bold text-2xl mb-4">📝 Tom's Family</h3>
+      <div class="reading-text">
+        <p class="mb-3">Hello! My name is Tom. I am 9. I <span class="hl-have">have got</span> a big family. I <span class="hl-have">have got</span> a mother, a father, and a little sister. Her name is Lily.</p>
+        <p class="mb-3">Lily <span class="hl-neg">hasn't got</span> a pet, but I <span class="hl-have">have got</span> a cat. My cat <span class="hl-has">has got</span> green eyes and a long tail. We <span class="hl-have">have got</span> a dog too. The dog <span class="hl-neg">hasn't got</span> a long tail — it is short!</p>
+        <p class="mb-3">My grandmother <span class="hl-has">has got</span> a parrot. The parrot <span class="hl-has">has got</span> bright feathers. My grandfather <span class="hl-neg">hasn't got</span> a pet, but he <span class="hl-has">has got</span> a big garden.</p>
+        <p>We love our family! ❤️</p>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-3 text-xs font-semibold">
+        <span class="px-3 py-1 rounded-full" style="background:#FFE4EC;color:var(--primary-dark)">have got</span>
+        <span class="px-3 py-1 rounded-full" style="background:#DFF7EE;color:var(--secondary-dark)">has got</span>
+        <span class="px-3 py-1 rounded-full" style="background:#FFE0CC;color:var(--accent-2)">haven't / hasn't got</span>
+      </div>
+    </div>
+
+    <div class="sticker p-6 md:p-8" style="background:#FFF3C7">
+      <h3 class="font-display font-bold text-2xl mb-4">❓ Ответь на вопросы:</h3>
+      <div id="readingQuestions" class="space-y-4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section id="final" class="relative z-10 py-16 px-4">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="sticker sticker-yellow p-8 md:p-12">
+      <div class="text-6xl mb-4 float-anim">🎉</div>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-3">Ты молодец!</h2>
+      <p class="font-semibold text-lg mb-6">
+        Ты прошёл весь рабочий лист. Посмотри, сколько звёзд ты собрал:
+      </p>
+      <div class="hl-box mb-6" style="background:white">
+        <div class="font-display font-bold text-5xl" style="color:var(--accent-2)">
+          <span id="finalStars">0</span> <span style="color:var(--accent)">⭐</span>
+        </div>
+        <p class="font-semibold mt-2" style="color:var(--muted)">из 30 возможных звёзд</p>
+      </div>
+      <div id="finalMessage" class="font-display text-lg mb-6"></div>
+      <button class="btn-kid btn-pink" onclick="resetAll()">🔄 Пройти заново</button>
+    </div>
+  </div>
+</section>
+
+<footer class="relative z-10 py-8 px-4 text-center">
+  <p class="font-display font-semibold" style="color:var(--muted)">
+    English Worksheet · Have got / Has got · 3 класс 📚
+  </p>
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="toast">
+  <span id="toastIcon">🎉</span>
+  <span id="toastText">Правильно!</span>
+</div>
+
+<script>
+/* ================= STATE ================= */
+const state = {
+  stars: 0,
+  exercises: {
+    ex1: { done: false, current: 0, score: 0, total: 6 },
+    ex2: { done: false, current: 0, score: 0, total: 5 },
+    ex3: { done: false, score: 0, total: 4, selectedPic: null, selectedSentence: null },
+    memory: { done: false, moves: 0, matched: 0, total: 6 },
+    builder: { done: false, current: 0, score: 0, total: 5, placed: [], data: null },
+    quiz: { done: false, current: 0, score: 0, total: 5 },
+    reading: { done: false, score: 0, total: 6 }
+  }
+};
+
+/* ================= DATA ================= */
+const exercise1Data = [
+  { text: "I", answer: "have", options: ["have", "has"] },
+  { text: "She", answer: "has", options: ["have", "has"] },
+  { text: "We", answer: "have", options: ["have", "has"] },
+  { text: "He", answer: "has", options: ["have", "has"] },
+  { text: "They", answer: "have", options: ["have", "has"] },
+  { text: "My cat", answer: "has", options: ["have", "has"] }
+];
+
+const exercise2Data = [
+  { before: "I have got a dog.", after: "I ___ got a dog.", answer: "haven't", options: ["haven't", "hasn't"] },
+  { before: "She has got a rabbit.", after: "She ___ got a rabbit.", answer: "hasn't", options: ["haven't", "hasn't"] },
+  { before: "We have got a car.", after: "We ___ got a car.", answer: "haven't", options: ["haven't", "hasn't"] },
+  { before: "He has got a robot.", after: "He ___ got a robot.", answer: "hasn't", options: ["haven't", "hasn't"] },
+  { before: "They have got a kite.", after: "They ___ got a kite.", answer: "haven't", options: ["haven't", "hasn't"] }
+];
+
+const exercise3Data = [
+  { emoji: "🐱", sentence: "I have got a cat." },
+  { emoji: "🐶", sentence: "He has got a dog." },
+  { emoji: "🚗", sentence: "We have got a car." },
+  { emoji: "🧸", sentence: "She has got a teddy bear." }
+];
+
+const memoryPairs = [
+  { emoji: "🐱", word: "cat" },
+  { emoji: "🐶", word: "dog" },
+  { emoji: "🐰", word: "rabbit" },
+  { emoji: "🚗", word: "car" },
+  { emoji: "🧸", word: "teddy bear" },
+  { emoji: "🪁", word: "kite" }
+];
+
+const builderSentences = [
+  { words: ["She", "has", "got", "a", "cat"], translate: "У неё есть кошка." },
+  { words: ["I", "haven't", "got", "a", "dog"], translate: "У меня нет собаки." },
+  { words: ["He", "has", "got", "a", "red", "car"], translate: "У него есть красная машина." },
+  { words: ["They", "haven't", "got", "a", "parrot"], translate: "У них нет попугая." },
+  { words: ["We", "have", "got", "a", "big", "house"], translate: "У нас есть большой дом." }
+];
+
+const quizData = [
+  { q: "___ you got a pet?", options: ["Have", "Has"], answer: 0 },
+  { q: "She ___ got a doll.", options: ["have", "has"], answer: 1 },
+  { q: "I ___ got a robot.", options: ["have", "has"], answer: 0 },
+  { q: "He ___ got a sister. (отрицание)", options: ["haven't", "hasn't"], answer: 1 },
+  { q: "They ___ got a kite. (отрицание)", options: ["haven't", "hasn't"], answer: 0 }
+];
+
+const readingQuestions = [
+  { q: "Has Tom got a big family?", options: ["Yes, he has.", "No, he hasn't."], answer: 0 },
+  { q: "Has Lily got a pet?", options: ["Yes, she has.", "No, she hasn't."], answer: 1 },
+  { q: "Has Tom got a cat or a dog?", options: ["a cat", "a dog", "both"], answer: 2 },
+  { q: "Has the dog got a long tail?", options: ["Yes, it has.", "No, it hasn't."], answer: 1 },
+  { q: "Has grandmother got a parrot?", options: ["Yes, she has.", "No, she hasn't."], answer: 0 },
+  { q: "Has grandfather got a pet?", options: ["Yes, he has.", "No, he hasn't."], answer: 1 }
+];
+
+/* ================= UTILS ================= */
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+  u.pitch = 1.1;
+  speechSynthesis.speak(u);
+}
+
+function showToast(text, type = 'success', icon = '🎉') {
+  const t = document.getElementById('toast');
+  document.getElementById('toastText').textContent = text;
+  document.getElementById('toastIcon').textContent = icon;
+  t.className = 'toast ' + type;
+  setTimeout(() => t.classList.add('show'), 10);
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function addStar(n = 1) {
+  state.stars += n;
+  const el = document.getElementById('starCount');
+  el.textContent = state.stars;
+  el.parentElement.classList.add('pop-in');
+  setTimeout(() => el.parentElement.classList.remove('pop-in'), 400);
+  document.getElementById('finalStars').textContent = state.stars;
+  updateFinalMessage();
+}
+
+function updateProgress() {
+  const exs = ['ex1', 'ex2', 'ex3', 'memory', 'builder', 'quiz'];
+  let done = 0;
+  exs.forEach(k => { if (state.exercises[k].done) done++; });
+  // reading included
+  if (state.exercises.reading.done) done++;
+  const total = 7;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${done} / ${total} заданий`;
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+
+function markExerciseDone(key) {
+  if (!state.exercises[key].done) {
+    state.exercises[key].done = true;
+    updateProgress();
+    showToast('Задание выполнено! +5 ⭐', 'success', '🏆');
+    addStar(5);
+    confettiBurst();
+  }
+}
+
+function confettiBurst() {
+  const colors = ['#FF6B9D', '#4DD9B8', '#FFC93C', '#FF8C42', '#FF5757'];
+  for (let i = 0; i < 30; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.left = (50 + (Math.random() - 0.5) * 30) + '%';
+    c.style.top = '50%';
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    c.style.transform = `rotate(${Math.random() * 360}deg)`;
+    document.body.appendChild(c);
+    const dx = (Math.random() - 0.5) * 800;
+    const dy = (Math.random() - 0.5) * 800 - 200;
+    c.animate([
+      { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
+      { transform: `translate(${dx}px, ${dy}px) rotate(${Math.random()*720}deg)`, opacity: 0 }
+    ], { duration: 1500, easing: 'cubic-bezier(0.25,0.46,0.45,0.94)' });
+    setTimeout(() => c.remove(), 1600);
+  }
+}
+
+function updateFinalMessage() {
+  const s = state.stars;
+  const el = document.getElementById('finalMessage');
+  if (s >= 30) el.innerHTML = '🌟 Ты суперзвезда! Идеально! 🌟';
+  else if (s >= 20) el.innerHTML = '🎉 Отличная работа! Ты всё понял! 🎉';
+  else if (s >= 10) el.innerHTML = '👍 Хорошо! Можешь ещё лучше!';
+  else el.innerHTML = '💪 Продолжай тренироваться!';
+}
+
+/* ================= EXERCISE 1 ================= */
+function renderEx1() {
+  const c = document.getElementById('ex1Container');
+  const data = exercise1Data;
+  c.innerHTML = data.map((item, i) => `
+    <div class="mb-5 pb-5 ${i < data.length - 1 ? 'border-b-2 border-dashed' : ''}" style="border-color:rgba(58,46,57,0.2)">
+      <div class="font-display text-lg md:text-xl mb-3">
+        ${i + 1}. ${item.text} 
+        <span style="color:var(--primary-dark)">___</span> 
+        got a ${['cat', 'doll', 'car', 'robot', 'kite', 'pet'][i]}.
+      </div>
+      <div class="flex gap-2" id="ex1-opts-${i}">
+        ${item.options.map(opt => `
+          <button class="opt-btn" onclick="checkEx1(${i}, '${opt}', this)">${opt}</button>
+        `).join('')}
+      </div>
+      <div class="mt-2 font-semibold text-sm" id="ex1-feedback-${i}"></div>
+    </div>
+  `).join('');
+}
+
+function checkEx1(i, choice, btn) {
+  if (btn.classList.contains('correct')) return;
+  const correct = exercise1Data[i].answer;
+  const fb = document.getElementById('ex1-feedback-' + i);
+  const opts = document.getElementById('ex1-opts-' + i);
+  opts.querySelectorAll('button').forEach(b => b.disabled = true);
+  
+  if (choice === correct) {
+    btn.classList.add('correct');
+    fb.innerHTML = '<span style="color:var(--secondary-dark)">✓ Верно! +1 ⭐</span>';
+    addStar(1);
+    state.exercises.ex1.score++;
+    showToast('Правильно!', 'success', '⭐');
+  } else {
+    btn.classList.add('wrong');
+    opts.querySelectorAll('button').forEach(b => {
+      if (b.textContent === correct) b.classList.add('correct');
+    });
+    fb.innerHTML = `<span style="color:var(--error)">✗ Правильно: ${correct}</span>`;
+    showToast('Ой! Попробуй ещё раз в следующий раз', 'error', '💪');
+  }
+  
+  state.exercises.ex1.current++;
+  if (state.exercises.ex1.current === exercise1Data.length) {
+    setTimeout(() => markExerciseDone('ex1'), 600);
+  }
+}
+
+/* ================= EXERCISE 2 ================= */
+function renderEx2() {
+  const c = document.getElementById('ex2Container');
+  const data = exercise2Data;
+  c.innerHTML = data.map((item, i) => `
+    <div class="mb-5 pb-5 ${i < data.length - 1 ? 'border-b-2 border-dashed' : ''}" style="border-color:rgba(58,46,57,0.2)">
+      <div class="mb-2">
+        <span class="text-sm font-semibold" style="color:var(--muted)">Утверждение:</span>
+        <span class="font-display font-medium ml-2">${item.before}</span>
+      </div>
+      <div class="font-display text-lg md:text-xl mb-3">
+        ${i + 1}. Отрицание: ${item.after.split('___')[0]}
+        <span style="display:inline-block;min-width:100px">
+          ${item.options.map(opt => `<button class="opt-btn" style="margin:0 4px" onclick="checkEx2(${i}, '${opt}', this)">${opt}</button>`).join('')}
+        </span>
+        ${item.after.split('___')[1]}
+      </div>
+      <div class="mt-2 font-semibold text-sm" id="ex2-feedback-${i}"></div>
+    </div>
+  `).join('');
+}
+
+function checkEx2(i, choice, btn) {
+  if (btn.classList.contains('correct')) return;
+  const correct = exercise2Data[i].answer;
+  const fb = document.getElementById('ex2-feedback-' + i);
+  const parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(b => b.disabled = true);
+  
+  if (choice === correct) {
+    btn.classList.add('correct');
+    fb.innerHTML = `<span style="color:var(--secondary-dark)">✓ Отлично! +1 ⭐</span>`;
+    addStar(1);
+    state.exercises.ex2.score++;
+    showToast('Правильно!', 'success', '⭐');
+  } else {
+    btn.classList.add('wrong');
+    parent.querySelectorAll('button').forEach(b => {
+      if (b.textContent === correct) b.classList.add('correct');
+    });
+    fb.innerHTML = `<span style="color:var(--error)">✗ Правильно: ${correct}</span>`;
+    showToast('Почти получилось!', 'error', '💪');
+  }
+  
+  state.exercises.ex2.current++;
+  if (state.exercises.ex2.current === exercise2Data.length) {
+    setTimeout(() => markExerciseDone('ex2'), 600);
+  }
+}
+
+/* ================= EXERCISE 3: MATCH ================= */
+let ex3SelectedPic = null;
+let ex3MatchedCount = 0;
+
+function renderEx3() {
+  const pics = document.getElementById('ex3Pics');
+  const sents = document.getElementById('ex3Sentences');
+  const shuffledSents = [...exercise3Data].sort(() => Math.random() - 0.5);
+  
+  pics.innerHTML = exercise3Data.map((item, i) => `
+    <div class="pic-choice" data-idx="${i}" onclick="selectEx3Pic(${i})">
+      <div style="font-size:3.5rem">${item.emoji}</div>
+    </div>
+  `).join('');
+  
+  sents.innerHTML = shuffledSents.map((item, i) => {
+    const origIdx = exercise3Data.findIndex(d => d.sentence === item.sentence);
+    return `
+      <div class="sentence-card" data-idx="${origIdx}" onclick="selectEx3Sentence(${origIdx}, this)">
+        ${item.sentence}
+      </div>
+    `;
+  }).join('');
+}
+
+function selectEx3Pic(idx) {
+  document.querySelectorAll('#ex3Pics .pic-choice').forEach(p => p.classList.remove('selected'));
+  const pic = document.querySelector(`#ex3Pics .pic-choice[data-idx="${idx}"]`);
+  if (pic.classList.contains('matched')) return;
+  pic.classList.add('selected');
+  ex3SelectedPic = idx;
+  tryMatchEx3();
+}
+
+function selectEx3Sentence(idx, el) {
+  document.querySelectorAll('#ex3Sentences .sentence-card').forEach(s => s.classList.remove('selected'));
+  if (el.classList.contains('matched')) return;
+  el.classList.add('selected');
+  state.exercises.ex3.selectedSentence = idx;
+  state.exercises.ex3.selectedSentenceEl = el;
+  tryMatchEx3();
+}
+
+function tryMatchEx3() {
+  if (ex3SelectedPic === null || state.exercises.ex3.selectedSentence === null) return;
+  
+  const picEl = document.querySelector(`#ex3Pics .pic-choice[data-idx="${ex3SelectedPic}"]`);
+  const sentEl = state.exercises.ex3.selectedSentenceEl;
+  
+  if (ex3SelectedPic === state.exercises.ex3.selectedSentence) {
+    picEl.classList.add('matched');
+    picEl.classList.remove('selected');
+    sentEl.classList.add('matched');
+    sentEl.classList.remove('selected');
+    ex3MatchedCount++;
+    document.getElementById('ex3Matched').textContent = `Найдено пар: ${ex3MatchedCount} / 4`;
+    addStar(2);
+    showToast('Пара найдена! +2 ⭐', 'success', '🎯');
+    if (ex3MatchedCount === 4) {
+      setTimeout(() => markExerciseDone('ex3'), 500);
+    }
+  } else {
+    picEl.classList.add('wrong-flash');
+    sentEl.classList.add('wrong-flash');
+    setTimeout(() => {
+      picEl.classList.remove('wrong-flash', 'selected');
+      sentEl.classList.remove('wrong-flash', 'selected');
+    }, 600);
+    showToast('Не та пара! Попробуй ещё', 'warn', '🤔');
+  }
+  
+  ex3SelectedPic = null;
+  state.exercises.ex3.selectedSentence = null;
+}
+
+/* ================= MEMORY GAME ================= */
+let memoryFlipped = [];
+let memoryLock = false;
+
+function setupMemory() {
+  const cards = [];
+  memoryPairs.forEach((pair, i) => {
+    cards.push({ id: `e-${i}`, pairId: i, content: pair.emoji, type: 'emoji' });
+    cards.push({ id: `w-${i}`, pairId: i, content: pair.word, type: 'word' });
+  });
+  cards.sort(() => Math.random() - 0.5);
+  
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = cards.map(card => `
+    <div class="memory-card" data-id="${card.id}" data-pair="${card.pairId}" onclick="flipMemory(this)">
+      <div class="memory-card-inner">
+        <div class="memory-face memory-back">?</div>
+        <div class="memory-face memory-front">${card.content}</div>
+      </div>
+    </div>
+  `).join('');
+  
+  state.exercises.memory.moves = 0;
+  state.exercises.memory.matched = 0;
+  document.getElementById('memoryMoves').textContent = '0';
+  document.getElementById('memoryMatched').textContent = '0';
+  memoryFlipped = [];
+}
+
+function flipMemory(card) {
+  if (memoryLock) return;
+  if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  
+  card.classList.add('flipped');
+  memoryFlipped.push(card);
+  
+  if (memoryFlipped.length === 2) {
+    state.exercises.memory.moves++;
+    document.getElementById('memoryMoves').textContent = state.exercises.memory.moves;
+    memoryLock = true;
+    setTimeout(checkMemoryMatch, 900);
+  }
+}
+
+function checkMemoryMatch() {
+  const [c1, c2] = memoryFlipped;
+  if (c1.dataset.pair === c2.dataset.pair) {
+    c1.classList.add('matched');
+    c2.classList.add('matched');
+    state.exercises.memory.matched++;
+    document.getElementById('memoryMatched').textContent = state.exercises.memory.matched;
+    addStar(1);
+    showToast('Пара! +1 ⭐', 'success', '🎯');
+    if (state.exercises.memory.matched === memoryPairs.length) {
+      setTimeout(() => markExerciseDone('memory'), 500);
+    }
+  } else {
+    c1.classList.remove('flipped');
+    c2.classList.remove('flipped');
+  }
+  memoryFlipped = [];
+  memoryLock = false;
+}
+
+function resetMemory() {
+  setupMemory();
+  showToast('Карточки перемешаны!', 'success', '🔄');
+}
+
+/* ================= SENTENCE BUILDER ================= */
+function loadBuilder() {
+  const i = state.exercises.builder.current;
+  if (i >= builderSentences.length) {
+    markExerciseDone('builder');
+    return;
+  }
+  state.exercises.builder.data = builderSentences[i];
+  state.exercises.builder.placed = [];
+  document.getElementById('builderTranslate').textContent = builderSentences[i].translate;
+  document.getElementById('builderSentence').innerHTML = '';
+  
+  const shuffled = [...builderSentences[i].words].sort(() => Math.random() - 0.5);
+  document.getElementById('builderWords').innerHTML = shuffled.map((w, idx) => 
+    `<span class="word-token" data-word="${w}" data-idx="${idx}" onclick="placeWord('${w}', ${idx}, this)">${w}</span>`
+  ).join('');
+}
+
+function placeWord(word, idx, el) {
+  if (el.classList.contains('used')) return;
+  el.classList.add('used');
+  state.exercises.builder.placed.push(word);
+  
+  const sentenceEl = document.getElementById('builderSentence');
+  const slot = document.createElement('span');
+  slot.className = 'word-slot filled';
+  slot.textContent = word;
+  slot.onclick = function() { removeWord(word, idx, el, this); };
+  if (sentenceEl.textContent.trim()) sentenceEl.innerHTML += ' ';
+  sentenceEl.appendChild(slot);
+}
+
+function removeWord(word, idx, tokenEl, slotEl) {
+  slotEl.remove();
+  state.exercises.builder.placed = state.exercises.builder.placed.filter((w, i) => i !== state.exercises.builder.placed.lastIndexOf(word));
+  tokenEl.classList.remove('used');
+  // Rebuild slots
+  const sentenceEl = document.getElementById('builderSentence');
+  const slots = sentenceEl.querySelectorAll('.word-slot');
+  slots.forEach((s, i) => {
+    if (i > 0) sentenceEl.insertBefore(document.createTextNode(' '), s);
+  });
+}
+
+function clearBuilder() {
+  loadBuilder();
+}
+
+function checkBuilder() {
+  const placed = state.exercises.builder.placed;
+  const target = state.exercises.builder.data.words;
+  if (placed.length === 0) {
+    showToast('Составь предложение!', 'warn', '✍️');
+    return;
+  }
+  if (placed.length < target.length) {
+    showToast('Добавь все слова!', 'warn', '✍️');
+    return;
+  }
+  const correct = placed.every((w, i) => w === target[i]);
+  if (correct) {
+    addStar(2);
+    state.exercises.builder.score++;
+    showToast('Правильно! +2 ⭐', 'success', '⭐');
+    confettiBurst();
+    setTimeout(() => {
+      state.exercises.builder.current++;
+      if (state.exercises.builder.current < builderSentences.length) {
+        loadBuilder();
+      } else {
+        markExerciseDone('builder');
+      }
+    }, 1000);
+  } else {
+    showToast('Не совсем так. Попробуй ещё!', 'error', '🤔');
+    document.getElementById('builderSentence').classList.add('wiggle');
+    setTimeout(() => document.getElementById('builderSentence').classList.remove('wiggle'), 500);
+  }
+}
+
+function nextBuilder() {
+  if (state.exercises.builder.current < builderSentences.length - 1) {
+    state.exercises.builder.current++;
+    loadBuilder();
+  } else {
+    state.exercises.builder.current = 0;
+    loadBuilder();
+  }
+}
+
+/* ================= QUIZ ================= */
+function renderQuiz() {
+  const i = state.exercises.quiz.current;
+  if (i >= quizData.length) {
+    markExerciseDone('quiz');
+    return;
+  }
+  document.getElementById('quizNum').textContent = (i + 1);
+  document.getElementById('quizScore').textContent = state.exercises.quiz.score;
+  const q = quizData[i];
+  document.getElementById('quizContent').innerHTML = `
+    <div class="text-center mb-6">
+      <div class="hl-box inline-block" style="background:white">
+        <p class="font-display font-bold text-2xl md:text-3xl">${q.q}</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-3">
+      ${q.options.map((opt, idx) => `
+        <button class="opt-btn" style="padding:14px 28px;font-size:1.2rem" onclick="checkQuiz(${idx}, this)">${opt}</button>
+      `).join('')}
+    </div>
+    <div class="mt-6 text-center font-semibold text-lg" id="quizFeedback"></div>
+  `;
+}
+
+function checkQuiz(idx, btn) {
+  const i = state.exercises.quiz.current;
+  const correct = quizData[i].answer;
+  const fb = document.getElementById('quizFeedback');
+  document.querySelectorAll('#quizContent .opt-btn').forEach(b => b.disabled = true);
+  
+  if (idx === correct) {
+    btn.classList.add('correct');
+    fb.innerHTML = '<span style="color:var(--secondary-dark)">✓ Правильно! +2 ⭐</span>';
+    state.exercises.quiz.score++;
+    addStar(2);
+    showToast('Молодец! +2 ⭐', 'success', '⭐');
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('#quizContent .opt-btn')[correct].classList.add('correct');
+    fb.innerHTML = '<span style="color:var(--error)">✗ Правильный ответ выделен</span>';
+    showToast('Ой! Не забудь правило', 'error', '💪');
+  }
+  
+  state.exercises.quiz.current++;
+  setTimeout(() => {
+    if (state.exercises.quiz.current < quizData.length) {
+      renderQuiz();
+    } else {
+      markExerciseDone('quiz');
+      document.getElementById('quizContent').innerHTML = `
+        <div class="text-center py-8">
+          <div class="text-5xl mb-4">🏆</div>
+          <p class="font-display font-bold text-2xl mb-2">Викторина окончена!</p>
+          <p class="font-semibold text-lg">Ты набрал: <span style="color:var(--primary-dark)">${state.exercises.quiz.score}</span> из ${quizData.length}</p>
+        </div>
+      `;
+    }
+  }, 1500);
+}
+
+/* ================= READING QUESTIONS ================= */
+function renderReading() {
+  const c = document.getElementById('readingQuestions');
+  c.innerHTML = readingQuestions.map((q, i) => `
+    <div class="hl-box" style="background:white">
+      <div class="font-display font-bold text-lg mb-2">${i + 1}. ${q.q}</div>
+      <div class="flex flex-wrap gap-2" id="rq-opts-${i}">
+        ${q.options.map((opt, idx) => `
+          <button class="opt-btn" onclick="checkReading(${i}, ${idx}, this)">${opt}</button>
+        `).join('')}
+      </div>
+      <div class="mt-2 font-semibold text-sm" id="rq-feedback-${i}"></div>
+    </div>
+  `).join('');
+}
+
+let readingAnswered = 0;
+function checkReading(i, idx, btn) {
+  if (btn.classList.contains('correct') || btn.classList.contains('wrong')) return;
+  const correct = readingQuestions[i].answer;
+  const fb = document.getElementById('rq-feedback-' + i);
+  document.querySelectorAll(`#rq-opts-${i} .opt-btn`).forEach(b => b.disabled = true);
+  
+  if (idx === correct) {
+    btn.classList.add('correct');
+    fb.innerHTML = '<span style="color:var(--secondary-dark)">✓ Верно! +1 ⭐</span>';
+    addStar(1);
+    state.exercises.reading.score++;
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll(`#rq-opts-${i} .opt-btn`)[correct].classList.add('correct');
+    fb.innerHTML = '<span style="color:var(--error)">✗ Правильный ответ выделен</span>';
+  }
+  readingAnswered++;
+  if (readingAnswered === readingQuestions.length) {
+    setTimeout(() => markExerciseDone('reading'), 500);
+  }
+}
+
+/* ================= TABS ================= */
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+  document.getElementById('tab-' + name).classList.remove('hidden');
+}
+
+/* ================= RESET ================= */
+function resetAll() {
+  state.stars = 0;
+  state.exercises = {
+    ex1: { done: false, current: 0, score: 0, total: 6 },
+    ex2: { done: false, current: 0, score: 0, total: 5 },
+    ex3: { done: false, score: 0, total: 4, selectedPic: null, selectedSentence: null },
+    memory: { done: false, moves: 0, matched: 0, total: 6 },
+    builder: { done: false, current: 0, score: 0, total: 5, placed: [], data: null },
+    quiz: { done: false, current: 0, score: 0, total: 5 },
+    reading: { done: false, score: 0, total: 6 }
+  };
+  ex3MatchedCount = 0;
+  readingAnswered = 0;
+  document.getElementById('starCount').textContent = '0';
+  document.getElementById('ex3Matched').textContent = 'Найдено пар: 0 / 4';
+  updateProgress();
+  renderEx1();
+  renderEx2();
+  renderEx3();
+  setupMemory();
+  loadBuilder();
+  renderQuiz();
+  renderReading();
+  updateFinalMessage();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  showToast('Начинаем заново! Удачи!', 'success', '🔄');
+}
+
+/* ================= INIT ================= */
+window.addEventListener('DOMContentLoaded', () => {
+  renderEx1();
+  renderEx2();
+  renderEx3();
+  setupMemory();
+  loadBuilder();
+  renderQuiz();
+  renderReading();
+  updateProgress();
+  updateFinalMessage();
+});
+</script>
+
+</body>
+</html>
