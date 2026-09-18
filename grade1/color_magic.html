@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🌈 Color Magic - Учим цвета на английском</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Comfortaa:wght@400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Baloo 2', 'Comfortaa', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* ПРИНУДИТЕЛЬНАЯ ПРОКРУТКА ДЛЯ ИСПРАВЛЕНИЯ ПРОБЛЕМЫ */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            min-height: 100%;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #FFE5F1 0%, #FFF4E5 25%, #E5F4FF 50%, #F0FFE5 75%, #F5E5FF 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        
+        @keyframes bounce-in {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(55, 66, 250, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(55, 66, 250, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(55, 66, 250, 0); }
+        }
+        
+        .bounce-in { animation: bounce-in 0.5s ease-out; }
+        .wiggle { animation: wiggle 0.5s ease-in-out; }
+        .float { animation: float 3s ease-in-out infinite; }
+        .pop { animation: pop 0.3s ease-out; }
+        .pulse-ring { animation: pulse-ring 1.5s infinite; }
+        
+        .color-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .color-card:hover {
+            transform: translateY(-8px) scale(1.05);
+        }
+        
+        .color-card:active {
+            transform: scale(0.95);
+        }
+        
+        .btn-game {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-game:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        .btn-game:active {
+            transform: scale(0.95);
+        }
+        
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            animation: confetti-fall 3s linear forwards;
+            z-index: 9999;
+        }
+        
+        .star-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+        }
+        
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            pointer-events: none;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .celebration-message {
+            background: white;
+            padding: 30px 50px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: bounce-in 0.5s ease-out;
+        }
+        
+        .option-btn {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            border: none;
+            outline: none;
+        }
+        
+        .option-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .option-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .option-btn.correct {
+            animation: pop 0.3s ease-out;
+            box-shadow: 0 0 0 5px #26DE81;
+        }
+        
+        .option-btn.wrong {
+            animation: wiggle 0.5s ease-in-out;
+        }
+        
+        .rainbow-slot {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+        
+        .rainbow-slot:hover {
+            transform: scale(1.08);
+        }
+        
+        .rainbow-color {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .rainbow-color:hover {
+            transform: scale(1.1);
+        }
+        
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-dot.active {
+            background: #3742FA;
+            transform: scale(1.3);
+        }
+        
+        .progress-dot.correct {
+            background: #26DE81;
+        }
+        
+        .floating-bg {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .menu-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-10px) scale(1.03);
+        }
+        
+        .speak-indicator {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #3742FA;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .color-card:hover .speak-indicator {
+            opacity: 1;
+        }
+        
+        /* АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ */
+        @media (max-width: 640px) {
+            .menu-title { font-size: 3rem !important; }
+            .section-padding { padding-top: 5rem; padding-bottom: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Звёздочки-фон -->
+    <div class="floating-bg" style="top: 10%; left: 5%; font-size: 60px;">⭐</div>
+    <div class="floating-bg" style="top: 70%; left: 10%; font-size: 80px;">🌈</div>
+    <div class="floating-bg" style="top: 20%; right: 10%; font-size: 70px;">🎨</div>
+    <div class="floating-bg" style="bottom: 15%; right: 5%; font-size: 50px;">✨</div>
+    
+    <!-- Счётчик звёзд -->
+    <div class="fixed top-3 right-3 star-badge z-50">
+        <span class="text-xl">⭐</span>
+        <span id="starCount" class="text-lg">0</span>
+    </div>
+    
+    <!-- Кнопка домой -->
+    <button id="backBtn" onclick="showSection('menu')" class="hidden fixed top-3 left-3 bg-white rounded-full p-2 shadow-lg hover:scale-110 transition z-50">
+        <span class="text-xl">🏠</span>
+    </button>
+    
+    <!-- ГЛАВНОЕ МЕНЮ -->
+    <div id="menu" class="section min-h-screen flex flex-col items-center justify-center p-6 relative z-10">
+        <div class="text-center mb-8">
+            <div class="text-7xl mb-3 float">🌈</div>
+            <h1 class="menu-title text-5xl md:text-7xl font-extrabold mb-2" style="background: linear-gradient(90deg, #FF4757, #FFA502, #FFD32A, #26DE81, #3742FA, #A55EEA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                Color Magic
+            </h1>
+            <p class="text-xl text-gray-600 font-semibold">Учим цвета на английском! 🎨</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl w-full">
+            <button onclick="showSection('dictionary')" class="menu-card btn-game bg-white rounded-3xl p-6 shadow-xl border-4 border-red-200">
+                <div class="text-5xl mb-2">📚</div>
+                <h2 class="text-2xl font-bold text-gray-800">Словарик</h2>
+                <p class="text-gray-500 text-sm">Учим 10 цветов</p>
+            </button>
+            
+            <button onclick="showSection('toys')" class="menu-card btn-game bg-white rounded-3xl p-6 shadow-xl border-4 border-blue-200">
+                <div class="text-5xl mb-2">🧸</div>
+                <h2 class="text-2xl font-bold text-gray-800">Игрушки</h2>
+                <p class="text-gray-500 text-sm">Опиши цвета игрушек</p>
+            </button>
+            
+            <button onclick="showSection('listening')" class="menu-card btn-game bg-white rounded-3xl p-6 shadow-xl border-4 border-green-200">
+                <div class="text-5xl mb-2">👂</div>
+                <h2 class="text-2xl font-bold text-gray-800">Угадай цвет</h2>
+                <p class="text-gray-500 text-sm">Слушай и выбирай</p>
+            </button>
+            
+            <button onclick="showSection('rainbow')" class="menu-card btn-game bg-white rounded-3xl p-6 shadow-xl border-4 border-purple-200">
+                <div class="text-5xl mb-2">🌈</div>
+                <h2 class="text-2xl font-bold text-gray-800">Радуга</h2>
+                <p class="text-gray-500 text-sm">Собери радугу</p>
+            </button>
+        </div>
+    </div>
+    
+    <!-- СЛОВАРИК -->
+    <div id="dictionary" class="section hidden min-h-screen p-4 pt-16 pb-12 relative z-10">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-6">
+                <h2 class="text-4xl font-extrabold text-gray-800 mb-1">📚 Color Dictionary</h2>
+                <p class="text-base text-gray-600">Нажми на цвет, чтобы услышать! 🔊</p>
+            </div>
+            <div id="colorGrid" class="grid grid-cols-2 md:grid-cols-5 gap-3"></div>
+        </div>
+    </div>
+    
+    <!-- ИГРУШКИ -->
+    <div id="toys" class="section hidden min-h-screen p-4 pt-16 pb-12 relative z-10">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-4">
+                <h2 class="text-4xl font-extrabold text-gray-800 mb-1">🧸 Toy Colors</h2>
+                <p class="text-base text-gray-600">Какого цвета игрушка?</p>
+            </div>
+            <div id="toyGameArea"></div>
+        </div>
+    </div>
+    
+    <!-- УГАДАЙ ЦВЕТ -->
+    <div id="listening" class="section hidden min-h-screen p-4 pt-16 pb-12 relative z-10">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-4">
+                <h2 class="text-4xl font-extrabold text-gray-800 mb-1">👂 Listen & Find</h2>
+                <p class="text-base text-gray-600">Послушай и найди нужный цвет!</p>
+            </div>
+            <div id="listeningGameArea"></div>
+        </div>
+    </div>
+    
+    <!-- РАДУГА -->
+    <div id="rainbow" class="section hidden min-h-screen p-4 pt-16 pb-12 relative z-10">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-4">
+                <h2 class="text-4xl font-extrabold text-gray-800 mb-1">🌈 Make a Rainbow</h2>
+                <p class="text-base text-gray-600">Расставь цвета по порядку!</p>
+            </div>
+            <div id="rainbowGameArea"></div>
+        </div>
+    </div>
+    
+    <script>
+        // ============ ДАННЫЕ ============
+        const colors = [
+            { name: 'red', ru: 'красный', hex: '#FF4757', emoji: '🍎' },
+            { name: 'orange', ru: 'оранжевый', hex: '#FFA502', emoji: '🍊' },
+            { name: 'yellow', ru: 'жёлтый', hex: '#FFD32A', emoji: '☀️' },
+            { name: 'green', ru: 'зелёный', hex: '#26DE81', emoji: '🌳' },
+            { name: 'blue', ru: 'синий', hex: '#3742FA', emoji: '💧' },
+            { name: 'purple', ru: 'фиолетовый', hex: '#A55EEA', emoji: '🍇' },
+            { name: 'pink', ru: 'розовый', hex: '#FF6B9D', emoji: '🌸' },
+            { name: 'brown', ru: 'коричневый', hex: '#8B6F47', emoji: '🐻' },
+            { name: 'black', ru: 'чёрный', hex: '#2F3542', emoji: '🌙' },
+            { name: 'white', ru: 'белый', hex: '#F1F2F6', emoji: '☁️' }
+        ];
+        
+        const toys = [
+            {
+                name: 'Doll',
+                ru: 'Кукла',
+                img: 'https://z-cdn-media.chatglm.cn/files/9158d1fc-1af5-43cf-a99c-1ef1adc246a0.jpeg?auth_key=1889645269-1a2c73331a9d4767b5cc9bd5a7999e88-0-ba50a3d898a7d5083887bcc5c7daadb2',
+                questions: [
+                    { en: 'What color is the dress?', ru: 'Какого цвета платье?', answer: 'pink' },
+                    { en: 'What color is the hair?', ru: 'Какого цвета волосы?', answer: 'brown' },
+                    { en: 'What color are the shoes?', ru: 'Какого цвета туфельки?', answer: 'pink' }
+                ]
+            },
+            {
+                name: 'Ball',
+                ru: 'Мячик',
+                img: 'https://z-cdn-media.chatglm.cn/files/aadc4fbd-2b31-4185-982b-58a001ff99d5.jpeg?auth_key=1889645269-10514e39605940d7a663da88649a3ed6-0-ac6641b8d155777977f12998c5e4166e',
+                questions: [
+                    { en: 'Find the RED color!', ru: 'Найди КРАСНЫЙ цвет!', answer: 'red' },
+                    { en: 'Find the BLUE color!', ru: 'Найди СИНИЙ цвет!', answer: 'blue' },
+                    { en: 'Find the YELLOW color!', ru: 'Найди ЖЁЛТЫЙ цвет!', answer: 'yellow' },
+                    { en: 'Find the GREEN color!', ru: 'Найди ЗЕЛЁНЫЙ цвет!', answer: 'green' }
+                ]
+            },
+            {
+                name: 'Bear',
+                ru: 'Мишка',
+                img: 'https://z-cdn-media.chatglm.cn/files/c5833fd4-ed24-4cd0-8394-4458f0f205e0.jpeg?auth_key=1889645269-712843457e504b13aaaeb777f98723b7-0-a93c4a709cdfff812a9d66059b369157',
+                questions: [
+                    { en: 'What color is the bear?', ru: 'Какого цвета мишка?', answer: 'brown' },
+                    { en: 'What color is the bow?', ru: 'Какого цвета бант?', answer: 'red' }
+                ]
+            },
+            {
+                name: 'Car',
+                ru: 'Машинка',
+                img: 'https://z-cdn-media.chatglm.cn/files/1841dc78-fddb-4a1d-920e-f20db0d47455.jpeg?auth_key=1889645269-7ba6fec44f7f47e885064be79e134423-0-52d8db160d6ee9855dcf4ad621e291e3',
+                questions: [
+                    { en: 'What color is the car?', ru: 'Какого цвета машинка?', answer: 'red' },
+                    { en: 'What color are the windows?', ru: 'Какого цвета окошки?', answer: 'blue' },
+                    { en: 'What color are the lights?', ru: 'Какого цвета фары?', answer: 'yellow' }
+                ]
+            },
+            {
+                name: 'Blocks',
+                ru: 'Кубики',
+                img: 'https://z-cdn-media.chatglm.cn/files/393202d4-2bb9-4d18-a70a-135e265e855c.jpeg?auth_key=1889645269-26e4454fee2e41e99e7a7be8808e416f-0-ecf55ca27cd97070be6a20fd82398933',
+                questions: [
+                    { en: 'Find the RED block!', ru: 'Найди КРАСНЫЙ кубик!', answer: 'red' },
+                    { en: 'Find the BLUE block!', ru: 'Найди СИНИЙ кубик!', answer: 'blue' },
+                    { en: 'Find the YELLOW block!', ru: 'Найди ЖЁЛТЫЙ кубик!', answer: 'yellow' }
+                ]
+            },
+            {
+                name: 'Train',
+                ru: 'Паровозик',
+                img: 'https://z-cdn-media.chatglm.cn/files/3a317b9e-5d22-48a0-af25-7c602ecb429a.jpeg?auth_key=1889645269-c94d784cc69e46f58702c06808597342-0-74df1af936d0d75e2f9242b6a4c7d0e3',
+                questions: [
+                    { en: 'What color is the train?', ru: 'Какого цвета паровозик?', answer: 'blue' },
+                    { en: 'What color are the wheels?', ru: 'Какого цвета колёса?', answer: 'red' },
+                    { en: 'What color is the chimney?', ru: 'Какого цвета труба?', answer: 'yellow' }
+                ]
+            }
+        ];
+        
+        // ============ СОСТОЯНИЕ ============
+        let stars = 0;
+        let currentToyIndex = 0;
+        let currentQuestionIndex = 0;
+        let listeningRound = 0;
+        let listeningCorrect = 0;
+        let rainbowSelectedColor = null;
+        
+        // ============ ОЗВУЧКА ============
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.75;
+                utterance.pitch = 1.1;
+                speechSynthesis.speak(utterance);
+            }
+        }
+        
+        // ============ ЗВЁЗДЫ ============
+        function addStar() {
+            stars++;
+            const counter = document.getElementById('starCount');
+            counter.textContent = stars;
+            const badge = document.querySelector('.star-badge');
+            badge.classList.add('pop');
+            setTimeout(() => badge.classList.remove('pop'), 300);
+        }
+        
+        // ============ ПРАЗДНИК ============
+        function celebrate(message = 'Молодец!') {
+            const emojis = ['⭐', '🎉', '🌟', '✨', '🎈', '👏', '🏆', '💫'];
+            for (let i = 0; i < 25; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.fontSize = (20 + Math.random() * 25) + 'px';
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+                confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 4000);
+            }
+            
+            const overlay = document.createElement('div');
+            overlay.className = 'celebration-overlay';
+            overlay.innerHTML = `
+                <div class="celebration-message">
+                    <div class="text-6xl mb-3">🎉</div>
+                    <h3 class="text-3xl font-extrabold" style="color: #26DE81;">${message}!</h3>
+                    <p class="text-lg text-gray-600 mt-2">+1 ⭐</p>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            setTimeout(() => overlay.remove(), 2000);
+        }
+        
+        // ============ НАВИГАЦИЯ ============
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            const backBtn = document.getElementById('backBtn');
+            if (sectionId === 'menu') {
+                backBtn.classList.add('hidden');
+            } else {
+                backBtn.classList.remove('hidden');
+            }
+            
+            if (sectionId === 'dictionary') initDictionary();
+            if (sectionId === 'toys') initToys();
+            if (sectionId === 'listening') initListening();
+            if (sectionId === 'rainbow') initRainbow();
+            
+            window.scrollTo(0, 0);
+        }
+        
+        // ============ СЛОВАРИК ============
+        function initDictionary() {
+            const grid = document.getElementById('colorGrid');
+            grid.innerHTML = '';
+            
+            colors.forEach((color, index) => {
+                const card = document.createElement('div');
+                card.className = 'color-card bg-white rounded-2xl p-4 shadow-lg text-center bounce-in relative';
+                card.style.animationDelay = (index * 0.08) + 's';
+                
+                const textColor = (color.name === 'white' || color.name === 'yellow') ? '#333' : '#fff';
+                
+                card.innerHTML = `
+                    <div class="speak-indicator">🔊</div>
+                    <div class="w-20 h-20 mx-auto rounded-full mb-2" style="background: ${color.hex}; border: 4px solid white; box-shadow: 0 0 0 3px ${color.hex}33, inset 0 -10px 20px rgba(0,0,0,0.1);"></div>
+                    <div class="text-3xl mb-1">${color.emoji}</div>
+                    <h3 class="text-xl font-bold" style="color: ${color.hex};">${color.name}</h3>
+                    <p class="text-xs text-gray-500">${color.ru}</p>
+                `;
+                card.onclick = () => {
+                    speak(color.name);
+                    card.classList.add('pop');
+                    setTimeout(() => card.classList.remove('pop'), 300);
+                };
+                grid.appendChild(card);
+            });
+        }
+        
+        // ============ ИГРУШКИ ============
+        function initToys() {
+            currentToyIndex = 0;
+            currentQuestionIndex = 0;
+            showToyQuestion();
+        }
+        
+        function showToyQuestion() {
+            const toy = toys[currentToyIndex];
+            const question = toy.questions[currentQuestionIndex];
+            const area = document.getElementById('toyGameArea');
+            
+            let progressHtml = '<div class="flex justify-center gap-2 mb-3">';
+            for (let i = 0; i < toy.questions.length; i++) {
+                let bg = 'bg-gray-300';
+                if (i < currentQuestionIndex) bg = 'bg-green-400';
+                else if (i === currentQuestionIndex) bg = 'bg-blue-500';
+                progressHtml += `<div class="progress-dot ${i === currentQuestionIndex ? 'active' : ''} ${i < currentQuestionIndex ? 'correct' : ''}"></div>`;
+            }
+            progressHtml += '</div>';
+            
+            area.innerHTML = `
+                ${progressHtml}
+                <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-xl bounce-in">
+                    <div class="flex justify-center mb-3">
+                        <img src="${toy.img}" alt="${toy.name}" class="w-28 h-28 sm:w-44 sm:h-44 object-contain rounded-2xl bg-gray-50 p-2">
+                    </div>
+                    <div class="text-center mb-4">
+                        <p class="text-xs text-gray-400 mb-1">🧸 ${toy.ru}</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-1">${question.en}</h3>
+                        <p class="text-sm sm:text-base text-gray-500">${question.ru}</p>
+                        <button onclick="speak('${question.en.replace(/'/g, "")}')" class="mt-2 bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs sm:text-sm font-bold hover:bg-blue-200 transition">
+                            🔊 Послушать
+                        </button>
+                    </div>
+                    <div id="colorOptions" class="grid grid-cols-5 gap-2">
+                        ${colors.map(c => {
+                            const textColor = (c.name === 'white' || c.name === 'yellow') ? '#333' : '#fff';
+                            return `
+                                <button onclick="checkToyAnswer('${c.name}', '${question.answer}', this)" class="option-btn rounded-xl p-2 sm:p-4 shadow-md" style="background: ${c.hex}; ${c.name === 'white' ? 'border: 2px solid #e0e0e0;' : ''}">
+                                    <div class="text-[10px] sm:text-xs font-bold" style="color: ${textColor};">${c.name}</div>
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function checkToyAnswer(selected, correct, btn) {
+            if (selected === correct) {
+                btn.classList.add('correct');
+                speak(correct);
+                addStar();
+                celebrate('Great!');
+                
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex >= toys[currentToyIndex].questions.length) {
+                        currentToyIndex++;
+                        currentQuestionIndex = 0;
+                        if (currentToyIndex >= toys.length) {
+                            showToyComplete();
+                            return;
+                        }
+                    }
+                    showToyQuestion();
+                }, 2000);
+            } else {
+                btn.classList.add('wrong');
+                setTimeout(() => btn.classList.remove('wrong'), 500);
+            }
+        }
+        
+        function showToyComplete() {
+            const area = document.getElementById('toyGameArea');
+            area.innerHTML = `
+                <div class="bg-white rounded-3xl p-8 shadow-xl text-center bounce-in">
+                    <div class="text-7xl mb-4">🏆</div>
+                    <h3 class="text-3xl font-extrabold text-gray-800 mb-2">Ты молодец!</h3>
+                    <p class="text-lg text-gray-600 mb-6">Все игрушки описаны!</p>
+                    <button onclick="showSection('menu')" class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-4 rounded-full text-xl font-bold hover:scale-105 transition">
+                        🏠 В меню
+                    </button>
+                </div>
+            `;
+            celebrate('All done!');
+        }
+        
+        // ============ УГАДАЙ ЦВЕТ ============
+        function initListening() {
+            listeningRound = 0;
+            listeningCorrect = 0;
+            showListeningQuestion();
+        }
+        
+        function showListeningQuestion() {
+            const area = document.getElementById('listeningGameArea');
+            const targetColor = colors[Math.floor(Math.random() * colors.length)];
+            const shuffled = [...colors].sort(() => Math.random() - 0.5);
+            
+            area.innerHTML = `
+                <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-xl bounce-in">
+                    <div class="text-center mb-4">
+                        <div class="text-5xl mb-2">👂</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Послушай и найди цвет!</h3>
+                        <p class="text-gray-500 text-sm">Раунд ${listeningRound + 1} из 10</p>
+                    </div>
+                    
+                    <div class="text-center mb-4">
+                        <button onclick="speak('${targetColor.name}')" class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 sm:px-10 sm:py-5 rounded-full text-xl sm:text-2xl font-bold hover:scale-110 transition pulse-ring">
+                            🔊 Послушать цвет
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-5 gap-2">
+                        ${shuffled.map(c => {
+                            const textColor = (c.name === 'white' || c.name === 'yellow') ? '#333' : '#fff';
+                            return `
+                                <button onclick="checkListeningAnswer('${c.name}', '${targetColor.name}', this)" class="option-btn rounded-xl p-3 sm:p-6 shadow-md" style="background: ${c.hex}; ${c.name === 'white' ? 'border: 2px solid #e0e0e0;' : ''}">
+                                    <div class="text-[10px] sm:text-sm font-bold" style="color: ${textColor};">${c.name}</div>
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <p class="text-gray-400 text-sm">Правильно: ${listeningCorrect} ⭐</p>
+                    </div>
+                </div>
+            `;
+            
+            setTimeout(() => speak(targetColor.name), 500);
+        }
+        
+        function checkListeningAnswer(selected, correct, btn) {
+            if (selected === correct) {
+                btn.classList.add('correct');
+                speak(correct);
+                addStar();
+                listeningCorrect++;
+                celebrate('Perfect!');
+                
+                listeningRound++;
+                setTimeout(() => {
+                    if (listeningRound >= 10) {
+                        showListeningComplete();
+                    } else {
+                        showListeningQuestion();
+                    }
+                }, 2000);
+            } else {
+                btn.classList.add('wrong');
+                setTimeout(() => btn.classList.remove('wrong'), 500);
+            }
+        }
+        
+        function showListeningComplete() {
+            const area = document.getElementById('listeningGameArea');
+            area.innerHTML = `
+                <div class="bg-white rounded-3xl p-8 shadow-xl text-center bounce-in">
+                    <div class="text-7xl mb-4">🎧</div>
+                    <h3 class="text-3xl font-extrabold text-gray-800 mb-2">Игра окончена!</h3>
+                    <p class="text-xl text-gray-600 mb-2">Ты угадал: ${listeningCorrect} из 10</p>
+                    <p class="text-base text-gray-500 mb-6">${listeningCorrect >= 8 ? '🌟 Отлично!' : listeningCorrect >= 5 ? '😊 Хорошо!' : '💪 Попробуй ещё!'}</p>
+                    <div class="flex gap-3 justify-center flex-wrap">
+                        <button onclick="initListening()" class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-4 rounded-full text-lg font-bold hover:scale-105 transition">
+                            🔄 Ещё раз
+                        </button>
+                        <button onclick="showSection('menu')" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 rounded-full text-lg font-bold hover:scale-105 transition">
+                            🏠 В меню
+                        </button>
+                    </div>
+                </div>
+            `;
+            celebrate('Amazing!');
+        }
+        
+        // ============ РАДУГА ============
+        function initRainbow() {
+            rainbowSelectedColor = null;
+            showRainbowGame();
+        }
+        
+        function showRainbowGame() {
+            const area = document.getElementById('rainbowGameArea');
+            const rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+            const shuffled = [...rainbowColors].sort(() => Math.random() - 0.5);
+            
+            area.innerHTML = `
+                <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-xl bounce-in">
+                    <div class="text-center mb-4">
+                        <p class="text-base text-gray-600">🌈 Радуга всегда идёт в таком порядке:</p>
+                        <p class="text-sm text-gray-400 font-bold mt-1">Red → Orange → Yellow → Green → Blue → Purple</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <p class="text-center text-gray-500 mb-2 text-sm font-bold">1️⃣ Собери радугу здесь:</p>
+                        <div id="rainbowTarget" class="flex justify-center gap-1 sm:gap-2">
+                            ${rainbowColors.map((_, i) => `
+                                <div class="rainbow-slot w-12 h-20 sm:w-16 sm:h-24 border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center" data-position="${i}" onclick="selectRainbowTarget(${i})">
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="text-center text-gray-500 mb-2 text-sm font-bold">2️⃣ Выбери цвет и поставь его:</p>
+                        <div id="rainbowPalette" class="flex justify-center gap-1 sm:gap-2 flex-wrap">
+                            ${shuffled.map(c => {
+                                const color = colors.find(co => co.name === c);
+                                return `
+                                    <div class="rainbow-color w-12 h-20 sm:w-16 sm:h-24 rounded-xl shadow-md" 
+                                         style="background: ${color.hex}; border: 3px solid white;" 
+                                         data-color="${c}"
+                                         onclick="selectRainbowColor('${c}', this)">
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button onclick="checkRainbow()" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-lg sm:text-xl font-bold hover:scale-105 transition">
+                            ✅ Проверить радугу
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function selectRainbowColor(color, el) {
+            document.querySelectorAll('.rainbow-color').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+            el.style.boxShadow = '0 0 0 4px #FFD700';
+            rainbowSelectedColor = color;
+        }
+        
+        function selectRainbowTarget(position) {
+            if (!rainbowSelectedColor) {
+                const palette = document.getElementById('rainbowPalette');
+                palette.classList.add('wiggle');
+                setTimeout(() => palette.classList.remove('wiggle'), 500);
+                return;
+            }
+            
+            const slot = document.querySelector(`.rainbow-slot[data-position="${position}"]`);
+            const color = colors.find(c => c.name === rainbowSelectedColor);
+            
+            slot.style.background = color.hex;
+            slot.style.border = '3px solid white';
+            slot.innerHTML = `<span class="text-[10px] sm:text-xs font-bold" style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${rainbowSelectedColor}</span>`;
+            slot.dataset.color = rainbowSelectedColor;
+            
+            const paletteItem = document.querySelector(`.rainbow-color[data-color="${rainbowSelectedColor}"]`);
+            if (paletteItem) {
+                paletteItem.style.visibility = 'hidden';
+            }
+            
+            rainbowSelectedColor = null;
+            speak(color.name);
+        }
+        
+        function checkRainbow() {
+            const slots = document.querySelectorAll('.rainbow-slot');
+            const correctOrder = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+            let allFilled = true;
+            let allCorrect = true;
+            
+            slots.forEach((slot, i) => {
+                if (!slot.dataset.color) {
+                    allFilled = false;
+                } else if (slot.dataset.color !== correctOrder[i]) {
+                    allCorrect = false;
+                    slot.style.border = '4px solid #FF4757';
+                    setTimeout(() => {
+                        slot.style.border = '3px solid white';
+                    }, 1500);
+                } else {
+                    slot.style.border = '4px solid #26DE81';
+                }
+            });
+            
+            if (!allFilled) {
+                const area = document.getElementById('rainbowGameArea');
+                const warning = document.createElement('div');
+                warning.className = 'bg-yellow-100 text-yellow-700 p-3 rounded-xl text-center mt-4 font-bold';
+                warning.textContent = '⚠️ Заполни все цвета радуги!';
+                area.appendChild(warning);
+                setTimeout(() => warning.remove(), 2000);
+                return;
+            }
+            
+            if (allCorrect) {
+                speak('rainbow');
+                addStar();
+                celebrate('Perfect rainbow!');
+                setTimeout(() => showRainbowComplete(), 2500);
+            } else {
+                setTimeout(() => {
+                    slots.forEach((slot, i) => {
+                        if (slot.dataset.color !== correctOrder[i]) {
+                            const color = colors.find(c => c.name === correctOrder[i]);
+                            slot.style.background = color.hex;
+                            slot.style.border = '4px solid #26DE81';
+                            slot.innerHTML = `<span class="text-[10px] sm:text-xs font-bold" style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${correctOrder[i]}</span>`;
+                            slot.dataset.color = correctOrder[i];
+                        }
+                    });
+                    addStar();
+                    celebrate('Try again next time!');
+                    setTimeout(() => showRainbowComplete(), 2500);
+                }, 1500);
+            }
+        }
+        
+        function showRainbowComplete() {
+            const area = document.getElementById('rainbowGameArea');
+            area.innerHTML = `
+                <div class="bg-white rounded-3xl p-8 shadow-xl text-center bounce-in">
+                    <div class="text-8xl mb-4 float">🌈</div>
+                    <h3 class="text-3xl font-extrabold text-gray-800 mb-2">Радуга готова!</h3>
+                    <p class="text-lg text-gray-600 mb-6">Красная, оранжевая, жёлтая, зелёная, синяя, фиолетовая!</p>
+                    <div class="flex gap-3 justify-center flex-wrap">
+                        <button onclick="initRainbow()" class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-4 rounded-full text-lg font-bold hover:scale-105 transition">
+                            🔄 Ещё раз
+                        </button>
+                        <button onclick="showSection('menu')" class="bg-gradient-to-r from-red-500 via-yellow-500 to-purple-500 text-white px-6 py-4 rounded-full text-lg font-bold hover:scale-105 transition">
+                            🏠 В меню
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Инициализация при загрузке
+        window.addEventListener('load', () => {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.getVoices();
+                speechSynthesis.onvoiceschanged = () => {};
+            }
+        });
+        
+        // Разблокировка звука при первом клике
+        document.addEventListener('click', function initAudio() {
+            if ('speechSynthesis' in window) {
+                const u = new SpeechSynthesisUtterance('');
+                speechSynthesis.speak(u);
+            }
+            document.removeEventListener('click', initAudio);
+        }, { once: true });
+    </script>
+</body>
+</html>
