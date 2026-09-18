@@ -11,6 +11,12 @@
     },
     {
       "file": "grade1/a_b_c.html"
+    },
+    {
+      "file": "grade1/color_magic.html"
+    },
+    {
+      "file": "grade1/my_toys.html"
     }
   ],
   "2 класс": [],
@@ -41,6 +47,9 @@
     },
     {
       "file": "grade3/have_has_got.html"
+    },
+    {
+      "file": "grade3/pronouns.html"
     }
   ],
   "4 класс": [
@@ -64,6 +73,9 @@
     },
     {
       "file": "grade4/appearance.html"
+    },
+    {
+      "file": "grade4/appearance_2.html"
     },
     {
       "file": "grade4/character_traits.html"
