@@ -20,7 +20,7 @@
     }
   ],
   "2 класс": [],
-  "3 класс": [
+  "3 класс": [ 
     {
       "file": "grade3/clothes_detective.html"
     },
@@ -53,6 +53,12 @@
     },
     {
       "file": "grade3/weather.html"
+    },
+    {
+      "file": "grade3/my_home.html"
+    },
+    {
+      "file": "grade3/plural_nouns.html"
     }
   ],
   "4 класс": [
