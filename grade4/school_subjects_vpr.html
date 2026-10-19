@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВПР 4 класс: Интерактивный рабочий лист</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap');
+        
+        :root {
+            --primary: #6C5CE7;     /* Фиолетовый */
+            --secondary: #00CEC9;  /* Бирюзовый */
+            --accent: #FF7675;     /* Коралловый */
+            --success: #00B894;    /* Зеленый */
+            --error: #D63031;     /* Красный */
+            --bg-color: #F0F3F5;
+            --card-bg: #ffffff;
+            --text-color: #2D3436;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 0 30px 30px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            margin: 0 -30px 30px -30px;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        header h1 { margin: 0; font-size: 2em; }
+        header p { margin: 5px 0 0; opacity: 0.9; }
+
+        /* Папки (Вкладки) */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .tab-btn {
+            background: #ECEEEF;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1em;
+            font-weight: 700;
+            color: #636e72;
+            cursor: pointer;
+            border-radius: 12px 12px 0 0;
+            transition: all 0.2s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tab-btn:hover { background: #DFE1E5; }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+        }
+
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Словарь */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+        .flashcard {
+            background: white;
+            border: 2px solid var(--secondary);
+            padding: 15px;
+            text-align: center;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .flashcard:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,206,201,0.2); }
+        .flashcard .emoji { font-size: 2.5em; display: block; margin-bottom: 10px; }
+        .flashcard .en-word { font-weight: 800; color: var(--primary); }
+        .flashcard .ru-word { color: var(--text-color); margin-top: 5px; font-size: 0.9em; display: none; }
+        .flashcard.flipped { background: var(--secondary); color: white; }
+        .flashcard.flipped .en-word { color: white; }
+        .flashcard.flipped .ru-word { display: block; }
+
+        /* Теория */
+        .theory-box {
+            background: #EEF0FF;
+            border-left: 5px solid var(--primary);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+        .theory-box h3 { margin-top: 0; color: var(--primary); }
+        
+        .options { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+        .option-btn {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .option-btn:hover { background: var(--primary); color: white; }
+        .option-btn.correct { background: var(--success); border-color: var(--success); color: white; }
+        .option-btn.incorrect { background: var(--error); border-color: var(--error); color: white; }
+
+        /* Чтение и Грамматика */
+        .reading-text {
+            background: #F8F9FA;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #E1E5E8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        .blank-marker {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin: 0 2px;
+        }
+        .question-block { margin-bottom: 25px; }
+        .question-title { font-weight: 800; color: var(--primary); margin-bottom: 10px; }
+        
+        .radio-group { display: flex; flex-direction: column; gap: 8px; }
+        .radio-label {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .radio-label:hover { border-color: var(--secondary); background: #F0FCFC; }
+        .radio-label input { margin-right: 10px; transform: scale(1.2); }
+        .radio-label.selected { border-color: var(--primary); background: #EEF0FF; }
+        .radio-label.correct { border-color: var(--success); background: #E8FBE0; }
+        .radio-label.incorrect { border-color: var(--error); background: #FBE8E8; }
+
+        /* Анкета */
+        .profile-text { background: #F8F9FA; padding: 20px; border-radius: 12px; margin-bottom: 20px; line-height: 1.8; }
+        .profile-form { background: #EEF0FF; padding: 20px; border-radius: 12px; }
+        .profile-form label { display: inline-block; width: 220px; font-weight: 700; color: var(--primary); }
+        .profile-form input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 250px;
+            margin-bottom: 12px;
+            font-family: inherit;
+        }
+        .profile-form input.correct { border-color: var(--success); background: #E8FBE0; }
+        .profile-form input.incorrect { border-color: var(--error); background: #FBE8E8; }
+
+        .btn-check {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: 800;
+            border-radius: 25px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto 0;
+            font-family: inherit;
+            box-shadow: 0 4px 0 #009468;
+            transition: transform 0.1s;
+        }
+        .btn-check:active { transform: translateY(4px); box-shadow: 0 0 #009468; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>📁 Рабочий лист 1: School Subjects</h1>
+        <p>Подготовка к ВПР по английскому языку, 4 класс</p>
+    </header>
+
+    <!-- Панель навигации (Папки) -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'folder1')">📚 Словарь</button>
+        <button class="tab-btn" onclick="openTab(event, 'folder2')">🧠 Теория</button>
+        <button class="tab-btn" onclick="openTab(event, 'folder3')">📖 Чтение</button>
+        <button class="tab-btn" onclick="openTab(event, 'folder4')">✏️ Грамматика</button>
+        <button class="tab-btn" onclick="openTab(event, 'folder5')">💻 Анкета (ВПР)</button>
+    </div>
+
+    <!-- Папка 1: Словарь -->
+    <div id="folder1" class="tab-content active">
+        <p><b>Задание:</b> Нажми на карточку, чтобы увидеть перевод. Повтори слова вслух!</p>
+        <div class="vocab-grid" id="vocabGrid"></div>
+    </div>
+
+    <!-- Папка 2: Теория -->
+    <div id="folder2" class="tab-content">
+        <div class="theory-box">
+            <h3>Повторение: Глаголы to be и to have</h3>
+            <p><b>Глагол to be (быть):</b> I <u>am</u>, He/She/It <u>is</u>, We/You/They <u>are</u>.</p>
+            <p><b>Глагол to have (иметь):</b> I/We/You/They <u>have</u>, He/She/It <u>has</u>.</p>
+        </div>
+        
+        <p><b>Мини-тест: Выбери правильный ответ</b></p>
+        
+        <div class="question-block">
+            1. He ___ a good student.
+            <div class="options" data-q="1" data-a="is">
+                <span class="option-btn" onclick="checkTheory(this, 'is')">am</span>
+                <span class="option-btn" onclick="checkTheory(this, 'is')">is</span>
+                <span class="option-btn" onclick="checkTheory(this, 'is')">are</span>
+            </div>
+        </div>
+        <div class="question-block">
+            2. We ___ a lot of books.
+            <div class="options" data-q="2" data-a="have">
+                <span class="option-btn" onclick="checkTheory(this, 'have')">has</span>
+                <span class="option-btn" onclick="checkTheory(this, 'have')">have</span>
+            </div>
+        </div>
+        <div class="question-block">
+            3. She ___ a new pencil case.
+            <div class="options" data-q="3" data-a="has">
+                <span class="option-btn" onclick="checkTheory(this, 'has')">have</span>
+                <span class="option-btn" onclick="checkTheory(this, 'has')">has</span>
+            </div>
+        </div>
+        <div class="question-block">
+            4. They ___ in the classroom.
+            <div class="options" data-q="4" data-a="are">
+                <span class="option-btn" onclick="checkTheory(this, 'are')">am</span>
+                <span class="option-btn" onclick="checkTheory(this, 'are')">is</span>
+                <span class="option-btn" onclick="checkTheory(this, 'are')">are</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Папка 3: Чтение -->
+    <div id="folder3" class="tab-content">
+        <p><b>Задание:</b> Прочитай текст. Для каждого предложения А − Е выбери один правильный вариант ответа из трёх предложенных (1, 2 или 3).</p>
+        
+        <div class="reading-text">
+            <h3 style="text-align:center; margin-top:0; color: var(--primary);">Ann and summer</h3>
+            <p>It’s summer now. The school is closed for summer vacations. Ann is spending her vacations in the village. The weather is great, the sun is shining.</p>
+            <p>Ann likes nature and she often likes walking in a small forest with her parents. There are many beautiful flowers and old trees in the forest. Ann likes listening to birds’ whistling. She is chasing butterflies and picking flowers.</p>
+            <p>“Ann, do not get lost. Come closer to us, it’s very easy to get lost in the forest,” says Mom. “All right, Mom. Don’t worry,” answered the girl. Ann is 10 years old and she knows how to behave in the forest.</p>
+            <p>After the walk the family comes home and has tea in the yard. In summer the evening in the village is warm and beautiful. Ann likes summer.</p>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">A. Why isn't Ann at school now?</div>
+            <div class="radio-group" data-q="A" data-a="2">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_A" value="1"> 1) She is sick.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_A" value="2"> 2) The school is closed for summer holidays.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_A" value="3"> 3) Alice went to the village and there is no school there.</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">B. Does Ann go to the forest alone?</div>
+            <div class="radio-group" data-q="B" data-a="3">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_B" value="1"> 1) Yes, she does. She likes nature and will never get lost.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_B" value="2"> 2) No, she doesn't. She goes there with her friends to pick berries and mushrooms.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_B" value="3"> 3) No, she doesn't. She goes there with her parents.</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">C. Is Ann worried that she can get lost in the forest?</div>
+            <div class="radio-group" data-q="C" data-a="2">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_C" value="1"> 1) Yes, she is. She always stays close to her parents.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_C" value="2"> 2) No, she isn't. She knows how to behave in the forest.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_C" value="3"> 3) No, she isn't. She doesn't think about that and has no idea that such a thing can happen to her.</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">D. Has her family got a yard near the house?</div>
+            <div class="radio-group" data-q="D" data-a="3">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_D" value="1"> 1) Not, there is no yard there.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_D" value="2"> 2) We do not know.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_D" value="3"> 3) Yes, they have got a yard and drink tea there after the walk.</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">E. Is it cold to stay outside in the evening?</div>
+            <div class="radio-group" data-q="E" data-a="2">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_E" value="1"> 1) Yes, it is. Ann is freezing.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_E" value="2"> 2) No, it isn't. The evening in summer is warm.</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qR_E" value="3"> 3) Yes, it is. Ann wants to go home.</label>
+            </div>
+        </div>
+
+        <button class="btn-check" onclick="checkReading()">Проверить чтение</button>
+    </div>
+
+    <!-- Папка 4: Грамматика -->
+    <div id="folder4" class="tab-content">
+        <p><b>Задание:</b> Прочитай рассказ. Вставь вместо каждого пропуска, обозначенного буквами А − Е, нужную грамматическую форму, выбрав её из трёх предложенных вариантов (1, 2 или 3).</p>
+        
+        <div class="reading-text">
+            Oscar <span class="blank-marker">A</span> his shoes. He was <span class="blank-marker">B</span> them for 5 years. They still fit but they look very old. The lower part of the shoes is even <span class="blank-marker">C</span>. "Oscar, you need to buy new shoes," his wife said. "No! I love my shoes," he answered. <span class="blank-marker">D</span> wife decided to surprise him. She bought him a pair of Nikes. Oscar loved <span class="blank-marker">E</span> very much.
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">A</div>
+            <div class="radio-group" data-q="A" data-a="2">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_A" value="1"> 1) love</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_A" value="2"> 2) loves</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_A" value="3"> 3) lovs</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">B</div>
+            <div class="radio-group" data-q="B" data-a="1">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_B" value="1"> 1) wearing</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_B" value="2"> 2) wear</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_B" value="3"> 3) wore</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">C</div>
+            <div class="radio-group" data-q="C" data-a="3">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_C" value="1"> 1) the worst</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_C" value="2"> 2) bad</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_C" value="3"> 3) worse</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">D</div>
+            <div class="radio-group" data-q="D" data-a="2">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_D" value="1"> 1) him</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_D" value="2"> 2) his</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_D" value="3"> 3) he</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">E</div>
+            <div class="radio-group" data-q="E" data-a="1">
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_E" value="1"> 1) them</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_E" value="2"> 2) they</label>
+                <label class="radio-label" onclick="selectRadio(this)"><input type="radio" name="qG_E" value="3"> 3) their</label>
+            </div>
+        </div>
+
+        <button class="btn-check" onclick="checkGrammar()">Проверить грамматику</button>
+    </div>
+
+    <!-- Папка 5: Анкета -->
+    <div id="folder5" class="tab-content">
+        <p><b>Задание 5 (как в ВПР):</b> Прочитай текст про девочку Эмили. Заполни её анкету для сайта "Друзья Онлайн". Используй информацию из текста. Названия пунктов даны на английском — нужно понять, что куда вписать!</p>
+        
+        <div class="profile-text">
+            <p>Hello! My name is Emily. I am 10 years old. I am from Great Britain. I live in a beautiful city, London. I have a lovely family. I have an older brother and a younger sister. We have a cute brown cat. My favorite subject at school is English. I like warm spring. I often drink cold apple juice. I love hot pizza. My favorite sport is tennis.</p>
+        </div>
+
+        <div class="profile-form">
+            <p style="text-align:center; margin-top:0; color:var(--primary);"><b>Friends Online Profile</b></p>
+            <div><label>1. Name:</label> <input type="text" id="p1" placeholder="Type here..."></div>
+            <div><label>2. Age:</label> <input type="text" id="p2" placeholder="Type here..."></div>
+            <div><label>3. Country:</label> <input type="text" id="p3" placeholder="Type here..."></div>
+            <div><label>4. City:</label> <input type="text" id="p4" placeholder="Type here..."></div>
+            <div><label>5. Number of kids in the family:</label> <input type="text" id="p5" placeholder="Type here..."></div>
+            <div><label>6. Pet:</label> <input type="text" id="p6" placeholder="Type here..."></div>
+            <div><label>7. Favorite subject:</label> <input type="text" id="p7" placeholder="Type here..."></div>
+            <div><label>8. Favorite season:</label> <input type="text" id="p8" placeholder="Type here..."></div>
+            <div><label>9. Favorite drink:</label> <input type="text" id="p9" placeholder="Type here..."></div>
+            <div><label>10. Favorite food:</label> <input type="text" id="p10" placeholder="Type here..."></div>
+            <div><label>11. Favorite sport:</label> <input type="text" id="p11" placeholder="Type here..."></div>
+        </div>
+        
+        <button class="btn-check" onclick="checkProfile()">Проверить анкету</button>
+    </div>
+
+</div>
+
+<script>
+    // Логика переключения папок
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+    }
+
+    // 1. Словарь
+    const vocab = [
+        { en: "Maths", ru: "Математика", emoji: "🧮" },
+        { en: "English", ru: "Английский", emoji: "🇬🇧" },
+        { en: "Russian", ru: "Русский язык", emoji: "🇷🇺" },
+        { en: "Literature", ru: "Литература", emoji: "📖" },
+        { en: "History", ru: "История", emoji: "🏛️" },
+        { en: "Geography", ru: "География", emoji: "🗺️" },
+        { en: "IT", ru: "Информатика", emoji: "💻" },
+        { en: "Art", ru: "ИЗО", emoji: "🎨" },
+        { en: "PE", ru: "Физкультура", emoji: "⚽" },
+        { en: "Music", ru: "Музыка", emoji: "🎵" }
+    ];
+
+    const vocabGrid = document.getElementById('vocabGrid');
+    vocab.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'flashcard';
+        card.innerHTML = `<span class="emoji">${v.emoji}</span><div class="en-word">${v.en}</div><div class="ru-word">${v.ru}</div>`;
+        card.onclick = function() { this.classList.toggle('flipped'); };
+        vocabGrid.appendChild(card);
+    });
+
+    // 2. Теория
+    function checkTheory(element, correctAnswer) {
+        let parent = element.parentNode;
+        let allOptions = parent.querySelectorAll('.option-btn');
+        
+        allOptions.forEach(opt => {
+            opt.classList.remove('correct', 'incorrect');
+            if (opt.textContent === correctAnswer) {
+                opt.classList.add('correct');
+            }
+        });
+
+        if (element.textContent !== correctAnswer) {
+            element.classList.add('incorrect');
+        }
+    }
+
+    // 3 & 4. Выбор радио-кнопок (Чтение и Грамматика)
+    function selectRadio(label) {
+        let group = label.parentNode;
+        group.querySelectorAll('.radio-label').forEach(l => l.classList.remove('selected'));
+        label.classList.add('selected');
+        label.querySelector('input').checked = true;
+    }
+
+    // Функция проверки для заданий с радио-кнопками
+    function checkRadioTask(prefix, answers) {
+        for (let q in answers) {
+            let group = document.querySelector(`.radio-group[data-q="${q}"]`); // Нужно уточнить выбор, так как q совпадают для Чтения и Грамматики
+            // Уточняем выбор по name инпута
+            let inputs = document.getElementsByName(`${prefix}_${q}`);
+            let groupNode = inputs[0].parentNode.parentNode;
+            let selected = groupNode.querySelector('input:checked');
+            
+            groupNode.querySelectorAll('.radio-label').forEach(l => l.classList.remove('correct', 'incorrect'));
+
+            if (selected) {
+                let selectedLabel = selected.parentNode;
+                if (selected.value === answers[q]) {
+                    selectedLabel.classList.add('correct');
+                } else {
+                    selectedLabel.classList.add('incorrect');
+                    // Показываем правильный
+                    groupNode.querySelector(`input[value="${answers[q]}"]`).parentNode.classList.add('correct');
+                }
+            } else {
+                groupNode.querySelector(`input[value="${answers[q]}"]`).parentNode.classList.add('correct');
+            }
+        }
+    }
+
+    // Проверка Чтения
+    function checkReading() {
+        const answers = { 'A': '2', 'B': '3', 'C': '2', 'D': '3', 'E': '2' };
+        checkRadioTask('qR', answers);
+    }
+
+    // Проверка Грамматики
+    function checkGrammar() {
+        const answers = { 'A': '2', 'B': '1', 'C': '3', 'D': '2', 'E': '1' };
+        checkRadioTask('qG', answers);
+    }
+
+    // 5. Анкета
+    function checkProfile() {
+        const profileAnswers = {
+            p1: ['emily'],
+            p2: ['10'],
+            p3: ['great britain'],
+            p4: ['london'],
+            p5: ['3', 'three'],
+            p6: ['cat', 'brown cat', 'a brown cat', 'cute brown cat'],
+            p7: ['english'],
+            p8: ['spring', 'warm spring'],
+            p9: ['apple juice', 'cold apple juice'],
+            p10: ['pizza', 'hot pizza'],
+            p11: ['tennis']
+        };
+
+        for (let id in profileAnswers) {
+            let el = document.getElementById(id);
+            let userVal = el.value.trim().toLowerCase();
+            
+            el.classList.remove('correct', 'incorrect');
+            
+            if (profileAnswers[id].includes(userVal)) {
+                el.classList.add('correct');
+            } else {
+                el.classList.add('incorrect');
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

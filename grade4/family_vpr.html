@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВПР 4 класс | Рабочий лист 1</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap');
+
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #FDCB6E;
+            --success: #00B894;
+            --error: #FF7675;
+            --bg-color: #DFE6E9;
+            --card-bg: #FFFFFF;
+            --text-color: #2D3436;
+        }
+
+        body {
+            font-family: 'Nunito', 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#b2bec3 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, #6C5CE7, #A29BFE);
+            color: white;
+            padding: 30px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 30px rgba(108, 92, 231, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        header .emoji-bg {
+            position: absolute;
+            font-size: 8em;
+            opacity: 0.2;
+            top: -20px;
+            right: -20px;
+            transform: rotate(15deg);
+        }
+
+        /* Папки */
+        .folder {
+            background: var(--card-bg);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 3px solid transparent;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .folder:hover {
+            transform: translateY(-2px);
+        }
+
+        .folder-header {
+            background: linear-gradient(to right, #A29BFE, #6C5CE7);
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: white;
+            transition: filter 0.2s;
+        }
+
+        .folder-header:hover {
+            filter: brightness(1.1);
+        }
+
+        .folder-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s;
+            padding: 0 25px;
+            background: #FAFAFA;
+        }
+
+        .folder.active .folder-content {
+            max-height: 8000px; /* Увеличили для новых заданий */
+            padding: 25px;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+            font-size: 0.8em;
+        }
+
+        .folder.active .arrow {
+            transform: rotate(90deg);
+        }
+
+        /* Словарь (3D карточки) */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            height: 140px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #FFEAA7, #FDCB6E);
+            color: #2D3436;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #55EFC4, #00B894);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .card-emoji {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .card-word {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+
+        /* Грамматика */
+        .grammar-rule-box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--primary);
+        }
+
+        .grammar-rule-box h3 {
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3em;
+        }
+
+        .rule-step {
+            background: #F8F9FA;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 2px dashed #DFE6E9;
+        }
+
+        .rule-step h4 {
+            margin: 0 0 10px 0;
+            color: #2D3436;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .highlight-s {
+            background: #55EFC4;
+            color: #2D3436;
+            font-weight: bold;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .highlight-es {
+            background: #FDCB6E;
+            color: #2D3436;
+            font-weight: bold;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .highlight-ies {
+            background: #FF7675;
+            color: white;
+            font-weight: bold;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        table.grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        table.grammar-table th, table.grammar-table td {
+            border: 1px solid #DFE6E9;
+            padding: 12px;
+            text-align: center;
+        }
+        table.grammar-table th {
+            background: #6C5CE7;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Блок тренировки */
+        .practice-block {
+            background: #F0F4F8;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 25px;
+            border: 2px dashed #6C5CE7;
+        }
+        .practice-block h3 {
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 0;
+        }
+
+        /* Задания */
+        .task-text {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #DFE6E9;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+            font-size: 1.05em;
+        }
+
+        .question-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 15px;
+            border: 2px solid #DFE6E9;
+        }
+
+        .question-block p {
+            font-weight: 700;
+            color: #6C5CE7;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: #F8F9FA;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .options label:hover {
+            background: #E8EAF6;
+            border-color: #A29BFE;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+            accent-color: #6C5CE7;
+        }
+
+        .options label.correct {
+            background: #D4F1E1;
+            border-color: #00B894;
+            color: #00B894;
+            font-weight: bold;
+            animation: pop 0.3s ease-in-out;
+        }
+
+        .options label.wrong {
+            background: #FFE5E5;
+            border-color: #FF7675;
+            color: #FF7675;
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        input[type="text"] {
+            padding: 10px 15px;
+            border: 2px solid #DFE6E9;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 350px;
+            font-size: 1.1em;
+            font-family: 'Nunito', sans-serif;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus {
+            border-color: #6C5CE7;
+            outline: none;
+        }
+
+        input[type="text"].correct {
+            border-color: #00B894;
+            background: #D4F1E1;
+            color: #00B894;
+            font-weight: bold;
+        }
+
+        input[type="text"].wrong {
+            border-color: #FF7675;
+            background: #FFE5E5;
+        }
+
+        .btn-check {
+            background: linear-gradient(to right, #00B894, #55EFC4);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 15px;
+            transition: transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 6px 0 #009478;
+            display: block;
+            width: 100%;
+        }
+
+        .btn-check:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-check:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 #009478;
+        }
+
+        .feedback {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: pop 0.4s ease-in-out;
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 1.05em;
+        }
+        .form-table td {
+            padding: 12px;
+            border-bottom: 2px solid #DFE6E9;
+        }
+        .form-table td:first-child {
+            font-weight: 700;
+            color: #6C5CE7;
+            width: 50%;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="emoji-bg">🚀</div>
+        <h1>English VPR Adventure!</h1>
+        <p>Тема: Семья и Present Simple</p>
+    </header>
+
+    <!-- Папка 1: Словарь -->
+    <div class="folder" id="folder-vocab">
+        <div class="folder-header" onclick="toggleFolder('folder-vocab')">
+            <span>📁 Папка 1: Словарь (Family Members)</span>
+            <span class="arrow">➡️</span>
+        </div>
+        <div class="folder-content">
+            <p>👋 Нажми на карточку, чтобы увидеть перевод слова. Тренируйся, пока не запомнишь все!</p>
+            <div class="vocab-grid">
+                <div class="vocab-card" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front"><span class="card-emoji">👨</span><span class="card-word">Father</span></div>
+                        <div class="card-back"><span class="card-emoji">🧔</span><span class="card-word">Папа</span></div>
+                    </div>
+                </div>
+                <div class="vocab-card" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front"><span class="card-emoji">👩</span><span class="card-word">Mother</span></div>
+                        <div class="card-back"><span class="card-emoji">👩‍🦰</span><span class="card-word">Мама</span></div>
+                    </div>
+                </div>
+                <div class="vocab-card" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front"><span class="card-emoji">👵</span><span class="card-word">Grandmother</span></div>
+                        <div class="card-back"><span class="card-emoji">👵</span><span class="card-word">Бабушка</span></div>
+                    </div>
+                </div>
+                <div class="vocab-card" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front"><span class="card-emoji">👴</span><span class="card-word">Grandfather</span></div>
+                        <div class="card-back"><span class="card-emoji">👴</span><span class="card-word">Дедушка</span></div>
+                    </div>
+                </div>
+                <div class="vocab-card" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front"><span class="card-emoji">💁‍♀️</span><span class="card-word">Aunt</span></div>
+                        <div class="card-back"><span class="card-emoji">💅</span><span class="card-word">Тётя</span></div>
+                    </div>
+                </div>
+                <div class="vocab-card" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front"><span class="card-emoji">🧔‍♂️</span><span class="card-word">Uncle</span></div>
+                        <div class="card-back"><span class="card-emoji">🧔</span><span class="card-word">Дядя</span></div>
+                    </div>
+                </div>
+                <div class="vocab-card" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front"><span class="card-emoji">👶</span><span class="card-word">Cousin</span></div>
+                        <div class="card-back"><span class="card-emoji">👫</span><span class="card-word">Двоюродный брат/сестра</span></div>
+                    </div>
+                </div>
+                <div class="vocab-card" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front"><span class="card-emoji">👯</span><span class="card-word">Twins</span></div>
+                        <div class="card-back"><span class="card-emoji">👦👧</span><span class="card-word">Близнецы</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Папка 2: Грамматика и Теория + Отработка -->
+    <div class="folder" id="folder-grammar">
+        <div class="folder-header" onclick="toggleFolder('folder-grammar')">
+            <span>📖 Папка 2: Грамматика (Present Simple)</span>
+            <span class="arrow">➡️</span>
+        </div>
+        <div class="folder-content">
+            
+            <div class="grammar-rule-box">
+                <h3>⏱️ Что такое Present Simple?</h3>
+                <p>Мы используем Present Simple, когда говорим о том, что происходит <b>регулярно</b> (каждый день, по понедельникам), или о <b>фактах</b> (Солнце встает на востоке).</p>
+            </div>
+
+            <div class="grammar-rule-box" style="border-left-color: #00B894;">
+                <h3>👪 Шаг 1: Выбираем местоимение</h3>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Множественное число (I, You, We, They)</th>
+                        <th>Единственное число (He, She, It)</th>
+                    </tr>
+                    <tr>
+                        <td>I play<br>You play<br>We play<br>They play</td>
+                        <td style="background-color: #F8F9FA;"><b>He</b> play<b style="color:#00B894;">s</b><br><b>She</b> play<b style="color:#00B894;">s</b><br><b>It</b> play<b style="color:#00B894;">s</b></td>
+                    </tr>
+                </table>
+                <p style="margin-top:10px;">💡 <b>Правило:</b> С местоимениями <b>He, She, It</b> (Он, Она, Оно) к глаголу добавляется окончание <span class="highlight-s">-s</span>!</p>
+            </div>
+
+            <div class="grammar-rule-box" style="border-left-color: #FDCB6E;">
+                <h3>✨ Шаг 2: Подводные камни (Исключения)</h3>
+                <p>Иногда к глаголу добавляется не просто <b>-s</b>. Смотри, как это работает:</p>
+                
+                <div class="rule-step">
+                    <h4>1️⃣ Глагол заканчивается на шипящие (-s, -ss, -sh, -ch, -x) или на -o</h4>
+                    <p>Добавляем окончание <span class="highlight-es">-es</span></p>
+                    <ul>
+                        <li><b>kiss</b> (целовать) ➔ he kiss<span class="highlight-es">es</span></li>
+                        <li><b>wash</b> (мыть) ➔ she wash<span class="highlight-es">es</span></li>
+                        <li><b>watch</b> (смотреть) ➔ it watch<span class="highlight-es">es</span></li>
+                        <li><b>go</b> (идти) ➔ he go<span class="highlight-es">es</span> (идет)</li>
+                        <li><b>do</b> (делать) ➔ she do<span class="highlight-es">es</span> (делает)</li>
+                    </ul>
+                </div>
+
+                <div class="rule-step">
+                    <h4>2️⃣ Глагол заканчивается на СОГЛАСНУЮ + Y</h4>
+                    <p>Буква <b>Y</b> меняется на <b>I</b>, и добавляем <span class="highlight-ies">-es</span></p>
+                    <ul>
+                        <li><b>study</b> (учиться) ➔ stud<span class="highlight-ies">ies</span> (не studys!)</li>
+                        <li><b>fly</b> (летать) ➔ fl<span class="highlight-ies">ies</span></li>
+                        <li><b>cry</b> (плакать) ➔ cr<span class="highlight-ies">ies</span></li>
+                    </ul>
+                    <p>❗️ <b>Нo:</b> если перед <b>Y</b> стоит гласная, всё ок, просто добавляем <b>-s</b>: <br><b>play</b> ➔ he play<span class="highlight-s">s</span></li></p>
+                </div>
+            </div>
+            
+            <div class="grammar-rule-box" style="border-left-color: #FF7675;">
+                <h3>🧩 Дополнительно: to be и have/has</h3>
+                <p><b>to be (быть)</b>: I <b>am</b>, He/She/It <b>is</b>, We/You/They <b>are</b>. <br>
+                <b>to have (иметь)</b>: I/You/We/They <b>have</b>. Но! He/She/It <b>has</b>.</p>
+            </div>
+
+            <!-- БЛОК ОТРАБОТКИ -->
+            <div class="practice-block">
+                <h3>🏋️ Отработка: Выбери правильный глагол</h3>
+                <p>Давай проверим, как ты понял правило! Выбери правильную форму глагола.</p>
+                <div id="grammar-task-questions"></div>
+                <button class="btn-check" onclick="checkGrammarTask()">Проверить грамматику 🚀</button>
+                <div class="feedback" id="grammar-task-feedback"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Папка 3: Задание 1 - Чтение (Jack) -->
+    <div class="folder" id="folder-task1">
+        <div class="folder-header" onclick="toggleFolder('folder-task1')">
+            <span>📝 Задание 1: Чтение (Jack)</span>
+            <span class="arrow">➡️</span>
+        </div>
+        <div class="folder-content">
+            <div class="task-text">
+                Jack is a young blue-eyed boy. He is nine years old. He lives with his parents. Jack likes going to the cinema with his friends. It’s Sunday now. But he stays at home to rest.
+                He has nothing to do today so he can spend this day with his friends.
+                The boys walk in the yard and play soccer. Then they will come to Jack’s flat to have tea.
+                The weather is fine today, it’s hot. The sun is shining. Jack is very glad. In the evening the boy will do his homework because he has to go to school on Monday. Jack likes his school. He likes reading and writing. “You are a good student, Jack,” says his teacher.
+            </div>
+            <div id="task1-questions"></div>
+            <button class="btn-check" onclick="checkTask1()">Проверить задание 1 🚀</button>
+            <div class="feedback" id="task1-feedback"></div>
+        </div>
+    </div>
+
+    <!-- Папка 4: Задание 2 - Грамматика (Baikal) -->
+    <div class="folder" id="folder-task2">
+        <div class="folder-header" onclick="toggleFolder('folder-task2')">
+            <span>🧩 Задание 2: Грамматика (Baikal)</span>
+            <span class="arrow">➡️</span>
+        </div>
+        <div class="folder-content">
+            <div class="task-text">
+                Last year I visited Siberia. I A _____ Lake Baikal. It is a very beautiful deep lake. It is also the B _____ freshwater lake in the world. It is 25 million years old. There are about 100 volcanoes but there are C _____ active ones. 336 rivers flow into Lake Baikal. Only one flows out, which is the Upper Angara.
+                There are more than thirty rocky islands in this lake. One of them is Olkhon. A lot of people D _____ it every year. Lake Baikal is home to thousands of different plants and animals. People like taking photos of E _____.
+            </div>
+            <div id="task2-questions"></div>
+            <button class="btn-check" onclick="checkTask2()">Проверить задание 2 🚀</button>
+            <div class="feedback" id="task2-feedback"></div>
+        </div>
+    </div>
+
+    <!-- Папка 5: Задание 3 - Анкета (Michael) -->
+    <div class="folder" id="folder-task3">
+        <div class="folder-header" onclick="toggleFolder('folder-task3')">
+            <span>✍️ Задание 3: Анкета «Друзья онлайн»</span>
+            <span class="arrow">➡️</span>
+        </div>
+        <div class="folder-content">
+            <p><b>Инструкция:</b> Прочитай текст о Майкле. Запиши информацию в таблицу. Под каждым номером запиши только <b>одно слово</b> (без артиклей). Числа необходимо записать <b>словами</b>.</p>
+            <div class="task-text">
+                Michael Smirnov
+                Michael lives in Moscow. He is 10 years old. Moscow is the capital of Russia. Michael has got a sister and a brother. He's got a little puppy. Michael likes playing the guitar. He wants to become a musician. He practices every day and takes part in concerts and competitions. When he wins a competition his Mom takes him to a cafe and buys him his favourite hot chocolate. Michael likes his school. His favourite subject is English. Michael likes early autumn in Moscow when it is still warm but not hot.
+            </div>
+
+            <table class="form-table">
+                <tr><td>1. Name</td><td><input type="text" id="form-1"></td></tr>
+                <tr><td>2. Age</td><td><input type="text" id="form-2"></td></tr>
+                <tr><td>3. Country</td><td><input type="text" id="form-3"></td></tr>
+                <tr><td>4. Number of children in the family</td><td><input type="text" id="form-4"></td></tr>
+                <tr><td>5. Pet</td><td><input type="text" id="form-5"></td></tr>
+                <tr><td>6. Favourite subject</td><td><input type="text" id="form-6"></td></tr>
+                <tr><td>7. Favourite season</td><td><input type="text" id="form-7"></td></tr>
+                <tr><td>8. Favourite drink</td><td><input type="text" id="form-8"></td></tr>
+            </table>
+            <button class="btn-check" onclick="checkTask3()">Проверить задание 3 🚀</button>
+            <div class="feedback" id="task3-feedback"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Раскрытие папок
+    function toggleFolder(id) {
+        document.getElementById(id).classList.toggle('active');
+    }
+
+    // Переворот карточек словаря
+    function flipCard(card) {
+        card.classList.toggle('flipped');
+    }
+
+    // Данные для отработки грамматики (2 варианта ответа)
+    const grammarTaskData = [
+        { title: "1. He (play / plays) football every day.", options: ["play", "plays"], correct: 2 },
+        { title: "2. She (go / goes) to school by bus.", options: ["go", "goes"], correct: 2 },
+        { title: "3. My mother (watch / watches) TV in the evening.", options: ["watch", "watches"], correct: 2 },
+        { title: "4. I (study / studies) English on Mondays.", options: ["study", "studies"], correct: 1 },
+        { title: "5. He (is / has) got a sister.", options: ["is", "has"], correct: 2 },
+        { title: "6. She (is / has) a good student.", options: ["is", "has"], correct: 1 },
+        { title: "7. The cat (sleep / sleeps) on the sofa.", options: ["sleep", "sleeps"], correct: 2 },
+        { title: "8. They (have / has) got a dog.", options: ["have", "has"], correct: 1 }
+    ];
+
+    // Данные Задания 1
+    const task1Data = [
+        { title: "A. What colour are Jack's eyes?", options: ["His eyes are brown.", "His eyes are green.", "His eyes are blue."], correct: 3 },
+        { title: "B. What does Jack like to do with his friends?", options: ["He likes going to a cafe.", "He likes going to the cinema.", "He likes staying at home."], correct: 2 },
+        { title: "C. Was the weather fine that Sunday?", options: ["No, it wasn't.", "Yes, it was. But it was windy.", "Yes, it was. It was hot and sunny."], correct: 3 },
+        { title: "D. Did Jack do all his homework on Sunday morning?", options: ["No, he didn't.", "Yes, he did.", "No, he didn't. He had holidays."], correct: 1 },
+        { title: "E. Does Jack like studying?", options: ["No, he doesn't.", "Yes, he does. He likes singing.", "Yes, he does. He likes reading and writing."], correct: 3 }
+    ];
+
+    // Данные Задания 2
+    const task2Data = [
+        { title: "A", options: ["see", "saw", "seeing"], correct: 2 },
+        { title: "B", options: ["oldest", "older", "old"], correct: 1 },
+        { title: "C", options: ["some", "any", "no"], correct: 3 },
+        { title: "D", options: ["visit", "to visit", "visiting"], correct: 1 },
+        { title: "E", options: ["they", "them", "their"], correct: 2 }
+    ];
+
+    // Генерация вопросов для тестов (поддерживает 2 и более вариантов)
+    function generateQuestions(data, containerId, namePrefix) {
+        const container = document.getElementById(containerId);
+        let html = '';
+        data.forEach((q, qIndex) => {
+            html += `<div class="question-block"><p>${q.title}</p><div class="options">`;
+            q.options.forEach((opt, optIndex) => {
+                let id = `${namePrefix}-${qIndex}-${optIndex}`;
+                html += `<label id="label-${id}"><input type="radio" name="${namePrefix}-${qIndex}" id="${id}" value="${optIndex+1}"><span>${optIndex+1}) ${opt}</span></label>`;
+            });
+            html += `</div></div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    generateQuestions(grammarTaskData, 'grammar-task-questions', 'gt');
+    generateQuestions(task1Data, 'task1-questions', 't1');
+    generateQuestions(task2Data, 'task2-questions', 't2');
+
+    // Универсальная функция проверки тестов
+    function checkTestTask(data, namePrefix, feedbackId) {
+        let score = 0;
+        data.forEach((q, qIndex) => {
+            q.options.forEach((opt, optIndex) => {
+                let label = document.getElementById(`label-${namePrefix}-${qIndex}-${optIndex}`);
+                if(label) {
+                    label.classList.remove('correct', 'wrong');
+                    let input = document.getElementById(`${namePrefix}-${qIndex}-${optIndex}`);
+                    if(input && input.checked) {
+                        if(optIndex+1 === q.correct) {
+                            label.classList.add('correct');
+                            score++;
+                        } else {
+                            label.classList.add('wrong');
+                            document.getElementById(`label-${namePrefix}-${qIndex}-${q.correct-1}`).classList.add('correct');
+                        }
+                    }
+                }
+            });
+        });
+        
+        const fb = document.getElementById(feedbackId);
+        fb.classList.add('show');
+        if(score === data.length) {
+            fb.innerHTML = `🎉 Отлично! Все верно! ${score} из ${data.length}`;
+            fb.style.background = '#D4F1E1';
+            fb.style.color = '#00B894';
+        } else {
+            fb.innerHTML = `💪 Почти получилось! Твой счет: ${score} из ${data.length}. Посмотри на подсвеченные ответы!`;
+            fb.style.background = '#FFE5E5';
+            fb.style.color = '#FF7675';
+        }
+    }
+
+    function checkGrammarTask() { checkTestTask(grammarTaskData, 'gt', 'grammar-task-feedback'); }
+    function checkTask1() { checkTestTask(task1Data, 't1', 'task1-feedback'); }
+    function checkTask2() { checkTestTask(task2Data, 't2', 'task2-feedback'); }
+
+
+    // Проверка Задания 3 (Анкета)
+    const task3Answers = {
+        1: ["michael", "michael smirnov"],
+        2: ["ten"],
+        3: ["russia"],
+        4: ["three"],
+        5: ["puppy"],
+        6: ["english"],
+        7: ["autumn"],
+        8: ["chocolate", "hot chocolate"]
+    };
+
+    function checkTask3() {
+        let score = 0;
+        for(let i=1; i<=8; i++) {
+            const input = document.getElementById(`form-${i}`);
+            const userVal = input.value.trim().toLowerCase();
+            input.classList.remove('correct', 'wrong');
+
+            if(task3Answers[i].includes(userVal)) {
+                input.classList.add('correct');
+                score++;
+            } else {
+                input.classList.add('wrong');
+            }
+        }
+        
+        const fb = document.getElementById('task3-feedback');
+        fb.classList.add('show');
+        if(score === 8) {
+            fb.innerHTML = `🏆 Супер! Анкета заполнена идеально! ${score} из 8`;
+            fb.style.background = '#D4F1E1';
+            fb.style.color = '#00B894';
+        } else {
+            fb.innerHTML = `📝 Хороший результат! ${score} из 8. Проверь красные поля, попробуй еще раз!`;
+            fb.style.background = '#FFE5E5';
+            fb.style.color = '#FF7675';
+        }
+    }
+</script>
+
+</body>
+</html>

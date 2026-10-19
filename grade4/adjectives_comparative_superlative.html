@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Степени сравнения прилагательных · 4 класс</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg: #FFF8EC;
+  --bg-soft: #FFEFD5;
+  --cream: #FFF1D6;
+  --coral: #FF6B47;
+  --coral-dark: #D9482A;
+  --coral-light: #FFE0D6;
+  --teal: #2EC4B6;
+  --teal-dark: #1A9082;
+  --teal-light: #D4F5F0;
+  --yellow: #FFC93C;
+  --yellow-dark: #D49600;
+  --yellow-light: #FFF1C1;
+  --pink: #FF8FA3;
+  --pink-light: #FFE0E6;
+  --pink-dark: #D9536C;
+  --dark: #2D3047;
+  --muted: #6E7189;
+  --card: #FFFFFF;
+  --border: #FFE2C7;
+  --border-soft: #E8D9C4;
+  --green: #6BCB77;
+  --green-light: #D4F5DD;
+  --red: #FF6B6B;
+  --red-light: #FFE0E0;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 17px;
+  line-height: 1.6;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 15% 25%, rgba(255, 201, 60, 0.18) 0%, transparent 35%),
+    radial-gradient(circle at 85% 15%, rgba(46, 196, 182, 0.14) 0%, transparent 35%),
+    radial-gradient(circle at 75% 85%, rgba(255, 107, 71, 0.10) 0%, transparent 40%),
+    radial-gradient(circle at 25% 80%, rgba(255, 143, 163, 0.12) 0%, transparent 35%);
+  z-index: -2;
+  pointer-events: none;
+}
+.floating-shape {
+  position: fixed;
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.4;
+  filter: blur(2px);
+  animation: float 25s infinite ease-in-out;
+}
+.shape-1 { width: 200px; height: 200px; background: var(--yellow); top: 8%; left: -50px; }
+.shape-2 { width: 150px; height: 150px; background: var(--teal); top: 50%; right: -50px; animation-delay: -8s; }
+.shape-3 { width: 120px; height: 120px; background: var(--pink); bottom: 10%; left: 8%; animation-delay: -15s; }
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -40px) scale(1.1); }
+  66% { transform: translate(-30px, 30px) scale(0.95); }
+}
+h1, h2, h3, .display {
+  font-family: 'Fredoka', sans-serif;
+  color: var(--dark);
+  line-height: 1.2;
+}
+.hero {
+  padding: 60px 20px 30px;
+  text-align: center;
+  position: relative;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 2px solid var(--yellow);
+  color: var(--yellow-dark);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(255, 201, 60, 0.25);
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: var(--dark);
+}
+.hero h1 .accent {
+  color: var(--coral);
+  position: relative;
+  display: inline-block;
+}
+.hero h1 .accent::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: var(--yellow);
+  z-index: -1;
+  border-radius: 6px;
+  opacity: 0.5;
+}
+.hero p {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto;
+}
+.tabs-wrapper {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
+}
+.tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 6px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
+}
+.tab-btn {
+  flex: 1;
+  min-width: 130px;
+  background: transparent;
+  border: none;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.tab-btn:hover { background: var(--bg-soft); color: var(--dark); }
+.tab-btn.active {
+  background: var(--coral);
+  color: white;
+  box-shadow: 0 6px 16px rgba(255, 107, 71, 0.4);
+  transform: translateY(-2px);
+}
+.section {
+  display: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  animation: fadeInUp 0.5s ease;
+}
+.section.active { display: block; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-title {
+  font-size: 2rem;
+  margin: 30px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-title .icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.4rem;
+}
+.section-subtitle {
+  color: var(--muted);
+  margin: 0 0 30px;
+  font-size: 1.05rem;
+}
+
+/* Стили для таблиц теории */
+.theory-intro {
+  background: white;
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  margin-bottom: 24px;
+  border-left: 6px solid var(--teal);
+}
+.theory-intro h3 {
+  font-size: 1.4rem;
+  margin: 0 0 10px;
+  color: var(--teal-dark);
+}
+.theory-table-container {
+  background: white;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+.table-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.table-header-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+.table-header h3 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+.table-header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+.rule-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 2px solid var(--border);
+}
+.rule-table th {
+  background: var(--bg-soft);
+  padding: 14px 16px;
+  text-align: left;
+  font-family: 'Fredoka', sans-serif;
+  color: var(--dark);
+  border-bottom: 2px solid var(--border);
+  font-size: 1.05rem;
+}
+.rule-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.rule-table tr:last-child td {
+  border-bottom: none;
+}
+.rule-table tr:nth-child(even) td {
+  background-color: #FFFCF5;
+}
+.rule-table .type-col {
+  font-weight: 700;
+  color: var(--muted);
+  width: 25%;
+}
+.rule-table .form-col {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.rule-table .ex-col {
+  font-family: 'Fredoka', sans-serif;
+  line-height: 1.6;
+}
+.comparative-table .form-col { color: var(--coral-dark); }
+.comparative-table .ex-col { color: var(--teal-dark); }
+.comparative-table .table-header-icon { background: var(--coral); }
+.comparative-table .marker-badge { background: var(--coral-light); color: var(--coral-dark); }
+
+.superlative-table .form-col { color: var(--pink-dark); }
+.superlative-table .ex-col { color: var(--teal-dark); }
+.superlative-table .table-header-icon { background: var(--pink); }
+.superlative-table .marker-badge { background: var(--pink-light); color: var(--pink-dark); }
+
+.marker-row td {
+  background: #FFF8EC !important;
+  border-top: 2px dashed var(--border);
+}
+.marker-box {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.marker-text {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.highlight {
+  background: var(--yellow-light);
+  padding: 1px 8px;
+  border-radius: 5px;
+  color: var(--coral-dark);
+  font-weight: 700;
+}
+.arrow {
+  color: var(--coral);
+  font-weight: 800;
+  margin: 0 4px;
+}
+.example-text {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.flashcard-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.flashcard {
+  perspective: 1000px;
+  height: 240px;
+  cursor: pointer;
+}
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+}
+.flashcard-front {
+  background: #FFFFFF;
+  border: 8px solid #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 0 0 2px var(--border);
+  color: var(--dark);
+}
+.flashcard-back {
+  background: #FFFFFF;
+  border: 8px solid #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 0 0 2px var(--coral);
+  transform: rotateY(180deg);
+  color: var(--dark);
+  justify-content: space-between;
+  padding: 16px;
+}
+.flashcard-word {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--coral);
+}
+.flashcard-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.audio-btn {
+  margin-top: 14px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  color: var(--coral);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  font-size: 1.1rem;
+}
+.audio-btn:hover { transform: scale(1.15); background: var(--coral-light); }
+.audio-btn.speaking { animation: pulse 0.8s infinite; }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 71, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(255, 107, 71, 0); }
+}
+.flashcard-back .translation {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin: 0;
+}
+.flashcard-back .comparative {
+  padding: 5px 14px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.flashcard-back .example {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.4;
+  padding: 0 4px;
+}
+.bonus-vocab {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  margin-top: 40px;
+  border-left: 6px solid var(--teal);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+.bonus-vocab h3 {
+  color: var(--teal-dark);
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bonus-vocab p.intro {
+  color: var(--muted);
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+}
+.vocab-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.vocab-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-soft);
+  border: 2px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.vocab-chip:hover {
+  background: var(--yellow-light);
+  border-color: var(--yellow);
+  transform: translateY(-2px);
+}
+.vocab-chip .ru {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.vocab-chip .audio-mini {
+  background: var(--teal);
+  color: white;
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  transition: all 0.2s;
+}
+.vocab-chip .audio-mini:hover {
+  background: var(--teal-dark);
+  transform: scale(1.15);
+}
+.vocab-chip .audio-mini.speaking { animation: pulse-teal 0.8s infinite; }
+@keyframes pulse-teal {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.6); }
+  50% { box-shadow: 0 0 0 8px rgba(46, 196, 182, 0); }
+}
+.exercise-block {
+  background: white;
+  border-radius: 24px;
+  padding: 30px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+.exercise-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.exercise-num {
+  width: 46px;
+  height: 46px;
+  background: var(--coral);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.exercise-block h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  flex: 1;
+}
+.exercise-tag {
+  background: var(--yellow-light);
+  color: var(--yellow-dark);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.question {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed var(--border);
+}
+.question:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.question-text {
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.question-text .num-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--coral);
+  color: white;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-right: 8px;
+  font-family: 'Fredoka', sans-serif;
+}
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.option {
+  background: var(--bg-soft);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  color: var(--dark);
+  font-size: 1rem;
+}
+.option:hover:not(.disabled) {
+  border-color: var(--coral);
+  background: white;
+  transform: translateY(-2px);
+}
+.option.correct {
+  background: var(--green-light);
+  border-color: var(--green);
+  color: #2A7F3A;
+}
+.option.wrong {
+  background: var(--red-light);
+  border-color: var(--red);
+  color: #C92A2A;
+  animation: shake 0.4s;
+}
+.option.disabled { pointer-events: none; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+.feedback {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.feedback.correct { color: #2A7F3A; }
+.feedback.wrong { color: #C92A2A; }
+.score-tracker {
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  color: white;
+  padding: 16px 22px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 18px rgba(46, 196, 182, 0.3);
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.score-tracker .label {
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.score-tracker .progress-bar {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 4px;
+  flex: 1;
+  min-width: 200px;
+  height: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.score-tracker .progress-fill {
+  background: var(--yellow);
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--dark);
+  width: 0%;
+  min-width: 50px;
+}
+.story-card {
+  background: white;
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  border-left: 6px solid var(--pink);
+  line-height: 2.2;
+  font-size: 1.1rem;
+  position: relative;
+}
+.story-card .story-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  color: var(--coral-dark);
+  margin: 0 0 8px;
+  text-align: center;
+}
+.story-card .story-subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin: 0 0 24px;
+  font-size: 0.95rem;
+}
+.story-text {
+  font-size: 1.05rem;
+  line-height: 2.4;
+}
+.reading-questions {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--border);
+}
+.reading-questions h4 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.2rem;
+  margin: 0 0 16px;
+  color: var(--dark);
+}
+
+/* Новые аккуратные стили для пропусков в тексте */
+.blank-input {
+  display: inline-block;
+  border: 2px solid var(--border-soft);
+  border-radius: 8px;
+  background: #FFFCF5;
+  padding: 4px 12px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: var(--dark);
+  min-width: 110px;
+  text-align: center;
+  outline: none;
+  font-size: 1rem;
+  margin: 0 4px;
+  vertical-align: middle;
+  transition: all 0.2s;
+}
+.blank-input:focus {
+  border-color: var(--teal);
+  background: white;
+  box-shadow: 0 2px 8px rgba(46, 196, 182, 0.15);
+}
+.blank-input.correct {
+  border-color: var(--green);
+  background: var(--green-light);
+  color: #2A7F3A;
+}
+.blank-input.wrong {
+  border-color: var(--red);
+  background: var(--red-light);
+  color: #C92A2A;
+  animation: shake 0.4s;
+}
+.blank-input::placeholder {
+  color: #C5B8A6;
+  opacity: 0.8;
+  font-weight: 500;
+}
+.blank-select {
+  display: inline-block;
+  background: #FFFCF5;
+  border: 2px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 4px 30px 4px 12px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin: 0 4px;
+  outline: none;
+  vertical-align: middle;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23888080' d='M6 8L0 0h12z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: all 0.2s;
+}
+.blank-select:focus {
+  border-color: var(--teal);
+  box-shadow: 0 2px 8px rgba(46, 196, 182, 0.15);
+}
+.blank-select.correct {
+  border-color: var(--green);
+  background-color: var(--green-light);
+  color: #2A7F3A;
+}
+.blank-select.wrong {
+  border-color: var(--red);
+  background-color: var(--red-light);
+  color: #C92A2A;
+}
+
+.check-btn {
+  background: var(--coral);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 5px 0 var(--coral-dark);
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.check-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--coral-dark); }
+.check-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--coral-dark); }
+.check-btn.teal {
+  background: var(--teal);
+  box-shadow: 0 5px 0 var(--teal-dark);
+}
+.check-btn.teal:hover { box-shadow: 0 7px 0 var(--teal-dark); }
+.check-btn.teal:active { box-shadow: 0 2px 0 var(--teal-dark); }
+.result-message {
+  margin-top: 16px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-weight: 700;
+  display: none;
+}
+.result-message.show {
+  display: block;
+  animation: fadeInUp 0.4s;
+}
+.result-message.success {
+  background: var(--green-light);
+  color: #2A7F3A;
+  border: 2px solid var(--green);
+}
+.result-message.partial {
+  background: var(--yellow-light);
+  color: var(--yellow-dark);
+  border: 2px solid var(--yellow);
+}
+.game-container {
+  background: white;
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.game-stats {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+.stat-box {
+  background: var(--bg-soft);
+  border-radius: 14px;
+  padding: 10px 18px;
+  text-align: center;
+  min-width: 90px;
+  border: 2px solid var(--border);
+  transition: all 0.3s;
+}
+.stat-box .label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+.stat-box .value {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--coral);
+  line-height: 1;
+  margin-top: 4px;
+}
+.stat-box.streak .value { color: var(--yellow-dark); }
+.stat-box.timer .value { color: var(--teal-dark); }
+.stat-box.urgent {
+  background: var(--red-light);
+  border-color: var(--red);
+  animation: shake 0.5s infinite;
+}
+.game-question-area {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--bg-soft) 100%);
+  border-radius: 20px;
+  margin-bottom: 24px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.game-prompt {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.game-prompt strong {
+  color: var(--coral);
+}
+.game-word {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--coral);
+  margin: 0;
+  text-shadow: 0 4px 12px rgba(255, 107, 71, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.game-word:hover { transform: scale(1.05); }
+.game-instruction {
+  margin-top: 14px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.game-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.game-option {
+  background: white;
+  border: 3px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 0 var(--border);
+}
+.game-option:hover:not(.disabled) {
+  border-color: var(--coral);
+  transform: translateY(-3px);
+  box-shadow: 0 7px 0 var(--coral-light);
+}
+.game-option.correct {
+  background: var(--green-light);
+  border-color: var(--green);
+  color: #2A7F3A;
+  box-shadow: 0 4px 0 var(--green);
+}
+.game-option.wrong {
+  background: var(--red-light);
+  border-color: var(--red);
+  color: #C92A2A;
+  box-shadow: 0 4px 0 var(--red);
+  animation: shake 0.4s;
+}
+.game-option.disabled { pointer-events: none; }
+.game-start, .game-end {
+  text-align: center;
+  padding: 40px 20px;
+}
+.game-start h3, .game-end h3 {
+  font-size: 2rem;
+  margin: 0 0 14px;
+}
+.game-start p, .game-end p {
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 24px;
+  font-size: 1.05rem;
+}
+.game-end .final-score {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--coral);
+  margin: 20px 0;
+  line-height: 1;
+}
+.game-rules {
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto 30px;
+  background: var(--bg-soft);
+  padding: 20px;
+  border-radius: 16px;
+  list-style: none;
+  padding-left: 20px;
+}
+.game-rules li { margin: 8px 0; }
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--dark);
+  color: white;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.success { background: var(--green); }
+.toast.error { background: var(--red); }
+.toast.info { background: var(--teal); }
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 14px;
+  pointer-events: none;
+  border-radius: 2px;
+  animation: confettiFall 1.5s ease-out forwards;
+  z-index: 10;
+}
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(400px) rotate(720deg); opacity: 0; }
+}
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  border-top: 2px dashed var(--border);
+  margin-top: 40px;
+}
+footer .heart { color: var(--coral); }
+@media (max-width: 768px) {
+  .hero { padding: 40px 16px 20px; }
+  .section { padding: 0 16px 60px; }
+  .tabs-wrapper { padding: 0 16px; }
+  .tab-btn { min-width: 100px; padding: 12px 8px; font-size: 0.9rem; }
+  .exercise-block, .story-card, .game-container, .theory-table-container { padding: 20px; }
+  .game-word { font-size: 2.5rem; }
+  .game-option { font-size: 1.1rem; padding: 14px; }
+  .section-title { font-size: 1.6rem; }
+  .stat-box { min-width: 80px; padding: 8px 14px; }
+  .stat-box .value { font-size: 1.3rem; }
+  .story-card { font-size: 1rem; padding: 24px; line-height: 2; }
+  .story-text { font-size: 1rem; line-height: 2.4; }
+  .blank-input { min-width: 90px; }
+  .rule-table th, .rule-table td { padding: 10px 8px; font-size: 0.9rem; }
+  .table-header h3 { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+  <div class="floating-shape shape-3"></div>
+  
+  <header class="hero">
+    <div class="hero-badge">
+      <i class="fas fa-star"></i>
+      <span>4 класс · English Worksheet</span>
+    </div>
+    <h1>Степени сравнения <span class="accent">прилагательных</span></h1>
+    <p>Учимся сравнивать предметы, людей и животных по-английски. Теория, словарь, упражнения, текст и весёлая игра — всё в одном месте!</p>
+  </header>
+  
+  <div class="tabs-wrapper">
+    <nav class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="theory"><i class="fas fa-book-open"></i> Теория</button>
+      <button class="tab-btn" data-tab="vocabulary"><i class="fas fa-layer-group"></i> Словарь</button>
+      <button class="tab-btn" data-tab="exercises"><i class="fas fa-pencil-alt"></i> Упражнения</button>
+      <button class="tab-btn" data-tab="text"><i class="fas fa-file-alt"></i> Текст</button>
+      <button class="tab-btn" data-tab="game"><i class="fas fa-gamepad"></i> Игра</button>
+    </nav>
+  </div>
+  
+  <main>
+    <!-- ТЕОРИЯ -->
+    <section class="section active" id="theory">
+      <h2 class="section-title">
+        <span class="icon-circle" style="background: var(--coral);"><i class="fas fa-book-open"></i></span>
+        Теория
+      </h2>
+      <p class="section-subtitle">Простыми словами о том, как сравнивать предметы по-английски. Читай по порядку — и всё поймёшь!</p>
+      
+      <div class="theory-intro">
+        <h3><i class="fas fa-lightbulb"></i> Зачем нужны степени?</h3>
+        <p>По-английски, как и по-русски, мы можем сравнивать предметы. Например: <strong>"большой — больше — самый большой"</strong>. Для этого используются <strong>сравнительная</strong> (больше) и <strong>превосходная</strong> (самый большой) степени.</p>
+      </div>
+      
+      <!-- ТАБЛИЦА 1: СРАВНИТЕЛЬНАЯ СТЕПЕНЬ -->
+      <div class="theory-table-container comparative-table">
+        <div class="table-header">
+          <div class="table-header-icon"><i class="fas fa-balance-scale-right"></i></div>
+          <div>
+            <h3>Сравнительная степень (Comparative)</h3>
+            <p>Используется, когда сравниваем <strong>две</strong> вещи (кто-то больше, быстрее, выше).</p>
+          </div>
+        </div>
+        <table class="rule-table">
+          <thead>
+            <tr>
+              <th>Тип слова</th>
+              <th>Как образуем</th>
+              <th>Примеры</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type-col">Короткие слова (1 слог)</td>
+              <td class="form-col">слово + <span class="highlight">-er</span></td>
+              <td class="ex-col">
+                big <span class="arrow">→</span> big<span class="highlight">ger</span><br>
+                <span class="example-text">A cat is bigger than a mouse.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Слова на -e</td>
+              <td class="form-col">слово + <span class="highlight">-r</span></td>
+              <td class="ex-col">
+                nice <span class="arrow">→</span> nice<span class="highlight">r</span><br>
+                <span class="example-text">This toy is nicer.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Конец: согл. + глас. + согл.</td>
+              <td class="form-col">удваиваем + <span class="highlight">-er</span></td>
+              <td class="ex-col">
+                hot <span class="arrow">→</span> ho<span class="highlight">tt</span>er<br>
+                <span class="example-text">Summer is hotter than spring.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Слова на -y</td>
+              <td class="form-col"><span class="highlight">y</span> → <span class="highlight">i</span> + -er</td>
+              <td class="ex-col">
+                happy <span class="arrow">→</span> happ<span class="highlight">ier</span><br>
+                <span class="example-text">I am happier today.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Длинные слова (2+ слогов)</td>
+              <td class="form-col"><span class="highlight">more</span> + слово</td>
+              <td class="ex-col">
+                interesting <span class="arrow">→</span> <span class="highlight">more</span> interesting<br>
+                <span class="example-text">Books are more interesting than TV.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Исключения (нужно запомнить!)</td>
+              <td class="form-col">особая форма</td>
+              <td class="ex-col">
+                good <span class="arrow">→</span> <span class="highlight">better</span><br>
+                <span class="example-text">My bike is better than yours.</span>
+              </td>
+            </tr>
+            <tr class="marker-row">
+              <td class="type-col"><i class="fas fa-flag"></i> <strong>Слово-маркер</strong></td>
+              <td colspan="2">
+                <span class="marker-box marker-badge"><strong>than</strong> (чем)</span>
+                <span class="marker-text">Если видишь "than" — точно нужна сравнительная степень!<br>Пример: A cat is smaller <strong>than</strong> a dog.</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- ТАБЛИЦА 2: ПРЕВОСХОДНАЯ СТЕПЕНЬ -->
+      <div class="theory-table-container superlative-table">
+        <div class="table-header">
+          <div class="table-header-icon"><i class="fas fa-crown"></i></div>
+          <div>
+            <h3>Превосходная степень (Superlative)</h3>
+            <p>Используется, когда один предмет <strong>самый-самый</strong> из всех (самый большой, самый быстрый).</p>
+          </div>
+        </div>
+        <table class="rule-table">
+          <thead>
+            <tr>
+              <th>Тип слова</th>
+              <th>Как образуем</th>
+              <th>Примеры</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type-col">Короткие слова (1 слог)</td>
+              <td class="form-col">the + слово + <span class="highlight">-est</span></td>
+              <td class="ex-col">
+                big <span class="arrow">→</span> the big<span class="highlight">gest</span><br>
+                <span class="example-text">The elephant is the biggest animal.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Слова на -e</td>
+              <td class="form-col">the + слово + <span class="highlight">-st</span></td>
+              <td class="ex-col">
+                nice <span class="arrow">→</span> the nice<span class="highlight">st</span><br>
+                <span class="example-text">She is the nicest girl.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Конец: согл. + глас. + согл.</td>
+              <td class="form-col">the + удваиваем + <span class="highlight">-est</span></td>
+              <td class="ex-col">
+                hot <span class="arrow">→</span> the ho<span class="highlight">tt</span>est<br>
+                <span class="example-text">Today is the hottest day.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Слова на -y</td>
+              <td class="form-col">the + <span class="highlight">y</span> → <span class="highlight">i</span> + -est</td>
+              <td class="ex-col">
+                happy <span class="arrow">→</span> the happ<span class="highlight">iest</span><br>
+                <span class="example-text">He is the happiest boy.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Длинные слова (2+ слогов)</td>
+              <td class="form-col"><span class="highlight">the most</span> + слово</td>
+              <td class="ex-col">
+                interesting <span class="arrow">→</span> <span class="highlight">the most</span> interesting<br>
+                <span class="example-text">It is the most interesting book.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-col">Исключения (нужно запомнить!)</td>
+              <td class="form-col">особая форма</td>
+              <td class="ex-col">
+                good <span class="arrow">→</span> <span class="highlight">the best</span><br>
+                <span class="example-text">You are the best!</span>
+              </td>
+            </tr>
+            <tr class="marker-row">
+              <td class="type-col"><i class="fas fa-flag"></i> <strong>Слова-маркеры</strong></td>
+              <td colspan="2">
+                <span class="marker-box marker-badge"><strong>the</strong> (определённый артикль)</span>
+                <span class="marker-text">Всегда ставим перед прилагательным в превосходной степени!<br>Также маркеры: <strong>of all</strong> (из всех), <strong>in the world</strong> (в мире).<br>Пример: He is <strong>the</strong> tallest <strong>of all</strong>.</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+    <!-- СЛОВАРЬ -->
+    <section class="section" id="vocabulary">
+      <h2 class="section-title">
+        <span class="icon-circle" style="background: var(--teal);"><i class="fas fa-layer-group"></i></span>
+        Словарь
+      </h2>
+      <p class="section-subtitle">Нажми на карточку, чтобы увидеть перевод. Нажми на динамик, чтобы послушать слово.</p>
+      
+      <div class="flashcard-grid" id="flashcard-grid"></div>
+      
+      <div class="bonus-vocab">
+        <h3><i class="fas fa-puzzle-piece"></i> Слова по темам: Игрушки, Игры, Хобби</h3>
+        <p class="intro">Эти слова пригодятся тебе в тексте и упражнениях. Нажми на динамик, чтобы послушать.</p>
+        <div class="vocab-chips" id="vocab-chips"></div>
+      </div>
+    </section>
+    
+    <!-- УПРАЖНЕНИЯ -->
+    <section class="section" id="exercises">
+      <h2 class="section-title">
+        <span class="icon-circle" style="background: var(--yellow);"><i class="fas fa-pencil-alt"></i></span>
+        Упражнения
+      </h2>
+      <p class="section-subtitle">Выбирай правильный ответ. Если ошибёшься — не страшно, мы покажем правильный вариант!</p>
+      
+      <div class="score-tracker">
+        <div class="label"><i class="fas fa-trophy"></i> Твой прогресс:</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="exercises-progress">0 / 0</div>
+        </div>
+      </div>
+      
+      <div class="exercise-block">
+        <div class="exercise-header">
+          <div class="exercise-num">1</div>
+          <h3>Сравнительная и Превосходная степени</h3>
+          <span class="exercise-tag">Comparative & Superlative</span>
+        </div>
+        <div id="ex1-questions"></div>
+      </div>
+      
+      <div class="exercise-block">
+        <div class="exercise-header">
+          <div class="exercise-num">2</div>
+          <h3>Числа буквами</h3>
+          <span class="exercise-tag">Numbers</span>
+        </div>
+        <div id="ex2-questions"></div>
+      </div>
+      
+      <div class="exercise-block">
+        <div class="exercise-header">
+          <div class="exercise-num">3</div>
+          <h3>much / many / a lot of</h3>
+          <span class="exercise-tag">Quantifiers</span>
+        </div>
+        <div id="ex3-questions"></div>
+      </div>
+    </section>
+    
+    <!-- ТЕКСТ -->
+    <section class="section" id="text">
+      <h2 class="section-title">
+        <span class="icon-circle" style="background: var(--pink);"><i class="fas fa-file-alt"></i></span>
+        Текст
+      </h2>
+      <p class="section-subtitle">Прочитай текст и вставь пропущенные слова. В выпадающих списках выбери правильный вариант, в пустых полях напиши ответ сам.</p>
+      
+      <div class="story-card">
+        <h3 class="story-title">My Toys and Games</h3>
+        
+        <div class="story-text">
+          My name 
+          <select class="blank-select" data-correct="is">
+            <option value="">...</option>
+            <option value="am">am</option>
+            <option value="is">is</option>
+            <option value="are">are</option>
+          </select>
+           Tom. I 
+          <select class="blank-select" data-correct="am">
+            <option value="">...</option>
+            <option value="am">am</option>
+            <option value="is">is</option>
+            <option value="are">are</option>
+          </select>
+           10 years old. I have a robot. It is 
+          <input type="text" class="blank-input" data-correct="bigger" placeholder="напиши">
+           than my old toy. It is the 
+          <input type="text" class="blank-input" data-correct="best" placeholder="напиши">
+           toy in my room! My sister Anna has a doll. Her doll is 
+          <input type="text" class="blank-input" data-correct="smaller" placeholder="напиши">
+           than my robot. It is the 
+          <input type="text" class="blank-input" data-correct="nicest" placeholder="напиши">
+           doll in the world. We have 
+          <select class="blank-select" data-correct="many|a lot of">
+            <option value="">...</option>
+            <option value="much">much</option>
+            <option value="many">many</option>
+            <option value="a lot of">a lot of</option>
+          </select>
+           toys. We don't have 
+          <select class="blank-select" data-correct="much">
+            <option value="">...</option>
+            <option value="much">much</option>
+            <option value="many">many</option>
+            <option value="a lot of">a lot of</option>
+          </select>
+           time to play, but we are happy!
+        </div>
+        
+        <div class="reading-questions">
+          <h4><i class="fas fa-question-circle"></i> Вопросы по тексту:</h4>
+          <div class="question">
+            <div class="question-text"><span class="num-tag">1</span>What is the boy's name?</div>
+            <div class="options">
+              <input type="text" class="blank-input" data-correct="tom" placeholder="напиши" style="min-width: 150px;">
+            </div>
+          </div>
+          <div class="question">
+            <div class="question-text"><span class="num-tag">2</span>What toy is the best in the room?</div>
+            <div class="options">
+              <input type="text" class="blank-input" data-correct="robot" placeholder="напиши" style="min-width: 150px;">
+            </div>
+          </div>
+          <div class="question">
+            <div class="question-text"><span class="num-tag">3</span>Who has a doll?</div>
+            <div class="options">
+              <input type="text" class="blank-input" data-correct="anna" placeholder="напиши" style="min-width: 150px;">
+            </div>
+          </div>
+        </div>
+        
+        <button class="check-btn teal" id="check-text-btn"><i class="fas fa-check"></i> Проверить ответы</button>
+        
+        <div class="result-message" id="text-result"></div>
+      </div>
+    </section>
+    
+    <!-- ИГРА -->
+    <section class="section" id="game">
+      <h2 class="section-title">
+        <span class="icon-circle" style="background: var(--coral);"><i class="fas fa-gamepad"></i></span>
+        Игра: Comparatives & Superlatives Challenge
+      </h2>
+      <p class="section-subtitle">Успей за 60 секунд ответить на как можно больше вопросов!</p>
+      
+      <div class="game-container" id="game-container"></div>
+    </section>
+  </main>
+  
+  <footer>
+    Сделано с <span class="heart"><i class="fas fa-heart"></i></span> для маленьких полиглотов · 4 класс · Удачи в изучении английского!
+  </footer>
+  
+  <div class="toast" id="toast"></div>
+  
+  <script>
+    // ============== ДАННЫЕ ==============
+    
+    const adjectives = [
+      { en: 'big', ru: 'большой', comp: 'bigger', example: 'An elephant is bigger than a cat.' },
+      { en: 'small', ru: 'маленький', comp: 'smaller', example: 'A mouse is smaller than a dog.' },
+      { en: 'tall', ru: 'высокий', comp: 'taller', example: 'Dad is taller than me.' },
+      { en: 'short', ru: 'короткий', comp: 'shorter', example: 'This pencil is shorter than that one.' },
+      { en: 'fast', ru: 'быстрый', comp: 'faster', example: 'A cheetah is faster than a turtle.' },
+      { en: 'slow', ru: 'медленный', comp: 'slower', example: 'A turtle is slower than a rabbit.' },
+      { en: 'long', ru: 'длинный', comp: 'longer', example: 'My hair is longer than yours.' },
+      { en: 'strong', ru: 'сильный', comp: 'stronger', example: 'A bear is stronger than a fox.' },
+      { en: 'hot', ru: 'горячий', comp: 'hotter', example: 'Coffee is hotter than juice.' },
+      { en: 'cold', ru: 'холодный', comp: 'colder', example: 'Ice is colder than water.' },
+      { en: 'happy', ru: 'счастливый', comp: 'happier', example: 'I am happier on my birthday.' },
+      { en: 'easy', ru: 'лёгкий', comp: 'easier', example: 'Math is easier than science.' },
+      { en: 'good', ru: 'хороший', comp: 'better', example: 'This book is better than that one.' },
+      { en: 'bad', ru: 'плохой', comp: 'worse', example: "Yesterday's weather was worse." },
+      { en: 'beautiful', ru: 'красивый', comp: 'more beautiful', example: 'A rose is more beautiful than a weed.' },
+      { en: 'interesting', ru: 'интересный', comp: 'more interesting', example: 'Comics are more interesting than textbooks.' }
+    ];
+    
+    const bonusWords = [
+      { en: 'robot', ru: 'робот' },
+      { en: 'toy car', ru: 'машинка' },
+      { en: 'doll', ru: 'кукла' },
+      { en: 'ball', ru: 'мяч' },
+      { en: 'puzzle', ru: 'пазл' },
+      { en: 'teddy bear', ru: 'плюшевый мишка' },
+      { en: 'blocks', ru: 'кубики' },
+      { en: 'board game', ru: 'настольная игра' },
+      { en: 'video game', ru: 'видеоигра' },
+      { en: 'bike', ru: 'велосипед' },
+      { en: 'kite', ru: 'воздушный змей' },
+      { en: 'yo-yo', ru: 'йо-йо' },
+      { en: 'chess', ru: 'шахматы' },
+      { en: 'football', ru: 'футбол' },
+      { en: 'reading', ru: 'чтение' },
+      { en: 'drawing', ru: 'рисование' },
+      { en: 'swimming', ru: 'плавание' },
+      { en: 'dancing', ru: 'танцы' }
+    ];
+    
+    const exercise1 = [
+      { q: 'My room is ___ than your room.', options: ['big', 'bigger', 'the biggest'], correct: [1] },
+      { q: 'He is the ___ boy in our class.', options: ['tall', 'taller', 'tallest'], correct: [2] },
+      { q: 'This book is ___ than that one.', options: ['interesting', 'more interesting', 'the most interesting'], correct: [1] },
+      { q: 'It is the ___ day of the year!', options: ['hot', 'hotter', 'hottest'], correct: [2] },
+      { q: 'My bike is ___ than yours.', options: ['good', 'better', 'the best'], correct: [1] },
+      { q: 'She is the ___ student in school.', options: ['good', 'better', 'best'], correct: [2] },
+      { q: 'An elephant is ___ than a cat.', options: ['big', 'bigger', 'the biggest'], correct: [1] },
+      { q: 'This is the ___ game I have!', options: ['bad', 'worse', 'worst'], correct: [2] },
+      { q: 'My robot is ___ than your robot.', options: ['strong', 'stronger', 'the strongest'], correct: [1] },
+      { q: 'It is the ___ puzzle in the box.', options: ['easy', 'easier', 'easiest'], correct: [2] }
+    ];
+    
+    const exercise2 = [
+      { q: 'I have (15) toy cars.', options: ['fiveteen', 'fifteen', 'fivteen'], correct: [1] },
+      { q: 'There are (23) blocks in the box.', options: ['twenty-three', 'twentyth-three', 'twenth-three'], correct: [0] },
+      { q: 'My sister is (8) years old.', options: ['eigth', 'eigh', 'eight'], correct: [2] },
+      { q: 'I have (12) puzzles.', options: ['twelf', 'twelve', 'twelv'], correct: [1] },
+      { q: 'There are (30) days in this month.', options: ['threety', 'thirty', 'thirtie'], correct: [1] },
+      { q: 'He has (100) toy soldiers.', options: ['one hundred', 'hundred', 'one hundredth'], correct: [0] },
+      { q: 'The kite is (19) rubles.', options: ['nineteen', 'ninteen', 'ninetten'], correct: [0] },
+      { q: 'I can see (45) stars.', options: ['fourty-five', 'forty-five', 'forty-fiv'], correct: [1] }
+    ];
+    
+    const exercise3 = [
+      { q: 'I have ___ toys in my room.', options: ['much', 'many', 'a lot of'], correct: [1, 2] },
+      { q: 'There is ___ water in the glass.', options: ['much', 'many', 'a lot of'], correct: [0, 2] },
+      { q: 'She has ___ friends at school.', options: ['much', 'many', 'a lot of'], correct: [1, 2] },
+      { q: "We don't have ___ time to play.", options: ['much', 'many', 'a lot of'], correct: [0] },
+      { q: 'There are ___ apples on the tree.', options: ['much', 'many', 'a lot of'], correct: [1, 2] },
+      { q: 'Do you have ___ board games?', options: ['much', 'many', 'a lot of'], correct: [1] }
+    ];
+    
+    const gameQuestions = [
+      // Сравнительная степень
+      { type: 'comp', word: 'big', options: ['biger', 'bigger', 'more big'], correct: 1 },
+      { type: 'comp', word: 'happy', options: ['happier', 'happyer', 'more happy'], correct: 0 },
+      { type: 'comp', word: 'beautiful', options: ['beautifuller', 'more beautiful', 'beautifuler'], correct: 1 },
+      { type: 'comp', word: 'good', options: ['gooder', 'better', 'more good'], correct: 1 },
+      { type: 'comp', word: 'hot', options: ['hotter', 'hoter', 'more hot'], correct: 0 },
+      { type: 'comp', word: 'interesting', options: ['interestinger', 'interestingmore', 'more interesting'], correct: 2 },
+      { type: 'comp', word: 'bad', options: ['badder', 'worse', 'more bad'], correct: 1 },
+      { type: 'comp', word: 'easy', options: ['easier', 'easyer', 'more easy'], correct: 0 },
+      // Превосходная степень
+      { type: 'sup', word: 'big', options: ['the bigest', 'the biggest', 'the most big'], correct: 1 },
+      { type: 'sup', word: 'good', options: ['the goodest', 'the best', 'the most good'], correct: 1 },
+      { type: 'sup', word: 'hot', options: ['the hottest', 'the hotest', 'the most hot'], correct: 0 },
+      { type: 'sup', word: 'beautiful', options: ['the beautifullest', 'the most beautiful', 'the beautifulmost'], correct: 1 },
+      { type: 'sup', word: 'bad', options: ['the baddest', 'the worst', 'the most bad'], correct: 1 },
+      { type: 'sup', word: 'happy', options: ['the happiest', 'the happyest', 'the most happy'], correct: 0 },
+      { type: 'sup', word: 'small', options: ['the smallest', 'the smalllest', 'the most small'], correct: 0 }
+    ];
+    
+    // ============== ОЗВУЧКА ==============
+    
+    let voices = [];
+    function loadVoices() {
+      if ('speechSynthesis' in window) {
+        voices = window.speechSynthesis.getVoices();
+      }
+    }
+    loadVoices();
+    if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+    
+    function speak(text, btn) {
+      if (!('speechSynthesis' in window)) {
+        showToast('Извините, ваше устройство не поддерживает звук', 'error');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      setTimeout(() => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        utterance.pitch = 1.1;
+        const enVoice = voices.find(v => v.lang.startsWith('en'));
+        if (enVoice) utterance.voice = enVoice;
+        if (btn) {
+          btn.classList.add('speaking');
+          utterance.onend = () => btn.classList.remove('speaking');
+          utterance.onerror = () => btn.classList.remove('speaking');
+        }
+        window.speechSynthesis.speak(utterance);
+      }, 50);
+    }
+    
+    // ============== УВЕДОМЛЕНИЯ ==============
+    
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      toast.className = `toast ${type}`;
+      const icons = { success: 'check-circle', error: 'times-circle', info: 'info-circle' };
+      toast.innerHTML = `<i class="fas fa-${icons[type] || 'info-circle'}"></i> ${message}`;
+      toast.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+    
+    // ============== ВКЛАДКИ ==============
+    
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+    
+    // ============== КАРТОЧКИ-СЛОВАРЬ ==============
+    
+    const flashcardGrid = document.getElementById('flashcard-grid');
+    adjectives.forEach(adj => {
+      const card = document.createElement('div');
+      card.className = 'flashcard';
+      card.innerHTML = `
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <h3 class="flashcard-word">${adj.en}</h3>
+            <p class="flashcard-hint">Нажми, чтобы увидеть перевод</p>
+            <button class="audio-btn" aria-label="Послушать слово">
+              <i class="fas fa-volume-up"></i>
+            </button>
+          </div>
+          <div class="flashcard-back">
+            <p class="translation">${adj.ru}</p>
+            <div class="comparative">${adj.comp}</div>
+            <p class="example">${adj.example}</p>
+          </div>
+        </div>
+      `;
+      
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.audio-btn')) return;
+        card.classList.toggle('flipped');
+      });
+      
+      const audioBtn = card.querySelector('.audio-btn');
+      audioBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        speak(adj.en, audioBtn);
+      });
+      
+      flashcardGrid.appendChild(card);
+    });
+    
+    // ============== ДОПОЛНИТЕЛЬНЫЕ СЛОВА ==============
+    
+    const vocabChips = document.getElementById('vocab-chips');
+    bonusWords.forEach(word => {
+      const chip = document.createElement('div');
+      chip.className = 'vocab-chip';
+      chip.innerHTML = `
+        <span><strong>${word.en}</strong> <span class="ru">— ${word.ru}</span></span>
+        <button class="audio-mini" aria-label="Послушать слово">
+          <i class="fas fa-volume-up"></i>
+        </button>
+      `;
+      const btn = chip.querySelector('.audio-mini');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        speak(word.en, btn);
+      });
+      vocabChips.appendChild(chip);
+    });
+    
+    // ============== УПРАЖНЕНИЯ ==============
+    
+    let totalCorrect = 0;
+    let totalQuestions = 0;
+    
+    function updateProgress() {
+      const progressFill = document.getElementById('exercises-progress');
+      const percent = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+      progressFill.style.width = `${Math.max(10, percent)}%`;
+      progressFill.textContent = `${totalCorrect} / ${totalQuestions}`;
+    }
+    
+    function createExercise(containerId, questions) {
+      const container = document.getElementById(containerId);
+      totalQuestions += questions.length;
+      
+      questions.forEach((q, qIdx) => {
+        const questionEl = document.createElement('div');
+        questionEl.className = 'question';
+        questionEl.innerHTML = `
+          <div class="question-text">
+            <span class="num-tag">${qIdx + 1}</span>${q.q}
+          </div>
+          <div class="options"></div>
+          <div class="feedback"></div>
+        `;
+        
+        const optionsContainer = questionEl.querySelector('.options');
+        const feedback = questionEl.querySelector('.feedback');
+        
+        q.options.forEach((opt, oIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option';
+          btn.textContent = opt;
+          btn.addEventListener('click', () => {
+            optionsContainer.querySelectorAll('.option').forEach(o => o.classList.add('disabled'));
+            const isCorrect = q.correct.includes(oIdx);
+            if (isCorrect) {
+              btn.classList.add('correct');
+              feedback.className = 'feedback correct';
+              feedback.innerHTML = '<i class="fas fa-check-circle"></i> Правильно! Молодец!';
+              totalCorrect++;
+            } else {
+              btn.classList.add('wrong');
+              feedback.className = 'feedback wrong';
+              const correctAnswers = q.correct.map(i => q.options[i]).join(', ');
+              feedback.innerHTML = `<i class="fas fa-times-circle"></i> Правильный ответ: <strong>${correctAnswers}</strong>`;
+              q.correct.forEach(idx => {
+                optionsContainer.children[idx].classList.add('correct');
+              });
+            }
+            updateProgress();
+          });
+          optionsContainer.appendChild(btn);
+        });
+        
+        container.appendChild(questionEl);
+      });
+    }
+    
+    createExercise('ex1-questions', exercise1);
+    createExercise('ex2-questions', exercise2);
+    createExercise('ex3-questions', exercise3);
+    updateProgress();
+    
+    // ============== ТЕКСТ ==============
+    
+    function checkTextAnswers() {
+      let correct = 0;
+      let total = 0;
+      
+      document.querySelectorAll('.story-card [data-correct]').forEach(input => {
+        total++;
+        const correctAnswers = input.dataset.correct.split('|').map(a => a.toLowerCase().trim());
+        const userAnswer = (input.value || '').trim().toLowerCase();
+        input.classList.remove('correct', 'wrong');
+        
+        if (!userAnswer) {
+          input.classList.add('wrong');
+          return;
+        }
+        
+        if (correctAnswers.includes(userAnswer)) {
+          input.classList.add('correct');
+          correct++;
+        } else {
+          input.classList.add('wrong');
+        }
+      });
+      
+      const result = document.getElementById('text-result');
+      result.classList.add('show');
+      
+      if (correct === total) {
+        result.className = 'result-message success show';
+        result.innerHTML = `<i class="fas fa-star"></i> Отлично! Все ${total} пропусков заполнены правильно! Ты настоящий знаток английского!`;
+        confettiBurst(document.querySelector('.story-card'));
+      } else {
+        result.className = 'result-message partial show';
+        result.innerHTML = `<i class="fas fa-redo"></i> Правильно: ${correct} из ${total}. Попробуй ещё раз — у тебя обязательно получится!`;
+      }
+    }
+    
+    document.getElementById('check-text-btn').addEventListener('click', checkTextAnswers);
+    
+    document.querySelectorAll('.blank-input').forEach(input => {
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          checkTextAnswers();
+        }
+      });
+    });
+    
+    // ============== КОНФЕТТИ ==============
+    
+    function confettiBurst(container) {
+      const colors = ['#FF6B47', '#2EC4B6', '#FFC93C', '#FF8FA3', '#6BCB77'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '0';
+        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+        container.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2000);
+      }
+    }
+    
+    // ============== ИГРА ==============
+    
+    let gameState = {
+      score: 0,
+      streak: 0,
+      bestStreak: 0,
+      timeLeft: 60,
+      currentQuestion: null,
+      active: false,
+      timer: null,
+      askedQuestions: []
+    };
+    
+    function renderGameStart() {
+      const container = document.getElementById('game-container');
+      container.innerHTML = `
+        <div class="game-start">
+          <h3><i class="fas fa-rocket" style="color: var(--coral);"></i> Degrees Challenge</h3>
+          <p>На экране появится прилагательное. Выбери его сравнительную или превосходную степень из вариантов. Успей ответить на как можно больше вопросов за 60 секунд!</p>
+          <ul class="game-rules">
+            <li><i class="fas fa-check" style="color: var(--green);"></i> Правильный ответ: <strong>+10 очков</strong></li>
+            <li><i class="fas fa-fire" style="color: var(--coral);"></i> За серию правильных ответов — бонус!</li>
+            <li><i class="fas fa-times" style="color: var(--red);"></i> Неправильный ответ: <strong>-5 очков</strong></li>
+            <li><i class="fas fa-clock" style="color: var(--teal);"></i> Время: <strong>60 секунд</strong></li>
+          </ul>
+          <button class="check-btn" id="start-game-btn"><i class="fas fa-play"></i> Начать игру</button>
+        </div>
+      `;
+      document.getElementById('start-game-btn').addEventListener('click', startGame);
+    }
+    
+    function startGame() {
+      gameState = {
+        score: 0,
+        streak: 0,
+        bestStreak: 0,
+        timeLeft: 60,
+        currentQuestion: null,
+        active: true,
+        timer: null,
+        askedQuestions: []
+      };
+      
+      renderGameUI();
+      nextQuestion();
+      
+      gameState.timer = setInterval(() => {
+        gameState.timeLeft--;
+        const timerEl = document.getElementById('game-timer');
+        if (timerEl) timerEl.textContent = gameState.timeLeft;
+        
+        const timerBox = document.querySelector('.stat-box.timer');
+        if (gameState.timeLeft <= 10 && timerBox) {
+          timerBox.classList.add('urgent');
+        }
+        
+        if (gameState.timeLeft <= 0) {
+          endGame();
+        }
+      }, 1000);
+    }
+    
+    function renderGameUI() {
+      const container = document.getElementById('game-container');
+      container.innerHTML = `
+        <div class="game-header">
+          <div class="game-stats">
+            <div class="stat-box">
+              <div class="label">Очки</div>
+              <div class="value" id="game-score">0</div>
+            </div>
+            <div class="stat-box streak">
+              <div class="label">Серия</div>
+              <div class="value" id="game-streak">0</div>
+            </div>
+            <div class="stat-box timer">
+              <div class="label">Время</div>
+              <div class="value" id="game-timer">60</div>
+            </div>
+          </div>
+        </div>
+        <div class="game-question-area" id="game-question-area"></div>
+        <div class="game-options" id="game-options"></div>
+      `;
+    }
+    
+    function nextQuestion() {
+      if (!gameState.active) return;
+      
+      let availableQuestions = gameQuestions.filter((_, idx) => !gameState.askedQuestions.includes(idx));
+      if (availableQuestions.length === 0) {
+        gameState.askedQuestions = [];
+        availableQuestions = gameQuestions;
+      }
+      
+      const qIdx = Math.floor(Math.random() * availableQuestions.length);
+      const realIdx = gameQuestions.indexOf(availableQuestions[qIdx]);
+      gameState.askedQuestions.push(realIdx);
+      if (gameState.askedQuestions.length > 8) gameState.askedQuestions.shift();
+      
+      gameState.currentQuestion = availableQuestions[qIdx];
+      
+      const isComp = gameState.currentQuestion.type === 'comp';
+      const promptText = isComp 
+        ? 'Выбери <strong>сравнительную степень</strong> (Comparative):' 
+        : 'Выбери <strong>превосходную степень</strong> (Superlative):';
+      
+      const questionArea = document.getElementById('game-question-area');
+      questionArea.innerHTML = `
+        <div class="game-prompt">${promptText}</div>
+        <div class="game-word" id="game-word" title="Нажми, чтобы послушать">${gameState.currentQuestion.word}</div>
+        <div class="game-instruction">Нажми на правильный ответ ниже</div>
+      `;
+      
+      document.getElementById('game-word').addEventListener('click', (e) => {
+        speak(gameState.currentQuestion.word, e.currentTarget);
+      });
+      
+      const optionsContainer = document.getElementById('game-options');
+      optionsContainer.innerHTML = '';
+      
+      gameState.currentQuestion.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'game-option';
+        btn.textContent = opt;
+        btn.addEventListener('click', () => handleAnswer(idx, btn));
+        optionsContainer.appendChild(btn);
+      });
+    }
+    
+    function handleAnswer(idx, btn) {
+      if (!gameState.active) return;
+      
+      document.querySelectorAll('.game-option').forEach(o => o.classList.add('disabled'));
+      const isCorrect = idx === gameState.currentQuestion.correct;
+      
+      if (isCorrect) {
+        btn.classList.add('correct');
+        const streakBonus = Math.min(gameState.streak * 2, 20);
+        gameState.score += 10 + streakBonus;
+        gameState.streak++;
+        if (gameState.streak > gameState.bestStreak) gameState.bestStreak = gameState.streak;
+        
+        if (gameState.streak > 0 && gameState.streak % 3 === 0) {
+          confettiBurst(document.querySelector('.game-question-area'));
+          showToast(`Серия ${gameState.streak}! Бонус +${streakBonus} очков!`, 'success');
+        }
+        
+        speak(gameState.currentQuestion.options[idx].replace('the ', ''));
+      } else {
+        btn.classList.add('wrong');
+        const correctBtn = document.querySelectorAll('.game-option')[gameState.currentQuestion.correct];
+        if (correctBtn) correctBtn.classList.add('correct');
+        gameState.score = Math.max(0, gameState.score - 5);
+        gameState.streak = 0;
+      }
+      
+      document.getElementById('game-score').textContent = gameState.score;
+      document.getElementById('game-streak').textContent = gameState.streak;
+      
+      setTimeout(() => {
+        if (gameState.active) nextQuestion();
+      }, 900);
+    }
+    
+    function endGame() {
+      gameState.active = false;
+      clearInterval(gameState.timer);
+      
+      let rating = '';
+      let ratingIcon = '';
+      if (gameState.score >= 150) {
+        rating = 'Невероятно! Ты настоящий мастер степеней сравнения!';
+        ratingIcon = 'crown';
+      } else if (gameState.score >= 100) {
+        rating = 'Отличная работа! Ты хорошо знаешь тему!';
+        ratingIcon = 'trophy';
+      } else if (gameState.score >= 50) {
+        rating = 'Хорошо! Попробуй ещё раз, чтобы улучшить результат!';
+        ratingIcon = 'star';
+      } else {
+        rating = 'Неплохо! Загляни в теорию и попробуй снова!';
+        ratingIcon = 'graduation-cap';
+      }
+      
+      const container = document.getElementById('game-container');
+      container.innerHTML = `
+        <div class="game-end">
+          <h3><i class="fas fa-flag-checkered" style="color: var(--coral);"></i> Игра окончена!</h3>
+          <div class="final-score">${gameState.score}</div>
+          <p><i class="fas fa-${ratingIcon}" style="color: var(--yellow-dark);"></i> ${rating}</p>
+          <p>Лучшая серия: <strong>${gameState.bestStreak}</strong> правильных ответов подряд</p>
+          <button class="check-btn" id="restart-game-btn"><i class="fas fa-redo"></i> Играть снова</button>
+        </div>
+      `;
+      
+      if (gameState.score >= 100) {
+        confettiBurst(container);
+      }
+      
+      document.getElementById('restart-game-btn').addEventListener('click', renderGameStart);
+    }
+    
+    renderGameStart();
+  </script>
+</body>
+</html>
