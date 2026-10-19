@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Home — английский для 3 класса</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<style>
+  :root {
+    --violet: #7c3aed;
+    --violet-light: #ede9fe;
+    --violet-border: #c4b5fd;
+    --emerald: #059669;
+    --emerald-light: #d1fae5;
+    --emerald-border: #6ee7b7;
+    --rose: #e11d48;
+    --rose-light: #ffe4e6;
+    --rose-border: #fda4af;
+    --teal: #0d9488;
+    --teal-light: #ccfbf1;
+    --teal-border: #5eead4;
+    --slate-bg: #faf9fc;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-800: #1e293b;
+    --slate-900: #0f172a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(to bottom, #f5f3ff 0%, #ecfeff 50%, #ecfdf5 100%);
+    color: var(--slate-800);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+  .font-display { font-family: 'Fredoka', 'Inter', sans-serif; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 30;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.85);
+    border-bottom: 1px solid var(--violet-border);
+  }
+  .header-inner {
+    max-width: 1100px; margin: 0 auto;
+    padding: 10px 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 8px;
+    background: none; border: none; cursor: pointer;
+    text-align: left;
+  }
+  .logo-emoji { font-size: 32px; transition: transform .2s; }
+  .logo:hover .logo-emoji { transform: rotate(12deg); }
+  .logo-title { font-family: 'Fredoka', sans-serif; font-size: 18px; font-weight: 700; color: var(--violet); line-height: 1; }
+  .logo-sub { font-size: 10px; color: var(--slate-500); margin-top: 2px; }
+  .header-badges { display: none; gap: 6px; }
+  @media (min-width: 640px) { .header-badges { display: flex; } }
+  .badge { padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .badge-v { background: var(--violet-light); color: var(--violet); }
+  .badge-e { background: var(--emerald-light); color: var(--emerald); }
+
+  /* Nav */
+  nav {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 12px 10px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  nav::-webkit-scrollbar { height: 6px; }
+  nav::-webkit-scrollbar-thumb { background: var(--violet-border); border-radius: 999px; }
+  .nav-list {
+    display: flex; gap: 8px;
+    min-width: max-content;
+  }
+  .nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 999px;
+    border: 2px solid var(--violet-border);
+    background: white; color: var(--violet);
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+    transition: all .2s;
+  }
+  .nav-btn:hover { background: var(--violet-light); }
+  .nav-btn.active { background: var(--violet); color: white; border-color: var(--violet); }
+  .nav-btn.nav-e.active { background: var(--emerald); border-color: var(--emerald); color: white; }
+  .nav-btn.nav-t { border-color: #5eead4; color: var(--teal); }
+  .nav-btn.nav-t:hover { background: var(--teal-light); }
+  .nav-btn.nav-t.active { background: var(--teal); border-color: var(--teal); color: white; }
+  .nav-btn .nav-sub { font-size: 10px; opacity: 0.7; font-weight: 500; }
+
+  /* Main */
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+  /* Footer */
+  footer {
+    margin-top: auto;
+    border-top: 1px solid var(--violet-border);
+    background: rgba(255,255,255,0.6); backdrop-filter: blur(6px);
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; padding: 16px; text-align: center; font-size: 12px; color: var(--slate-500); }
+
+  /* Sections */
+  .section-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-icon {
+    width: 48px; height: 48px;
+    border-radius: 16px;
+    display: grid; place-items: center;
+  }
+  .section-h2 { font-family: 'Fredoka', sans-serif; font-size: 24px; font-weight: 700; line-height: 1; }
+  @media (min-width: 640px) { .section-h2 { font-size: 28px; } }
+  .section-sub { font-size: 14px; color: var(--slate-500); margin-top: 4px; }
+
+  /* Card */
+  .card {
+    background: white;
+    border: 2px solid var(--slate-200);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  /* Hero */
+  .hero {
+    position: relative; overflow: hidden;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #7c3aed 0%, #6366f1 45%, #0d9488 100%);
+    color: white;
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+  @media (min-width: 640px) { .hero { padding: 40px; } }
+  .hero-emoji-1 { position: absolute; top: -20px; right: -20px; font-size: 144px; opacity: 0.2; user-select: none; }
+  .hero-emoji-2 { position: absolute; bottom: 8px; left: 16px; font-size: 80px; opacity: 0.25; user-select: none; }
+  .hero-content { position: relative; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 4px 12px; border-radius: 999px;
+    background: rgba(255,255,255,0.2); backdrop-filter: blur(6px);
+    font-size: 12px; font-weight: 600; margin-bottom: 12px;
+  }
+  .hero-dot { width: 8px; height: 8px; border-radius: 999px; background: #6ee7b7; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 { font-family: 'Fredoka', sans-serif; font-size: 40px; font-weight: 700; line-height: 1.05; }
+  @media (min-width: 640px) { .hero h1 { font-size: 60px; } }
+  .hero h2 { font-family: 'Fredoka', sans-serif; font-size: 20px; font-weight: 500; margin-top: 4px; opacity: 0.95; }
+  @media (min-width: 640px) { .hero h2 { font-size: 24px; } }
+  .hero p { margin-top: 16px; max-width: 560px; font-size: 14px; opacity: 0.9; }
+  @media (min-width: 640px) { .hero p { font-size: 16px; } }
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .hero-btn-primary {
+    padding: 10px 20px; border-radius: 999px;
+    background: white; color: var(--violet);
+    font-family: 'Fredoka', sans-serif; font-weight: 600;
+    border: none; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: background .2s;
+  }
+  .hero-btn-primary:hover { background: var(--violet-light); }
+  .hero-btn-secondary {
+    padding: 10px 20px; border-radius: 999px;
+    background: rgba(255,255,255,0.2); color: white;
+    font-family: 'Fredoka', sans-serif; font-weight: 600;
+    border: 2px solid rgba(255,255,255,0.5); cursor: pointer;
+    transition: background .2s;
+  }
+  .hero-btn-secondary:hover { background: rgba(255,255,255,0.3); }
+
+  /* Home cards */
+  .home-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 640px) { .home-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .home-grid { grid-template-columns: repeat(3, 1fr); } }
+  .home-card {
+    text-align: left;
+    border: 2px solid;
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all .2s;
+    background: white;
+  }
+  .home-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+  .home-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .home-card-emoji { font-size: 48px; }
+  .home-card-num { font-size: 12px; font-weight: 700; color: var(--slate-400); }
+  .home-card h3 { font-family: 'Fredoka', sans-serif; font-size: 20px; font-weight: 700; color: var(--slate-800); }
+  .home-card-ru { font-size: 14px; color: var(--slate-500); font-weight: 500; margin-bottom: 8px; }
+  .home-card-desc { font-size: 14px; color: var(--slate-600); }
+
+  .hint-box {
+    background: rgba(255,255,255,0.7);
+    border: 2px dashed var(--violet-border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 24px;
+  }
+  .hint-title { font-family: 'Fredoka', sans-serif; font-size: 16px; font-weight: 700; color: var(--violet); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .hint-text { font-size: 14px; color: var(--slate-600); }
+
+  /* Dictionary */
+  .dict-search {
+    width: 100%; max-width: 288px;
+    padding: 10px 16px;
+    border: 2px solid var(--violet-border);
+    border-radius: 12px; background: white;
+    font-size: 14px; font-family: inherit;
+    margin-bottom: 20px;
+  }
+  .dict-search:focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
+  .dict-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media (min-width: 640px) { .dict-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .dict-grid { grid-template-columns: repeat(5, 1fr); } }
+  .dict-card {
+    border: 2px solid var(--slate-200);
+    background: white;
+    border-radius: 16px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .dict-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .dict-card.selected { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(124,58,237,0.15); }
+  .dict-card-emoji { font-size: 40px; margin-bottom: 4px; transition: transform .2s; }
+  .dict-card:hover .dict-card-emoji { transform: scale(1.1); }
+  .dict-card-en { font-family: 'Fredoka', sans-serif; font-size: 14px; font-weight: 600; color: var(--slate-800); line-height: 1.2; }
+  .dict-card-ru { font-size: 12px; color: var(--slate-500); }
+
+  .dict-detail {
+    border-radius: 16px;
+    padding: 24px;
+    animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  @media (min-width: 640px) { .dict-detail { padding: 24px; } }
+  .dict-detail-top { display: flex; flex-direction: column; gap: 16px; }
+  @media (min-width: 640px) { .dict-detail-top { flex-direction: row; align-items: center; gap: 24px; } }
+  .dict-detail-emoji { font-size: 72px; animation: wiggle 1.5s ease-in-out infinite; }
+  @media (min-width: 640px) { .dict-detail-emoji { font-size: 96px; } }
+  @keyframes wiggle { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+  .dict-detail-en { font-family: 'Fredoka', sans-serif; font-size: 30px; font-weight: 700; color: var(--slate-900); }
+  @media (min-width: 640px) { .dict-detail-en { font-size: 36px; } }
+  .dict-detail-ru { font-size: 16px; color: var(--slate-600); margin-top: 4px; }
+  .dict-detail-ru b { font-weight: 600; }
+
+  .speak-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 999px;
+    border: 2px solid var(--violet-border);
+    background: white; color: var(--violet);
+    font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 14px;
+    cursor: pointer; transition: all .2s;
+    margin-left: 12px;
+  }
+  .speak-btn:hover { background: var(--violet-light); color: var(--violet); }
+  .speak-btn-sm { padding: 4px 10px; font-size: 12px; }
+
+  .example-box {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 16px;
+  }
+  .example-text { font-size: 16px; color: var(--slate-700); }
+  .example-label { color: var(--violet); font-weight: 700; }
+  .example-en { font-weight: 700; color: var(--violet); }
+  .example-ru { font-size: 14px; color: var(--slate-500); margin-top: 2px; }
+
+  .items-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--slate-500); font-weight: 600; margin: 16px 0 6px; }
+  .items-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .item-chip-with-ru {
+    display: inline-flex; flex-direction: column;
+    padding: 6px 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.9);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .item-chip-with-ru .item-en {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--slate-800);
+    line-height: 1.1;
+  }
+  .item-chip-with-ru .item-ru {
+    font-size: 11px;
+    color: var(--slate-500);
+    line-height: 1.2;
+    margin-top: 1px;
+  }
+
+  /* Reading — цельный текст */
+  .reading-card { background: linear-gradient(135deg, #ffffff 0%, var(--emerald-light) 200%); }
+  .reading-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--emerald-light);
+    flex-wrap: wrap; gap: 8px;
+  }
+  .reading-title { font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 600; color: var(--emerald); }
+  .read-all-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: 999px;
+    border: 2px solid var(--emerald-border);
+    background: white; color: var(--emerald);
+    font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 14px;
+    cursor: pointer; transition: all .2s;
+  }
+  .read-all-btn:hover { background: var(--emerald-light); transform: translateY(-1px); }
+  .reading-full-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 19px;
+    line-height: 1.9;
+    color: var(--slate-800);
+    margin-bottom: 20px;
+  }
+  @media (min-width: 640px) {
+    .reading-full-text { font-size: 21px; line-height: 2; }
+  }
+  .reading-legend {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 16px;
+    background: var(--emerald-light);
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--slate-600);
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 999px;
+    background: var(--emerald);
+    flex-shrink: 0;
+  }
+
+  /* Games — shared */
+  .game-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+  .game-q-counter { font-size: 14px; font-weight: 600; color: var(--slate-500); }
+  .game-score {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 600;
+    background: var(--violet-light); color: var(--violet);
+    padding: 4px 12px; border-radius: 999px;
+  }
+  .game-score.emerald { background: var(--emerald-light); color: var(--emerald); }
+  .game-score.rose { background: var(--rose-light); color: var(--rose); }
+  .game-score.teal { background: var(--teal-light); color: var(--teal); }
+  .progress-bar { height: 8px; border-radius: 999px; background: var(--violet-light); overflow: hidden; margin-bottom: 24px; }
+  .progress-bar.emerald { background: var(--emerald-light); }
+  .progress-bar.rose { background: var(--rose-light); }
+  .progress-bar.teal-bg { background: var(--teal-light); }
+  .progress-fill { height: 100%; background: var(--violet); transition: width .3s; }
+  .progress-fill.emerald { background: var(--emerald); }
+  .progress-fill.rose { background: var(--rose); }
+  .progress-fill.teal-fill { background: var(--teal); }
+  .quiz-card { background: linear-gradient(135deg, #ffffff 0%, var(--teal-light) 200%); }
+
+  .question-block { text-align: center; margin-bottom: 24px; }
+  .question-emoji { font-size: 48px; margin-bottom: 12px; }
+  .question-text { font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 600; color: var(--slate-800); line-height: 1.4; }
+  @media (min-width: 640px) { .question-text { font-size: 26px; } }
+  .question-ru { font-size: 14px; color: var(--slate-500); margin-top: 4px; font-style: italic; }
+  .question-hint { font-size: 12px; color: var(--violet); margin-top: 8px; font-weight: 500; }
+
+  /* Game options — frames without fill */
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 640px) { .options-grid.sm-1 { grid-template-columns: 1fr; } }
+  .opt-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 16px;
+    border-radius: 16px;
+    border: 2px solid var(--slate-200);
+    background: white; color: var(--slate-700);
+    cursor: pointer; transition: all .2s;
+    font-family: inherit;
+  }
+  .opt-btn:hover { transform: translateY(-2px); border-color: var(--violet-border); }
+  .opt-btn.opt-row { flex-direction: row; justify-content: space-between; align-items: center; padding: 14px 16px; }
+  .opt-emoji { font-size: 40px; }
+  @media (min-width: 640px) { .opt-emoji { font-size: 48px; } }
+  .opt-text { font-family: 'Fredoka', sans-serif; font-size: 16px; font-weight: 600; line-height: 1.2; }
+  .opt-ru { font-size: 11px; color: var(--slate-400); }
+  .opt-btn.selected { border-color: var(--violet); box-shadow: 0 0 0 2px rgba(124,58,237,0.1); background: var(--violet-light); color: var(--violet); }
+  .opt-btn.correct { border-color: var(--emerald); background: var(--emerald-light); color: var(--emerald); }
+  .opt-btn.wrong { border-color: var(--rose); background: var(--rose-light); color: var(--rose); animation: popIn .3s; }
+  .opt-btn.disabled { opacity: 0.6; }
+  .opt-badge {
+    position: absolute; top: 8px; right: 8px;
+    width: 20px; height: 20px; border-radius: 999px;
+    display: grid; place-items: center;
+    color: white; font-size: 12px; font-weight: 700;
+  }
+  .opt-badge-correct { background: var(--emerald); }
+  .opt-badge-wrong { background: var(--rose); }
+  .opt-btn { position: relative; }
+
+  .feedback {
+    margin-top: 20px;
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 12px; border-radius: 12px;
+    animation: popIn .3s;
+  }
+  .feedback.correct { background: var(--emerald-light); border: 1px solid var(--emerald-border); color: var(--emerald); }
+  .feedback.wrong { background: var(--rose-light); border: 1px solid var(--rose-border); color: var(--rose); }
+  .feedback-icon { font-size: 24px; }
+  .feedback-text { font-size: 14px; font-weight: 500; }
+
+  .next-btn {
+    margin-top: 16px; width: 100%;
+    padding: 12px;
+    border-radius: 16px;
+    background: var(--violet); color: white;
+    border: none;
+    font-family: 'Fredoka', sans-serif; font-size: 18px; font-weight: 600;
+    cursor: pointer; transition: background .2s;
+  }
+  .next-btn:hover { background: #6d28d9; }
+  .next-btn.emerald { background: var(--emerald); }
+  .next-btn.emerald:hover { background: #047857; }
+  .next-btn.rose { background: var(--rose); }
+  .next-btn.rose:hover { background: #be123c; }
+  .next-btn.teal { background: var(--teal); }
+  .next-btn.teal:hover { background: #0f766e; }
+
+  /* Memory match — красивые карточки */
+  .match-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 640px) { .match-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .match-grid { grid-template-columns: repeat(4, 1fr); } }
+  .match-card {
+    position: relative;
+    height: 110px;
+    border-radius: 18px;
+    border: 2px solid var(--violet-border);
+    background: linear-gradient(135deg, #ffffff 0%, var(--violet-light) 100%);
+    color: var(--slate-700);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    cursor: pointer; transition: all .2s;
+    font-family: inherit;
+    overflow: hidden;
+  }
+  @media (min-width: 640px) { .match-card { height: 130px; } }
+  .match-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 20% 20%, rgba(124,58,237,0.08) 0%, transparent 40%),
+                      radial-gradient(circle at 80% 80%, rgba(13,148,136,0.08) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .match-card:hover { transform: translateY(-3px); border-color: var(--violet); box-shadow: 0 6px 16px rgba(124,58,237,0.15); }
+  .match-card.flipped { border-color: var(--violet); background: linear-gradient(135deg, #ffffff 0%, var(--violet-light) 100%); color: var(--violet); box-shadow: 0 4px 12px rgba(124,58,237,0.2); }
+  .match-card.matched { border-color: var(--emerald); background: linear-gradient(135deg, #ffffff 0%, var(--emerald-light) 100%); color: var(--emerald); box-shadow: 0 4px 12px rgba(5,150,105,0.2); }
+  .match-card.wrong { border-color: #fb7185; background: linear-gradient(135deg, #ffffff 0%, #fee2e2 100%); color: #be123c; animation: popIn .3s; }
+
+  .match-cover-icon {
+    font-size: 36px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    position: relative; z-index: 1;
+  }
+  @media (min-width: 640px) { .match-cover-icon { font-size: 44px; } }
+  .match-cover-text {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 11px; font-weight: 600;
+    color: var(--violet);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+  .match-emoji {
+    font-size: 32px;
+    position: relative; z-index: 1;
+  }
+  @media (min-width: 640px) { .match-emoji { font-size: 36px; } }
+  .match-label {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px; font-weight: 600;
+    line-height: 1.1; text-align: center; padding: 0 4px;
+    position: relative; z-index: 1;
+  }
+  @media (min-width: 640px) { .match-label { font-size: 15px; } }
+  .lang-badge {
+    position: absolute; top: 6px; left: 6px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.5px;
+    z-index: 2;
+  }
+  .lang-en { background: var(--violet); color: white; }
+  .lang-ru { background: var(--teal); color: white; }
+
+  .match-speaker {
+    position: absolute; top: -6px; right: -6px;
+    width: 24px; height: 24px; border-radius: 999px;
+    background: var(--violet); color: white;
+    display: grid; place-items: center;
+    box-shadow: 0 2px 6px rgba(124,58,237,0.4);
+    border: none; cursor: pointer; font-size: 11px;
+    z-index: 3;
+  }
+  .match-check {
+    position: absolute; top: -6px; right: -6px;
+    width: 24px; height: 24px; border-radius: 999px;
+    background: var(--emerald); color: white;
+    display: grid; place-items: center; font-size: 13px;
+    box-shadow: 0 2px 6px rgba(5,150,105,0.4);
+    z-index: 3;
+  }
+
+  /* Done screen */
+  .done-screen {
+    text-align: center;
+    padding: 32px;
+    border-radius: 16px;
+  }
+  .done-screen.violet-rose { background: linear-gradient(135deg, var(--violet-light) 0%, var(--teal-light) 100%); border: 2px solid var(--violet-border); }
+  .done-screen.emerald-teal { background: linear-gradient(135deg, var(--emerald-light) 0%, var(--teal-light) 100%); border: 2px solid var(--emerald-border); }
+  .done-screen.violet-teal { background: linear-gradient(135deg, var(--violet-light) 0%, var(--teal-light) 100%); border: 2px solid var(--teal-border); }
+  .done-screen.rose-violet { background: linear-gradient(135deg, var(--rose-light) 0%, var(--violet-light) 100%); border: 2px solid var(--rose-border); }
+  .trophy { font-size: 64px; color: #f59e0b; margin: 0 auto 12px; width: 64px; height: 64px; }
+  .done-title { font-family: 'Fredoka', sans-serif; font-size: 30px; font-weight: 700; }
+  .done-text { font-size: 18px; color: var(--slate-600); margin-top: 8px; }
+  .done-emoji { font-size: 48px; margin: 16px 0 24px; }
+  .done-hint { font-size: 14px; color: var(--slate-500); margin-bottom: 24px; }
+  .done-restart {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 999px;
+    background: var(--violet); color: white; border: none;
+    font-family: 'Fredoka', sans-serif; font-weight: 600;
+    cursor: pointer; transition: background .2s;
+  }
+  .done-restart:hover { background: #6d28d9; }
+  .done-restart.emerald { background: var(--emerald); }
+  .done-restart.emerald:hover { background: #047857; }
+  .done-restart.rose { background: var(--rose); }
+  .done-restart.rose:hover { background: #be123c; }
+
+  /* Animations */
+  @keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    60% { transform: scale(1.04); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .animate-pop { animation: popIn .35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <button class="logo" onclick="switchTab('home')">
+      <span class="logo-emoji">🏡</span>
+      <div>
+        <div class="logo-title">My Home</div>
+        <div class="logo-sub">английский для 3 класса</div>
+      </div>
+    </button>
+    <div class="header-badges">
+      <span class="badge badge-v">10 комнат</span>
+      <span class="badge badge-e">3 игры</span>
+    </div>
+  </div>
+  <nav>
+    <div class="nav-list" id="navList">
+      <button class="nav-btn active" data-tab="home">🏠 Главная <span class="nav-sub">· старт</span></button>
+      <button class="nav-btn" data-tab="dictionary">📖 Словарь <span class="nav-sub">· 10 слов</span></button>
+      <button class="nav-btn nav-e" data-tab="reading">📚 Чтение <span class="nav-sub">· история</span></button>
+      <button class="nav-btn" data-tab="guess">🤔 Угадай комнату <span class="nav-sub">· игра 1</span></button>
+      <button class="nav-btn nav-e" data-tab="match">🎴 Найди пары <span class="nav-sub">· игра 2</span></button>
+      <button class="nav-btn nav-t" data-tab="quiz">✏️ Викторина <span class="nav-sub">· игра 3</span></button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div id="content"></div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    🏡 Интерактивный рабочий лист «My Home» · сделано с ❤️ для изучения английского
+  </div>
+</footer>
+
+<script>
+// ============ ДАННЫЕ ============
+const ROOMS = [
+  { en: "living room", ru: "гостиная", emoji: "🛋️", color: "violet", description: "We watch TV and sit on the sofa here.", items: [{ en: "sofa", ru: "диван" }, { en: "TV", ru: "телевизор" }, { en: "armchair", ru: "кресло" }, { en: "carpet", ru: "ковёр" }] },
+  { en: "bedroom", ru: "спальня", emoji: "🛏️", color: "teal", description: "I sleep in my bed in this room.", items: [{ en: "bed", ru: "кровать" }, { en: "wardrobe", ru: "шкаф" }, { en: "lamp", ru: "лампа" }, { en: "pillow", ru: "подушка" }] },
+  { en: "kitchen", ru: "кухня", emoji: "🍳", color: "orange", description: "My mum cooks dinner in this room.", items: [{ en: "fridge", ru: "холодильник" }, { en: "cooker", ru: "плита" }, { en: "table", ru: "стол" }, { en: "cup", ru: "чашка" }] },
+  { en: "bathroom", ru: "ванная", emoji: "🛁", color: "sky", description: "I take a shower and wash my hands here.", items: [{ en: "bath", ru: "ванна" }, { en: "shower", ru: "душ" }, { en: "mirror", ru: "зеркало" }, { en: "sink", ru: "раковина" }] },
+  { en: "study", ru: "кабинет", emoji: "📚", color: "emerald", description: "Dad reads books and works at the desk here.", items: [{ en: "desk", ru: "письменный стол" }, { en: "bookshelf", ru: "книжная полка" }, { en: "chair", ru: "стул" }, { en: "computer", ru: "компьютер" }] },
+  { en: "dining room", ru: "столовая", emoji: "🍽️", color: "teal", description: "We eat breakfast, lunch and dinner here.", items: [{ en: "table", ru: "стол" }, { en: "chair", ru: "стул" }, { en: "plates", ru: "тарелки" }, { en: "cup", ru: "чашка" }] },
+  { en: "hall", ru: "прихожая", emoji: "🚪", color: "slate", description: "We take off our coats and shoes at the door.", items: [{ en: "door", ru: "дверь" }, { en: "mat", ru: "коврик" }, { en: "coat", ru: "пальто" }, { en: "shoes", ru: "обувь" }] },
+  { en: "garage", ru: "гараж", emoji: "🚗", color: "slate", description: "Our car sleeps in this room.", items: [{ en: "car", ru: "машина" }, { en: "bike", ru: "велосипед" }, { en: "tools", ru: "инструменты" }, { en: "door", ru: "дверь" }] },
+  { en: "garden", ru: "сад", emoji: "🌷", color: "green", description: "We grow flowers and play outside here.", items: [{ en: "tree", ru: "дерево" }, { en: "flowers", ru: "цветы" }, { en: "grass", ru: "трава" }, { en: "swing", ru: "качели" }] },
+  { en: "balcony", ru: "балкон", emoji: "🪴", color: "teal", description: "We stand outside the window and look at the street.", items: [{ en: "railing", ru: "перила" }, { en: "plants", ru: "растения" }, { en: "chair", ru: "стул" }, { en: "flowers", ru: "цветы" }] },
+];
+
+const READING_SENTENCES = [
+  { text: "Hello! My name is Tom.", ru: "Привет! Меня зовут Том." },
+  { text: "This is my house.", ru: "Это мой дом." },
+  { text: "It has many rooms.", ru: "В нём много комнат." },
+  { text: "In the morning I have breakfast in the kitchen.", ru: "Утром я завтракаю на кухне." },
+  { text: "Then I go to the bathroom and wash my face.", ru: "Потом я иду в ванную и умываюсь." },
+  { text: "After school I do my homework in the study.", ru: "После школы я делаю уроки в кабинете." },
+  { text: "In the evening we watch TV in the living room.", ru: "Вечером мы смотрим телевизор в гостиной." },
+  { text: "At night I sleep in my bedroom.", ru: "Ночью я сплю в своей спальне." },
+  { text: "My dad parks his car in the garage.", ru: "Папа паркует машину в гараже." },
+  { text: "Mum waters flowers in the garden.", ru: "Мама поливает цветы в саду." },
+  { text: "I drink juice on the balcony in summer.", ru: "Летом я пью сок на балконе." },
+  { text: "We take off our shoes in the hall.", ru: "Мы снимаем обувь в прихожей." },
+  { text: "On Sunday we have dinner in the dining room.", ru: "В воскресенье мы ужинаем в столовой." },
+  { text: "I love my home!", ru: "Я люблю свой дом!" },
+];
+
+// ============ КОНФЕТТИ (без жёлтого) ============
+const CONFETTI_COLORS = ["#fb7185", "#34d399", "#60a5fa", "#c084fc", "#f472b6", "#22d3ee", "#a3e635"];
+
+function fireConfetti() {
+  if (typeof confetti !== 'function') return;
+  confetti({ particleCount: 80, spread: 70, origin: { y: 0.7 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
+  setTimeout(() => {
+    confetti({ particleCount: 40, angle: 60, spread: 55, origin: { x: 0 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
+    confetti({ particleCount: 40, angle: 120, spread: 55, origin: { x: 1 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
+  }, 200);
+}
+
+function fireBigConfetti() {
+  if (typeof confetti !== 'function') return;
+  const duration = 1500;
+  const end = Date.now() + duration;
+  (function frame() {
+    confetti({ particleCount: 6, angle: 60, spread: 70, origin: { x: 0 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
+    confetti({ particleCount: 6, angle: 120, spread: 70, origin: { x: 1 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
+}
+
+// ============ РЕЧЬ ============
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.9;
+  window.speechSynthesis.speak(u);
+}
+
+function stopSpeaking() {
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+}
+
+// ============ УТИЛИТЫ ============
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ============ НАВИГАЦИЯ ============
+let currentTab = 'home';
+
+function switchTab(tab) {
+  currentTab = tab;
+  stopSpeaking();
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.tab === tab);
+  });
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.nav-btn').forEach(b => {
+  b.addEventListener('click', () => switchTab(b.dataset.tab));
+});
+
+// ============ РЕНДЕР ============
+function render() {
+  const c = document.getElementById('content');
+  if (currentTab === 'home') c.innerHTML = renderHome();
+  else if (currentTab === 'dictionary') { c.innerHTML = renderDictionary(); attachDictionary(); }
+  else if (currentTab === 'reading') { c.innerHTML = renderReading(); attachReading(); }
+  else if (currentTab === 'guess') { renderGuess(); }
+  else if (currentTab === 'match') { renderMatch(); }
+  else if (currentTab === 'quiz') { renderQuiz(); }
+}
+
+// ============ ГЛАВНАЯ ============
+function renderHome() {
+  const cards = [
+    { tab: 'dictionary', emoji: '📖', title: 'Dictionary', ru: 'Словарь', desc: '10 комнат с произношением. Послушай, повтори и запомни.', cls: 'violet' },
+    { tab: 'reading', emoji: '📚', title: 'Reading', ru: 'Чтение', desc: 'Маленький рассказ про дом Тома. Читай и слушай.', cls: 'emerald' },
+    { tab: 'guess', emoji: '🤔', title: 'Guess the room', ru: 'Угадай комнату', desc: 'Читай описание комнаты и выбери правильную картинку.', cls: 'violet' },
+    { tab: 'match', emoji: '🎴', title: 'Match pairs', ru: 'Найди пары', desc: 'Соедини английское слово с его русским переводом.', cls: 'teal' },
+    { tab: 'quiz', emoji: '✏️', title: 'Quiz', ru: 'Викторина', desc: '10 вопросов на знание комнат. Покажи, чему научился!', cls: 'teal' },
+  ];
+  const cardsHtml = cards.map((c, i) => `
+    <button class="home-card" style="background: ${c.cls === 'violet' ? 'var(--violet-light)' : c.cls === 'emerald' ? 'var(--emerald-light)' : 'var(--teal-light)'}; border-color: ${c.cls === 'violet' ? 'var(--violet-border)' : c.cls === 'emerald' ? 'var(--emerald-border)' : '#5eead4'}" onclick="switchTab('${c.tab}')">
+      <div class="home-card-top">
+        <span class="home-card-emoji">${c.emoji}</span>
+        <span class="home-card-num">${String(i+1).padStart(2,'0')}</span>
+      </div>
+      <h3>${c.title}</h3>
+      <div class="home-card-ru">${c.ru}</div>
+      <div class="home-card-desc">${c.desc}</div>
+    </button>
+  `).join('');
+
+  return `
+    <div style="margin-bottom: 32px;">
+      <div class="hero">
+        <div class="hero-emoji-1">🏡</div>
+        <div class="hero-emoji-2">🌟</div>
+        <div class="hero-content">
+          <div class="hero-tag"><span class="hero-dot"></span>ENGLISH · 3 КЛАСС</div>
+          <h1>My Home</h1>
+          <h2>Rooms in the House</h2>
+          <p>Привет! Сегодня мы изучаем <b>комнаты в доме</b> на английском. Сначала загляни в словарь, потом прочитай рассказ про Тома, а потом играй — за правильные ответы будут конфетти 🎉</p>
+          <div class="hero-btns">
+            <button class="hero-btn-primary" onclick="switchTab('dictionary')">📖 Начать с словаря</button>
+            <button class="hero-btn-secondary" onclick="switchTab('guess')">🎮 Сразу в игры</button>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="font-display" style="font-size: 24px; font-weight: 700; color: var(--slate-700); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+        <span>🗂️</span> Выбери, с чего начать
+      </h2>
+      <div class="home-grid">
+        ${cardsHtml}
+      </div>
+    </div>
+  `;
+}
+
+// ============ СЛОВАРЬ ============
+let dictSelected = 'living room';
+let dictFilter = '';
+
+function renderDictionary() {
+  const filtered = ROOMS.filter(r => r.en.toLowerCase().includes(dictFilter.toLowerCase()) || r.ru.toLowerCase().includes(dictFilter.toLowerCase()));
+  const current = ROOMS.find(r => r.en === dictSelected) || ROOMS[0];
+  const colorBg = { violet: 'var(--violet-light)', orange: '#ffedd5', sky: '#e0f2fe', emerald: 'var(--emerald-light)', teal: 'var(--teal-light)', slate: '#f1f5f9', green: '#dcfce7' };
+  const colorBorder = { violet: 'var(--violet-border)', orange: '#fdba74', sky: '#7dd3fc', emerald: 'var(--emerald-border)', teal: '#5eead4', slate: '#cbd5e1', green: '#86efac' };
+  const colorText = { violet: 'var(--violet)', orange: '#c2410c', sky: '#0369a1', emerald: 'var(--emerald)', teal: 'var(--teal)', slate: '#475569', green: '#15803d' };
+  const bg = colorBg[current.color] || 'var(--violet-light)';
+  const bd = colorBorder[current.color] || 'var(--violet-border)';
+
+  const itemsHtml = current.items.map(it => `
+    <div class="item-chip-with-ru">
+      <span class="item-en">${esc(it.en)}</span>
+      <span class="item-ru">${esc(it.ru)}</span>
+    </div>
+  `).join('');
+
+  return `
+    <div class="section-title">
+      <div class="section-icon" style="background: var(--violet-light); color: var(--violet);">📖</div>
+      <div>
+        <div class="section-h2" style="color: var(--violet);">Словарь</div>
+        <div class="section-sub">Послушай, как произносится слово, и повтори его вслух.</div>
+      </div>
+    </div>
+
+    <input class="dict-search" placeholder="🔍 поиск комнаты…" value="${esc(dictFilter)}" oninput="onDictFilter(this.value)">
+
+    <div class="dict-grid">
+      ${filtered.map(r => `
+        <div class="dict-card ${r.en === dictSelected ? 'selected' : ''}" onclick="selectDict('${r.en}')">
+          <div class="dict-card-emoji">${r.emoji}</div>
+          <div class="dict-card-en">${esc(r.en)}</div>
+          <div class="dict-card-ru">${esc(r.ru)}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="dict-detail" style="background: ${bg}; border: 2px solid ${bd};">
+      <div class="dict-detail-top">
+        <div class="dict-detail-emoji">${current.emoji}</div>
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div class="dict-detail-en">${esc(current.en)}</div>
+            <button class="speak-btn" onclick="speak('${current.en.replace(/'/g, "\\'")}')">🔊 Слушать</button>
+          </div>
+          <div class="dict-detail-ru"><b>${esc(current.ru)}</b></div>
+
+          <div class="example-box">
+            <div class="example-text"><span class="example-label">Example: </span>This is my <span class="example-en">${esc(current.en)}</span>.</div>
+            <button class="speak-btn speak-btn-sm" style="margin-top: 8px; margin-left: 0;" onclick="speak('This is my ${current.en.replace(/'/g, "\\'")}.')">🔊 Слушать предложение</button>
+          </div>
+
+          <div class="items-label">Что здесь есть:</div>
+          <div class="items-list">${itemsHtml}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function onDictFilter(v) {
+  dictFilter = v;
+  render();
+  // вернуть фокус
+  setTimeout(() => {
+    const i = document.querySelector('.dict-search');
+    if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
+  }, 0);
+}
+
+function selectDict(en) {
+  dictSelected = en;
+  speak(en);
+  render();
+}
+
+function attachDictionary() {}
+
+// ============ ЧТЕНИЕ (цельный текст, без переводов) ============
+let readingActiveIdx = null;
+
+const READING_FULL_TEXT = READING_SENTENCES.map(s => s.text).join(' ');
+
+function renderReading() {
+  return `
+    <div class="section-title">
+      <div class="section-icon" style="background: var(--emerald-light); color: var(--emerald);">📚</div>
+      <div>
+        <div class="section-h2" style="color: var(--emerald);">Чтение</div>
+        <div class="section-sub">Прочитай текст про дом Тома. Цветные слова — это комнаты. Нажми на 🔊 чтобы послушать.</div>
+      </div>
+    </div>
+
+    <div class="card reading-card" style="border-color: var(--emerald-border); padding: 28px;">
+      <div class="reading-header">
+        <div class="reading-title">📖 Tom's House</div>
+        <button class="read-all-btn" onclick="readAll()">🔊 Слушать весь текст</button>
+      </div>
+      <p class="reading-full-text" id="readingText">${renderHighlightedText(READING_FULL_TEXT)}</p>
+      <div class="reading-legend">
+        <span class="legend-dot"></span>
+        <span>Цветные слова — это комнаты дома. Прочитай текст сам и попробуй его перевести.</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderHighlightedText(text) {
+  let html = esc(text);
+  // подсвечиваем комнаты
+  ROOMS.forEach(r => {
+    const re = new RegExp(`\\b(${r.en.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'gi');
+    html = html.replace(re, `<span class="sent-kw">$1</span>`);
+  });
+  return html;
+}
+
+function speakSentence(i) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(READING_SENTENCES[i].text);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function refreshReading() {}
+
+function readAll() {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(READING_FULL_TEXT);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function attachReading() {}
+
+// ============ ИГРА 1: УГАДАЙ КОМНАТУ ============
+let guessState = null;
+
+function initGuess() {
+  const questions = ROOMS.map(room => {
+    const others = shuffle(ROOMS.filter(r => r.en !== room.en)).slice(0, 3);
+    const options = shuffle([room, ...others]);
+    return { room, options };
+  });
+  guessState = {
+    questions,
+    idx: 0,
+    selected: null,
+    answer: 'idle', // 'idle' | 'correct' | 'wrong'
+    score: 0,
+    done: false,
+  };
+}
+
+function renderGuess() {
+  if (!guessState) initGuess();
+  const c = document.getElementById('content');
+  const s = guessState;
+
+  if (s.done) {
+    const percent = Math.round((s.score / s.questions.length) * 100);
+    const isGreat = percent >= 80;
+    c.innerHTML = `
+      <div class="card done-screen violet-rose">
+        <div style="font-size: 64px; margin-bottom: 12px;">🏆</div>
+        <div class="done-title" style="color: var(--violet);">Готово!</div>
+        <div class="done-text">Ты угадал <b style="color: var(--violet);">${s.score}</b> из <b>${s.questions.length}</b> комнат!</div>
+        <div class="done-emoji">${isGreat ? '🌟🎉' : '💪👍'}</div>
+        <div class="done-hint">${isGreat ? 'Супер! Ты отлично знаешь комнаты!' : 'Хорошо! Попробуй ещё раз — у тебя получится!'}</div>
+        <button class="done-restart" onclick="restartGuess()">🔄 Играть заново</button>
+      </div>
+    `;
+    return;
+  }
+
+  const current = s.questions[s.idx];
+  const progress = (s.idx / s.questions.length) * 100;
+  const answered = s.answer !== 'idle';
+
+  c.innerHTML = `
+    <div class="section-title">
+      <div class="section-icon" style="background: var(--violet-light); color: var(--violet);">🤔</div>
+      <div>
+        <div class="section-h2" style="color: var(--violet);">Угадай комнату</div>
+        <div class="section-sub">Читай описание и выбирай правильную комнату.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="game-header">
+        <div class="game-q-counter">Вопрос ${s.idx + 1} из ${s.questions.length}</div>
+        <div class="game-score">✨ Очки: ${s.score}</div>
+      </div>
+
+      <div class="progress-bar"><div class="progress-fill" style="width: ${progress}%;"></div></div>
+
+      <div class="question-block">
+        <div class="question-emoji">🤔</div>
+        <div class="question-text">${esc(current.room.description)}</div>
+        <div class="question-hint">Какая это комната?</div>
+      </div>
+
+      <div class="options-grid">
+        ${current.options.map(opt => {
+          let cls = 'opt-btn';
+          if (answered) {
+            if (opt.en === current.room.en) cls += ' correct';
+            else if (opt.en === s.selected) cls += ' wrong';
+            else cls += ' disabled';
+          } else if (opt.en === s.selected) cls += ' selected';
+          let badge = '';
+          if (answered && opt.en === current.room.en) badge = '<div class="opt-badge opt-badge-correct">✓</div>';
+          else if (answered && opt.en === s.selected && s.answer === 'wrong') badge = '<div class="opt-badge opt-badge-wrong">✕</div>';
+          return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="pickGuess('${opt.en.replace(/'/g, "\\'")}')">
+            <span class="opt-emoji">${opt.emoji}</span>
+            <span class="opt-text">${esc(opt.en)}</span>
+            <span class="opt-ru">${esc(opt.ru)}</span>
+            ${badge}
+          </button>`;
+        }).join('')}
+      </div>
+
+      ${answered ? `
+        <div class="feedback ${s.answer}">
+          <span class="feedback-icon">${s.answer === 'correct' ? '🎉' : '😅'}</span>
+          <div class="feedback-text">${s.answer === 'correct' ? `Верно! Это <b>${esc(current.room.en)}</b> (${esc(current.room.ru)}).` : `Правильный ответ: <b>${esc(current.room.en)}</b> (${esc(current.room.ru)}).`}</div>
+        </div>
+        <button class="next-btn" onclick="nextGuess()">${s.idx + 1 >= s.questions.length ? 'Завершить 🏁' : 'Следующий вопрос →'}</button>
+      ` : ''}
+    </div>
+  `;
+}
+
+function pickGuess(en) {
+  const s = guessState;
+  if (s.answer !== 'idle') return;
+  s.selected = en;
+  const current = s.questions[s.idx];
+  if (en === current.room.en) {
+    s.answer = 'correct';
+    s.score++;
+    fireConfetti();
+  } else {
+    s.answer = 'wrong';
+  }
+  renderGuess();
+}
+
+function nextGuess() {
+  const s = guessState;
+  if (s.idx + 1 >= s.questions.length) {
+    s.done = true;
+    const percent = Math.round((s.score / s.questions.length) * 100);
+    if (percent >= 70) fireBigConfetti();
+    renderGuess();
+    return;
+  }
+  s.idx++;
+  s.selected = null;
+  s.answer = 'idle';
+  renderGuess();
+}
+
+function restartGuess() {
+  initGuess();
+  renderGuess();
+}
+
+// ============ ИГРА 2: НАЙДИ ПАРЫ ============
+const PAIR_COUNT = 6;
+let matchState = null;
+
+function initMatch() {
+  const picked = shuffle(ROOMS).slice(0, PAIR_COUNT);
+  const cards = [];
+  picked.forEach(r => {
+    cards.push({ id: `${r.en}-en`, pairId: r.en, side: 'en', label: r.en, emoji: r.emoji });
+    cards.push({ id: `${r.en}-ru`, pairId: r.en, side: 'ru', label: r.ru, emoji: r.emoji });
+  });
+  matchState = {
+    cards: shuffle(cards),
+    flipped: [],
+    matched: [],
+    wrongPair: [],
+    moves: 0,
+    done: false,
+  };
+}
+
+function renderMatch() {
+  if (!matchState) initMatch();
+  const c = document.getElementById('content');
+  const s = matchState;
+
+  if (s.done) {
+    c.innerHTML = `
+      <div class="card done-screen emerald-teal">
+        <div style="font-size: 64px; margin-bottom: 12px;">🏆</div>
+        <div class="done-title" style="color: var(--emerald);">Победа!</div>
+        <div class="done-text">Ты нашёл все пары за <b>${s.moves}</b> ходов!</div>
+        <div class="done-emoji">🎊🎉🏆</div>
+        <div class="done-hint">Ты молодец! Попробуй собрать пары ещё раз — новые карточки ждут!</div>
+        <button class="done-restart emerald" onclick="restartMatch()">🔄 Играть заново</button>
+      </div>
+    `;
+    return;
+  }
+
+  c.innerHTML = `
+    <div class="section-title">
+      <div class="section-icon" style="background: var(--emerald-light); color: var(--emerald);">🎴</div>
+      <div>
+        <div class="section-h2" style="color: var(--emerald);">Найди пары</div>
+        <div class="section-sub">Соедини английское слово с его переводом.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="game-header">
+        <div>
+          <div class="reading-title" style="color: var(--emerald);">Английский ↔ Русский</div>
+          <div class="section-sub">Нажми на 2 карточки. Если совпали — останутся.</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+          <div class="game-score emerald">✓ ${s.matched.length}/${PAIR_COUNT}</div>
+          <div style="font-size: 12px; color: var(--slate-400);">ходов: ${s.moves}</div>
+        </div>
+      </div>
+
+      <div class="match-grid">
+        ${s.cards.map(card => {
+          const isFlipped = s.flipped.includes(card.id) || s.matched.includes(card.pairId);
+          const isMatched = s.matched.includes(card.pairId);
+          const isWrong = s.wrongPair.includes(card.id);
+          let cls = 'match-card';
+          if (isMatched) cls += ' matched';
+          else if (isWrong) cls += ' wrong';
+          else if (isFlipped) cls += ' flipped';
+          let inner = '';
+          if (!isFlipped) {
+            // красивая закрытая карточка — с фоновым рисунком и большим значком дома
+            inner = `<span class="match-cover-icon">🏡</span><span class="match-cover-text">открой меня</span>`;
+          } else {
+            // открытая карточка — эмодзи + слово/перевод + индикатор языка
+            const langBadge = card.side === 'en'
+              ? '<span class="lang-badge lang-en">EN</span>'
+              : '<span class="lang-badge lang-ru">RU</span>';
+            inner = `<span class="match-emoji">${card.emoji}</span><span class="match-label">${esc(card.label)}</span>${langBadge}`;
+          }
+          let extra = '';
+          if (isMatched) extra = '<div class="match-check">✓</div>';
+          else if (isFlipped && card.side === 'en' && !isWrong) {
+            extra = `<button class="match-speaker" onclick="event.stopPropagation(); speak('${card.pairId.replace(/'/g, "\\'")}')">🔊</button>`;
+          }
+          return `<button class="${cls}" ${isMatched || isFlipped ? 'disabled' : ''} onclick="flipMatch('${card.id}')">${inner}${extra}</button>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  // проверка победы
+  if (s.matched.length === PAIR_COUNT && !s.done) {
+    s.done = true;
+    fireBigConfetti();
+    setTimeout(renderMatch, 1000);
+  }
+}
+
+function flipMatch(id) {
+  const s = matchState;
+  const card = s.cards.find(c => c.id === id);
+  if (!card) return;
+  if (s.matched.includes(card.pairId)) return;
+  if (s.flipped.includes(id)) return;
+  if (s.flipped.length >= 2) return;
+  if (card.side === 'en') speak(card.label);
+
+  s.flipped.push(id);
+  if (s.flipped.length === 2) {
+    s.moves++;
+    const [aId, bId] = s.flipped;
+    const a = s.cards.find(c => c.id === aId);
+    const b = s.cards.find(c => c.id === bId);
+    if (a.pairId === b.pairId) {
+      setTimeout(() => {
+        s.matched.push(a.pairId);
+        s.flipped = [];
+        fireConfetti();
+        renderMatch();
+      }, 500);
+    } else {
+      s.wrongPair = [...s.flipped];
+      setTimeout(() => {
+        s.wrongPair = [];
+        s.flipped = [];
+        renderMatch();
+      }, 900);
+    }
+  }
+  renderMatch();
+}
+
+function restartMatch() {
+  initMatch();
+  renderMatch();
+}
+
+// ============ ИГРА 3: ВИКТОРИНА ============
+let quizState = null;
+
+function buildQuizQuestions() {
+  const qs = [];
+  // Тип 1: где находится предмет
+  const itemToRoom = [
+    { item: 'bed', room: 'bedroom' },
+    { item: 'sofa', room: 'living room' },
+    { item: 'fridge', room: 'kitchen' },
+    { item: 'bath', room: 'bathroom' },
+    { item: 'desk', room: 'study' },
+    { item: 'tree', room: 'garden' },
+  ];
+  itemToRoom.forEach(({ item, room }) => {
+    const wrong = shuffle(ROOMS.filter(r => r.en !== room).map(r => r.en)).slice(0, 3);
+    qs.push({
+      prompt: `Where do we have a ${item}?`,
+      options: shuffle([room, ...wrong]),
+      answer: room,
+    });
+  });
+  // Тип 2: что лишнее
+  qs.push({ prompt: 'Which word is NOT a room?', options: shuffle(['kitchen', 'bedroom', 'apple', 'bathroom']), answer: 'apple' });
+  qs.push({ prompt: 'Which word is NOT a room?', options: shuffle(['garage', 'garden', 'balcony', 'dog']), answer: 'dog' });
+  // Тип 3: перевод
+  const translate = [
+    { en: 'living room', ru: 'гостиная' },
+    { en: 'bedroom', ru: 'спальня' },
+    { en: 'kitchen', ru: 'кухня' },
+    { en: 'bathroom', ru: 'ванная' },
+  ];
+  translate.forEach(({ en, ru }) => {
+    const wrong = shuffle(ROOMS.filter(r => r.en !== en).map(r => r.ru)).slice(0, 3);
+    qs.push({
+      prompt: `What does "${en}" mean?`,
+      options: shuffle([ru, ...wrong]),
+      answer: ru,
+    });
+  });
+  return shuffle(qs).slice(0, 10);
+}
+
+function initQuiz() {
+  quizState = {
+    questions: buildQuizQuestions(),
+    idx: 0,
+    selected: null,
+    score: 0,
+    done: false,
+  };
+}
+
+function renderQuiz() {
+  if (!quizState) initQuiz();
+  const c = document.getElementById('content');
+  const s = quizState;
+
+  if (s.done) {
+    const percent = Math.round((s.score / s.questions.length) * 100);
+    c.innerHTML = `
+      <div class="card done-screen violet-teal">
+        <div style="font-size: 64px; margin-bottom: 12px;">🏆</div>
+        <div class="done-title" style="color: var(--violet);">Викторина пройдена!</div>
+        <div class="done-text">Правильных ответов: <b>${s.score}</b> из <b>${s.questions.length}</b> (${percent}%)</div>
+        <div class="done-emoji">${percent >= 80 ? '🏆🌟🎉' : percent >= 50 ? '💪👍' : '📚✏️'}</div>
+        <div class="done-hint">${percent >= 80 ? 'Великолепно! Ты настоящий знаток комнат!' : percent >= 50 ? 'Хорошо! Ещё немного практики и будешь чемпионом!' : 'Не сдавайся! Перечитай словарь и попробуй снова!'}</div>
+        <button class="done-restart" onclick="restartQuiz()">🔄 Пройти заново</button>
+      </div>
+    `;
+    return;
+  }
+
+  const current = s.questions[s.idx];
+  const progress = (s.idx / s.questions.length) * 100;
+  const answered = s.selected !== null;
+
+  c.innerHTML = `
+    <div class="section-title">
+      <div class="section-icon" style="background: var(--teal-light); color: var(--teal);">✏️</div>
+      <div>
+        <div class="section-h2" style="color: var(--teal);">Викторина</div>
+        <div class="section-sub">10 вопросов на знание комнат. Покажи, чему научился!</div>
+      </div>
+    </div>
+
+    <div class="card quiz-card" style="border-color: var(--teal-border);">
+      <div class="game-header">
+        <div class="game-q-counter">Вопрос ${s.idx + 1} / ${s.questions.length}</div>
+        <div class="game-score teal">🏆 ${s.score}</div>
+      </div>
+
+      <div class="progress-bar teal-bg"><div class="progress-fill teal-fill" style="width: ${progress}%;"></div></div>
+
+      <div class="question-block">
+        <div class="question-emoji">📝</div>
+        <div class="question-text">${esc(current.prompt)}</div>
+      </div>
+
+      <div class="options-grid sm-1">
+        ${current.options.map(opt => {
+          let cls = 'opt-btn opt-row';
+          if (answered) {
+            if (opt === current.answer) cls += ' correct';
+            else if (opt === s.selected) cls += ' wrong';
+            else cls += ' disabled';
+          } else if (opt === s.selected) cls += ' selected';
+          let badge = '';
+          if (answered && opt === current.answer) badge = '<div class="opt-badge opt-badge-correct">✓</div>';
+          else if (answered && opt === s.selected && opt !== current.answer) badge = '<div class="opt-badge opt-badge-wrong">✕</div>';
+          return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="pickQuiz('${opt.replace(/'/g, "\\'")}')">
+            <span class="opt-text">${esc(opt)}</span>
+            ${badge}
+          </button>`;
+        }).join('')}
+      </div>
+
+      ${answered ? `
+        <div class="feedback ${s.selected === current.answer ? 'correct' : 'wrong'}">
+          <span class="feedback-icon">${s.selected === current.answer ? '🎉' : '💡'}</span>
+          <div class="feedback-text">${s.selected === current.answer ? 'Правильно! Так держать!' : `Правильный ответ: <b>${esc(current.answer)}</b>.`}</div>
+        </div>
+        <button class="next-btn teal" onclick="nextQuiz()">${s.idx + 1 >= s.questions.length ? 'Завершить викторину 🏁' : 'Следующий вопрос →'}</button>
+      ` : ''}
+    </div>
+  `;
+}
+
+function pickQuiz(opt) {
+  const s = quizState;
+  if (s.selected !== null) return;
+  s.selected = opt;
+  const current = s.questions[s.idx];
+  if (opt === current.answer) {
+    s.score++;
+    fireConfetti();
+  }
+  renderQuiz();
+}
+
+function nextQuiz() {
+  const s = quizState;
+  if (s.idx + 1 >= s.questions.length) {
+    s.done = true;
+    const percent = Math.round((s.score / s.questions.length) * 100);
+    if (percent >= 70) fireBigConfetti();
+    renderQuiz();
+    return;
+  }
+  s.idx++;
+  s.selected = null;
+  renderQuiz();
+}
+
+function restartQuiz() {
+  initQuiz();
+  renderQuiz();
+}
+
+// ============ СТАРТ ============
+render();
+</script>
+</body>
+</html>
