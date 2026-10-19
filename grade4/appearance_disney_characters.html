@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Vocabulary Album</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #2D3436;
+            --light: #F7F9FC;
+            --card-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #E0F7FA;
+            background-image: radial-gradient(#B2EBF2 15%, transparent 16%), radial-gradient(#B2EBF2 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            color: var(--dark);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--primary);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0px #fff;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: var(--dark);
+            opacity: 0.7;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* Навигация */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            background: #fff;
+            color: var(--dark);
+            border: none;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-family: 'Fredoka', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0,0,0,0.15);
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .folder-content {
+            display: none;
+            background: #fff;
+            padding: 40px 20px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .folder-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--primary);
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* --- СЛОВАРЬ --- */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .flashcard {
+            perspective: 1000px;
+            height: 150px;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .flashcard-front {
+            background: var(--light);
+            border: 3px solid var(--secondary);
+            color: var(--dark);
+        }
+
+        .flashcard-back {
+            background: var(--secondary);
+            color: #fff;
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front h3 {
+            margin: 0;
+            font-size: 1.4em;
+            font-family: 'Fredoka', sans-serif;
+            color: var(--primary);
+        }
+
+        .flashcard-back .translation {
+            font-size: 1.2em;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .flashcard-back .pronunciation {
+            font-size: 1em;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .hint {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* --- ТЕОРИЯ --- */
+        .theory-box {
+            background: var(--light);
+            border-left: 8px solid var(--accent);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .theory-box h3 {
+            color: var(--primary);
+            font-family: 'Fredoka', sans-serif;
+            margin-top: 0;
+        }
+        .theory-box .example {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px dashed var(--secondary);
+            margin-top: 10px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* --- ИГРА МЕМОРИ --- */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            background: var(--primary);
+            border-radius: 15px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: transparent;
+            transition: all 0.3s;
+            user-select: none;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .memory-card:hover {
+            transform: scale(1.05);
+        }
+
+        .memory-card.flipped {
+            background: #fff;
+            border: 3px solid var(--primary);
+            color: var(--dark);
+            box-shadow: none;
+        }
+
+        .memory-card.matched {
+            background: #C8E6C9;
+            border-color: #4CAF50;
+            color: #2E7D32;
+            cursor: default;
+            box-shadow: none;
+        }
+
+        .game-status {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: 800;
+            color: var(--primary);
+            min-height: 30px;
+        }
+
+        /* --- ПОКАЖИ НА СЕБЕ --- */
+        .action-box {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 20px;
+            border: 3px dashed var(--primary);
+        }
+
+        .word-display {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.5em;
+            color: var(--secondary);
+            margin: 20px 0;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-family: 'Fredoka', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 0px #d64545;
+            transition: 0.1s;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px #d64545;
+        }
+
+        /* --- ПЛАН ОПИСАНИЯ --- */
+        .plan-box {
+            background: #FFF8E1;
+            border: 3px solid var(--accent);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .plan-box h3 {
+            text-align: center;
+            color: var(--primary);
+            font-family: 'Fredoka', sans-serif;
+            margin-top: 0;
+        }
+        .plan-step {
+            background: #fff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        /* --- ПЕРСОНАЖИ --- */
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .char-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            transition: 0.3s;
+            border: 3px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .char-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+
+        .char-img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .char-name {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3em;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .char-desc {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, margin-top 0.5s ease;
+            font-size: 1.1em;
+            line-height: 1.5;
+            color: var(--secondary);
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .char-card.open .char-desc {
+            max-height: 300px;
+            margin-top: 15px;
+        }
+
+        /* --- ЧТЕНИЕ --- */
+        .reading-box {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 8px solid var(--secondary);
+            text-align: left;
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .reading-box-2 {
+            border-left: 8px solid var(--primary);
+        }
+
+        .questions-list {
+            text-align: left;
+        }
+
+        .question-card {
+            background: #fff;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .question-card:hover {
+            border-color: var(--accent);
+        }
+
+        .question-text {
+            font-weight: 800;
+            color: var(--dark);
+            font-size: 1.1em;
+        }
+
+        .answer-text {
+            display: none;
+            margin-top: 10px;
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.1em;
+        }
+
+        .question-card.open .answer-text {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .text-divider {
+            height: 2px;
+            background: #eee;
+            margin: 40px 0;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>English Vocabulary Album</h1>
+    <div class="subtitle">Let's learn appearance words and play!</div>
+
+    <!-- Навигация -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openFolder(event, 'dict')">Vocabulary</button>
+        <button class="tab-btn" onclick="openFolder(event, 'theory')">Grammar</button>
+        <button class="tab-btn" onclick="openFolder(event, 'memory')">Memory Game</button>
+        <button class="tab-btn" onclick="openFolder(event, 'show')">Show Me</button>
+        <button class="tab-btn" onclick="openFolder(event, 'princesses')">Princesses</button>
+        <button class="tab-btn" onclick="openFolder(event, 'toons')">Cartoons</button>
+        <button class="tab-btn" onclick="openFolder(event, 'reading')">Reading</button>
+    </div>
+
+    <!-- Папка 1: Словарик -->
+    <div id="dict" class="folder-content active">
+        <h2 class="section-title">Vocabulary</h2>
+        <p class="hint">Click the card to see the translation and pronunciation!</p>
+        
+        <div class="vocab-grid">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Oval</h3></div>
+                    <div class="flashcard-back"><div class="translation">Овальное</div><div class="pronunciation">[оувл]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Square</h3></div>
+                    <div class="flashcard-back"><div class="translation">Квадратное</div><div class="pronunciation">[сквеэ]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Blue eyes</h3></div>
+                    <div class="flashcard-back"><div class="translation">Голубые глаза</div><div class="pronunciation">[блю айз]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Curly hair</h3></div>
+                    <div class="flashcard-back"><div class="translation">Кудрявые волосы</div><div class="pronunciation">[кёрли хэа]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Tall</h3></div>
+                    <div class="flashcard-back"><div class="translation">Высокий</div><div class="pronunciation">[тол]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Slim</h3></div>
+                    <div class="flashcard-back"><div class="translation">Стройный</div><div class="pronunciation">[слим]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Plump lips</h3></div>
+                    <div class="flashcard-back"><div class="translation">Пухлые губы</div><div class="pronunciation">[пламп липс]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Red hair</h3></div>
+                    <div class="flashcard-back"><div class="translation">Рыжие волосы</div><div class="pronunciation">[рэд хэа]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Chubby</h3></div>
+                    <div class="flashcard-back"><div class="translation">Пухлый</div><div class="pronunciation">[чабби]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Straight hair</h3></div>
+                    <div class="flashcard-back"><div class="translation">Прямые волосы</div><div class="pronunciation">[стрэйт хэа]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Short</h3></div>
+                    <div class="flashcard-back"><div class="translation">Низкий / Короткий</div><div class="pronunciation">[шот]</div></div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front"><h3>Thin</h3></div>
+                    <div class="flashcard-back"><div class="translation">Худой</div><div class="pronunciation">[син]</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Папка 2: Теория -->
+    <div id="theory" class="folder-content">
+        <h2 class="section-title">Grammar & Structure</h2>
+        <p class="hint">How to describe a person? Use this structure!</p>
+
+        <div class="theory-box">
+            <h3>1. Height and Body (To Be)</h3>
+            <p><strong>Structure:</strong> He / She + is + [adjective]</p>
+            <div class="example">
+                She is tall. She is slim.<br>
+                He is short. He is chubby.
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h3>2. Face, Hair, Eyes (Have / Has)</h3>
+            <p><strong>Structure:</strong> He / She + has + [adjective] + [noun]</p>
+            <div class="example">
+                She has an oval face.<br>
+                He has short hair.<br>
+                She has blue eyes.
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h3>3. His / Her (Possessives)</h3>
+            <p><strong>Structure:</strong> His / Her + [noun] + is / are + [adjective]</p>
+            <div class="example">
+                Her hair is long.<br>
+                His eyes are blue.<br>
+                Her lips are plump.
+            </div>
+        </div>
+    </div>
+
+    <!-- Папка 3: Мемори -->
+    <div id="memory" class="folder-content">
+        <h2 class="section-title">Memory Game</h2>
+        <p class="hint">Find pairs: an English word and its translation!</p>
+        <div class="memory-grid" id="memory-grid"></div>
+        <div class="game-status" id="memory-status"></div>
+    </div>
+
+    <!-- Папка 4: Покажи на себе -->
+    <div id="show" class="folder-content">
+        <h2 class="section-title">Show Me!</h2>
+        <div class="action-box">
+            <p>Click the button and show the body part on yourself!</p>
+            <div class="word-display" id="word-display">Are you ready?</div>
+            <button class="btn" onclick="generateWord()">Let's go!</button>
+        </div>
+    </div>
+
+    <!-- Папка 5: Принцессы -->
+    <div id="princesses" class="folder-content">
+        <h2 class="section-title">Princesses</h2>
+        
+        <div class="plan-box">
+            <h3>Description Plan:</h3>
+            <div class="plan-step">1. This is [Name].</div>
+            <div class="plan-step">2. She is [tall / short / slim].</div>
+            <div class="plan-step">3. She has a / an [oval / square] face.</div>
+            <div class="plan-step">4. She has [long / short] [curly / straight] [blonde / dark / red] hair.</div>
+            <div class="plan-step">5. She has [blue / green / brown] eyes.</div>
+        </div>
+
+        <p class="hint">Try to describe the character using the plan! Click the card to check your answer.</p>
+        
+        <div class="characters-grid">
+            <div class="char-card" onclick="this.classList.toggle('open')">
+                <img src="https://z-cdn-media.chatglm.cn/files/f15f2000-fd8a-4f11-a214-ea8db0eef556.jpeg?auth_key=1889041823-a8d3f68e5e9542e69fba61c8d4a17188-0-ba127269da6fa8899787133895d5f677" class="char-img" alt="Rapunzel" onerror="this.src='https://img.icons8.com/color/96/princess.png'">
+                <h3 class="char-name">Rapunzel</h3>
+                <div class="char-desc">
+                    This is Rapunzel. She is slim. She has an oval face. She has long, curly, blonde hair. She has big eyes.
+                </div>
+            </div>
+
+            <div class="char-card" onclick="this.classList.toggle('open')">
+                <img src="https://z-cdn-media.chatglm.cn/files/9d67c657-b495-41fa-9475-826b721e4db2.jpeg?auth_key=1889041823-ad87597f934a4aa59fafc99c9a784989-0-566aff43029c2b53f9a8b26582d268cb" class="char-img" alt="Merida" onerror="this.src='https://img.icons8.com/color/96/merida.png'">
+                <h3 class="char-name">Merida</h3>
+                <div class="char-desc">
+                    This is Merida. She is athletic. She has an oval face. She has long, curly, red hair. She has blue eyes.
+                </div>
+            </div>
+
+            <div class="char-card" onclick="this.classList.toggle('open')">
+                <img src="https://z-cdn-media.chatglm.cn/files/63f11220-2cb9-4c95-8224-ab0960257d73.jpeg?auth_key=1889041823-cee7f6bf4a104855a1da11b79f316f38-0-98e737b984f9fff06096748e70ee3173" class="char-img" alt="Elsa" onerror="this.src='https://img.icons8.com/color/96/elsa.png'">
+                <h3 class="char-name">Elsa</h3>
+                <div class="char-desc">
+                    This is Elsa. She is tall and slim. She has an oval face. She has straight, blonde hair. She has blue eyes.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Папка 6: Герои мультиков -->
+    <div id="toons" class="folder-content">
+        <h2 class="section-title">Cartoon Characters</h2>
+        
+        <div class="plan-box">
+            <h3>Description Plan:</h3>
+            <div class="plan-step">1. This is [Name].</div>
+            <div class="plan-step">2. He / She is [tall / short / slim / chubby].</div>
+            <div class="plan-step">3. He / She has a / an [oval / square] face.</div>
+            <div class="plan-step">4. He / She has [short / long] [straight / curly] [brown / blonde / red] hair.</div>
+            <div class="plan-step">5. He / She has [blue / green / brown] eyes.</div>
+        </div>
+
+        <p class="hint">Try to describe the character using the plan! Click the card to check your answer.</p>
+        
+        <div class="characters-grid">
+            <div class="char-card" onclick="this.classList.toggle('open')">
+                <img src="https://z-cdn-media.chatglm.cn/files/ecf6fd7c-a47d-44bf-9f72-e58c159d136c.jpeg?auth_key=1889041823-876cba6c784446618ba67d30e02ba1e0-0-46dab4896e83ed88c767a9a964a5b342" class="char-img" alt="Woody" onerror="this.src='https://img.icons8.com/color/96/woody.png'">
+                <h3 class="char-name">Sheriff Woody</h3>
+                <div class="char-desc">
+                    This is Woody. He is tall and thin. He has an oval face. He has short, straight, brown hair. He has small eyes.
+                </div>
+            </div>
+
+            <div class="char-card" onclick="this.classList.toggle('open')">
+                <img src="https://z-cdn-media.chatglm.cn/files/ae0e83d8-c8f7-4a2c-9fc7-d907ff51e378.jpeg?auth_key=1889041823-e0a2579c5bd4402b8d3316ad05f0e427-0-88f1d85dd53485701d876f8515122929" class="char-img" alt="Jessie" onerror="this.src='https://img.icons8.com/color/96/jessie.png'">
+                <h3 class="char-name">Jessie</h3>
+                <div class="char-desc">
+                    This is Jessie. She is short. She has an oval face. She has long, straight, red hair. She has green eyes.
+                </div>
+            </div>
+
+            <div class="char-card" onclick="this.classList.toggle('open')">
+                <img src="https://z-cdn-media.chatglm.cn/files/14a05dc5-a516-4178-aea7-2b8f47d286be.jpeg?auth_key=1889041823-e94f222b3c77401894a4c14c06c38f7c-0-6ca9a99991a3ed306ee9fd5a34fd48c7" class="char-img" alt="Boss Baby" onerror="this.src='https://img.icons8.com/color/96/boss-baby.png'">
+                <h3 class="char-name">Boss Baby</h3>
+                <div class="char-desc">
+                    This is Boss Baby. He is short and chubby. He has an oval face. He has short, straight, blonde hair. He has blue eyes.
+                </div>
+            </div>
+
+            <div class="char-card" onclick="this.classList.toggle('open')">
+                <img src="https://z-cdn-media.chatglm.cn/files/7fcdca44-3311-4ac3-a652-53ed2bdc2d84.jpeg?auth_key=1889041823-ea76097bf159404dbfaebcdbaf86cfe0-0-e1d85e01763f10b651c98611d9ccb556" class="char-img" alt="Boy" onerror="this.src='https://img.icons8.com/color/96/boy.png'">
+                <h3 class="char-name">Boy</h3>
+                <div class="char-desc">
+                    This is Boy. He is short. He has an oval face. He has short, brown hair. He has big blue eyes.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Папка 7: Читаем текст -->
+    <div id="reading" class="folder-content">
+        <h2 class="section-title">Reading Practice</h2>
+        <p class="hint">Read the texts and answer the questions below!</p>
+        
+        <h3 style="color: var(--secondary); font-family: 'Fredoka', sans-serif;">Text 1: Emily</h3>
+        <div class="reading-box">
+            This is Emily. She is tall and slim. She has an oval face. She has long, straight dark hair. Her eyes are brown. She has plump lips and a small nose. Emily is very beautiful!
+        </div>
+
+        <div class="questions-list" style="margin-bottom: 40px;">
+            <div class="question-card" onclick="this.classList.toggle('open')">
+                <div class="question-text">1. Is Emily tall or short?</div>
+                <div class="answer-text">She is tall.</div>
+            </div>
+            <div class="question-card" onclick="this.classList.toggle('open')">
+                <div class="question-text">2. Does she have an oval or square face?</div>
+                <div class="answer-text">She has an oval face.</div>
+            </div>
+            <div class="question-card" onclick="this.classList.toggle('open')">
+                <div class="question-text">3. Is her hair curly or straight?</div>
+                <div class="answer-text">Her hair is straight.</div>
+            </div>
+            <div class="question-card" onclick="this.classList.toggle('open')">
+                <div class="question-text">4. What color are her eyes?</div>
+                <div class="answer-text">Her eyes are brown.</div>
+            </div>
+        </div>
+
+        <hr class="text-divider">
+
+        <h3 style="color: var(--primary); font-family: 'Fredoka', sans-serif;">Text 2: Tom</h3>
+        <div class="reading-box reading-box-2">
+            This is Tom. He is short and chubby. He has a square face. He has short, curly blonde hair. His eyes are blue. He has big ears and a big mouth. Tom is very funny!
+        </div>
+
+        <div class="questions-list">
+            <div class="question-card" onclick="this.classList.toggle('open')">
+                <div class="question-text">1. Is Tom tall or short?</div>
+                <div class="answer-text">He is short.</div>
+            </div>
+            <div class="question-card" onclick="this.classList.toggle('open')">
+                <div class="question-text">2. Does he have an oval or square face?</div>
+                <div class="answer-text">He has a square face.</div>
+            </div>
+            <div class="question-card" onclick="this.classList.toggle('open')">
+                <div class="question-text">3. Is he slim or chubby?</div>
+                <div class="answer-text">He is chubby.</div>
+            </div>
+            <div class="question-card" onclick="this.classList.toggle('open')">
+                <div class="question-text">4. Is his hair straight or curly?</div>
+                <div class="answer-text">His hair is curly.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ВКЛАДОК ---
+        function openFolder(evt, folderId) {
+            let i, folderContent, tabBtns;
+            
+            folderContent = document.getElementsByClassName("folder-content");
+            for (i = 0; i < folderContent.length; i++) {
+                folderContent[i].classList.remove("active");
+            }
+
+            tabBtns = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            document.getElementById(folderId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // --- ИГРА МЕМОРИ ---
+        const pairsData = [
+            {en: 'Tall', ru: 'Высокий'},
+            {en: 'Short', ru: 'Низкий'},
+            {en: 'Slim', ru: 'Стройный'},
+            {en: 'Chubby', ru: 'Пухлый'},
+            {en: 'Curly', ru: 'Кудрявый'},
+            {en: 'Straight', ru: 'Прямой'},
+            {en: 'Blue eyes', ru: 'Голубые глаза'},
+            {en: 'Red hair', ru: 'Рыжие волосы'}
+        ];
+        
+        let cardsArray = [];
+        pairsData.forEach(p => {
+            cardsArray.push({text: p.en, pair: p.ru});
+            cardsArray.push({text: p.ru, pair: p.en});
+        });
+        
+        let firstCard = null;
+        let secondCard = null;
+        let lockBoard = false;
+        let matchedPairs = 0;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function createBoard() {
+            const board = document.getElementById('memory-grid');
+            shuffle(cardsArray);
+            board.innerHTML = '';
+            matchedPairs = 0;
+            document.getElementById('memory-status').innerText = '';
+            
+            cardsArray.forEach(c => {
+                const card = document.createElement('div');
+                card.classList.add('memory-card');
+                card.dataset.text = c.text;
+                card.dataset.pair = c.pair;
+                card.innerText = c.text;
+                card.style.color = 'transparent'; // Прячем текст
+                card.onclick = flipCard;
+                board.appendChild(card);
+            });
+        }
+
+        function flipCard() {
+            if (lockBoard) return;
+            if (this === firstCard) return;
+
+            this.classList.add('flipped');
+            this.style.color = '#2D3436';
+
+            if (!firstCard) {
+                firstCard = this;
+                return;
+            }
+
+            secondCard = this;
+            checkMatch();
+        }
+
+        function checkMatch() {
+            let isMatch = firstCard.dataset.pair === secondCard.dataset.text;
+
+            if (isMatch) {
+                disableCards();
+                matchedPairs++;
+                document.getElementById('memory-status').innerText = `Found pairs: ${matchedPairs} out of 8!`;
+                if (matchedPairs === 8) {
+                    document.getElementById('memory-status').innerText = "Hooray! You won!";
+                }
+            } else {
+                unflipCards();
+            }
+        }
+
+        function disableCards() {
+            firstCard.classList.add('matched');
+            secondCard.classList.add('matched');
+            resetBoard();
+        }
+
+        function unflipCards() {
+            lockBoard = true;
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                firstCard.style.color = 'transparent';
+                
+                secondCard.classList.remove('flipped');
+                secondCard.style.color = 'transparent';
+                
+                resetBoard();
+            }, 1000);
+        }
+
+        function resetBoard() {
+            [firstCard, secondCard, lockBoard] = [null, null, false];
+        }
+
+        createBoard();
+
+        // --- ИГРА "ПОКАЖИ НА СЕБЕ" ---
+        const wordsToGuess = [
+            "Show me your Eyes", 
+            "Show me your Nose", 
+            "Show me your Lips", 
+            "Show me your Hair", 
+            "Show me your Arms", 
+            "Show me your Legs",
+            "Show me your Ears"
+        ];
+
+        function generateWord() {
+            const randomIndex = Math.floor(Math.random() * wordsToGuess.length);
+            document.getElementById('word-display').innerText = wordsToGuess[randomIndex];
+        }
+    </script>
+</body>
+</html>
