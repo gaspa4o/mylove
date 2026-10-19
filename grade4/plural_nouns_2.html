@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Множественное число • Английский 4 класс</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFF8F0;
+  --bg-2: #FFEFE0;
+  --coral: #FF6B47;
+  --coral-dark: #E55A38;
+  --teal: #2A9D8F;
+  --teal-dark: #218077;
+  --dark: #264653;
+  --yellow: #F4A261;
+  --pink: #E76F51;
+  --border: #E8D5C4;
+  --red: #E63946;
+}
+* { box-sizing: border-box; }
+body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--dark); margin: 0; overflow-x: hidden; }
+h1, h2, h3, h4, .display { font-family: 'Fredoka', sans-serif; }
+
+/* HERO */
+.hero { position: relative; overflow: hidden; background: linear-gradient(135deg, #FFEFE0 0%, #FFD4C4 50%, #FFE0CC 100%); }
+.hero-blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.4; animation: float 10s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0) translateX(0) scale(1); } 33% { transform: translateY(-30px) translateX(20px) scale(1.05); } 66% { transform: translateY(20px) translateX(-20px) scale(0.95); } }
+.floating-word { position: absolute; background: white; padding: 8px 16px; border-radius: 20px; font-family: 'Fredoka', sans-serif; font-weight: 600; box-shadow: 0 8px 20px rgba(0,0,0,0.08); animation: drift 12s ease-in-out infinite; border: 2px solid var(--border); }
+@keyframes drift { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-20px) rotate(2deg); } }
+
+/* NAV */
+nav.main-nav { position: sticky; top: 0; z-index: 50; background: rgba(255, 248, 240, 0.85); backdrop-filter: blur(12px); border-bottom: 2px solid var(--border); }
+.nav-link { padding: 8px 14px; border-radius: 12px; font-weight: 700; font-size: 14px; transition: all 0.2s; color: var(--dark); cursor: pointer; white-space: nowrap; }
+.nav-link:hover { background: var(--coral); color: white; }
+
+/* SECTIONS */
+.section { padding: 80px 0; position: relative; }
+.section-num { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: var(--coral); color: white; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 24px; box-shadow: 0 8px 20px rgba(255, 107, 71, 0.3); }
+
+/* ===== GROUP CARDS (новая теория) ===== */
+.group-card {
+  border-radius: 28px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  border: 3px solid transparent;
+}
+.group-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+.group-card.green { background: linear-gradient(160deg, #E0F5F2 0%, #C8EBE5 100%); border-color: var(--teal); }
+.group-card.blue  { background: linear-gradient(160deg, #E3EDF6 0%, #C9DCF0 100%); border-color: #4A90D9; }
+.group-card.orange{ background: linear-gradient(160deg, #FFE9D6 0%, #FFD4B0 100%); border-color: var(--yellow); }
+
+.group-num {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: white;
+  opacity: 0.25;
+}
+.group-card.green .group-num { background: var(--teal); }
+.group-card.blue .group-num { background: #4A90D9; }
+.group-card.orange .group-num { background: var(--yellow); }
+
+.group-emoji { font-size: 44px; line-height: 1; }
+.group-title { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.1; }
+.group-formula {
+  display: inline-block;
+  background: white;
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin: 12px 0;
+}
+.group-card.green .group-formula { color: var(--teal-dark); }
+.group-card.blue .group-formula { color: #2C5F8D; }
+.group-card.orange .group-formula { color: var(--coral-dark); }
+
+.example-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.7);
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  flex-wrap: wrap;
+}
+.example-arrow { color: var(--coral); font-weight: 700; }
+.group-card.green .example-arrow { color: var(--teal); }
+.group-card.blue .example-arrow { color: #4A90D9; }
+.group-card.orange .example-arrow { color: var(--yellow); }
+
+.group-hint {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* TABLE */
+.rules-table { width: 100%; border-collapse: separate; border-spacing: 0; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+.rules-table th { background: var(--dark); color: white; padding: 14px 16px; font-family: 'Fredoka', sans-serif; font-size: 15px; text-align: left; }
+.rules-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.rules-table tr:last-child td { border-bottom: none; }
+.rules-table tr.green-row td:first-child { border-left: 6px solid var(--teal); }
+.rules-table tr.blue-row td:first-child { border-left: 6px solid #4A90D9; }
+.rules-table tr.orange-row td:first-child { border-left: 6px solid var(--yellow); }
+.rules-table tr:hover td { background: #FFF8F0; }
+.group-tag { display: inline-block; padding: 4px 10px; border-radius: 8px; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 13px; color: white; }
+.tag-green { background: var(--teal); }
+.tag-blue { background: #4A90D9; }
+.tag-orange { background: var(--yellow); }
+
+/* EXCEPTIONS */
+.exception-card { background: linear-gradient(135deg, #FFF4E6 0%, #FFE0CC 100%); border: 2px dashed var(--coral); border-radius: 20px; padding: 20px; text-align: center; transition: all 0.3s; }
+.exception-card:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: 0 12px 24px rgba(255, 107, 71, 0.2); }
+.exception-card.special { background: linear-gradient(135deg, #E0F5F2 0%, #C8EBE5 100%); border-color: var(--teal); }
+.exception-emoji { font-size: 36px; }
+
+/* FLASHCARDS */
+.flashcard { background: white; border-radius: 20px; padding: 20px 16px; text-align: center; cursor: pointer; transition: all 0.4s; border: 3px solid var(--border); min-height: 160px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; }
+.flashcard:hover { border-color: var(--coral); transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+.flashcard.flipped { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%); color: white; border-color: var(--teal-dark); }
+.flashcard.flipped .animal-emoji { transform: scale(1.15); }
+.animal-emoji { font-size: 42px; transition: transform 0.3s; }
+
+/* READING */
+.reading-text { font-size: 18px; line-height: 1.9; color: var(--dark); }
+.plural-highlight { background: linear-gradient(120deg, rgba(42, 157, 143, 0.25) 0%, rgba(42, 157, 143, 0.25) 100%); padding: 2px 6px; border-radius: 6px; font-weight: 700; color: var(--teal-dark); }
+.reading-q { background: white; border: 2px solid var(--border); border-radius: 16px; padding: 16px; transition: all 0.2s; }
+.reading-q:hover { border-color: var(--coral); }
+.q-input { border: 2px solid var(--border); border-radius: 10px; padding: 6px 12px; font-family: 'Fredoka', sans-serif; font-size: 16px; background: var(--bg); transition: all 0.2s; width: 100%; margin-top: 8px; }
+.q-input:focus { outline: none; border-color: var(--coral); background: white; }
+
+/* EXERCISES */
+.exercise-input { border: 2px solid var(--border); border-radius: 12px; padding: 8px 14px; font-family: 'Fredoka', sans-serif; font-size: 18px; width: 140px; text-align: center; transition: all 0.3s; background: white; }
+.exercise-input:focus { outline: none; border-color: var(--coral); background: #FFF8F0; }
+.exercise-input.correct { border-color: var(--teal); background: #D5F0EB; color: var(--teal-dark); }
+.exercise-input.wrong { border-color: var(--red); background: #FFE5E7; color: var(--red); animation: shake 0.4s; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+.choice-btn { background: white; border: 3px solid var(--border); border-radius: 14px; padding: 10px 18px; font-family: 'Fredoka', sans-serif; font-size: 17px; cursor: pointer; transition: all 0.2s; font-weight: 500; }
+.choice-btn:hover { border-color: var(--coral); transform: translateY(-2px); }
+.choice-btn.correct { background: var(--teal); color: white; border-color: var(--teal); }
+.choice-btn.wrong { background: var(--red); color: white; border-color: var(--red); }
+.choice-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+
+.btn-primary { background: var(--coral); color: white; padding: 12px 28px; border-radius: 16px; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 18px; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 6px 0 var(--coral-dark); text-decoration: none; display: inline-block; }
+.btn-primary:hover { transform: translateY(2px); box-shadow: 0 4px 0 var(--coral-dark); }
+.btn-primary:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--coral-dark); }
+.btn-teal { background: var(--teal); box-shadow: 0 6px 0 var(--teal-dark); }
+.btn-teal:hover { box-shadow: 0 4px 0 var(--teal-dark); }
+
+/* GAME */
+.game-canvas { position: relative; width: 100%; height: 480px; background: linear-gradient(180deg, #E0F5F2 0%, #C8EBE5 100%); border-radius: 24px; overflow: hidden; border: 3px solid var(--teal-dark); }
+.bubble { position: absolute; width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 15px; color: white; cursor: pointer; user-select: none; text-align: center; padding: 4px; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 60%), var(--coral); box-shadow: 0 6px 16px rgba(0,0,0,0.2); transition: transform 0.15s; }
+.bubble:hover { transform: scale(1.1); }
+.bubble.popped { animation: pop 0.4s forwards; }
+@keyframes pop { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.6; } 100% { transform: scale(0); opacity: 0; } }
+.bubble.wrong-flash { animation: wrongFlash 0.4s forwards; }
+@keyframes wrongFlash { 0% { transform: scale(1); } 50% { transform: scale(1.2); background: var(--red); } 100% { transform: scale(0.8); opacity: 0; } }
+.cloud { position: absolute; background: white; border-radius: 50px; opacity: 0.7; animation: cloudMove 30s linear infinite; }
+@keyframes cloudMove { from { transform: translateX(-100px); } to { transform: translateX(calc(100% + 100px)); } }
+
+/* TOAST */
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120px); background: var(--dark); color: white; padding: 16px 28px; border-radius: 16px; font-weight: 700; z-index: 1000; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-family: 'Fredoka', sans-serif; }
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.success { background: var(--teal); }
+.toast.error { background: var(--red); }
+.toast.info { background: var(--coral); }
+
+/* CONFETTI */
+.confetti-piece { position: fixed; width: 12px; height: 12px; pointer-events: none; animation: confetti 2.5s ease-out forwards; z-index: 9999; }
+@keyframes confetti { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+html { scroll-behavior: smooth; }
+.progress-bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--coral), var(--yellow)); transition: width 0.5s; border-radius: 4px; }
+.result-banner { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%); color: white; padding: 16px 24px; border-radius: 16px; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 18px; text-align: center; margin-top: 16px; display: none; }
+.result-banner.show { display: block; animation: slideIn 0.4s; }
+@keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.certificate { background: linear-gradient(135deg, #FFD4C4 0%, #FFE5DC 100%); border: 4px dashed var(--coral); border-radius: 28px; padding: 40px; text-align: center; position: relative; overflow: hidden; }
+.certificate::before { content: '★'; position: absolute; font-size: 200px; color: rgba(255, 107, 71, 0.08); top: -40px; right: -40px; font-family: serif; }
+@media (max-width: 768px) { .hero-blob { width: 200px; height: 200px; } .floating-word { font-size: 12px; padding: 6px 12px; } }
+</style>
+</head>
+<body>
+
+<nav class="main-nav">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-2 overflow-x-auto">
+    <div class="flex items-center gap-2 mr-4 shrink-0">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg" style="background: var(--coral); font-family: 'Fredoka', sans-serif;">P</div>
+      <span class="font-bold display text-lg" style="color: var(--dark);">Plurals</span>
+    </div>
+    <a class="nav-link" href="#theory">Теория</a>
+    <a class="nav-link" href="#exceptions">Исключения</a>
+    <a class="nav-link" href="#vocabulary">Словарь</a>
+    <a class="nav-link" href="#reading">Чтение</a>
+    <a class="nav-link" href="#exercises">Упражнения</a>
+    <a class="nav-link" href="#game">Игра</a>
+  </div>
+</nav>
+
+<section class="hero py-20 md:py-28">
+  <div class="hero-blob" style="width: 300px; height: 300px; background: var(--coral); top: -50px; left: -50px;"></div>
+  <div class="hero-blob" style="width: 250px; height: 250px; background: var(--teal); bottom: -50px; right: 10%; animation-delay: -3s;"></div>
+  <div class="hero-blob" style="width: 200px; height: 200px; background: var(--yellow); top: 30%; right: -50px; animation-delay: -6s;"></div>
+  <div class="floating-word" style="top: 15%; left: 8%; animation-delay: 0s;">cat → cats</div>
+  <div class="floating-word" style="top: 25%; right: 12%; animation-delay: -2s;">box → boxes</div>
+  <div class="floating-word" style="bottom: 25%; left: 15%; animation-delay: -4s;">baby → babies</div>
+  <div class="floating-word" style="bottom: 15%; right: 8%; animation-delay: -6s;">mouse → mice</div>
+  <div class="floating-word" style="top: 50%; left: 5%; animation-delay: -8s;">leaf → leaves</div>
+
+  <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+    <div class="inline-block mb-6 px-5 py-2 rounded-full text-sm font-bold tracking-wider" style="background: rgba(255,107,71,0.15); color: var(--coral-dark);">АНГЛИЙСКИЙ ЯЗЫК · 4 КЛАСС</div>
+    <h1 class="display text-5xl md:text-7xl font-bold mb-6" style="color: var(--dark); line-height: 1.05;">
+      Множественное число<br>
+      <span style="color: var(--coral);">существительных</span>
+    </h1>
+    <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto" style="color: var(--dark); opacity: 0.85;">
+      Всего <strong>3 группы правил</strong> — это проще, чем кажется! Разберём, выучим исключения и поиграем.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="#theory" class="btn-primary">Начать урок</a>
+      <a href="#game" class="btn-primary btn-teal">Сразу в игру</a>
+    </div>
+
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+      <div class="bg-white/70 backdrop-blur rounded-2xl p-4">
+        <div class="display text-3xl font-bold" style="color: var(--teal);">3</div>
+        <div class="text-sm font-semibold opacity-75">группы правил</div>
+      </div>
+      <div class="bg-white/70 backdrop-blur rounded-2xl p-4">
+        <div class="display text-3xl font-bold" style="color: var(--coral);">12</div>
+        <div class="text-sm font-semibold opacity-75">исключений</div>
+      </div>
+      <div class="bg-white/70 backdrop-blur rounded-2xl p-4">
+        <div class="display text-3xl font-bold" style="color: var(--yellow);">16</div>
+        <div class="text-sm font-semibold opacity-75">слов в словаре</div>
+      </div>
+      <div class="bg-white/70 backdrop-blur rounded-2xl p-4">
+        <div class="display text-3xl font-bold" style="color: var(--pink);">3</div>
+        <div class="text-sm font-semibold opacity-75">упражнения</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THEORY -->
+<section id="theory" class="section">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center gap-4 mb-3">
+      <div class="section-num">1</div>
+      <div>
+        <div class="text-sm font-bold uppercase tracking-wider" style="color: var(--coral);">Theory</div>
+        <h2 class="display text-4xl md:text-5xl font-bold">Правила множественного числа</h2>
+      </div>
+    </div>
+    <p class="text-lg mb-10 max-w-3xl" style="opacity: 0.8;">
+      Не пугайся — правил много, но все они делятся всего на <strong>3 группы</strong>. Запомни цвет группы — и ты легко вспомнишь правило!
+    </p>
+
+    <!-- 3 GROUP CARDS -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+
+      <!-- GROUP 1: GREEN -->
+      <div class="group-card green">
+        <div class="group-num">1</div>
+        <div class="group-emoji">🟢</div>
+        <div class="group-title mt-2" style="color: var(--teal-dark);">Просто добавь <span style="color: var(--teal);">-s</span></div>
+        <div class="group-formula">слово + s</div>
+        <div class="space-y-2">
+          <div class="example-row"><span>cat</span><span class="example-arrow">→</span><span>cats</span></div>
+          <div class="example-row"><span>book</span><span class="example-arrow">→</span><span>books</span></div>
+          <div class="example-row"><span>dog</span><span class="example-arrow">→</span><span>dogs</span></div>
+          <div class="example-row"><span>boy</span><span class="example-arrow">→</span><span>boys</span></div>
+        </div>
+        <div class="group-hint">Подходит для большинства слов. И помни: после гласной + <strong>y</strong> тоже просто добавляем <strong>-s</strong> (boy → boys, day → days).</div>
+      </div>
+
+      <!-- GROUP 2: BLUE -->
+      <div class="group-card blue">
+        <div class="group-num">2</div>
+        <div class="group-emoji">🔵</div>
+        <div class="group-title mt-2" style="color: #2C5F8D;">Добавь <span style="color: #4A90D9;">-es</span></div>
+        <div class="group-formula">слово + es</div>
+        <div class="space-y-2">
+          <div class="example-row"><span>box</span><span class="example-arrow">→</span><span>boxes</span></div>
+          <div class="example-row"><span>bus</span><span class="example-arrow">→</span><span>buses</span></div>
+          <div class="example-row"><span>watch</span><span class="example-arrow">→</span><span>watches</span></div>
+          <div class="example-row"><span>potato</span><span class="example-arrow">→</span><span>potatoes</span></div>
+        </div>
+        <div class="group-hint">После шипящих (<strong>-s, -ss, -sh, -ch, -x, -z</strong>) и большинства слов на <strong>-o</strong>. <br>⚠ Но: <strong>photo → photos, radio → radios, kilo → kilos</strong> — только -s!</div>
+      </div>
+
+      <!-- GROUP 3: ORANGE -->
+      <div class="group-card orange">
+        <div class="group-num">3</div>
+        <div class="group-emoji">🟠</div>
+        <div class="group-title mt-2" style="color: var(--coral-dark);">Замени букву</div>
+        <div class="group-formula">y → ies / f → ves</div>
+        <div class="space-y-2">
+          <div class="example-row"><span>baby</span><span class="example-arrow">→</span><span>babies</span></div>
+          <div class="example-row"><span>city</span><span class="example-arrow">→</span><span>cities</span></div>
+          <div class="example-row"><span>leaf</span><span class="example-arrow">→</span><span>leaves</span></div>
+          <div class="example-row"><span>knife</span><span class="example-arrow">→</span><span>knives</span></div>
+        </div>
+        <div class="group-hint">
+          <strong>Согласная + y</strong>: меняем <strong>y → i</strong> и добавляем <strong>-es</strong>. <br>
+          <strong>-f / -fe</strong>: меняем на <strong>-ves</strong>.
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPACT TABLE -->
+    <h3 class="display text-2xl font-bold mb-4">Шпаргалка-таблица</h3>
+    <p class="text-sm mb-4 opacity-70">Если забыл правило — загляни сюда. Цвета строк соответствуют цветам групп выше.</p>
+    <div class="overflow-x-auto mb-6">
+      <table class="rules-table">
+        <thead>
+          <tr>
+            <th>Группа</th>
+            <th>Когда</th>
+            <th>Что делаем</th>
+            <th>Примеры</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="green-row">
+            <td><span class="group-tag tag-green">🟢 +s</span></td>
+            <td>Большинство слов</td>
+            <td>+ s</td>
+            <td>cat → cats, book → books</td>
+          </tr>
+          <tr class="green-row">
+            <td><span class="group-tag tag-green">🟢 +s</span></td>
+            <td>После гласной + y</td>
+            <td>+ s (y не меняем!)</td>
+            <td>boy → boys, day → days</td>
+          </tr>
+          <tr class="blue-row">
+            <td><span class="group-tag tag-blue">🔵 +es</span></td>
+            <td>После -s, -ss, -sh, -ch, -x, -z</td>
+            <td>+ es</td>
+            <td>box → boxes, bus → buses</td>
+          </tr>
+          <tr class="blue-row">
+            <td><span class="group-tag tag-blue">🔵 +es</span></td>
+            <td>После -o (большинство)</td>
+            <td>+ es</td>
+            <td>potato → potatoes, hero → heroes</td>
+          </tr>
+          <tr class="blue-row">
+            <td><span class="group-tag tag-blue" style="background: var(--coral);">⚠ +s</span></td>
+            <td>После -o (исключения)</td>
+            <td>+ s</td>
+            <td>photo → photos, radio → radios</td>
+          </tr>
+          <tr class="orange-row">
+            <td><span class="group-tag tag-orange">🟠 замени</span></td>
+            <td>После согласной + y</td>
+            <td>-y → -ies</td>
+            <td>city → cities, baby → babies</td>
+          </tr>
+          <tr class="orange-row">
+            <td><span class="group-tag tag-orange">🟠 замени</span></td>
+            <td>После -f или -fe</td>
+            <td>-f/-fe → -ves</td>
+            <td>leaf → leaves, knife → knives</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MEMORY TIP -->
+    <div class="bg-white rounded-2xl p-6 border-2" style="border-color: var(--coral);">
+      <h4 class="display text-xl font-bold mb-3" style="color: var(--coral-dark);">💡 Как легко запомнить?</h4>
+      <div class="grid md:grid-cols-3 gap-4 text-sm">
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shrink-0" style="background: var(--teal);">1</div>
+          <div><strong>Зелёная группа</strong> — самая лёгкая. Просто добавь <strong>-s</strong>. Таких слов большинство!</div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shrink-0" style="background: #4A90D9;">2</div>
+          <div><strong>Синяя группа</strong> — добавь <strong>-es</strong>. Шипящие звуки «ш», «ч» и буквы s, x подсказывают: «добавь больше!»</div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold shrink-0" style="background: var(--yellow);">3</div>
+          <div><strong>Оранжевая группа</strong> — нужно <strong>что-то заменить</strong>. Буква <strong>y</strong> или <strong>f</strong> на конце? Меняем!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXCEPTIONS -->
+<section id="exceptions" class="section" style="background: var(--bg-2);">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center gap-4 mb-3">
+      <div class="section-num" style="background: var(--teal); box-shadow: 0 8px 20px rgba(42, 157, 143, 0.3);">2</div>
+      <div>
+        <div class="text-sm font-bold uppercase tracking-wider" style="color: var(--teal);">Exceptions</div>
+        <h2 class="display text-4xl md:text-5xl font-bold">Исключения — нужно запомнить!</h2>
+      </div>
+    </div>
+    <p class="text-lg mb-10 max-w-3xl" style="opacity: 0.8;">
+      Эти слова не подходят ни к одной группе. Их нужно просто выучить. Делим на две команды: <strong>«меняются хитро»</strong> и <strong>«совсем не меняются»</strong>.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8" id="exceptions-grid"></div>
+
+    <div class="bg-white rounded-2xl p-6 border-2" style="border-color: var(--teal);">
+      <h4 class="display text-xl font-bold mb-3" style="color: var(--teal-dark);">💡 Лайфхаки для запоминания</h4>
+      <ul class="space-y-2 text-base">
+        <li class="flex gap-2"><span>👉</span><span><strong>man / woman → men / women</strong> — гласная <strong>a</strong> меняется на <strong>e</strong></span></li>
+        <li class="flex gap-2"><span>👉</span><span><strong>foot / tooth → feet / teeth</strong> — <strong>oo</strong> меняется на <strong>ee</strong></span></li>
+        <li class="flex gap-2"><span>👉</span><span><strong>mouse → mice</strong>, <strong>goose → geese</strong> — добавляется <strong>e</strong> внутри слова</span></li>
+        <li class="flex gap-2"><span>👉</span><span><strong>child → children</strong>, <strong>person → people</strong> — совсем другие слова</span></li>
+        <li class="flex gap-2"><span>👉</span><span><strong>sheep / fish / deer</strong> — хитрецы: одинаковые в ед. и мн. числе!</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VOCABULARY -->
+<section id="vocabulary" class="section">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center gap-4 mb-3">
+      <div class="section-num" style="background: var(--yellow); box-shadow: 0 8px 20px rgba(244, 162, 97, 0.3);">3</div>
+      <div>
+        <div class="text-sm font-bold uppercase tracking-wider" style="color: var(--yellow);">Vocabulary</div>
+        <h2 class="display text-4xl md:text-5xl font-bold">Словарь: животные</h2>
+      </div>
+    </div>
+    <p class="text-lg mb-8 max-w-3xl" style="opacity: 0.8;">Нажми на карточку, чтобы увидеть множественное число.</p>
+
+    <div class="bg-white rounded-2xl p-5 mb-6 border-2 flex flex-wrap items-center justify-between gap-4" style="border-color: var(--border);">
+      <div>
+        <div class="text-sm font-bold uppercase tracking-wider opacity-70">Просмотрено карточек</div>
+        <div class="display text-3xl font-bold"><span id="flashcard-count">0</span> <span class="opacity-40">/ 16</span></div>
+      </div>
+      <div class="flex-1 min-w-[200px]"><div class="progress-bar"><div class="progress-fill" id="flashcard-progress" style="width: 0%;"></div></div></div>
+      <div class="text-sm font-semibold" style="color: var(--coral);">👆 Нажми на карточку</div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="vocabulary-grid"></div>
+  </div>
+</section>
+
+<!-- READING -->
+<section id="reading" class="section" style="background: var(--bg-2);">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center gap-4 mb-3">
+      <div class="section-num" style="background: var(--pink); box-shadow: 0 8px 20px rgba(231, 111, 81, 0.3);">4</div>
+      <div>
+        <div class="text-sm font-bold uppercase tracking-wider" style="color: var(--pink);">Reading</div>
+        <h2 class="display text-4xl md:text-5xl font-bold">Чтение: A Day at the Farm</h2>
+      </div>
+    </div>
+    <p class="text-lg mb-8 max-w-3xl" style="opacity: 0.8;">Прочитай текст. Формы множественного числа выделены зелёным. Затем ответь на вопросы.</p>
+
+    <div class="grid lg:grid-cols-5 gap-6">
+      <div class="lg:col-span-3 bg-white rounded-2xl p-6 md:p-8 border-2" style="border-color: var(--border);">
+        <div class="flex items-center gap-2 mb-4"><span class="text-2xl">📖</span><h3 class="display text-2xl font-bold">A Day at the Farm</h3></div>
+        <p class="reading-text">
+          Last weekend, Emma and Tom visited their grandfather's farm. There were many <span class="plural-highlight">animals</span> there. Two <span class="plural-highlight">cats</span> were sleeping on the sunny porch. Three <span class="plural-highlight">dogs</span> were running in the yard.
+          In the field, they saw five <span class="plural-highlight">cows</span> eating green grass and four <span class="plural-highlight">horses</span> standing together. Near the pond, two white <span class="plural-highlight">geese</span> were swimming. Tom liked the little yellow <span class="plural-highlight">chickens</span> — they were so cute!
+          Emma's favorite <span class="plural-highlight">animals</span> were the <span class="plural-highlight">sheep</span> because they were so soft and fluffy. They also saw three <span class="plural-highlight">foxes</span> near the forest. Grandfather showed them two baby <span class="plural-highlight">mice</span> in the barn. He also had two <span class="plural-highlight">children</span> — Emma and Tom — who helped him every weekend.
+          At the end of the day, the <span class="plural-highlight">children</span> were tired but very happy. They took many <span class="plural-highlight">photos</span> and promised to come back next weekend.
+        </p>
+      </div>
+
+      <div class="lg:col-span-2 space-y-4">
+        <h3 class="display text-2xl font-bold">Ответь на вопросы:</h3>
+        <div class="reading-q"><div class="font-semibold">1. How many <em>cats</em> were sleeping?</div><input type="text" class="q-input" data-q="1" placeholder="Напиши число словом" /></div>
+        <div class="reading-q"><div class="font-semibold">2. What were the <em>geese</em> doing?</div><input type="text" class="q-input" data-q="2" placeholder="Они были..." /></div>
+        <div class="reading-q"><div class="font-semibold">3. Why did Emma like the <em>sheep</em>?</div><input type="text" class="q-input" data-q="3" placeholder="Потому что..." /></div>
+        <div class="reading-q"><div class="font-semibold">4. How many <em>foxes</em> did they see?</div><input type="text" class="q-input" data-q="4" placeholder="Число словом" /></div>
+        <div class="reading-q"><div class="font-semibold">5. What did grandfather show in the barn?</div><input type="text" class="q-input" data-q="5" placeholder="Он показал..." /></div>
+        <button class="btn-primary w-full" onclick="checkReading()">Проверить ответы</button>
+        <div class="result-banner" id="reading-result"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXERCISES -->
+<section id="exercises" class="section">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center gap-4 mb-3">
+      <div class="section-num">5</div>
+      <div>
+        <div class="text-sm font-bold uppercase tracking-wider" style="color: var(--coral);">Practice</div>
+        <h2 class="display text-4xl md:text-5xl font-bold">Упражнения</h2>
+      </div>
+    </div>
+    <p class="text-lg mb-10 max-w-3xl" style="opacity: 0.8;">Три типа заданий: напиши форму, выбери правильный вариант, найди ошибки.</p>
+
+    <div class="bg-white rounded-2xl p-6 md:p-8 border-2 mb-8" style="border-color: var(--border);">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold display" style="background: var(--coral);">A</div>
+        <div><h3 class="display text-2xl font-bold">Напиши множественное число</h3><p class="text-sm opacity-70">Вспомни правило и впиши форму</p></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="ex1-grid"></div>
+      <div class="flex flex-wrap items-center gap-3 mt-6">
+        <button class="btn-primary" onclick="checkEx1()">Проверить</button>
+        <button class="btn-primary btn-teal" onclick="resetEx1()">Сбросить</button>
+        <div class="result-banner flex-1" id="ex1-result" style="margin-top: 0;"></div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 md:p-8 border-2 mb-8" style="border-color: var(--border);">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold display" style="background: var(--teal);">B</div>
+        <div><h3 class="display text-2xl font-bold">Выбери правильный вариант</h3><p class="text-sm opacity-70">Нажми на правильную форму</p></div>
+      </div>
+      <div class="space-y-4" id="ex2-list"></div>
+      <div class="result-banner" id="ex2-result"></div>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 md:p-8 border-2 mb-8" style="border-color: var(--border);">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold display" style="background: var(--yellow);">C</div>
+        <div><h3 class="display text-2xl font-bold">Найди и исправь ошибку</h3><p class="text-sm opacity-70">В каждом предложении есть ошибка во множественном числе</p></div>
+      </div>
+      <div class="space-y-4" id="ex3-list"></div>
+      <div class="flex flex-wrap items-center gap-3 mt-6">
+        <button class="btn-primary" onclick="checkEx3()">Проверить</button>
+        <button class="btn-primary btn-teal" onclick="resetEx3()">Сбросить</button>
+        <div class="result-banner flex-1" id="ex3-result" style="margin-top: 0;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAME -->
+<section id="game" class="section" style="background: var(--bg-2);">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center gap-4 mb-3">
+      <div class="section-num" style="background: var(--teal); box-shadow: 0 8px 20px rgba(42, 157, 143, 0.3);">6</div>
+      <div>
+        <div class="text-sm font-bold uppercase tracking-wider" style="color: var(--teal);">Game</div>
+        <h2 class="display text-4xl md:text-5xl font-bold">Bubble Plurals — лопай шарики!</h2>
+      </div>
+    </div>
+    <p class="text-lg mb-8 max-w-3xl" style="opacity: 0.8;">Сверху слово в единственном числе. Лопай шарики с правильной формой множественного числа. У тебя 3 жизни!</p>
+
+    <div class="bg-white rounded-2xl p-5 border-2 mb-4" style="border-color: var(--border);">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div><div class="text-xs font-bold uppercase opacity-60 tracking-wider">Слово</div><div class="display text-3xl md:text-4xl font-bold" style="color: var(--coral);" id="game-word">—</div></div>
+        <div><div class="text-xs font-bold uppercase opacity-60 tracking-wider">Очки</div><div class="display text-3xl md:text-4xl font-bold" style="color: var(--teal);" id="game-score">0</div></div>
+        <div><div class="text-xs font-bold uppercase opacity-60 tracking-wider">Жизни</div><div class="display text-3xl md:text-4xl font-bold" id="game-lives">❤❤❤</div></div>
+      </div>
+    </div>
+
+    <div class="game-canvas" id="game-canvas">
+      <div class="cloud" style="width: 80px; height: 30px; top: 20px; left: 10%;"></div>
+      <div class="cloud" style="width: 100px; height: 35px; top: 50px; left: 50%; animation-delay: -10s;"></div>
+      <div class="cloud" style="width: 70px; height: 28px; top: 30px; left: 75%; animation-delay: -20s;"></div>
+
+      <div class="absolute inset-0 flex items-center justify-center" id="game-start">
+        <div class="text-center">
+          <div class="text-6xl mb-4">🫧</div>
+          <h3 class="display text-3xl font-bold mb-3" style="color: var(--dark);">Готов играть?</h3>
+          <p class="mb-6 opacity-70 max-w-md mx-auto">Лопай шарики с правильной формой. Чем больше правильных ответов — тем выше счёт!</p>
+          <button class="btn-primary btn-teal" onclick="startGame()">Старт</button>
+        </div>
+      </div>
+
+      <div class="absolute inset-0 flex items-center justify-center hidden" id="game-end">
+        <div class="text-center bg-white p-8 rounded-2xl mx-4">
+          <div class="text-5xl mb-3" id="game-end-emoji">🎉</div>
+          <h3 class="display text-3xl font-bold mb-2" style="color: var(--dark);">Игра окончена!</h3>
+          <p class="mb-2 opacity-80">Твой счёт:</p>
+          <div class="display text-5xl font-bold mb-6" style="color: var(--coral);" id="game-final-score">0</div>
+          <button class="btn-primary" onclick="startGame()">Играть снова</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="certificate">
+      <div class="text-5xl mb-3">🏆</div>
+      <h2 class="display text-3xl md:text-4xl font-bold mb-3">Ты прошёл рабочий лист!</h2>
+      <p class="text-lg mb-4 opacity-80">Теперь ты знаешь все правила множественного числа, исключения и умеешь применять их на практике.</p>
+      <div class="inline-block bg-white px-6 py-2 rounded-full display font-bold" style="color: var(--coral);">Plural Nouns · Master ⭐</div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-8 text-center" style="background: var(--dark); color: white;">
+  <p class="opacity-70 text-sm">Рабочий лист по английскому языку · 4 класс · Множественное число существительных</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const exceptions = [
+  { s: 'man', p: 'men', emoji: '👨', type: 'normal' },
+  { s: 'woman', p: 'women', emoji: '👩', type: 'normal' },
+  { s: 'child', p: 'children', emoji: '🧒', type: 'normal' },
+  { s: 'foot', p: 'feet', emoji: '🦶', type: 'normal' },
+  { s: 'tooth', p: 'teeth', emoji: '🦷', type: 'normal' },
+  { s: 'mouse', p: 'mice', emoji: '🐭', type: 'normal' },
+  { s: 'goose', p: 'geese', emoji: '🦢', type: 'normal' },
+  { s: 'person', p: 'people', emoji: '🧑', type: 'normal' },
+  { s: 'ox', p: 'oxen', emoji: '🐂', type: 'normal' },
+  { s: 'sheep', p: 'sheep', emoji: '🐑', type: 'special' },
+  { s: 'fish', p: 'fish', emoji: '🐟', type: 'special' },
+  { s: 'deer', p: 'deer', emoji: '🦌', type: 'special' }
+];
+
+const vocabulary = [
+  { s: 'cat', p: 'cats', emoji: '🐱' },
+  { s: 'dog', p: 'dogs', emoji: '🐶' },
+  { s: 'bird', p: 'birds', emoji: '🐦' },
+  { s: 'horse', p: 'horses', emoji: '🐴' },
+  { s: 'cow', p: 'cows', emoji: '🐮' },
+  { s: 'pig', p: 'pigs', emoji: '🐷' },
+  { s: 'duck', p: 'ducks', emoji: '🦆' },
+  { s: 'rabbit', p: 'rabbits', emoji: '🐰' },
+  { s: 'fox', p: 'foxes', emoji: '🦊' },
+  { s: 'wolf', p: 'wolves', emoji: '🐺' },
+  { s: 'mouse', p: 'mice', emoji: '🐭' },
+  { s: 'goose', p: 'geese', emoji: '🦢' },
+  { s: 'sheep', p: 'sheep', emoji: '🐑' },
+  { s: 'fish', p: 'fish', emoji: '🐟' },
+  { s: 'deer', p: 'deer', emoji: '🦌' },
+  { s: 'bear', p: 'bears', emoji: '🐻' }
+];
+
+const excGrid = document.getElementById('exceptions-grid');
+exceptions.forEach(e => {
+  const card = document.createElement('div');
+  card.className = 'exception-card' + (e.type === 'special' ? ' special' : '');
+  card.innerHTML = `
+    <div class="exception-emoji mb-2">${e.emoji}</div>
+    <div class="display font-bold text-lg">${e.s}</div>
+    <div class="my-1" style="color: var(--coral); font-weight: 700;">↓</div>
+    <div class="display font-bold text-xl" style="color: ${e.type === 'special' ? 'var(--teal-dark)' : 'var(--coral-dark)'};">${e.p}</div>
+    ${e.type === 'special' ? '<div class="text-xs mt-2 font-bold opacity-70">не меняется</div>' : ''}
+  `;
+  excGrid.appendChild(card);
+});
+
+const vocabGrid = document.getElementById('vocabulary-grid');
+const flippedSet = new Set();
+vocabulary.forEach((v, i) => {
+  const card = document.createElement('div');
+  card.className = 'flashcard';
+  card.dataset.idx = i;
+  card.innerHTML = `
+    <div class="animal-emoji">${v.emoji}</div>
+    <div class="display text-xl font-bold front">${v.s}</div>
+    <div class="display text-xl font-bold back hidden">→ ${v.p}</div>
+  `;
+  card.addEventListener('click', () => {
+    card.classList.toggle('flipped');
+    const isFlipped = card.classList.contains('flipped');
+    card.querySelector('.front').classList.toggle('hidden', isFlipped);
+    card.querySelector('.back').classList.toggle('hidden', !isFlipped);
+    if (isFlipped && !flippedSet.has(i)) {
+      flippedSet.add(i);
+      updateFlashcardProgress();
+    }
+  });
+  vocabGrid.appendChild(card);
+});
+
+function updateFlashcardProgress() {
+  const count = flippedSet.size;
+  document.getElementById('flashcard-count').textContent = count;
+  document.getElementById('flashcard-progress').style.width = (count / vocabulary.length * 100) + '%';
+  if (count === vocabulary.length) { showToast('Все слова пройдены! 🎉', 'success'); confetti(); }
+}
+
+const readingAnswers = {
+  1: ['two', '2'],
+  2: ['swimming', 'they were swimming'],
+  3: ['soft', 'fluffy', 'they were soft', 'they were fluffy', 'soft and fluffy', 'they were soft and fluffy'],
+  4: ['three', '3'],
+  5: ['mice', 'two mice', 'baby mice', 'two baby mice']
+};
+function normalize(str) { return str.toLowerCase().trim().replace(/[.,!?]/g, '').replace(/\s+/g, ' '); }
+
+function checkReading() {
+  let correct = 0;
+  document.querySelectorAll('.q-input').forEach(input => {
+    const q = input.dataset.q;
+    const val = normalize(input.value);
+    const acceptable = readingAnswers[q].map(normalize);
+    if (acceptable.some(a => val === a || val.includes(a))) {
+      input.style.borderColor = 'var(--teal)'; input.style.background = '#D5F0EB'; correct++;
+    } else { input.style.borderColor = 'var(--red)'; input.style.background = '#FFE5E7'; }
+  });
+  const banner = document.getElementById('reading-result');
+  banner.classList.add('show');
+  banner.textContent = `Правильно: ${correct} из 5`;
+  if (correct === 5) { banner.style.background = 'var(--teal)'; confetti(); showToast('Все ответы верны! 🌟', 'success'); }
+  else { banner.style.background = 'var(--coral)'; }
+}
+
+const ex1Words = [
+  { s: 'book', p: 'books' }, { s: 'box', p: 'boxes' }, { s: 'baby', p: 'babies' },
+  { s: 'leaf', p: 'leaves' }, { s: 'bus', p: 'buses' }, { s: 'city', p: 'cities' },
+  { s: 'mouse', p: 'mice' }, { s: 'foot', p: 'feet' }, { s: 'child', p: 'children' }, { s: 'sheep', p: 'sheep' }
+];
+const ex1Grid = document.getElementById('ex1-grid');
+ex1Words.forEach((w, i) => {
+  const div = document.createElement('div');
+  div.className = 'flex flex-col items-center gap-2 p-4 rounded-xl';
+  div.style.background = '#FFF8F0';
+  div.innerHTML = `<div class="display text-xl font-bold">${w.s}</div><div style="color: var(--coral); font-weight: 700;">↓</div><input type="text" class="exercise-input" id="ex1-${i}" placeholder="..." />`;
+  ex1Grid.appendChild(div);
+});
+function checkEx1() {
+  let correct = 0;
+  ex1Words.forEach((w, i) => {
+    const input = document.getElementById(`ex1-${i}`);
+    const val = input.value.trim().toLowerCase();
+    input.classList.remove('correct', 'wrong');
+    if (val === w.p) { input.classList.add('correct'); correct++; }
+    else { input.classList.add('wrong'); setTimeout(() => { if (input.value.trim().toLowerCase() !== w.p) { input.value = ''; input.placeholder = w.p; } }, 800); }
+  });
+  const banner = document.getElementById('ex1-result');
+  banner.classList.add('show');
+  banner.textContent = `Правильно: ${correct} из ${ex1Words.length}`;
+  banner.style.background = correct === ex1Words.length ? 'var(--teal)' : 'var(--coral)';
+  if (correct === ex1Words.length) { confetti(); showToast('Отлично! 🎉', 'success'); }
+}
+function resetEx1() {
+  ex1Words.forEach((w, i) => { const input = document.getElementById(`ex1-${i}`); input.value = ''; input.placeholder = '...'; input.classList.remove('correct', 'wrong'); });
+  document.getElementById('ex1-result').classList.remove('show');
+}
+
+const ex2Questions = [
+  { q: 'Three ___ in the yard.', word: 'cat', options: ['cats', 'cates', 'caties'], correct: 0 },
+  { q: 'I have two ___.', word: 'knife', options: ['knifes', 'knives', 'knifs'], correct: 1 },
+  { q: 'The ___ are white.', word: 'tooth', options: ['tooths', 'teeths', 'teeth'], correct: 2 },
+  { q: 'Five ___ on the tree.', word: 'leaf', options: ['leafs', 'leaves', 'leafes'], correct: 1 },
+  { q: 'The ___ are running.', word: 'mouse', options: ['mouses', 'mice', 'mices'], correct: 1 },
+  { q: 'Many ___ in the city.', word: 'bus', options: ['buses', 'bus', 'buss'], correct: 0 },
+  { q: 'Two ___ in the field.', word: 'sheep', options: ['sheeps', 'sheep', 'sheepes'], correct: 1 }
+];
+const ex2List = document.getElementById('ex2-list');
+const ex2Answered = new Array(ex2Questions.length).fill(null);
+ex2Questions.forEach((q, qi) => {
+  const div = document.createElement('div');
+  div.className = 'p-4 rounded-xl'; div.style.background = '#FFF8F0';
+  div.innerHTML = `<div class="font-semibold mb-3"><span class="display" style="color: var(--coral);">${qi + 1}.</span> ${q.q}</div><div class="flex flex-wrap gap-2" id="ex2-opts-${qi}">${q.options.map((opt, oi) => `<button class="choice-btn" data-qi="${qi}" data-oi="${oi}">${opt}</button>`).join('')}</div>`;
+  ex2List.appendChild(div);
+});
+document.querySelectorAll('.choice-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const qi = parseInt(btn.dataset.qi); const oi = parseInt(btn.dataset.oi);
+    const q = ex2Questions[qi];
+    const allBtns = document.querySelectorAll(`#ex2-opts-${qi} .choice-btn`);
+    allBtns.forEach(b => { b.classList.remove('correct', 'wrong'); b.disabled = false; });
+    if (oi === q.correct) { btn.classList.add('correct'); ex2Answered[qi] = true; }
+    else { btn.classList.add('wrong'); allBtns[q.correct].classList.add('correct'); ex2Answered[qi] = false; }
+    allBtns.forEach(b => b.disabled = true);
+    updateEx2Result();
+  });
+});
+function updateEx2Result() {
+  const answered = ex2Answered.filter(a => a !== null).length;
+  const correct = ex2Answered.filter(a => a === true).length;
+  const banner = document.getElementById('ex2-result');
+  if (answered === ex2Questions.length) {
+    banner.classList.add('show');
+    banner.textContent = `Правильно: ${correct} из ${ex2Questions.length}`;
+    banner.style.background = correct === ex2Questions.length ? 'var(--teal)' : 'var(--coral)';
+    if (correct === ex2Questions.length) { confetti(); showToast('Идеально! 🌟', 'success'); }
+  }
+}
+
+const ex3Sentences = [
+  { wrong: 'I have two cats and three dog.', correct: 'dogs' },
+  { wrong: 'She saw three mouses in the kitchen.', correct: 'mice' },
+  { wrong: 'There are five box on the floor.', correct: 'boxes' },
+  { wrong: 'The childs are playing outside.', correct: 'children' },
+  { wrong: 'I see two leaf on the tree.', correct: 'leaves' },
+  { wrong: 'Many citys are very big.', correct: 'cities' },
+  { wrong: 'She has two tooths.', correct: 'teeth' }
+];
+const ex3List = document.getElementById('ex3-list');
+ex3Sentences.forEach((s, i) => {
+  const div = document.createElement('div');
+  div.className = 'p-4 rounded-xl flex flex-wrap items-center gap-3'; div.style.background = '#FFF8F0';
+  div.innerHTML = `<div class="flex-1 min-w-[250px]"><span class="display font-bold" style="color: var(--coral);">${i + 1}.</span><span class="ml-2">${s.wrong}</span></div><div class="flex items-center gap-2"><input type="text" class="exercise-input" id="ex3-${i}" style="width: 130px;" /></div>`;
+  ex3List.appendChild(div);
+});
+function checkEx3() {
+  let correct = 0;
+  ex3Sentences.forEach((s, i) => {
+    const input = document.getElementById(`ex3-${i}`);
+    const val = input.value.trim().toLowerCase();
+    input.classList.remove('correct', 'wrong');
+    if (val === s.correct) { input.classList.add('correct'); correct++; }
+    else { input.classList.add('wrong'); setTimeout(() => { input.value = ''; input.placeholder = s.correct; }, 800); }
+  });
+  const banner = document.getElementById('ex3-result');
+  banner.classList.add('show');
+  banner.textContent = `Правильно: ${correct} из ${ex3Sentences.length}`;
+  banner.style.background = correct === ex3Sentences.length ? 'var(--teal)' : 'var(--coral)';
+  if (correct === ex3Sentences.length) { confetti(); showToast('Молодец! 🎉', 'success'); }
+}
+function resetEx3() {
+  ex3Sentences.forEach((s, i) => { const input = document.getElementById(`ex3-${i}`); input.value = ''; input.placeholder = '...'; input.classList.remove('correct', 'wrong'); });
+  document.getElementById('ex3-result').classList.remove('show');
+}
+
+function showToast(msg, type = 'info') {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = `toast ${type} show`;
+  setTimeout(() => toast.classList.remove('show'), 2800);
+}
+
+function confetti() {
+  const colors = ['#FF6B47', '#2A9D8F', '#F4A261', '#E76F51', '#264653'];
+  for (let i = 0; i < 60; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.top = '-20px';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    piece.style.animationDelay = Math.random() * 0.5 + 's';
+    piece.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 3000);
+  }
+}
+
+const gameWords = [
+  { s: 'cat', p: 'cats', wrong: ['cates', 'caties'] },
+  { s: 'box', p: 'boxes', wrong: ['boxs', 'boxies'] },
+  { s: 'baby', p: 'babies', wrong: ['babys', 'babyes'] },
+  { s: 'leaf', p: 'leaves', wrong: ['leafs', 'leafes'] },
+  { s: 'bus', p: 'buses', wrong: ['buss', 'busies'] },
+  { s: 'city', p: 'cities', wrong: ['citys', 'cityes'] },
+  { s: 'mouse', p: 'mice', wrong: ['mouses', 'mices'] },
+  { s: 'foot', p: 'feet', wrong: ['foots', 'feets'] },
+  { s: 'child', p: 'children', wrong: ['childs', 'childes'] },
+  { s: 'sheep', p: 'sheep', wrong: ['sheeps', 'sheepes'] },
+  { s: 'tooth', p: 'teeth', wrong: ['tooths', 'toothes'] },
+  { s: 'wolf', p: 'wolves', wrong: ['wolfs', 'wolfes'] },
+  { s: 'potato', p: 'potatoes', wrong: ['potatos'] },
+  { s: 'photo', p: 'photos', wrong: ['photoes'] },
+  { s: 'goose', p: 'geese', wrong: ['gooses', 'geeses'] }
+];
+
+let gameState = { active: false, score: 0, lives: 3, currentWord: null, bubbles: [] };
+
+function startGame() {
+  gameState = { active: true, score: 0, lives: 3, currentWord: null, bubbles: [] };
+  document.getElementById('game-start').classList.add('hidden');
+  document.getElementById('game-end').classList.add('hidden');
+  document.getElementById('game-score').textContent = '0';
+  document.getElementById('game-lives').textContent = '❤❤❤';
+  spawnRound();
+}
+
+function spawnRound() {
+  if (!gameState.active) return;
+  document.querySelectorAll('.bubble').forEach(b => b.remove());
+  gameState.bubbles = [];
+  const word = gameWords[Math.floor(Math.random() * gameWords.length)];
+  gameState.currentWord = word;
+  document.getElementById('game-word').textContent = word.s;
+
+  const options = [{ text: word.p, correct: true }];
+  const wrongs = [...word.wrong];
+  while (wrongs.length > 0 && options.length < 3) {
+    const w = wrongs.shift();
+    options.push({ text: w, correct: false });
+  }
+  if (options.length < 3) options.push({ text: word.s + 's', correct: false });
+  options.sort(() => Math.random() - 0.5);
+
+  const canvas = document.getElementById('game-canvas');
+  const canvasW = canvas.offsetWidth;
+  const canvasH = canvas.offsetHeight;
+  const bubbleSize = 90;
+  const padding = 20;
+
+  options.forEach((opt, i) => {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.textContent = opt.text;
+    let x, y, attempts = 0;
+    do {
+      x = padding + Math.random() * (canvasW - bubbleSize - padding * 2);
+      y = 80 + Math.random() * (canvasH - bubbleSize - 120);
+      attempts++;
+    } while (attempts < 20 && gameState.bubbles.some(b => {
+      const dx = b.x - x, dy = b.y - y;
+      return Math.sqrt(dx * dx + dy * dy) < bubbleSize + 10;
+    }));
+    bubble.style.left = x + 'px';
+    bubble.style.top = y + 'px';
+    bubble.dataset.correct = opt.correct;
+    bubble.addEventListener('click', () => handleBubbleClick(bubble, opt.correct));
+    canvas.appendChild(bubble);
+    gameState.bubbles.push({ el: bubble, x, y, correct: opt.correct });
+  });
+}
+
+function handleBubbleClick(bubble, isCorrect) {
+  if (!gameState.active) return;
+  if (isCorrect) {
+    bubble.classList.add('popped');
+    gameState.score += 10;
+    document.getElementById('game-score').textContent = gameState.score;
+    showToast('+10 очков! 🎯', 'success');
+    setTimeout(() => spawnRound(), 400);
+  } else {
+    bubble.classList.add('wrong-flash');
+    gameState.lives--;
+    document.getElementById('game-lives').textContent = '❤'.repeat(gameState.lives) + '🖤'.repeat(3 - gameState.lives);
+    showToast('Неправильно! 😊', 'error');
+    if (gameState.lives <= 0) endGame();
+    else setTimeout(() => bubble.remove(), 400);
+  }
+}
+
+function endGame() {
+  gameState.active = false;
+  document.querySelectorAll('.bubble').forEach(b => b.remove());
+  const score = gameState.score;
+  document.getElementById('game-final-score').textContent = score;
+  let emoji = '🎉';
+  if (score >= 100) emoji = '🏆';
+  else if (score >= 50) emoji = '⭐';
+  else emoji = '💪';
+  document.getElementById('game-end-emoji').textContent = emoji;
+  document.getElementById('game-end').classList.remove('hidden');
+  if (score >= 100) confetti();
+}
+
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+showToast('Привет! Давай учить множественное число 🚀', 'info');
+</script>
+
+</body>
+</html>
