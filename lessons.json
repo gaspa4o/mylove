@@ -1,6 +1,11 @@
 {
   "1 класс": [ 
     {
+      "file": "halloween.html",
+      "name": "🎃 Halloween Special",
+      "halloween": true
+    },
+    {
       "file": "grade1/my_first_english_lesson.html"
     },
     {
@@ -19,8 +24,19 @@
       "file": "grade1/my_toys.html"
     }
   ],
-  "2 класс": [],
-  "3 класс": [ 
+  "2 класс": [  
+    {
+      "file": "halloween.html",
+      "name": "🎃 Halloween Special",
+      "halloween": true
+    }
+  ],
+  "3 класс": [
+    {
+      "file": "halloween.html",
+      "name": "🎃 Halloween Special",
+      "halloween": true
+    },
     {
       "file": "grade3/clothes_detective.html"
     },
@@ -62,6 +78,11 @@
     }
   ],
   "4 класс": [
+    {
+      "file": "halloween.html",
+      "name": "🎃 Halloween Special",
+      "halloween": true
+    },
     {
       "file": "grade4/food_junk_or_healthy.html"
     },
@@ -135,8 +156,19 @@
       "file": "grade4/plural_nouns_2.html"
     }           
   ],
-  "5 класс": [],
-  "6 класс": [
+  "5 класс": [    
+    {
+      "file": "halloween.html",
+      "name": "🎃 Halloween Special",
+      "halloween": true
+    }
+  ],
+  "6 класс": [    
+    {
+      "file": "halloween.html",
+      "name": "🎃 Halloween Special",
+      "halloween": true
+    },
     {
       "file": "grade6/grade_5_review.html"
     },
