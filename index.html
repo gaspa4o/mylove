@@ -1058,4 +1058,61 @@
             document.getElementById('totalClasses').textContent = Object.keys(lessonsData).length;
         }
 
-       
+        // ================================================================
+        //  🔍 ПОИСК И ВИД
+        // ================================================================
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            if (activeClass && lessonsData[activeClass]) {
+                renderLessons(activeClass);
+            }
+        });
+
+        document.getElementById('gridViewBtn').addEventListener('click', function() {
+            currentView = 'grid';
+            this.classList.add('active');
+            document.getElementById('listViewBtn').classList.remove('active');
+            if (activeClass && lessonsData[activeClass]) {
+                renderLessons(activeClass);
+            }
+        });
+
+        document.getElementById('listViewBtn').addEventListener('click', function() {
+            currentView = 'list';
+            this.classList.add('active');
+            document.getElementById('gridViewBtn').classList.remove('active');
+            if (activeClass && lessonsData[activeClass]) {
+                renderLessons(activeClass);
+            }
+        });
+
+        // ================================================================
+        //  🚀 ЗАПУСК (ТОЛЬКО JSON, БЕЗ СКАНИРОВАНИЯ!)
+        // ================================================================
+
+        // Загружаем данные из JSON
+        loadLessonsFromJSON();
+
+        console.log('%c🇬🇧 ENGLISH LESSONS - JSON VERSION (БЕЗ СКАНИРОВАНИЯ)', 'font-size: 20px; font-weight: bold; color: #c0392b;');
+        console.log('%c📁 СТРУКТУРА:', 'font-size: 14px; font-weight: bold;');
+        console.log('  📄 index.html');
+        console.log('  📄 lessons.json  ← СЮДА ДОБАВЛЯЙТЕ УРОКИ');
+        console.log('  📁 grade4/');
+        console.log('     📄 food_junk_or_healthy.html');
+        console.log('');
+        console.log('%c📝 КАК ДОБАВИТЬ НОВЫЙ УРОК:', 'font-size: 14px; font-weight: bold;');
+        console.log('1. Откройте lessons.json');
+        console.log('2. Добавьте в нужный класс:');
+        console.log('   "4 класс": [');
+        console.log('     { "file": "grade4/food_junk_or_healthy.html" },');
+        console.log('     { "file": "grade4/new_lesson.html" }');
+        console.log('   ]');
+        console.log('3. Создайте файл new_lesson.html в папке grade4');
+        console.log('4. Обновите страницу');
+        console.log('');
+        console.log('💡 Название урока АВТОМАТИЧЕСКИ форматируется из имени файла:');
+        console.log('   food_junk_or_healthy.html → Food Junk Or Healthy');
+    </script>
+
+</body>
+</html>
