@@ -1087,6 +1087,47 @@
         });
 
         // ================================================================
+        //  🎃 HALLOWEEN — ЛОГИКА ТЫКВЫ
+        // ================================================================
+
+        let halloweenLessonUrl = null;
+
+        // Ищем хэллоуинский урок среди всех классов
+        function findHalloweenLesson() {
+            for (const className of Object.keys(lessonsData)) {
+                const lesson = lessonsData[className].find(l => l.halloween === true);
+                if (lesson) return lesson.file;
+            }
+            return null;
+        }
+
+        // Настраиваем тыкву после загрузки JSON
+        function setupHalloweenPumpkin() {
+            const pumpkin = document.getElementById('halloweenPumpkin');
+            if (!pumpkin) return;
+
+            halloweenLessonUrl = findHalloweenLesson();
+
+            // Если урока нет — прячем тыкву
+            if (!halloweenLessonUrl) {
+                pumpkin.style.display = 'none';
+                return;
+            }
+
+            pumpkin.addEventListener('click', function () {
+                // Первый клик — "превращение": лицо + свечение
+                if (!this.classList.contains('face')) {
+                    this.classList.add('face');
+                    this.innerHTML = '😈<span class="pumpkin-tip">Нажми ещё раз!</span>';
+                    this.dataset.step = '1';
+                    return;
+                }
+                // Второй клик — открываем урок
+                window.open(halloweenLessonUrl, '_blank');
+            });
+        }
+
+        // ================================================================
         //  🚀 ЗАПУСК (ТОЛЬКО JSON, БЕЗ СКАНИРОВАНИЯ!)
         // ================================================================
 
@@ -1110,8 +1151,10 @@
         console.log('3. Создайте файл new_lesson.html в папке grade4');
         console.log('4. Обновите страницу');
         console.log('');
-        console.log('💡 Название урока АВТОМАТИЧЕСКИ форматируется из имени файла:');
-        console.log('   food_junk_or_healthy.html → Food Junk Or Healthy');
+        console.log('%c🎃 HALLOWEEN:', 'font-size: 14px; font-weight: bold; color: #e67e22;');
+        console.log('Добавьте в lessons.json объект:');
+        console.log('  { "file": "grade1/halloween.html", "name": "🎃 Halloween Special", "halloween": true }');
+        console.log('Тыква появится справа сверху на всех вкладках.');
     </script>
 
 </body>
